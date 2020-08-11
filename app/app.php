@@ -5,6 +5,8 @@ use Engine\Util;
 
 try{
 
+    $_SESSION['data']['system'] = get_defined_constants()['SYSTEM']; 
+
     Util::createTemp();
 
     Router::create()->dispatch();
