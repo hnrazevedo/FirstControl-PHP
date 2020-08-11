@@ -4,6 +4,7 @@ define("SYSTEM", [
     "instaled" => true,
     "appname" => "FirstControl",
     "uri" => "http://localhost/",
+    "temp" => __DIR__.'/../temp/'.session_id(),
 
     "logger.path" => "/logs/system/%year%/%mounth%/",
     "logger.filename" => "%level%.%day%.log",
