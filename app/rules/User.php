@@ -17,6 +17,5 @@ Class User{
 
 			return $rules;
         });
-
     }
 }
