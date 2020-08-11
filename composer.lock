@@ -1,0 +1,208 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "e8d1b6f0575d7a44e270eedff5a0ec81",
+    "packages": [
+        {
+            "name": "hnrazevedo/datamanager",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hnrazevedo/Datamanager.git",
+                "reference": "8d90905ab12e044309aa34c2d875e587313ddea2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/8d90905ab12e044309aa34c2d875e587313ddea2",
+                "reference": "8d90905ab12e044309aa34c2d875e587313ddea2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "HnrAzevedo\\Datamanager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Henri Mateus Santos de Azevedo",
+                    "email": "hnr.azevedo@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for developing personal projects",
+            "time": "2020-08-08T18:15:57+00:00"
+        },
+        {
+            "name": "hnrazevedo/filter",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hnrazevedo/Filter.git",
+                "reference": "ea52079828bea8b8bdfff40ed6fabfb90d42d216"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hnrazevedo/Filter/zipball/ea52079828bea8b8bdfff40ed6fabfb90d42d216",
+                "reference": "ea52079828bea8b8bdfff40ed6fabfb90d42d216",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "HnrAzevedo\\Filter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Henri Mateus Santos de Azevedo",
+                    "email": "hnr.azevedo@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for developing personal projects",
+            "time": "2020-08-11T12:18:19+00:00"
+        },
+        {
+            "name": "hnrazevedo/router",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hnrazevedo/Router.git",
+                "reference": "94043ed5e58a6ce35128a2b09492800630ceacc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/94043ed5e58a6ce35128a2b09492800630ceacc3",
+                "reference": "94043ed5e58a6ce35128a2b09492800630ceacc3",
+                "shasum": ""
+            },
+            "require": {
+                "hnrazevedo/filter": "^1.0",
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "HnrAzevedo\\Router\\": "src/",
+                    "Example\\Controllers\\": "examples/Controllers/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Henri Mateus Santos de Azevedo",
+                    "email": "hnr.azevedo@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for developing personal projects",
+            "time": "2020-08-10T17:37:05+00:00"
+        },
+        {
+            "name": "hnrazevedo/validator",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hnrazevedo/Validator.git",
+                "reference": "49924c90df8035acfd7df519dc07dddb2080db0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/49924c90df8035acfd7df519dc07dddb2080db0a",
+                "reference": "49924c90df8035acfd7df519dc07dddb2080db0a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "HnrAzevedo\\Validator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Henri Mateus Santos de Azevedo",
+                    "email": "hnr.azevedo@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for developing personal projects",
+            "time": "2020-08-11T01:08:29+00:00"
+        },
+        {
+            "name": "hnrazevedo/viewer",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hnrazevedo/Viewer.git",
+                "reference": "61014976723e6b8de3b268e859d821efbaa1a99d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/61014976723e6b8de3b268e859d821efbaa1a99d",
+                "reference": "61014976723e6b8de3b268e859d821efbaa1a99d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "HnrAzevedo\\Viewer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Henri Mateus Santos de Azevedo",
+                    "email": "hnr.azevedo@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for developing personal projects",
+            "time": "2020-08-11T00:36:19+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.4"
+    },
+    "platform-dev": []
+}
