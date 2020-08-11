@@ -1,6 +1,7 @@
 {
     "name": "hnrazevedo/firstcontrol-php",
     "description": "Sistema para controle de portaria (empresas)",
+    "license":"MIT",
     "authors": [
         {
             "name": "Henri Mateus Santos de Azevedo",
