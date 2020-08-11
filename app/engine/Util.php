@@ -6,6 +6,15 @@ use Exception;
 
 Class Util{
 
+    public static function getProtocol(): string
+    {
+        if((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')){
+            return 'ajax';
+        }
+
+        return (array_key_existS('REQUEST_METHOD',$_SESSION)) ? strtolower($_SERVER['REQUEST_METHOD']) : 'get';
+    }
+
     public static function delete($path): bool
     {
 		if(!file_exists($path)){
@@ -90,6 +99,15 @@ Class Util{
 			$array_return[$array['name']] = $array['value'];
 		}
 		return $array_return;
+    }
+
+    public static function getData(): array
+    {
+        return [
+            'POST' => $_POST,
+            'GET' => $_GET,
+            'FILES' => $_FILES
+        ];
     }
     
 }
