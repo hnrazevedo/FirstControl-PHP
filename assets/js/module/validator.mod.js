@@ -22,7 +22,7 @@ const validate = function(f,options){
                     checkInput(f,f.querySelector('[name="'+opt+'"]'),options[opt]);
                 }
             }catch(err){
-                valid = false;
+                //valid = false;
                 inputShowMessage(f.querySelector('[name="'+field.toLowerCase()+'"]'),err.message,'error');
             }
         }

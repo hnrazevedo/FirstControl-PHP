@@ -13,7 +13,17 @@ try{
 
 }catch(Exception $er){
 
-    echo $er->getMessage();
+    if(Util::getProtocol() === 'ajax'){
+        
+        echo json_encode([
+            'error' => [
+                'message' => $er->getMessage()
+            ]
+        ]);
+
+    }else{
+        echo 'Error: '.$er->getMessage();
+    }
 
 }finally{
 

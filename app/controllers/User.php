@@ -2,13 +2,14 @@
 
 namespace Controller;
 
+use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use Model\User as Model;
 use Engine\Util;
 use Exception;
 
 
-class User{
+class User extends Controller{
 
     private ?Model $entity;
 
@@ -24,31 +25,30 @@ class User{
         header('Location: /');
     }
 
-    private function check_method(string $method)
-    {
-        if(!method_exists($this,$method)){
-            throw new Exception("{$method} not found in ".get_class($this).".");
-        }
-    }
-
-    public function method()
-    {
-        $method = Util::getData()['POST']['role'];
-
-        $this->check_method($method);
-
-        $this->$method();
-    }
+    
 
     public function login()
     {
         try{
-            $data = Util::getData()['POST'];
+            $data = json_decode(Util::getData()['POST']['data'],true);
+
             $user = $this->entity->find()->where(['username','=',$data['log_username']])->execute();
     
             if($user->getCount() === 0){
                 throw new Exception('User not found.');
             }
+
+            $user = $user->toEntity();
+
+            if(!password_verify($data['log_password'], $user->password)){
+                throw new Exception('Invalid password.');
+            }
+        
+            $_SESSION['user'] = $user;
+
+            
+
+
         }catch(Exception $er){
             echo json_encode([
                 'error' =>

@@ -76,7 +76,11 @@ window.submitter = {
 			    t.data.append(t.form.attributes[at].name,t.form.attributes[at].value);
 			}
 		}
-		
+
+		var data = JSON.stringify(Object.fromEntries(t.data));
+
+		t.data = new FormData();
+		t.data.append('data',data);
 		t.data.append('provider',t.form.getAttribute('provider'));
 		t.data.append('role',t.form.getAttribute('role'));
 
@@ -190,14 +194,25 @@ window.submitter = {
 					}
 				break;
 				case 'error':
-					if(typeof t.response[r]['field'] != 'undefined' && f != null){
-						t.form.querySelector('#'+t.response[r]['field']).classList.add('error');
-						t.form.querySelector('p[name="'+t.response[r]['field']+'"]').classList.add('error')
-						t.form.querySelector('p[name="'+t.response[r]['field']+'"]').innerHTML = t.response[r]['message'];
-						t.form.querySelector('p[name="'+t.response[r]['field']+'"]').style.display = 'block';
+
+					if(typeof t.response[r] === "object"){
+						for(var er in t.response[r]){
+							var input = (t.form.querySelector("[name='"+t.response[r][er]['input']+"']") != null) ? t.form.querySelector("[name='"+t.response[r][er]['input']+"']") : null;
+							var message = t.response[r][er]['message'];
+
+							if(input != null){
+								input.classList.add('error');
+								t.form.querySelector('p[name="'+t.response[r][er]['input']+'"]').classList.add('error')
+								t.form.querySelector('p[name="'+t.response[r][er]['input']+'"]').innerHTML = input.getAttribute('placeholder')+" "+message;
+								t.form.querySelector('p[name="'+t.response[r][er]['input']+'"]').style.display = 'block';
+							}else{
+								window.dialog.popUp(message,'error');
+							}
+						}
 					}
+					
 					if(typeof t.response[r]['message'] != 'undefined') {
-						window.dialog.popUp(t.response[r]['message'].replace('{{ field }}',t.response[r]['field']),'error');
+						window.dialog.popUp(t.response[r]['message'],'error');
 					}
 				break;
 				case 'container':
