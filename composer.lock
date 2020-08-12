@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
-            "version": "v1.0.1",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Datamanager.git",
-                "reference": "8d90905ab12e044309aa34c2d875e587313ddea2"
+                "reference": "801765c5bdda3d5fda7eb02941e674d2be6721f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/8d90905ab12e044309aa34c2d875e587313ddea2",
-                "reference": "8d90905ab12e044309aa34c2d875e587313ddea2",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/801765c5bdda3d5fda7eb02941e674d2be6721f1",
+                "reference": "801765c5bdda3d5fda7eb02941e674d2be6721f1",
                 "shasum": ""
             },
             "require": {
@@ -41,8 +41,8 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Tools for developing personal projects",
-            "time": "2020-08-08T18:15:57+00:00"
+            "description": "Datamanager is a simple persistence abstraction component in the database.",
+            "time": "2020-08-11T13:03:11+00:00"
         },
         {
             "name": "hnrazevedo/filter",
@@ -50,12 +50,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Filter.git",
-                "reference": "ea52079828bea8b8bdfff40ed6fabfb90d42d216"
+                "reference": "c704edfde8e038c6d31076757530d85c0a38bbd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Filter/zipball/ea52079828bea8b8bdfff40ed6fabfb90d42d216",
-                "reference": "ea52079828bea8b8bdfff40ed6fabfb90d42d216",
+                "url": "https://api.github.com/repos/hnrazevedo/Filter/zipball/c704edfde8e038c6d31076757530d85c0a38bbd5",
+                "reference": "c704edfde8e038c6d31076757530d85c0a38bbd5",
                 "shasum": ""
             },
             "require": {
@@ -78,21 +78,21 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Tools for developing personal projects",
-            "time": "2020-08-11T12:18:19+00:00"
+            "description": "Filter is a simple component to check information.",
+            "time": "2020-08-11T20:05:55+00:00"
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v1.0.2",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "94043ed5e58a6ce35128a2b09492800630ceacc3"
+                "reference": "93f7f3ffc077c8943ecd7c0c4afb7faf321e5f44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/94043ed5e58a6ce35128a2b09492800630ceacc3",
-                "reference": "94043ed5e58a6ce35128a2b09492800630ceacc3",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/93f7f3ffc077c8943ecd7c0c4afb7faf321e5f44",
+                "reference": "93f7f3ffc077c8943ecd7c0c4afb7faf321e5f44",
                 "shasum": ""
             },
             "require": {
@@ -117,21 +117,21 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Tools for developing personal projects",
-            "time": "2020-08-10T17:37:05+00:00"
+            "description": "Router is a simple friendly URL abstractor.",
+            "time": "2020-08-11T17:36:02+00:00"
         },
         {
             "name": "hnrazevedo/validator",
-            "version": "v1.0.2",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Validator.git",
-                "reference": "49924c90df8035acfd7df519dc07dddb2080db0a"
+                "reference": "60e202f135855fc406d7061683bf65b6da68a756"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/49924c90df8035acfd7df519dc07dddb2080db0a",
-                "reference": "49924c90df8035acfd7df519dc07dddb2080db0a",
+                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/60e202f135855fc406d7061683bf65b6da68a756",
+                "reference": "60e202f135855fc406d7061683bf65b6da68a756",
                 "shasum": ""
             },
             "require": {
@@ -154,8 +154,8 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Tools for developing personal projects",
-            "time": "2020-08-11T01:08:29+00:00"
+            "description": "Validator is a simple data validation component.",
+            "time": "2020-08-11T12:55:01+00:00"
         },
         {
             "name": "hnrazevedo/viewer",
@@ -163,12 +163,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "61014976723e6b8de3b268e859d821efbaa1a99d"
+                "reference": "84142840ff62fc84fe7e04155e143b08320b3698"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/61014976723e6b8de3b268e859d821efbaa1a99d",
-                "reference": "61014976723e6b8de3b268e859d821efbaa1a99d",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/84142840ff62fc84fe7e04155e143b08320b3698",
+                "reference": "84142840ff62fc84fe7e04155e143b08320b3698",
                 "shasum": ""
             },
             "require": {
@@ -192,7 +192,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-08-11T00:36:19+00:00"
+            "time": "2020-08-11T19:51:40+00:00"
         },
         {
             "name": "matthiasmullie/minify",
@@ -363,6 +363,12 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "funding": [
+                {
+                    "url": "https://github.com/synchro",
+                    "type": "github"
+                }
+            ],
             "time": "2020-07-14T18:50:27+00:00"
         }
     ],
@@ -375,5 +381,6 @@
     "platform": {
         "php": ">=7.4"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

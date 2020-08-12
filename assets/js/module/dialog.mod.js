@@ -22,6 +22,9 @@ window.dialog = {
         }
     },
     popUp(m,c){
+        if(document.querySelector("#d_message p") == null){
+            return false;
+        }
         document.querySelector("#d_message p").classList.remove('sucess');
         document.querySelector("#d_message p").classList.remove('error');
         document.querySelector("#d_message p").innerHTML = m;
@@ -33,7 +36,9 @@ window.dialog = {
 window.addEventListener('load',function(){
     window.dialog.start();
     setTimeout(function(){
-        document.querySelector('dialog.loading').removeAttribute('open');
+        if(document.querySelector('dialog.loading') != null){
+            document.querySelector('dialog.loading').removeAttribute('open');
+        }
     },500);
 });
 

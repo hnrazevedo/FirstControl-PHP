@@ -53,10 +53,9 @@ window.submitter = {
 		var t = window.submitter;
 		t.form = f;
 		t.url = t.form.getAttribute('access');
-		//t.hearders = {
-		//  'X-Requested-With': 'XMLHttpRequest',
-		//  'X-Requested-Form': 'FormHttpRequest'
-	  	//};
+		t.hearders = {
+	    	'Requested-Method': 'ajax'
+	  	};
 		return t;
 	},
 	setResponse(r){
@@ -77,6 +76,9 @@ window.submitter = {
 			    t.data.append(t.form.attributes[at].name,t.form.attributes[at].value);
 			}
 		}
+		
+		t.data.append('provider',t.form.getAttribute('provider'));
+		t.data.append('role',t.form.getAttribute('role'));
 
 		return t;
 	},
@@ -107,7 +109,10 @@ window.submitter = {
 			});
 		}
 
-		document.querySelector('dialog.loading').setAttribute('open',true);
+		if(document.querySelector('dialog.loading') != null){
+			document.querySelector('dialog.loading').setAttribute('open',true);
+		}
+		
 
 		return t;
 	},
@@ -254,7 +259,9 @@ window.submitter = {
 				input.removeAttribute('disabled');
 			});
 			document.querySelector('form.submitting').classList.remove('submitting');
-			document.querySelector('dialog.loading').removeAttribute('open',false);
+			if(document.querySelector('dialog.loading') != null){
+				document.querySelector('dialog.loading').removeAttribute('open',false);
+			}
 		}
 		return t;
 	}
