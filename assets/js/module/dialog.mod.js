@@ -40,6 +40,19 @@ window.addEventListener('load',function(){
             document.querySelector('dialog.loading').removeAttribute('open');
         }
     },500);
+
+
+    
+});
+
+document.addEventListener('DOMContentLoaded',function(){
+    document.addEventListener('keydown',function(e){
+        if(document.querySelector('dialog[open]:not(.fixed)') != null && e.keyCode == 27){
+            document.querySelectorAll('dialog[open]:not(.fixed)').forEach(function(dialog,d){
+                dialog.removeAttribute('open');
+            });
+        }
+    });
 });
 
 export default window.dialog;

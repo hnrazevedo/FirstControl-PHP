@@ -33,6 +33,7 @@ dialog > div{
 
 dialog p{
     margin:0;
+    font-size: .9em;
 }
 
 dialog a[close]{
@@ -94,5 +95,5 @@ dialog.loading::after{
 
 
 dialog h3{
-  margin:.3em 0 .5em 0;
+  margin:.3em 0 .7em 0;
 }

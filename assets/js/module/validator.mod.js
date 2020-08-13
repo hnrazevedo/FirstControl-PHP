@@ -32,9 +32,8 @@ const validate = function(f,options){
         }
     });
 
-    if(f.querySelectorAll('input:not([type="submit"]),textarea')!=undefined){
-        f.querySelectorAll('input:not([type="submit"]),textarea').forEach(input => input.addEventListener('blur',function(e){
-            input.classList.remove('error');
+    if(f.querySelectorAll('input,textarea')!=undefined){
+        f.querySelectorAll('input,textarea').forEach(input => input.addEventListener('blur',function(e){
             try{
                 checkInput(f,input,options[input.getAttribute('name')]);
                 inputShowMessage(input,'.');

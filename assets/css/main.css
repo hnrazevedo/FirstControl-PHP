@@ -2,4 +2,9 @@
 
 body{
     font-family: 'Roboto';
+    background-image: url('/assets/img/wallpaper.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
 }

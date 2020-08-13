@@ -83,20 +83,21 @@
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "93f7f3ffc077c8943ecd7c0c4afb7faf321e5f44"
+                "reference": "39c0179d990d020fe020c847ba597c7f298b4bbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/93f7f3ffc077c8943ecd7c0c4afb7faf321e5f44",
-                "reference": "93f7f3ffc077c8943ecd7c0c4afb7faf321e5f44",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/39c0179d990d020fe020c847ba597c7f298b4bbf",
+                "reference": "39c0179d990d020fe020c847ba597c7f298b4bbf",
                 "shasum": ""
             },
             "require": {
                 "hnrazevedo/filter": "^1.0",
+                "hnrazevedo/validator": "^1.0",
                 "php": ">=7.4"
             },
             "type": "library",
@@ -118,7 +119,7 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-08-11T17:36:02+00:00"
+            "time": "2020-08-13T22:09:19+00:00"
         },
         {
             "name": "hnrazevedo/validator",
@@ -363,6 +364,12 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "funding": [
+                {
+                    "url": "https://github.com/synchro",
+                    "type": "github"
+                }
+            ],
             "time": "2020-07-14T18:50:27+00:00"
         }
     ],
@@ -375,5 +382,6 @@
     "platform": {
         "php": ">=7.4"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

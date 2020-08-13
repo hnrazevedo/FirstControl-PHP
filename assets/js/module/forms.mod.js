@@ -192,20 +192,7 @@ window.forms = {
         this.setAttribute('value',this.value);
     },
     inputKeyPress(){
-        /*$(document).on('keypress','input',function(){
-            if(this.value.length==parseInt(this.getAttribute('_maxlength'))){
-
-
-                if(typeof this.getAttribute('_mask')!=='undefined'){
-                    if(typeof $ == 'function'){
-                        $(this).mask(this.getAttribute('_mask'));
-                    }
-                }
-
-
-
-            }
-        });*/
+        
     },
     inputKeyUp(){
         if(document.querySelector('length[name="'+this.getAttribute('name')+'"] current') != null){
