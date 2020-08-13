@@ -1,6 +1,7 @@
 <?php
 
 use HnrAzevedo\Router\Router;
+use HnrAzevedo\Viewer\Viewer;
 use Engine\Util;
 
 try{
@@ -22,7 +23,13 @@ try{
         ]);
 
     }else{
-        echo 'Error: '.$er->getMessage();
+        Viewer::create(SYSTEM['basepath'].'app/views/global/')
+              ->render('error',[
+                    'error' => [
+                        'code' => $er->getCode(),
+                        'message' => $er->getMessage()
+                        ]
+                ]);
     }
 
 }finally{

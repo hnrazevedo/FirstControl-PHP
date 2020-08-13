@@ -99,7 +99,7 @@ window.submitter = {
 			document.querySelector(':focus').blur();
 		}
 
-		t.form.querySelectorAll('p.message').forEach(p => p.style.display = 'none');
+		/*t.form.querySelectorAll('p.message').forEach(p => p.style.display = 'none');*/
 
 		if(t.form.querySelectorAll('.error')!=null){
 			t.form.querySelectorAll('.error').forEach(err => err.classList.remove('error'));

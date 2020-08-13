@@ -22,7 +22,7 @@ const validate = function(f,options){
                     checkInput(f,f.querySelector('[name="'+opt+'"]'),options[opt]);
                 }
             }catch(err){
-                //valid = false;
+                valid = false;
                 inputShowMessage(f.querySelector('[name="'+field.toLowerCase()+'"]'),err.message,'error');
             }
         }
@@ -37,21 +37,27 @@ const validate = function(f,options){
             input.classList.remove('error');
             try{
                 checkInput(f,input,options[input.getAttribute('name')]);
-                inputShowMessage(input,'');
-                input.style.marginBottom = '';
+                inputShowMessage(input,'.');
             }catch(err){
                 inputShowMessage(input,err.message,'error');
             }
         }));
     }
 
-    function inputShowMessage(input,text,c=null){
-        var message = input.closest('form').querySelector('p[name="'+input.getAttribute('name')+'"]');
-        if(message != null){
-            message.innerHTML = text;
-            input.classList.add(c);
-            input.style.marginBottom = message.offsetHeight + 2;
-            (c==null) ? message.classList.remove(['error','success']) : message.classList.add(c);
+    function inputShowMessage(i, t, c = null){
+
+        var m = i.closest('form').querySelector('p[name="'+i.getAttribute('name')+'"]');
+
+        if(m != null){
+
+            m.innerHTML = t;
+            
+            if(c==null){
+                m.classList.remove('error','success');
+            }else{
+                m.classList.add(c);
+                i.classList.add(c);
+            }
         }
     }
 

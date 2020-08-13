@@ -1,0 +1,104 @@
+form *{
+    outline:none;
+}
+
+/* List */
+form ul{
+    margin:0;
+    padding:0;
+}
+form li{
+    list-style: none;
+    margin: 0 0 1em 0;
+    position: relative;
+}
+/*-----------------------------------*/
+
+
+/* Messages */
+form p.message{
+    color:transparent;
+    margin:0;
+    display:block;
+    max-height: 0;
+    transition:max-height .5s ease, margin .5s ease;
+    font-size: .8em;
+}
+form p.error, form p.success{
+    margin:.5em 0 1em 0;
+    max-height: 100px;
+    display: block;
+    transition:max-height .5s ease, margin .5s ease;
+}
+form p.error{
+    color:rgb(219,68,55);
+}
+form p.success{
+    color:rgb(15,157,88);
+}
+/*---------------------------------------------------- */
+/* Input placeholder */
+input::-webkit-input-placeholder{ /* Chrome/Opera/Safari */
+    color:transparent;
+} 
+input::-moz-placeholder{ /* Firefox 19+ */
+    color:transparent;
+} 
+input:-ms-input-placeholder{ /* IE 10+ */
+    color:transparent;
+} 
+input:-moz-placeholder{ /* Firefox 18- */
+    color:transparent;
+} 
+input::placeholder{
+    color:transparent;
+}
+/*---------------------------------------------------- */
+/* Labels */
+input + label{
+    position: absolute;
+    top:1.45em;
+    left:.65em;
+    pointer-events: none;
+    font-size: .9em;
+    transition: transform .5s ease, color .5s ease;
+    color:rgba(0,0,0,.5)
+}
+input:focus + label,
+input:not([value=""]) + label{
+    color:rgb(66,133,244);
+    transform: translate(-1em,-1.7em) scale(.8);
+    transition: transform .5s ease, color .5s ease;
+}
+input.error + label{
+    color:rgb(185, 47, 34);
+}
+/*---------------------------------------------------- */
+/* Length */
+form length{
+    position: absolute;
+    right: .5em;
+    top:1.75em;
+    font-size: .8em;
+    color:rgba(0,0,0,.6);
+}
+/*---------------------------------------------------- */
+
+form input[type="text"],
+form input[type="password"]{
+    padding-right: 5em !important;
+}
+form input[type="text"],
+form input[type="password"],
+form textarea{
+    margin-top:1em;
+    width: 100%;
+    padding: .6em;
+    border: solid 1px rgba(0,0,0,.3);
+}
+
+
+form input[type="text"].error,
+form input[type="password"].error{
+    border-color: rgb(185, 47, 34);
+}

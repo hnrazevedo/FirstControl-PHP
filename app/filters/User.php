@@ -1,5 +1,7 @@
 <?php
 
+namespace Filter;
+
 use HnrAzevedo\Filter\Filter;
 
 class User extends Filter{

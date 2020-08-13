@@ -50,7 +50,7 @@ window.forms = {
 
                             var p = document.createElement('p');
                             p.setAttribute('name',input.getAttribute('name'));
-                            p.classList.add('message','none');
+                            p.classList.add('message');
                             input.nextSibling.after(p);
                             break;
                         case 'maskMoney':
@@ -72,7 +72,7 @@ window.forms = {
                                     var length = document.createElement('length');
                                     var p = document.createElement('p');
                                     p.setAttribute('name',input.getAttribute('name'));
-                                    p.classList.add('message','none');
+                                    p.classList.add('message');
                                     length.style.opacity = 0;
                                     input.nextSibling.after(length);
                                     input.nextSibling.after(p);
@@ -86,7 +86,7 @@ window.forms = {
                                     input.nextSibling.after(length);
                                     var p = document.createElement('p');
                                     p.setAttribute('name',input.getAttribute('name'));
-                                    p.classList.add('message','none');
+                                    p.classList.add('message');
                                     input.nextSibling.after(p);
                                     break;
                             }
