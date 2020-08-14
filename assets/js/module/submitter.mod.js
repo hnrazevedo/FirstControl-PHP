@@ -22,25 +22,15 @@ window.submitter = {
 	},
 	execute(result = null){
 		var t = window.submitter;
-		if(window.fetch) {
-			if(result){
-				return t.fetchRequest();
-			}else{
-				var promise = t.fetchRequest();
 
-				if (promise !== undefined) {
-		            promise.then(_ => {}).catch(error => {
-						console.log(error);
-		            });
-		        }else{
-					console.log(3);
-				}
-			}
+		if(window.fetch) {
+			t.fetchRequest();
 		}else{
 			t.XMLHttpRequest();
-			if(result){
-				return t.getResponse();
-			}
+		}
+
+		if(result){
+			return t.getResponse();
 		}
 		return t;
 	},
@@ -122,25 +112,23 @@ window.submitter = {
 	},
 	fetchRequest(){
 		var t = window.submitter;
-		return (async () => {
-			const rawResponse = await fetch(t.url, {
+		fetch(t.url,
+			{
 				method: 'POST',
 				headers: t.hearders,
 				body: t.data
-			});
-
-			const response = await rawResponse.json();
-
-			t.setResponse(response);
-
-			if(typeof response == 'object'){
+			})
+			.then(res => {
+				return res.json();
+			})
+			.then(post => {
+				t.response = post;
+				t.requestLoadEnd();
 				t.responseWork();
-			}else{
-				//console.log(response);
-			}
-
-			t.requestLoadEnd();
-		})();
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	},
 	XMLHttpRequest(){
 		var t = window.submitter;

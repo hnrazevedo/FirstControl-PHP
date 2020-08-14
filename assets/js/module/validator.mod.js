@@ -120,21 +120,21 @@ document.addEventListener('DOMContentLoaded',function(e){
             data.append('role',f.getAttribute('role'));
 
             if(self.fetch) {
-                (async () => {
-                    const rawResponse = await fetch('/validator', {
+                fetch('/validator',
+                    {
                         method: 'POST',
-                        headers: {
-                          'Requested-Method': 'ajax'
-                        },
+                        headers: {'Requested-Method': 'ajax'},
                         body: data
-                      });
-                      const response = await rawResponse.json();
-                      if(typeof response == 'object'){
-                          formWork(response);
-                      }else{
-                          console.log(response);
-                      }
-                })();
+                    })
+                    .then(res => {
+                        return res.json();
+                    })
+                    .then(post => {
+                        formWork(post);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
             } else {
                 var xhr = new XMLHttpRequest();
                 xhr.open( "POST", '/validator' , true );
@@ -144,6 +144,8 @@ document.addEventListener('DOMContentLoaded',function(e){
                     if(isJson(xhr.response)){
                         response = JSON.parse(String(xhr.response));
                         formWork(response);
+                    }else{
+                        console.log(xhr.response);
                     }
                 });
                 xhr.addEventListener('error',function(XMLHttpRequest,textStatus,errorThrown){

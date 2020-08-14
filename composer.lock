@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Datamanager.git",
-                "reference": "801765c5bdda3d5fda7eb02941e674d2be6721f1"
+                "reference": "0b9135329c37550da5134b037f9a9fa719d5ecd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/801765c5bdda3d5fda7eb02941e674d2be6721f1",
-                "reference": "801765c5bdda3d5fda7eb02941e674d2be6721f1",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/0b9135329c37550da5134b037f9a9fa719d5ecd9",
+                "reference": "0b9135329c37550da5134b037f9a9fa719d5ecd9",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "Datamanager is a simple persistence abstraction component in the database.",
-            "time": "2020-08-11T13:03:11+00:00"
+            "time": "2020-08-14T14:12:48+00:00"
         },
         {
             "name": "hnrazevedo/filter",
@@ -364,12 +364,6 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "funding": [
-                {
-                    "url": "https://github.com/synchro",
-                    "type": "github"
-                }
-            ],
             "time": "2020-07-14T18:50:27+00:00"
         }
     ],
@@ -382,6 +376,5 @@
     "platform": {
         "php": ">=7.4"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }

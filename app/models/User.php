@@ -2,9 +2,9 @@
 
 namespace Model;
 
-use HnrAzevedo\Datamanager\Datamanager;
+use HnrAzevedo\Datamanager\Model;
 
-Class User extends Datamanager{
+Class User extends Model{
 
     public function __construct(){
         return parent::create('user','id');
