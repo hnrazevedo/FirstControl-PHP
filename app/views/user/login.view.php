@@ -11,6 +11,7 @@
         <link href="{{system.uri}}/assets/css/forms.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+        <?= $this->include('../global/background') ?>
         <main>
             <?= $this->include('forms/login') ?>
         </main>
