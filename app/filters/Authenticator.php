@@ -18,7 +18,7 @@ class Authenticator extends Filter{
         $this->entityPage = new Model_page();
     }
 
-    public function auth(): bool
+    public function authRoute(): bool
     {
         $route = unserialize($_SESSION['route']);
         $user = unserialize($_SESSION['user']);

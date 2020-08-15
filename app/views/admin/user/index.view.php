@@ -9,16 +9,12 @@
         <link href="{{system.uri}}/assets/css/main.css" rel="stylesheet" type="text/css">
         <link href="{{system.uri}}/assets/css/dialog.css" rel="stylesheet" type="text/css">
         <link href="{{system.uri}}/assets/css/forms.css" rel="stylesheet" type="text/css">
-        
-        <link href="{{system.uri}}/assets/css/dashboard.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <?= $this->include('global/background') ?>
-        <?= $this->include('global/header') ?>
-        <main>
-            <div class="content">
-                <h1>Dashboard</h1>
-            </div>
-        </main>
+        <?= $this->include('../../global/background') ?>
+        <?= $this->include('../../global/header') ?>
+        
+        <?= $this->include('../../global/dialog_loading') ?>
+        <?= $this->include('../../global/dialog_message') ?>
     </body>
 </html>

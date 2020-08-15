@@ -2,9 +2,9 @@
 
 namespace Model;
 
-use HnrAzevedo\Datamanager\Model;
+use HnrAzevedo\Datamanager\Model as Entity;
 
-Class Page extends Model{
+Class Page extends Entity{
 
     public function __construct(){
         return parent::create('page','id');
