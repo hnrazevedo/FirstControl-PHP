@@ -40,7 +40,7 @@ class Page extends Controller{
         $menu = $this->entity->find()->where([
             ['name','<>','default'],
             ['id','in',$pagesID]
-        ])->orderBy('tag','ASC')->execute()->toEntity();
+        ])->orderBy('tag','ASC')->execute();
 
         $json = [];
         foreach($menu->result() as $m => $value){
