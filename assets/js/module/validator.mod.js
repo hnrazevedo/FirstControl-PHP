@@ -52,6 +52,7 @@ const validate = function(f,options){
             m.innerHTML = t;
             
             if(c==null){
+                i.classList.remove('error','success');
                 m.classList.remove('error','success');
             }else{
                 m.classList.add(c);

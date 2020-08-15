@@ -31,7 +31,7 @@
 
                 <hr>
 
-                <div class="sub-title">
+                <div class="sub-title act">
                     <h4>Subtitulo</h4>
                 </div>
 

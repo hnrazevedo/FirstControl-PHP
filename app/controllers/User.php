@@ -46,7 +46,7 @@ class User extends Controller{
                 throw new Exception('Invalid password.');
             }
         
-            $_SESSION['user'] = $user;
+            $_SESSION['user'] = serialize($user);
 
             echo json_encode([
                 'script' => 'window.location.href="/dashboard";'

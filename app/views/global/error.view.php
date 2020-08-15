@@ -9,8 +9,15 @@
         <link href="{{system.uri}}/assets/css/main.css" rel="stylesheet" type="text/css">
         <link href="{{system.uri}}/assets/css/dialog.css" rel="stylesheet" type="text/css">
         <link href="{{system.uri}}/assets/css/forms.css" rel="stylesheet" type="text/css">
+
+        <style>
+            body .background .area{
+                background-color: rgba(255,0,0,.7) !important;
+            }
+        </style>
     </head>
     <body>
+        <?= $this->include('background') ?>
         <main>
             <dialog open="open" class="fixed">
                 <div>

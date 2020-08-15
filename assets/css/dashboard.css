@@ -56,6 +56,10 @@ header ul div.sub-title{
 header ul div.sub-title h4{
     margin:0;
     font-size: .8em;
+    color:rgba(0,0,0,.6);
+}
+header ul div.sub-title.act h4{
+    color:rgba(0,0,0,.9);
 }
 
 
