@@ -30,16 +30,8 @@ window.dataTables = {
             });
         }
     },
-    importFromURL(id,url){
-        var promise = window.submitter.setUrl('/resultset/video/result_my_videos').execute(true);
-        if (promise !== undefined) {
-            promise.then(_ => {
-                window.dataTables.dataAdd('t_list_videos',window.submitter.getResponse());
-            }).catch(error => {
-                console.log(error);
-            });
-        }
-
+    async importFromURL(id,url){
+        window.dataTables.dataAdd(id, await window.submitter.setUrl(url).execute(true));
     },
     getDataTable(id){
         if(window.dataTables.debug) console.log('[log] > getDataTable');
@@ -116,7 +108,7 @@ window.dataTables = {
                             skipColumn: [],
                             lineDelimiter:  "\n",
                             columnDelimiter:  "|",
-                            filename: this.getAttribute('title')
+                            filename: table[0].getAttribute('title')
                         });
                         break;
                     default:
@@ -174,8 +166,6 @@ window.dataTables = {
         if(!t.started){
             t.start();
         }
-
-
 
         t.tables.forEach((table, i) => {
             if(table[0].getAttribute('id') === id){

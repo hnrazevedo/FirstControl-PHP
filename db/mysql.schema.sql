@@ -44,8 +44,6 @@ ALTER TABLE authorization ADD FOREIGN KEY (form) REFERENCES form(id);
 INSERT INTO user(name, username, email, password, code, birth, register, status, type)
 VALUES('admin','admin','admin@admin.com','$2y$10$X2CBK8QAYMG1dleYp4dt8.gvSNpUVLmWSDsRAxjdfTUKrCjyNXih2', '1', '2000-00-00','2000-00-00',1,1);
 
-
-
 INSERT INTO page(id, name, tag, path, register) VALUES(1,'default','global','/','2000-00-00');
 INSERT INTO page(id, name, tag, path, register) VALUES(2,'admin_users','permissões','/admin/users','2000-00-00');
 

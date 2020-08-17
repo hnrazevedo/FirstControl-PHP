@@ -83,16 +83,16 @@
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "ebbd9697992bb8ed689e07ac71c307f3b442b5e8"
+                "reference": "2a4a8925b14c4fd7b8b1deeb8610f03dc27cb07e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/ebbd9697992bb8ed689e07ac71c307f3b442b5e8",
-                "reference": "ebbd9697992bb8ed689e07ac71c307f3b442b5e8",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/2a4a8925b14c4fd7b8b1deeb8610f03dc27cb07e",
+                "reference": "2a4a8925b14c4fd7b8b1deeb8610f03dc27cb07e",
                 "shasum": ""
             },
             "require": {
@@ -119,7 +119,7 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-08-13T23:18:56+00:00"
+            "time": "2020-08-16T01:39:33+00:00"
         },
         {
             "name": "hnrazevedo/validator",
@@ -160,16 +160,16 @@
         },
         {
             "name": "hnrazevedo/viewer",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "cb9bd35ec79c04d5beab9293fe3f832d823724d9"
+                "reference": "2ace0d0e6773e3eccd98c935a657752be48d2376"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/cb9bd35ec79c04d5beab9293fe3f832d823724d9",
-                "reference": "cb9bd35ec79c04d5beab9293fe3f832d823724d9",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/2ace0d0e6773e3eccd98c935a657752be48d2376",
+                "reference": "2ace0d0e6773e3eccd98c935a657752be48d2376",
                 "shasum": ""
             },
             "require": {
@@ -193,7 +193,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-08-13T22:10:14+00:00"
+            "time": "2020-08-15T23:15:11+00:00"
         },
         {
             "name": "matthiasmullie/minify",
@@ -364,12 +364,6 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "funding": [
-                {
-                    "url": "https://github.com/synchro",
-                    "type": "github"
-                }
-            ],
             "time": "2020-07-14T18:50:27+00:00"
         }
     ],
@@ -382,6 +376,5 @@
     "platform": {
         "php": ">=7.4"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }

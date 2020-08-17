@@ -21,6 +21,13 @@ main .content{
     box-shadow: 0 0 5px rgba(0,0,0,.5);
 }
 
+hr{
+    border:none;
+    height: 1px;
+    background:rgba(0,0,0,.1);
+    margin:0;
+    margin-top:.6em
+}
 
 main .content h1{
     font-weight: 400;

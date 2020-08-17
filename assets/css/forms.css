@@ -4,6 +4,10 @@ form{
 form *{
     outline:none;
 }
+form.disabled{
+    pointer-events: none;
+    filter: saturate(0.5);
+}
 
 /* List */
 form ul{
@@ -38,6 +42,24 @@ form p.error{
 }
 form p.success{
     color:rgb(15,157,88);
+}
+/*------------------------------------------------------------*/
+/* Panel message */
+form .panel-message{
+    display: block;
+    border: solid 2px rgba(0,0,0,.3);
+    background:rgba(0,0,0,.2);
+    padding: .7em .5em;
+    font-size: .85em;
+    display: none;
+    overflow: hidden;
+}
+
+form .panel-message.error{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    display: block;;
 }
 /*---------------------------------------------------- */
 /* Input placeholder */
@@ -125,6 +147,7 @@ form input[type="password"].error:focus{
 form li.li-btn{
     text-align: right;
 }
+button,
 form input[type="submit"],
 form input[type="reset"],
 form button{
@@ -140,7 +163,11 @@ form button{
     font-weight: 700;
 }
 
+button{
+    outline:none;
+}
 
+button::before,
 form input[type="submit"]::before,
 form input[type="reset"]::before,
 form button::before{
@@ -154,6 +181,7 @@ form button::before{
     border-radius: 100%;
 }
 
+button:active::before,
 form input[type="submit"]:active::before,
 form input[type="reset"]:active::before,
 form button:active::before{

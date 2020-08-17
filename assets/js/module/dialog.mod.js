@@ -46,6 +46,18 @@ window.addEventListener('load',function(){
 });
 
 document.addEventListener('DOMContentLoaded',function(){
+
+    if(document.querySelector('[dialog]') != null){
+        document.querySelectorAll('[dialog]').forEach(function(open,i){
+            open.addEventListener('click',function(){
+                if(document.querySelector('dialog'+open.getAttribute('dialog')) != null){
+                    document.querySelector('dialog'+open.getAttribute('dialog')).setAttribute('open','open');
+                }
+            });
+        });
+    }
+
+
     document.addEventListener('keydown',function(e){
         if(document.querySelector('dialog[open]:not(.fixed)') != null && e.keyCode == 27){
             document.querySelectorAll('dialog[open]:not(.fixed)').forEach(function(dialog,d){

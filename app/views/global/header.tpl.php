@@ -5,6 +5,16 @@
             <div class="icon"></div>
             <span>FirstControl-PHP</span>
         </div>
+
+
+        <div class="sub-title">
+            <h4>Cadastros</h4>
+        </div>
+        <li>
+            <a href="/admin/users">Usuários</a>
+        </li>  
+
+
         <li>
             <a href="/logout">Sair</a>
         </li>     

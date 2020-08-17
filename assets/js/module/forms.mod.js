@@ -28,7 +28,7 @@ window.forms = {
             form.prepend(divM);
         });
 
-        document.querySelectorAll('input,textarea,select').forEach((input, i) => {
+        document.querySelectorAll('form input, form textarea, form select').forEach((input, i) => {
 
             if(input.getAttribute('inid') == null){
 

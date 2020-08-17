@@ -21,8 +21,8 @@ class Admin extends Controller{
     public function view_users()
     {
         $data = [
-            'title' => 'Permissões de usuários',
-            'page' => '../admin/user/authorization',
+            'title' => 'Registros de usuários',
+            'page' => '../admin/user/list',
             'pageID' => 2
         ];
         Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',$data);
@@ -36,6 +36,38 @@ class Admin extends Controller{
             'pageID' => 3
         ];
         Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',$data);
+    }
+
+    public function result_list(array $data)
+    {
+        switch($data['GET']['entity'])
+        {
+            case 'users':
+                echo json_encode($this->getListUser());
+                break;
+            default:
+                throw new Exception('Consulta de listagem incorreta.');
+                break;
+        }
+    }
+
+    public function getListUser()
+    {
+        $users = $this->entity->find()->except(['password','code'])->execute()->toEntity();
+        $return = [];
+        foreach($users as $user => $result){
+            $date = [];
+            $date[] = '<input type="checkbox">';
+            foreach($result->getData() as $field => $data){
+                
+                if($result->$field != null){
+                    $date[] = $result->$field;
+                }
+
+            }
+            $return[] = array_values($date);
+        }
+        return $return;
     }
 
 }

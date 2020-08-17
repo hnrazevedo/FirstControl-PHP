@@ -162,7 +162,8 @@ document.addEventListener('DOMContentLoaded',function(e){
                             break;
                         case 'error':
                             f.classList.add('disabled');
-                            f.innerHTML = '<div class="panel-message error" style="display:block">'+response[r]+'</div>' + f.innerHTML;
+                            f.querySelector('.panel-message').classList.add('error');
+                            f.querySelector('.panel-message').innerHTML = response[r]['message'];
                             break;
                     }
                 }

@@ -13,6 +13,9 @@ window.submitter = {
 	url:null,
 	work(e){
 		var t = window.submitter;
+		t.hearders = {
+	    	'Requested-Method': 'ajax'
+	  	};
 		e.preventDefault();
 		t.setForm(e.target);
 		t.prepareData();
@@ -20,11 +23,11 @@ window.submitter = {
 		t.execute();
 		return t;
 	},
-	execute(result = null){
+	async execute(result = null){
 		var t = window.submitter;
 
 		if(window.fetch) {
-			t.fetchRequest();
+			await t.fetchRequest();
 		}else{
 			t.XMLHttpRequest();
 		}
@@ -37,15 +40,15 @@ window.submitter = {
 	setUrl(u){
 		var t = window.submitter;
 		t.url = u;
+		t.hearders = {
+	    	'Requested-Method': 'ajax'
+	  	};
 		return t;
 	},
 	setForm(f){
 		var t = window.submitter;
 		t.form = f;
 		t.url = t.form.getAttribute('access');
-		t.hearders = {
-	    	'Requested-Method': 'ajax'
-	  	};
 		return t;
 	},
 	setResponse(r){
@@ -110,19 +113,18 @@ window.submitter = {
 
 		return t;
 	},
-	fetchRequest(){
+	async fetchRequest(){
 		var t = window.submitter;
-		fetch(t.url,
+		await fetch(t.url,
 			{
 				method: 'POST',
 				headers: t.hearders,
 				body: t.data
-			})
-			.then(res => {
+			}).then(res => {
 				return res.json();
 			})
 			.then(post => {
-				t.response = post;
+				t.setResponse(post);
 				t.requestLoadEnd();
 				t.responseWork();
 			})
