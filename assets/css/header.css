@@ -5,6 +5,7 @@ header{
     background:white;
     height: 100vh;
     box-shadow: 0 0 5px rgba(0,0,0,.9);
+    min-width: 200px;
 }
 
 header ul{
@@ -39,7 +40,7 @@ header ul div.sub-title{
 header ul div.sub-title h4{
     margin:0;
     font-size: .8em;
-    color:rgba(0,0,0,.6);
+    color:rgba(0,0,0,.4);
 }
 header ul div.sub-title.act h4{
     color:rgba(0,0,0,.9);

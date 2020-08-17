@@ -24,11 +24,14 @@ class Authenticator extends Filter{
         $user = unserialize($_SESSION['user']);
 
         $modelPage = $this->entityPage->find()->only('id')->where([
-            ['path','=',$route['url']]
+            ['path','=',$route['url']],
+            'OR' => [
+                'path','=',substr($route['url'],0,-1)
+            ]
         ])->execute();
 
         if($modelPage->getCount() === 0){
-            $this->addMessage('auth','Permission settings for this page have not been defined by the administrator.');
+            $this->addMessage('authRoute','Permission settings for this page have not been defined by the administrator.');
             return false;
         }
 
@@ -40,7 +43,7 @@ class Authenticator extends Filter{
         ])->execute();
 
         if($modelAuth->getCount() === 0){
-            $this->addMessage('auth','You do not have the necessary permissions.');
+            $this->addMessage('authRoute','You do not have the necessary permissions.');
             return false;
         }
         

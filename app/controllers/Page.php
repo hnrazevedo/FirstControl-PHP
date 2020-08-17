@@ -47,7 +47,8 @@ class Page extends Controller{
             $json[] = [
                 'url' => $value['path'],
                 'name' => $value['name'],
-                'submenu' => $value['tag']
+                'submenu' => $value['tag'],
+                'id' => $value['id']
             ];
         }
 

@@ -4,4 +4,24 @@ body{
     font-family: 'Roboto';
     margin:0;
     position: relative;
+    display: flex;
+}
+main{
+    display: inline-block;
+    vertical-align: top;
+    overflow: auto;
+    width: 100%;
+    flex-grow: 1;
+}
+main .content{
+    width: calc(100% - 3em);
+    background:white;
+    margin:1em;
+    padding:.5em;
+    box-shadow: 0 0 5px rgba(0,0,0,.5);
+}
+
+
+main .content h1{
+    font-weight: 400;
 }

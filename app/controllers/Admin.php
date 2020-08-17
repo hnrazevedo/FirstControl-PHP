@@ -20,7 +20,22 @@ class Admin extends Controller{
 
     public function view_users()
     {
-        Viewer::create(SYSTEM['basepath'].'app/views/admin/user/')->render('index');
+        $data = [
+            'title' => 'Permissões de usuários',
+            'page' => '../admin/user/authorization',
+            'pageID' => 2
+        ];
+        Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',$data);
+    }
+
+    public function view_dashboard()
+    {
+        $data = [
+            'title' => 'Painel de controle',
+            'page' => '../admin/dashboard/dashboard',
+            'pageID' => 3
+        ];
+        Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',$data);
     }
 
 }

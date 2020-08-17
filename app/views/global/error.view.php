@@ -14,6 +14,16 @@
             body .background .area{
                 background-color: rgba(255,0,0,.7) !important;
             }
+            body p:first-child{
+                text-align: center;
+            }
+            hr{
+                height: 1px;
+                border:none;
+                background: rgba(0,0,0,.15);
+                width: 80%;
+                margin:.5em auto;
+            }
         </style>
     </head>
     <body>
@@ -21,7 +31,8 @@
         <main>
             <dialog open="open" class="fixed">
                 <div>
-                    <p><b>{{error.code}}</b>.That’s an error.</p>
+                    <p><b>{{error.code}}</b>. That’s an error.</p>
+                    <hr />
                     <p>{{error.message}}</p>
                 </div>
             </dialog>

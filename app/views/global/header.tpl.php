@@ -5,7 +5,9 @@
             <div class="icon"></div>
             <span>FirstControl-PHP</span>
         </div>
-                
+        <li>
+            <a href="/logout">Sair</a>
+        </li>     
                 
     </ul>
 </header>
@@ -28,9 +30,13 @@
                 $a.setAttribute('href',$data[$menu]['url']);
                 $a.innerHTML = $data[$menu]['name'];
                 var $li = document.createElement('li');
+                $li.setAttribute('id',$data[$menu]['id']);
+                if("{{pageID}}" == $data[$menu]['id']){
+                    $li.classList.add('act');
+                    $ul.querySelector('.sub-title.'+$data[$menu]['submenu']).classList.add('act');
+                }
                 $li.appendChild($a);
                 $ul.appendChild($li);
-                console.log(1);
             }
         }  
 
@@ -61,9 +67,6 @@
                 }else{
                     console.log(xhr.response);
                 }
-            });
-            xhr.addEventListener('error',function(XMLHttpRequest,textStatus,errorThrown){
-                xhrError(XMLHttpRequest,textStatus,errorThrown);
             });
         }      
     });
