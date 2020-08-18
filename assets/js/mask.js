@@ -1,5 +1,12 @@
+/* ========================================================================
+ * Mask JS: v0.0.1
+ * 
+ * Copyright (c) 2020 Henri Azevedo
+ * ========================================================================
+ */
+
 'use strict';
-var Mask = function() {
+const Mask = function() {
     return {
         format : function(element) {            
             var el = document.querySelector(element);
@@ -15,7 +22,7 @@ var Mask = function() {
             });
             
             function costume(mask) {
-                var text = '';
+                var value = '';
                 var data = el.value;
                 var c, m, i, x;
 
@@ -26,44 +33,38 @@ var Mask = function() {
                     switch (mask.charAt(i)) {
                         case '#' : 
                             if (/\d/.test(c)) {
-                                text += c;
-                            } else {
-                                x = 0;
+                                value += c;
+                                continue;
                             } 
                             break;
-
                         case 'A' : 
                             if (/[a-z]/i.test(c)) {
-                                text += c;
-                            } else {
-                                x = 0;
-
+                                value += c;
+                                continue;
                             } 
                             break;
-
                         case 'N' : 
                             if (/[a-z0-9]/i.test(c)) {
-                                text += c;
-                            } else {
-                                x = 0;
-                            } 
+                                value += c;
+                                continue;
+                            }
                             break;
 
                         case 'X' : 
-                            text += c; 
-                            break;
+                            value += c;
+                            continue;
 
                         default  : 
-                            text += m; 
-                            break;
+                            value += m; 
+                            continue;
                     }
+                    x = 0;
                 }
-                el.value = text;                
+                el.value = value;                
             }
         }
     };
 }();
-
 
 document.addEventListener('DOMContentLoaded',function(){
     if(document.querySelector('[data-mask]') != null){
@@ -72,3 +73,5 @@ document.addEventListener('DOMContentLoaded',function(){
         });
     }
 });
+
+export default Mask;

@@ -7,9 +7,9 @@
         <script src="{{system.uri}}/assets/addons/vanilla-datatables/vanilla-dataTables.min.js"></script>
         <link href="{{system.uri}}/assets/addons/vanilla-datatables/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
 
-        <script src="{{system.uri}}/assets/js/module/forms.mod.js" type="module"></script>
+        <script src="{{system.uri}}/assets/js/main.js" type="module"></script>
+        <script src="{{system.uri}}/assets/js/module/forms.mod.js" ></script>
         <script src="{{system.uri}}/assets/js/module/datatable.mod.js" type="module"></script>
-        <script src="{{system.uri}}/assets/js/mask.js" ></script>
 
         <link href="{{system.uri}}/assets/css/main.css" rel="stylesheet" type="text/css">
         <link href="{{system.uri}}/assets/css/dialog.css" rel="stylesheet" type="text/css">

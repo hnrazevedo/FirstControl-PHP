@@ -1,8 +1,5 @@
 "use strict";
 
-import Dialog from "./dialog.mod.js";
-import Submmiter from "./submitter.mod.js";
-import "./imask.js";
 
 document.addEventListener('DOMContentLoaded',function(){
 
@@ -229,4 +226,9 @@ window.forms = {
 
 window.addEventListener('load',function(){
     forms.start();
+    setTimeout(function(){
+        if(document.querySelector('dialog.loading') != null){
+            document.querySelector('dialog.loading').removeAttribute('open');
+        }
+    },500);
 });

@@ -1,6 +1,9 @@
 /*
  * © 2020 Henri Azevedo All Rights Reserved.
  */
+
+import Submitter from "../Submitter.js";
+
 "use strict";
 
 window.dataTables = {
@@ -31,7 +34,8 @@ window.dataTables = {
         }
     },
     async importFromURL(id,url){
-        window.dataTables.dataAdd(id, await window.submitter.setUrl(url).execute(true));
+        //window.dataTables.dataAdd(id, await window.submitter.setUrl(url).execute(true));
+        window.dataTables.dataAdd(id, await Submitter.setUrl(url).execute(true));
     },
     getDataTable(id){
         if(window.dataTables.debug) console.log('[log] > getDataTable');

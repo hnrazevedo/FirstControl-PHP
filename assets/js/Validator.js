@@ -1,9 +1,14 @@
-/*
- * © 2020 Henri Azevedo All Rights Reserved.
+/* ========================================================================
+ * Validator JS: v0.0.1
+ * 
+ * Copyright (c) 2020 Henri Azevedo
+ * ========================================================================
  */
+
 "use strict";
 
-const validate = function(f,options){
+const Validate = function(f,options){
+    
     f.addEventListener('submit',function(e){
         e.preventDefault();
 
@@ -18,9 +23,11 @@ const validate = function(f,options){
             field = opt.toLowerCase().replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 
             try{
+
                 if(f.querySelector('[name="'+opt+'"]')!=undefined){
                     checkInput(f,f.querySelector('[name="'+opt+'"]'),options[opt]);
                 }
+
             }catch(err){
                 valid = false;
                 inputShowMessage(f.querySelector('[name="'+field.toLowerCase()+'"]'),err.message,'error');
@@ -121,6 +128,7 @@ document.addEventListener('DOMContentLoaded',function(e){
             data.append('role',f.getAttribute('role'));
 
             if(self.fetch) {
+                
                 fetch('/validator',
                     {
                         method: 'POST',
@@ -136,6 +144,7 @@ document.addEventListener('DOMContentLoaded',function(e){
                     .catch(err => {
                         console.log(err);
                     });
+
             } else {
                 var xhr = new XMLHttpRequest();
                 xhr.open( "POST", '/validator' , true );
@@ -149,6 +158,7 @@ document.addEventListener('DOMContentLoaded',function(e){
                         console.log(xhr.response);
                     }
                 });
+
                 xhr.addEventListener('error',function(XMLHttpRequest,textStatus,errorThrown){
                     xhrError(XMLHttpRequest,textStatus,errorThrown);
                 });
@@ -172,4 +182,4 @@ document.addEventListener('DOMContentLoaded',function(e){
     }
 });
 
-export default validate;
+export default Validate;

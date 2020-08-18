@@ -1,9 +1,5 @@
-<dialog id="register_user_form">
-    <a close="close" ></a>
+<dialog id="register_user_form" title="Cadastro de novo usuário">
     <div>    
-        <form>
-            <h3>Cadastro de novo usuário</h3>
-        </form>
         <form provider="user" role="register">        
             <ul>
                 <li>

@@ -23,6 +23,10 @@ dialog[open]{
     display: box;
 }
 
+dialog .title{
+  margin: 0 .5em;
+}
+
 dialog > div{
     background: white;
     padding: .5em;
