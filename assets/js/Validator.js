@@ -5,6 +5,8 @@
  * ========================================================================
  */
 
+import Submitter from "./Submitter.js";
+
 "use strict";
 
 const Validate = function(f,options){
@@ -26,6 +28,9 @@ const Validate = function(f,options){
 
                 if(f.querySelector('[name="'+opt+'"]')!=undefined){
                     checkInput(f,f.querySelector('[name="'+opt+'"]'),options[opt]);
+                }else{
+                    valid = false;
+                    inputShowMessage(null,`Era esperado um campo com o nome '${opt}' para está operação.`,'error');
                 }
 
             }catch(err){
@@ -35,7 +40,7 @@ const Validate = function(f,options){
         }
 
         if(valid){
-            submitter.work(e);
+            Submitter.work(e);
         }
     });
 
@@ -52,20 +57,29 @@ const Validate = function(f,options){
 
     function inputShowMessage(i, t, c = null){
 
-        var m = i.closest('form').querySelector('p[name="'+i.getAttribute('name')+'"]');
+        if(i != null){
+            var m = i.closest('form').querySelector('p[name="'+i.getAttribute('name')+'"]');
 
-        if(m != null){
+            if(m != null){
+    
+                m.innerHTML = t;
+                
+                if(c==null){
+                    i.classList.remove('error','success');
+                    m.classList.remove('error','success');
+                }else{
+                    m.classList.add(c);
+                    i.classList.add(c);
+                }
 
-            m.innerHTML = t;
-            
-            if(c==null){
-                i.classList.remove('error','success');
-                m.classList.remove('error','success');
-            }else{
-                m.classList.add(c);
-                i.classList.add(c);
             }
+            return true;
         }
+        
+        f.classList.add('disabled');
+        f.querySelector('.panel-message').classList.add('error');
+        f.querySelector('.panel-message').innerHTML = t;
+        
     }
 
     function checkInput(f,input,rules){

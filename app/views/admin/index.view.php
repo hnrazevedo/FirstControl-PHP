@@ -3,9 +3,8 @@
         <title>{{system.appname}} - {{title}}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="shortcut icon" href="{{system.uri}}/assets/img/favicon.ico" type="image/x-icon">
-        
-        <script src="{{system.uri}}/assets/addons/vanilla-datatables/vanilla-dataTables.min.js"></script>
-        <link href="{{system.uri}}/assets/addons/vanilla-datatables/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
+
+        <link href="{{system.uri}}/assets/addons/Simple-DataTables/style.css" rel="stylesheet" type="text/css">
 
         <script src="{{system.uri}}/assets/js/main.js" type="module"></script>
         <script src="{{system.uri}}/assets/js/module/forms.mod.js" ></script>

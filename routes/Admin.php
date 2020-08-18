@@ -11,6 +11,8 @@ Router::group('/admin',function(){
 
     Router::ajax('/result/list/{entity}','Admin:result_list');
 
+    Router::ajax('/controller/{entity}','Admin:method');
+
 })->filter(
     ['User:user_in','Admin:is_admin']//,'Authenticator:authRoute']
 );

@@ -3,6 +3,7 @@
  */
 
 import Submitter from "../Submitter.js";
+import {DataTable} from "/../../assets/addons/Simple-DataTables/datatable.js";
 
 "use strict";
 
@@ -34,7 +35,6 @@ window.dataTables = {
         }
     },
     async importFromURL(id,url){
-        //window.dataTables.dataAdd(id, await window.submitter.setUrl(url).execute(true));
         window.dataTables.dataAdd(id, await Submitter.setUrl(url).execute(true));
     },
     getDataTable(id){

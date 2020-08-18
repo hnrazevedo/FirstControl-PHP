@@ -4,8 +4,8 @@ namespace Controller;
 
 use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
+use Controller\User as User_Controller;
 use Model\User as Model;
-use Engine\Util;
 use Exception;
 
 
@@ -68,6 +68,13 @@ class Admin extends Controller{
             $return[] = array_values($date);
         }
         return $return;
+    }
+
+    
+
+    public function user_register(array $data)
+    {
+        (new User_Controller())->admin_register($data['POST']); 
     }
 
 }

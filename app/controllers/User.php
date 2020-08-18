@@ -79,4 +79,42 @@ class User extends Controller{
         Viewer::create(SYSTEM['basepath'].'app/views/user/')->render('login');
     }
 
+    public function admin_register(array $data)
+    {
+        try{
+
+            $data = json_decode($data['data'],true);
+
+            $this->entity->name = $data['new_name'];
+            $this->entity->username = $data['new_username'];
+            $this->entity->email = $data['new_email'];
+            $this->entity->birth = $data['new_birth'];
+            $this->entity->password = password_hash($data['new_password'], PASSWORD_DEFAULT);
+            $this->entity->type = 0;
+            $this->entity->status = 0;
+            $this->entity->code = sha1($data['new_email']);
+            $this->entity->register = date('Y-m-d H:i:s');
+
+            $this->entity->persist();
+
+            echo json_encode([
+                'success' => [
+                    'message' => 'Usuário registrado com sucesso!'
+                ],
+                'reset' => true,
+                'script' => "window.dataTables.dataAdd('table_list_user', ['<input type=\"checkbox\">','{$this->entity->id}','{$this->entity->name}','{$this->entity->username}','{$this->entity->email}','{$this->entity->birth}','{$this->entity->register}','{$this->entity->status}','{$this->entity->type}']);"
+            ]);
+
+        }catch(Exception $er){
+
+            echo json_encode([
+                'error' =>
+                    [
+                        'message' => $er->getMessage()
+                    ]
+            ]);
+
+        }
+    }
+
 }

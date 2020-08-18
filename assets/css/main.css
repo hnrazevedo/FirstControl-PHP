@@ -12,6 +12,7 @@ main{
     overflow: auto;
     width: 100%;
     flex-grow: 1;
+    max-height: 100vh;
 }
 main .content{
     width: calc(100% - 3em);

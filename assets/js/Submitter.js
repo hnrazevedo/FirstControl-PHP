@@ -5,6 +5,8 @@
  * ========================================================================
  */
 
+import Dialog from "./Dialog.js";
+
 "use strict";
 
 var Submitter = function(){
@@ -52,7 +54,7 @@ var Submitter = function(){
 
             for(var at = 0; at< this.form.attributes.length; at++){
                 if(this.form.attributes[at].name.substring(0,1)=='_'){
-                    this.data.append(this.form.attributes[at].name,t.form.attributes[at].value);
+                    this.data.append(this.form.attributes[at].name,this.form.attributes[at].value);
                 }
             }
     
@@ -60,8 +62,8 @@ var Submitter = function(){
     
             this.data = new FormData();
             this.data.append('data',data);
-            this.data.append('provider',t.form.getAttribute('provider'));
-            this.data.append('role',t.form.getAttribute('role'));
+            this.data.append('provider',this.form.getAttribute('provider'));
+            this.data.append('role',this.form.getAttribute('role'));
     
             return this;
         },
@@ -116,11 +118,11 @@ var Submitter = function(){
             this.xhr = new XMLHttpRequest();
             this.xhr.open( "POST", this.url , true );
             this.xhr.setRequestHeader(this.hearders);
-            this.xhr.addEventListener('load',t.xhrLoad);
-            this.xhr.upload.addEventListener('progress',t.xhrProgress,false);
-            this.xhr.addEventListener('loadend',t.requestLoadEnd);
-            this.xhr.addEventListener('abort',t.xhrAbort);
-            this.xhr.addEventListener('error',t.xhrError);
+            this.xhr.addEventListener('load',this.xhrLoad);
+            this.xhr.upload.addEventListener('progress',this.xhrProgress,false);
+            this.xhr.addEventListener('loadend',this.requestLoadEnd);
+            this.xhr.addEventListener('abort',this.xhrAbort);
+            this.xhr.addEventListener('error',this.xhrError);
             this.xhr.send(this.data);
             return this;
         },
@@ -145,7 +147,7 @@ var Submitter = function(){
                 console.log(e);
                 this.onError(e);
             }
-            window.dialog.start();
+            Dialog.start();
             return this;
         },
         responseWork(){
@@ -153,42 +155,29 @@ var Submitter = function(){
                 switch(r){
                     case 'success':
                         if(typeof this.response[r]['message'] != 'undefined'){
-                            window.dialog.popUp(this.response[r]['message'],'success');
+                            Dialog.popUp(this.response[r]['message'],'success');
                         }
                     break;
                     case 'error':
                         if(typeof this.response[r] === "object"){
                             for(var er in this.response[r]){
-                                var input = (this.form.querySelector("[name='"+t.response[r][er]['input']+"']") != null) ? this.form.querySelector("[name='"+t.response[r][er]['input']+"']") : null;
+                                var input = (this.form.querySelector("[name='"+this.response[r][er]['input']+"']") != null) ? this.form.querySelector("[name='"+this.response[r][er]['input']+"']") : null;
                                 var message = this.response[r][er]['message'];
     
                                 if(input != null){
                                     input.classList.add('error');
-                                    this.form.querySelector('p[name="'+t.response[r][er]['input']+'"]').classList.add('error')
-                                    this.form.querySelector('p[name="'+t.response[r][er]['input']+'"]').innerHTML = input.getAttribute('placeholder')+" "+message;
-                                    this.form.querySelector('p[name="'+t.response[r][er]['input']+'"]').style.display = 'block';
+                                    this.form.querySelector('p[name="'+this.response[r][er]['input']+'"]').classList.add('error')
+                                    this.form.querySelector('p[name="'+this.response[r][er]['input']+'"]').innerHTML = input.getAttribute('placeholder')+" "+message;
+                                    this.form.querySelector('p[name="'+this.response[r][er]['input']+'"]').style.display = 'block';
                                 }else{
-                                    window.dialog.popUp(message,'error');
+                                    Dialog.popUp(message,'error');
                                 }
                             }
                         }
                         
                         if(typeof this.response[r]['message'] != 'undefined') {
-                            window.dialog.popUp(this.response[r]['message'],'error');
+                            Dialog.popUp(this.response[r]['message'],'error');
                         }
-                    break;
-                    case 'container':
-                        if(typeof this.response[r]['after'] != 'undefined') this.response[r]['html'] = this.response[r]['html'] + document.querySelector(this.response[r]['_container']).innerHTML;
-                        if(typeof this.response[r]['before'] != 'undefined') this.response[r]['html'] = document.querySelector(this.response[r]['_container']).innerHTML + this.response[r]['html'];
-                        if(typeof this.response[r]['html'] != 'undefined') document.querySelector(this.response[r]['_container']).innerHTML = this.response[r]['html'];
-                        if(typeof this.response[r]['class'] != 'undefined') document.querySelector(this.response[r]['_container']).classList.add(this.response[r]['class']);
-                        if(typeof this.response[r]['rclass'] != 'undefined') document.querySelector(this.response[r]['_container']).classList.remove(this.response[r]['rclass']);
-                    break;
-                    case 'enable':
-                        document.querySelector(this.response[r]).classList.remove('disabled');
-                    break;
-                    case 'disable':
-                        document.querySelector(this.response[r]).classList.add('disabled');
                     break;
                     case 'reset':
                         if(document.querySelector('.submitting')!=undefined){
@@ -198,7 +187,7 @@ var Submitter = function(){
                                 }
                             });
                             if(document.querySelector('.submitting').closest('dialog')!=undefined){
-                                document.querySelector('.submitting').closest('dialog').querySelector('.untarget').click();
+                                document.querySelector('.submitting').closest('dialog').querySelector('[close]').click();
                             }
                         }
                     break;
@@ -214,7 +203,7 @@ var Submitter = function(){
         },
         onError(e){
             console.log(e);
-            window.dialog.popUp(e,'error');
+            Dialog.popUp(e,'error');
             return this;
         },
         isJson(json){
