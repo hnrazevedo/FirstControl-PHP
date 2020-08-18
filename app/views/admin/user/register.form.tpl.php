@@ -16,7 +16,7 @@
                     <input type="text" id="mew_email" name="new_email" label="Email" maxlength="100">
                 </li>
                 <li>
-                    <input type="text" id="new_birth" name="new_birth" label="Data de nascimento" data-mask="##/##/####" maxlength="10">
+                    <input type="text" id="new_birth" name="new_birth" label="Data de nascimento" data-mask="##/##/####" >
                 </li>
                 <li class="li-btn">
                     <button>Registar</button>
@@ -25,6 +25,3 @@
         </form>
     </div>
 </dialog>
-<script>
-    PureMask.format("#new_birth", true);
-</script>

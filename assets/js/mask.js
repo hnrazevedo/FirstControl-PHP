@@ -1,42 +1,20 @@
-/* ========================================================================
- * Pure Mask JS: puremask.js v0.3.1
- * https://romulobrasil.com
- * Copyright (c) 2016 Rômulo Brasil
- * ========================================================================
- */
- 
 'use strict';
-var PureMask = function() {
+var Mask = function() {
     return {
-        format : function(element, placeholder) {            
+        format : function(element) {            
             var el = document.querySelector(element);
             var maskForm = '';
             
-            if (el === undefined || el === null) {
-                console.log('PureMask.js: class não foi declarada corretamente: ' + element + '.');
-                return null;
-            }
-            
-            if (el.dataset.mask === undefined || el.dataset.mask === null) {
-                console.log('PureMask.js: data-mask não foi declarada na Tag com a class: ' + el.className + '.');
-            } else {
-                maskForm = el.dataset.mask;
-                el.maxLength = maskForm.length;
-            }
-            
-            if (placeholder === true) {
-                el.placeholder = maskForm;
-            }
-            
-            var e = el.value.length;
+            maskForm = el.dataset.mask;
+            el.maxLength = maskForm.length;
             
             el.addEventListener('keypress', function (e){
                 if (e.keyCode !== 8 || e.keyCode !== 46) {   
-                    formato(maskForm);
+                    costume(maskForm);
                 }
             });
             
-            function formato(mask) {
+            function costume(mask) {
                 var text = '';
                 var data = el.value;
                 var c, m, i, x;
@@ -85,3 +63,12 @@ var PureMask = function() {
         }
     };
 }();
+
+
+document.addEventListener('DOMContentLoaded',function(){
+    if(document.querySelector('[data-mask]') != null){
+        document.querySelectorAll('[data-mask]').forEach(function(input,i){
+            Mask.format('[data-mask="'+input.dataset.mask+'"]');
+        });
+    }
+});

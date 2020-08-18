@@ -9,7 +9,7 @@
 
         <script src="{{system.uri}}/assets/js/module/forms.mod.js" type="module"></script>
         <script src="{{system.uri}}/assets/js/module/datatable.mod.js" type="module"></script>
-        <script src="{{system.uri}}/assets/js/puremask.js" ></script>
+        <script src="{{system.uri}}/assets/js/mask.js" ></script>
 
         <link href="{{system.uri}}/assets/css/main.css" rel="stylesheet" type="text/css">
         <link href="{{system.uri}}/assets/css/dialog.css" rel="stylesheet" type="text/css">

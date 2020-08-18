@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
-            "version": "v1.0.1",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Datamanager.git",
-                "reference": "0b9135329c37550da5134b037f9a9fa719d5ecd9"
+                "reference": "4b7a8de5664165fd941a59b52e6a261fa91be7c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/0b9135329c37550da5134b037f9a9fa719d5ecd9",
-                "reference": "0b9135329c37550da5134b037f9a9fa719d5ecd9",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/4b7a8de5664165fd941a59b52e6a261fa91be7c2",
+                "reference": "4b7a8de5664165fd941a59b52e6a261fa91be7c2",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "Datamanager is a simple persistence abstraction component in the database.",
-            "time": "2020-08-14T14:12:48+00:00"
+            "time": "2020-08-17T21:28:21+00:00"
         },
         {
             "name": "hnrazevedo/filter",
