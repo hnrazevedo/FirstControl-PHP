@@ -115,6 +115,9 @@ window.dataTables = {
                             filename: table[0].getAttribute('title')
                         });
                         break;
+                    case 'print':
+                        table[1].print();
+                        break;
                     default:
                         break;
                 }
@@ -135,7 +138,8 @@ window.dataTables = {
         t.tables.forEach((table, i) => {
             table[0].closest('.table').querySelector('.dataTable-top').prepend(t.createButtons({
                 buttons:[
-                        {text:"Exportar",role:"export"}
+                        {text:"Exportar",role:"export"},
+                        {text:"Imprimir",role:"print"}
                 ]
             }));
         });

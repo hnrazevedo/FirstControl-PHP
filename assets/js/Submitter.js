@@ -107,8 +107,8 @@ var Submitter = function(){
                 })
                 .then(post => {
                     this.setResponse(post);
-                    this.requestLoadEnd();
                     this.responseWork();
+                    this.requestLoadEnd();
                 })
                 .catch(err => {
                     console.log(err);
@@ -161,13 +161,14 @@ var Submitter = function(){
                     case 'error':
                         if(typeof this.response[r] === "object"){
                             for(var er in this.response[r]){
+
                                 var input = (this.form.querySelector("[name='"+this.response[r][er]['input']+"']") != null) ? this.form.querySelector("[name='"+this.response[r][er]['input']+"']") : null;
                                 var message = this.response[r][er]['message'];
     
                                 if(input != null){
                                     input.classList.add('error');
                                     this.form.querySelector('p[name="'+this.response[r][er]['input']+'"]').classList.add('error')
-                                    this.form.querySelector('p[name="'+this.response[r][er]['input']+'"]').innerHTML = input.getAttribute('placeholder')+" "+message;
+                                    this.form.querySelector('p[name="'+this.response[r][er]['input']+'"]').innerHTML = input.getAttribute('label')+" "+message;
                                     this.form.querySelector('p[name="'+this.response[r][er]['input']+'"]').style.display = 'block';
                                 }else{
                                     Dialog.popUp(message,'error');
@@ -180,14 +181,16 @@ var Submitter = function(){
                         }
                     break;
                     case 'reset':
-                        if(document.querySelector('.submitting')!=undefined){
-                            document.querySelector('.submitting').querySelectorAll('*:not([type="submit"])').forEach(function(e,i){
-                                if(e.getAttribute('fixed')==undefined){
+                        if(document.querySelector('form.submitting') != null){
+                            document.querySelector('form.submitting').querySelectorAll('input').forEach(function(e,i){
+                                if(e.getAttribute('fixed') == null || e.getAttribute('type') != 'submit'){
                                     e.value = '';
+                                    e.setAttribute('value','');
                                 }
                             });
-                            if(document.querySelector('.submitting').closest('dialog')!=undefined){
-                                document.querySelector('.submitting').closest('dialog').querySelector('[close]').click();
+
+                            if(document.querySelector('form.submitting').closest('dialog') != null){
+                                document.querySelector('form.submitting').closest('dialog').querySelector('[close]').click();
                             }
                         }
                     break;

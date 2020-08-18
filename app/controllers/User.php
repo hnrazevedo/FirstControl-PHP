@@ -91,7 +91,7 @@ class User extends Controller{
             $this->entity->birth = $data['new_birth'];
             $this->entity->password = password_hash($data['new_password'], PASSWORD_DEFAULT);
             $this->entity->type = 0;
-            $this->entity->status = 0;
+            $this->entity->status = 1;
             $this->entity->code = sha1($data['new_email']);
             $this->entity->register = date('Y-m-d H:i:s');
 
