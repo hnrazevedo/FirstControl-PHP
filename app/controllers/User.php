@@ -45,6 +45,9 @@ class User extends Controller{
             if(!password_verify($data['log_password'], $user->password)){
                 throw new Exception('Invalid password.');
             }
+
+            $user->lastaccess = date('Y-m-d H:i:s');
+            $user->save();
         
             $_SESSION['user'] = serialize($user);
 
@@ -94,6 +97,7 @@ class User extends Controller{
             $this->entity->status = 1;
             $this->entity->code = sha1($data['new_email']);
             $this->entity->register = date('Y-m-d H:i:s');
+            $this->entity->lastaccess = date('Y-m-d H:i:s');
 
             $this->entity->persist();
 
@@ -102,7 +106,7 @@ class User extends Controller{
                     'message' => 'Usuário registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => "window.dataTables.dataAdd('table_list_user', ['<input type=\"checkbox\">','{$this->entity->id}','{$this->entity->name}','{$this->entity->username}','{$this->entity->email}','{$this->entity->birth}','{$this->entity->register}','{$this->entity->status}','{$this->entity->type}']);"
+                'script' => "window.dataTables.dataAdd('table_list_user', ['{$this->entity->id}','{$this->entity->name}','{$this->entity->username}','{$this->entity->email}','{$this->entity->birth}','{$this->entity->register}','{$this->entity->lastaccess}','{$this->entity->status}','{$this->entity->type}']);"
             ]);
 
         }catch(Exception $er){

@@ -16,13 +16,13 @@
 
     <table class="datatable" id="table_list_user" title="Registro de usuários">
         <thead>
-            <th><input type="checkbox" all="#table_list_user"></th>
             <th>ID</th>
             <th>Nome</th>
             <th>Nome de usuário</th>
             <th>Email</th>
             <th>Nascimento</th>
             <th>Registro</th>
+            <th>Ultimo acesso</th>
             <th>Status</th>
             <th>Tipo</th>
         </thead>

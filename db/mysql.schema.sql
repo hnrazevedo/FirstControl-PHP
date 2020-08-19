@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS user(
     code VARCHAR(50)  NOT NULL,
     birth DATE NOT NULL,
     register DATETIME NOT NULL,
+    lastaccess DATETIME NOT NULL,
     status SMALLINT(1) NOT NULL DEFAULT(0),
     type SMALLINT(1) NOT NULL DEFAULT(0),
     PRIMARY KEY(id)

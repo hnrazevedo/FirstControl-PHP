@@ -7,6 +7,20 @@ div.table *{
     outline:none;
 }
 
+div.table,
+div.table table{
+    overflow: hidden;
+}
+div.table table tbody{
+    width: 100%;
+    overflow: auto;
+}
+
+div.table .dataTable-container{
+    overflow: auto;
+    max-height: 69vh;
+}
+
 div.table .dataTable-input{
     padding: 8px 12px;
     border-radius: 0;
@@ -333,4 +347,12 @@ div.table .dataTables_wrapper .dataTables_info{
 
 div.table .buttons button{
     margin-right: .2em;
+}
+
+
+
+div.table select.datatable{
+    width: 100%;
+    padding:1em;
+    border:solid 1px red;
 }

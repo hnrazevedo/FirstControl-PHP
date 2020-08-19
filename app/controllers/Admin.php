@@ -57,7 +57,6 @@ class Admin extends Controller{
         $return = [];
         foreach($users as $user => $result){
             $date = [];
-            $date[] = '<input type="checkbox">';
             foreach($result->getData() as $field => $data){
                 
                 if($result->$field != null){
