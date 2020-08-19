@@ -8,7 +8,14 @@
 'use strict';
 const Mask = function() {
     return {
-        format : function(element) {            
+        start(){
+            if(document.querySelector('[data-mask]') != null){
+                document.querySelectorAll('[data-mask]').forEach(function(input,i){
+                    Mask.format('[data-mask="'+input.dataset.mask+'"]');
+                });
+            }
+        },
+        format(element) {            
             var el = document.querySelector(element);
             var maskForm = '';
             
@@ -65,13 +72,5 @@ const Mask = function() {
         }
     };
 }();
-
-document.addEventListener('DOMContentLoaded',function(){
-    if(document.querySelector('[data-mask]') != null){
-        document.querySelectorAll('[data-mask]').forEach(function(input,i){
-            Mask.format('[data-mask="'+input.dataset.mask+'"]');
-        });
-    }
-});
 
 export default Mask;

@@ -34,6 +34,7 @@ const Dialog =  function(){
                 untarget.addEventListener('click',this.closeClick);
             });
 
+            Dialog.eventsDialog();
         },
         closeClick(e){
             e.target.closest('dialog').removeAttribute('open');
@@ -46,33 +47,36 @@ const Dialog =  function(){
             document.querySelector("dialog#d_message p").classList.add(c);
             document.querySelector("dialog#d_message p").innerHTML = m;
             document.querySelector("dialog#d_message").setAttribute('open',true);
+        },
+        eventsDialog(){
+            /* click in element attr dialog="#refer" */
+            if(document.querySelector('[dialog]') != null){
+                document.querySelectorAll('[dialog]').forEach(function(dialog,i){
+                    dialog.addEventListener('click',function(){
+                        if(document.querySelector('dialog'+dialog.getAttribute('dialog')) != null){
+                            document.querySelector('dialog'+dialog.getAttribute('dialog')).setAttribute('open','open');
+                        }
+                    });
+                });
+            }
+
+            /* press ESC to close */
+            document.addEventListener('keydown',function(e){
+                if(document.querySelector('dialog[open]:not(.fixed)') != null && e.keyCode == 27){
+                    document.querySelectorAll('dialog[open]:not(.fixed)').forEach(function(dialog,d){
+                        dialog.removeAttribute('open');
+                    });
+                }
+            });
+
+            /* Close dialog loading */
+            setTimeout(function(){
+                if(document.querySelector('dialog.loading') != null){
+                    document.querySelector('dialog.loading').removeAttribute('open');
+                }
+            },5000);
         }
     };
 }();
-
-document.addEventListener('DOMContentLoaded',function(){
-    Dialog.start();
-
-    /* click in element attr dialog="#refer" */
-    if(document.querySelector('[dialog]') != null){
-        document.querySelectorAll('[dialog]').forEach(function(dialog,i){
-            dialog.addEventListener('click',function(){
-                if(document.querySelector('dialog'+dialog.getAttribute('dialog')) != null){
-                    document.querySelector('dialog'+dialog.getAttribute('dialog')).setAttribute('open','open');
-                }
-            });
-        });
-    }
-
-    /* press ESC to close */
-    document.addEventListener('keydown',function(e){
-        if(document.querySelector('dialog[open]:not(.fixed)') != null && e.keyCode == 27){
-            document.querySelectorAll('dialog[open]:not(.fixed)').forEach(function(dialog,d){
-                dialog.removeAttribute('open');
-            });
-        }
-    });
-
-});
 
 export default Dialog;
