@@ -1435,16 +1435,39 @@ export class DataTable {
 
         thead.appendChild(tr)
 
+        var selected = false;
+
+        
         rows.forEach(row => {
-            const tr = createElement("tr")
-            Array.from(row.cells).forEach(cell => {
-                tr.appendChild(
-                    createElement("td", {
-                        html: cell.textContent
+            if(row.getAttribute('selected') != null){
+                selected = true;
+            }
+        })
+        
+        rows.forEach(row => {
+            if(!selected){
+                const tr = createElement("tr")
+                Array.from(row.cells).forEach(cell => {
+                    tr.appendChild(
+                        createElement("td", {
+                            html: cell.textContent
+                        })
+                    )
+                })
+                tbody.appendChild(tr)
+            }else{
+                if(row.getAttribute('selected') != null){
+                    const tr = createElement("tr")
+                    Array.from(row.cells).forEach(cell => {
+                        tr.appendChild(
+                            createElement("td", {
+                                html: cell.textContent
+                            })
+                        )
                     })
-                )
-            })
-            tbody.appendChild(tr)
+                    tbody.appendChild(tr)
+                }
+            }
         })
 
         table.appendChild(thead)
@@ -1453,7 +1476,18 @@ export class DataTable {
         // Open new window
         const w = window.open()
 
+        const head = document.head.childNodes;
+        for(var child in head){
+            if(typeof head[child] == 'object'){
+                if(head[child].getAttribute('rel') != null){
+                    w.document.head.appendChild(head[child].cloneNode());
+                }
+            }
+            
+        }
+
         // Append the table to the body
+        w.document.body.classList.add('dataTablePrint')
         w.document.body.appendChild(table)
 
         // Print
