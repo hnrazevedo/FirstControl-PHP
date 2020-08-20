@@ -69,11 +69,37 @@ class Admin extends Controller{
         return $return;
     }
 
-    
-
     public function user_register(array $data)
     {
         (new User_Controller())->admin_register($data['POST']); 
+    }
+
+    public function status_user(array $data)
+    {
+        $data = json_decode($data['POST']['data'],true);
+        $selects = json_decode($data['dataselect']);
+
+        $result = $this->entity->find()->where([
+            ['id','in',$selects],
+            'AND' => ['type','<>',1]
+        ])->execute()->toEntity();
+
+        $users = (is_array($result)) ? $result : [$result];
+
+        $method = ($data['role'] == 'block') ? 'bloqueados' : 'liberados';
+
+        foreach($users as $user){
+            $user->status = ($data['role'] == 'block') ? 0 : 1;
+            $user->save();
+        }
+
+        echo json_encode([
+            'success' => [
+                'message' => "Usuários selecionados ${method} com sucesso!" 
+            ],
+            'script' => 'setTimeout(function(){window.location.href="/admin/users"},2000)'
+        ]);
+       
     }
 
 }

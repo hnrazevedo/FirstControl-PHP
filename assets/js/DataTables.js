@@ -126,7 +126,7 @@ const DataTables = function(){
             var table = null;
             DataTables.tables.forEach((dataTable, i) => {
                 if(dataTable.table.getAttribute('id') === id){
-                    table = dataTable.table;
+                    table = dataTable;
                 }
             });
             return table;
@@ -143,9 +143,10 @@ const DataTables = function(){
             });
             return value;
         },
-        clickButton(){
+        clickButton(e){
+            e.preventDefault();
             DataTables.tables.forEach((dataTable, i) => {
-                if(dataTable.table.getAttribute('id') === this.closest('.table').querySelector('.datatable').getAttribute('id')){
+                if(dataTable.table.getAttribute('id') === this.closest('.table').querySelector('table.datatable').getAttribute('id')){
                     switch (this.dataset.role) {
                         case 'export':
                             dataTable.export({

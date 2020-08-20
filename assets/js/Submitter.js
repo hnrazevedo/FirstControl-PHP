@@ -8,10 +8,16 @@ const Submitter = function(){
 		work(e){
 			this.hearders = {
 				'Requested-Method': 'ajax'
-			  };
-            e.preventDefault();
-            console.log(e);
-			this.setForm(e.target);
+            };
+            
+            if(e.target.length != 0){
+                e.preventDefault();
+                this.setForm(e.target);
+            }else{
+    			this.setForm(e);
+            }
+            
+            
 			this.beforeRequest();
 			this.execute();
 			return this;
@@ -46,12 +52,20 @@ const Submitter = function(){
         prepareData(){
             this.data = new FormData(this.form);
 
-            for(var at = 0; at< this.form.attributes.length; at++){
-                if(this.form.attributes[at].name.substring(0,1)=='_'){
-                    this.data.append(this.form.attributes[at].name,this.form.attributes[at].value);
+            this.form.childNodes.forEach((input,i) => {
+                if(input.getAttribute('multiple') != null){
+                    var value = [];
+                    input.childNodes.forEach((option, o) => {
+                        if(option.selected === true){
+                            value.push(option.value);
+                        }
+                    });
+
+                    this.data.append(input.getAttribute('name'),JSON.stringify(value));
+                    
                 }
-            }
-    
+            });
+
             var data = JSON.stringify(Object.fromEntries(this.data));
     
             this.data = new FormData();
@@ -154,18 +168,20 @@ const Submitter = function(){
                     break;
                     case 'error':
                         if(typeof this.response[r] === "object"){
+                            this.response[r] = (Object.keys(this.response[r]).length > 1) ? this.response[r].reverse() : this.response[r];
                             for(var er in this.response[r]){
 
                                 var input = (this.form.querySelector("[name='"+this.response[r][er]['input']+"']") != null) ? this.form.querySelector("[name='"+this.response[r][er]['input']+"']") : null;
                                 var message = this.response[r][er]['message'];
     
-                                if(input != null){
+                                if(input != null && this.form.querySelector('p[name="'+this.response[r][er]['input']+'"]') != null){
                                     input.classList.add('error');
                                     this.form.querySelector('p[name="'+this.response[r][er]['input']+'"]').classList.add('error')
                                     this.form.querySelector('p[name="'+this.response[r][er]['input']+'"]').innerHTML = input.getAttribute('label')+" "+message;
                                     this.form.querySelector('p[name="'+this.response[r][er]['input']+'"]').style.display = 'block';
                                 }else{
-                                    Dialog.popUp(message,'error');
+                                    var inputText = (input != null) ? input.getAttribute('label') : '';
+                                    Dialog.popUp(`${inputText}: ${message}`,'error');
                                 }
                             }
                         }

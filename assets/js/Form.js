@@ -20,6 +20,14 @@ const Form = function(){
                 });
             });
 
+            if(document.querySelector('form button:not(.submit)') != null){
+                document.querySelectorAll('form button:not(.submit)').forEach((button,b) => {
+                    button.addEventListener('click',function(e){
+                        e.preventDefault();
+                    });
+                });
+            }
+
             document.querySelectorAll('form input, form textarea, form select:not(.dataTable)').forEach((input, i) => {
                 if(input.getAttribute('inid') == null){
 
@@ -80,15 +88,6 @@ const Form = function(){
                     input.setAttribute('inid',true);
                 }
             });
-
-            if(document.querySelector('.submit') != null){
-                document.querySelectorAll('.submit').forEach((submit,s) => {
-                    submit.addEventListener('click',function(e){
-                        var id = `${submit.closest('form').getAttribute('provider')}.${submit.closest('form').getAttribute('role')}`;
-                        Validator.formSubmit(id,null);
-                    });
-                });
-            }
 
             document.querySelectorAll('select[name]:not(.dataTable)').forEach((select, s) => {
                 if(select.nextSibling == null){

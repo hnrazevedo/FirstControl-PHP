@@ -167,7 +167,7 @@ const Validator = function(){
                         }
                         break;
                     case 'mincount':
-                        console.log(required);
+                        //
                         break;
                 }
             }

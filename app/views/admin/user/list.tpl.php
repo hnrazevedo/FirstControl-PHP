@@ -1,3 +1,10 @@
+<script>
+
+    function workDataTable(role){
+        document.querySelector('form[role="status_user"] [name="role"]').value = role;
+    }
+
+</script>
 <div class="table">
     <form provider="admin" role="status_user" access="/admin/controller/user">
         <input type="hidden" id="role" name="role" value="block">
@@ -6,10 +13,10 @@
             <button dialog="#register_user_form">
                 Incluir
             </button>
-            <button class="submit">
+            <button class="submit" onclick="workDataTable('block')">
                 Bloquear
             </button>
-            <button class="submit">
+            <button class="submit" onclick="workDataTable('live')">
                 Liberar
             </button>
         </div>
@@ -38,5 +45,8 @@
 
 <script type="module">
     import DataTables from "/assets/js/DataTables.js";
+    
     DataTables.importFromURL('table_list_user','/admin/result/list/users');
+
+    
 </script>
