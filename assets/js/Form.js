@@ -1,3 +1,5 @@
+import Validator from "./Validator.js";
+
 "use strict";
 
 const Form = function(){
@@ -18,7 +20,7 @@ const Form = function(){
                 });
             });
 
-            document.querySelectorAll('form input, form textarea, form select').forEach((input, i) => {
+            document.querySelectorAll('form input, form textarea, form select:not(.dataTable)').forEach((input, i) => {
                 if(input.getAttribute('inid') == null){
 
                     if(typeof input.getAttribute('value') != "string"){
@@ -79,7 +81,16 @@ const Form = function(){
                 }
             });
 
-            document.querySelectorAll('select[name]').forEach((select, s) => {
+            if(document.querySelector('.submit') != null){
+                document.querySelectorAll('.submit').forEach((submit,s) => {
+                    submit.addEventListener('click',function(e){
+                        var id = `${submit.closest('form').getAttribute('provider')}.${submit.closest('form').getAttribute('role')}`;
+                        Validator.formSubmit(id,null);
+                    });
+                });
+            }
+
+            document.querySelectorAll('select[name]:not(.dataTable)').forEach((select, s) => {
                 if(select.nextSibling == null){
                     return true;
                 }
@@ -122,7 +133,7 @@ const Form = function(){
         eventInputs(){
             var t = Form;
     
-            document.querySelectorAll('select[name]').forEach((select, i) => {
+            document.querySelectorAll('select[name]:not(.dataTable)').forEach((select, i) => {
                 select.addEventListener('change',t.selectChange);
                 select.addEventListener('focus',t.selectFocus);
                 select.addEventListener('click',t.selectFocus);

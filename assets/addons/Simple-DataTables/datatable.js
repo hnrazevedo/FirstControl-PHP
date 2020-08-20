@@ -1492,6 +1492,8 @@ export class DataTable {
 
         // Print
         w.print()
+
+        w.close()
     }
 
     /**

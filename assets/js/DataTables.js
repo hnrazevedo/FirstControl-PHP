@@ -27,7 +27,9 @@ const DataTables = function(){
         createDataTable(table){
             var select = document.createElement('select');
             select.setAttribute('multiple','multiple');
-            select.setAttribute('id',table.getAttribute('id'));
+            select.setAttribute('name','dataselect');
+            select.setAttribute('id','dataselect');
+            select.setAttribute('label','Seleção de registros');
             select.classList.add('dataTable');
             table.before(select);
     
@@ -131,6 +133,15 @@ const DataTables = function(){
         },
         async importFromURL(id,url){
             DataTables.dataAdd(id, await Submitter.setUrl(url).execute(true));
+        },
+        getSelecteds(DataTables){
+            var value = [];
+            DataTables.table.closest('div.table').querySelector('select.dataTable').childNodes.forEach((option, o) => {
+                if(option.selected === true){
+                    value[value.length] = option.value;
+                }
+            });
+            return value;
         },
         clickButton(){
             DataTables.tables.forEach((dataTable, i) => {

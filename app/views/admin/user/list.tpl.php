@@ -1,34 +1,38 @@
 <div class="table">
+    <form provider="admin" role="status_user" access="/admin/controller/user">
+        <input type="hidden" id="role" name="role" value="block">
 
-    <div class="buttons">
-        <button dialog="#register_user_form">
-            Incluir
-        </button>
-        <button>
-            Bloquear
-        </button>
-        <button>
-            Liberar
-        </button>
-    </div>
+        <div class="buttons">
+            <button dialog="#register_user_form">
+                Incluir
+            </button>
+            <button class="submit">
+                Bloquear
+            </button>
+            <button class="submit">
+                Liberar
+            </button>
+        </div>
 
-    <hr>
+        <hr>
 
-    <table class="datatable" id="table_list_user" title="Registro de usuários">
-        <thead>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Nome de usuário</th>
-            <th>Email</th>
-            <th>Nascimento</th>
-            <th>Registro</th>
-            <th>Ultimo acesso</th>
-            <th>Status</th>
-            <th>Tipo</th>
-        </thead>
-        <tbody></tbody>
-    </table>
+        <table class="datatable" id="table_list_user" title="Registro de usuários">
+            <thead>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Nome de usuário</th>
+                <th>Email</th>
+                <th>Nascimento</th>
+                <th>Registro</th>
+                <th>Ultimo acesso</th>
+                <th>Status</th>
+                <th>Tipo</th>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </form>
 </div>
+
 
 <?= $this->include('user/register.form') ?>
 

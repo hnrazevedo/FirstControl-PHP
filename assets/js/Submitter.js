@@ -9,9 +9,9 @@ const Submitter = function(){
 			this.hearders = {
 				'Requested-Method': 'ajax'
 			  };
-			e.preventDefault();
+            e.preventDefault();
+            console.log(e);
 			this.setForm(e.target);
-			this.prepareData();
 			this.beforeRequest();
 			this.execute();
 			return this;
@@ -33,6 +33,7 @@ const Submitter = function(){
         setForm(f){
             this.form = f;
             this.url = this.form.getAttribute('access');
+			this.prepareData();
             return this;
         },
         setResponse(r){

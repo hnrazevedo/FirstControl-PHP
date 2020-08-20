@@ -1,18 +1,20 @@
 import Submitter from "./Submitter.js";
+import Dialog from "./Dialog.js";
 
 "use strict";
 
 const Validator = function(){
-    var f, options;
     return{
+        forms:[],
+        options:[],
         start(){
             if(document.querySelectorAll('form[provider]')!=undefined){
-                document.querySelectorAll('form[provider]').forEach(function(f,i){
+                document.querySelectorAll('form[provider]').forEach(function(frm,i){
         
                     var data = new FormData();
                     data.processData = false;
-                    data.append('provider',f.getAttribute('provider'));
-                    data.append('role',f.getAttribute('role'));
+                    data.append('provider',frm.getAttribute('provider'));
+                    data.append('role',frm.getAttribute('role'));
         
                     if(self.fetch) {
                         
@@ -58,9 +60,9 @@ const Validator = function(){
                                     eval(response[r]);
                                     break;
                                 case 'error':
-                                    f.classList.add('disabled');
-                                    f.querySelector('.panel-message').classList.add('error');
-                                    f.querySelector('.panel-message').innerHTML = response[r]['message'];
+                                    frm.classList.add('disabled');
+                                    frm.querySelector('.panel-message').classList.add('error');
+                                    frm.querySelector('.panel-message').innerHTML = response[r]['message'];
                                     break;
                             }
                         }
@@ -69,60 +71,62 @@ const Validator = function(){
             }
         },
         needValidate(f,options){
-            this.f = f;
-            this.options = options;
+            var id = `${f.getAttribute('provider')}.${f.getAttribute('role')}`;
 
-            f.addEventListener('submit',function(e){
+            Validator.forms[id] = {'form' : f, 'options' : options};
+
+            Validator.forms[id]['form'].addEventListener('submit',function(e){
                 e.preventDefault();
-        
-                var valid = true;
-                var field = null;
-        
-                if(f.querySelectorAll('.error')!=undefined){
-                    f.querySelectorAll('.error').forEach(err => err.classList.remove('error'));
-                }
-        
-                for(var opt in options){
-                    field = opt.toLowerCase().replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
-        
-                    try{
-        
-                        if(f.querySelector('[name="'+opt+'"]')!=undefined){
-                            Validator.checkInput(f.querySelector('[name="'+opt+'"]'),options[opt]);
-                        }else{
-                            valid = false;
-                            Validator.inputShowMessage(null,`Era esperado um campo com o nome '${opt}' para está operação.`,'error');
-                        }
-        
-                    }catch(err){
-                        valid = false;
-                        Validator.inputShowMessage(f.querySelector('[name="'+field.toLowerCase()+'"]'),err.message,'error');
-                    }
-                }
-        
-                if(valid){
-                    Submitter.work(e);
-                }
-                
+                Validator.formSubmit(id,e);
             });
         
-            if(f.querySelectorAll('input,textarea')!=undefined){
-                f.querySelectorAll('input,textarea').forEach(input => input.addEventListener('blur',function(e){
+            if(Validator.forms[id]['form'].querySelectorAll('input,textarea')!=undefined){
+                Validator.forms[id]['form'].querySelectorAll('input,textarea').forEach(input => input.addEventListener('blur',function(e){
                     try{
-                        Validator.checkInput(input,options[input.getAttribute('name')]);
-                        Validator.inputShowMessage(input,'.');
+                        Validator.checkInput(id,input,options[input.getAttribute('name')]);
+                        Validator.inputShowMessage(id,input,'.');
                     }catch(err){
-                        Validator.inputShowMessage(input,err.message,'error');
+                        Validator.inputShowMessage(id,input,err.message,'error');
                     }
                 }));
             }
         },
-        checkInput(input,rules){
+        formSubmit(id,e){
+            var valid = true;
+            var field = null;
+            
+            e = (e == null) ? Validator.forms[id]['form'] : e;
+        
+            if(Validator.forms[id]['form'].querySelectorAll('.error')!=undefined){
+                Validator.forms[id]['form'].querySelectorAll('.error').forEach(err => err.classList.remove('error'));
+            }
+        
+            for(var opt in Validator.forms[id]['options']){
+                field = opt.toLowerCase().replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+        
+                try{
+                    if(Validator.forms[id]['form'].querySelector('[name="'+opt+'"]')!=undefined){
+                        Validator.checkInput(id,Validator.forms[id]['form'].querySelector('[name="'+opt+'"]'),Validator.forms[id]['options'][opt]);
+                    }else{
+                        valid = false;
+                        Validator.inputShowMessage(id,null,`Era esperado um campo com o nome '${opt}' para está operação.`,'error');
+                    }
+        
+                }catch(err){
+                    valid = false;
+                    Validator.inputShowMessage(id,Validator.forms[id]['form'].querySelector('[name="'+field.toLowerCase()+'"]'),err.message,'error');
+                }
+            }
+        
+            if(valid){
+                Submitter.work(e);
+            }
+        },  
+        checkInput(id,input,rules){
             for(var rule in rules){
-                var fieldText = input.nextSibling.innerHTML;
-                fieldText = (fieldText===undefined || fieldText.trim().length == 0 ) ? input.getAttribute('placeholder') : fieldText;
+                var fieldText = ( input.parentNode.querySelector(`label[for="${input.getAttribute('name')}"]`) != null ) ? input.parentNode.querySelector(`label[for="${input.getAttribute('name')}"]`).innerHTML : input.getAttribute('label');
                 var required = ((typeof rules['required']) === 'boolean') ? rules['required'] : false;
-    
+
                 switch(rule){
                     case 'required':
                         if(required && input.value.length===0){
@@ -156,18 +160,22 @@ const Validator = function(){
     
                     case 'equals':
                         if(required || input.value.length>0){
-                            var clone = Validator.f.querySelector('[name="'+rules[rule]+'"]');
+                            var clone = Validator.forms[id]['form'].querySelector('[name="'+rules[rule]+'"]');
                             if(input.value!==clone.value){
                                 throw new Error(fieldText+' está diferente de '+clone.nextSibling.innerHTML+'.');
                             }
                         }
                         break;
+                    case 'mincount':
+                        console.log(required);
+                        break;
                 }
             }
         },
-        inputShowMessage(i, t, c = null){
+        inputShowMessage(id,i, t, c = null){
 
             if(i != null){
+
                 var m = i.closest('form').querySelector('p[name="'+i.getAttribute('name')+'"]');
     
                 if(m != null){
@@ -177,18 +185,23 @@ const Validator = function(){
                     if(c==null){
                         i.classList.remove('error','success');
                         m.classList.remove('error','success');
-                    }else{
-                        m.classList.add(c);
-                        i.classList.add(c);
+                        return true;
                     }
-    
+
+                    m.classList.add(c);
+                    i.classList.add(c);
+
+                    return true;
                 }
+                
+                Dialog.popUp(t,'error');
                 return true;
             }
             
-            this.f.classList.add('disabled');
-            this.f.querySelector('.panel-message').classList.add('error');
-            this.f.querySelector('.panel-message').innerHTML = t;
+            Validator.forms[id]['form'].classList.add('disabled');
+            Validator.forms[id]['form'].querySelector('.panel-message').classList.add('error');
+            Validator.forms[id]['form'].querySelector('.panel-message').innerHTML = t;
+            
         }
     }
 }();

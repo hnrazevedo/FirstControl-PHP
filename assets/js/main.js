@@ -8,8 +8,8 @@ import DataTables from "./DataTables.js";
 
 document.addEventListener('DOMContentLoaded',function(){
     Dialog.start();
+    DataTables.start();
     Form.start();
     Mask.start();
     Validator.start();
-    DataTables.start();
 });
