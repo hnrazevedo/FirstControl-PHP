@@ -7,7 +7,6 @@
         <link href="{{system.uri}}/assets/addons/Simple-DataTables/style.css" rel="stylesheet" type="text/css">
 
         <script src="{{system.uri}}/assets/js/main.js" type="module"></script>
-        <script src="{{system.uri}}/assets/js/module/datatable.mod.js" type="module"></script>
 
         <link href="{{system.uri}}/assets/css/main.css" rel="stylesheet" type="text/css">
         <link href="{{system.uri}}/assets/css/dialog.css" rel="stylesheet" type="text/css">

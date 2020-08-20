@@ -1,15 +1,8 @@
-/* ========================================================================
- * Submitter JS: v0.0.1
- * 
- * Copyright (c) 2020 Henri Azevedo
- * ========================================================================
- */
-
 import Dialog from "./Dialog.js";
 
 "use strict";
 
-var Submitter = function(){
+const Submitter = function(){
 	var form, data, xhr, response, url;
 	return {
 		work(e){

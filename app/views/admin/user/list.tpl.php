@@ -32,8 +32,7 @@
 
 <?= $this->include('user/register.form') ?>
 
-<script>
-    window.addEventListener('load',function(){
-        window.dataTables.importFromURL('table_list_user','/admin/result/list/users');
-    });
+<script type="module">
+    import DataTables from "/assets/js/DataTables.js";
+    DataTables.importFromURL('table_list_user','/admin/result/list/users');
 </script>

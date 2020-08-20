@@ -1,7 +1,5 @@
 "use strict";
 
-
-
 const Form = function(){
     return {
         start(){
