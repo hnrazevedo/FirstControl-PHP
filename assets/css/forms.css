@@ -144,6 +144,11 @@ form input[type="password"].error:focus{
 }
 /*------------------------------------------------------*/
 /* Buttons */
+form .cancel{
+    background:white !important;
+    color:rgb(185, 47, 34) !important;
+    border:none !important;
+}
 form .list_buttons{
     text-align:right;
 }
