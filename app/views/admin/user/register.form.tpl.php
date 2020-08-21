@@ -20,8 +20,10 @@
                 <li>
                     <input type="password" id="new_password2" name="new_password2" label="Confirmar senha" maxlength="20" >
                 </li>
-                <li class="li-btn">
-                    <button class="submit">Registar</button>
+                <li>
+                    <div class="list_buttons">
+                        <button class="submit">Registar</button>
+                    </div>
                 </li>
             </ul>   
         </form>

@@ -1492,8 +1492,14 @@ export class DataTable {
 
         // Print
         w.print()
+        
+        setTimeout(function(){
+            w.close()
+        },100)
+        
+        
 
-        w.close()
+        
     }
 
     /**
