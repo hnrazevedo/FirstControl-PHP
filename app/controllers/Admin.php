@@ -84,6 +84,15 @@ class Admin extends Controller{
             'AND' => ['type','<>',1]
         ])->execute()->toEntity();
 
+        if(is_null($result)){
+            echo json_encode([
+                'success' => [
+                    'message' => "Os usuários selecionados não atendem os critérios para tal ação." 
+                ]
+            ]);
+            return true;
+        }
+
         $users = (is_array($result)) ? $result : [$result];
 
         $method = ($data['role'] == 'block') ? 'bloqueados' : '';

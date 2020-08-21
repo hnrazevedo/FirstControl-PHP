@@ -206,4 +206,9 @@ const Validator = function(){
     }
 }();
 
+document.addEventListener('DOMContentLoaded',function(){
+    Validator.start();
+    window.Validator = Validator;
+});
+
 export default Validator;

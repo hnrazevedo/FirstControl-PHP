@@ -53,17 +53,19 @@ const Submitter = function(){
             this.data = new FormData(this.form);
 
             this.form.childNodes.forEach((input,i) => {
-                if(input.getAttribute('multiple') != null){
-                    var value = [];
-                    input.childNodes.forEach((option, o) => {
-                        if(option.selected === true){
-                            value.push(option.value);
-                        }
-                    });
-
-                    this.data.append(input.getAttribute('name'),JSON.stringify(value));
-                    
-                }
+                if(input instanceof Element || input instanceof HTMLDocument){
+                    if(input.getAttribute('multiple') != null){
+                        var value = [];
+                        input.childNodes.forEach((option, o) => {
+                            if(option.selected === true){
+                                value.push(option.value);
+                            }
+                        });
+    
+                        this.data.append(input.getAttribute('name'),JSON.stringify(value));
+                        
+                    }
+                }               
             });
 
             var data = JSON.stringify(Object.fromEntries(this.data));

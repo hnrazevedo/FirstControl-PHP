@@ -206,4 +206,9 @@ const DataTables = function(){
     }
 }();
 
+document.addEventListener('DOMContentLoaded',function(){
+    DataTables.start();
+    window.DataTables = DataTables;
+});
+
 export default DataTables;

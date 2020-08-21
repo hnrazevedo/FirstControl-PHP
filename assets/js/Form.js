@@ -219,4 +219,9 @@ const Form = function(){
     };
 }();
 
+document.addEventListener('DOMContentLoaded',function(){
+    Form.start();
+    window.Form = Form;
+});
+
 export default Form;

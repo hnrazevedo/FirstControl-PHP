@@ -72,4 +72,9 @@ const Dialog =  function(){
     };
 }();
 
+document.addEventListener('DOMContentLoaded',function(){
+    Dialog.start();
+    window.Dialog = Dialog;
+});
+
 export default Dialog;

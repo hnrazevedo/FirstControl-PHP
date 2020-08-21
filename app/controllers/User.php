@@ -106,7 +106,7 @@ class User extends Controller{
                     'message' => 'Usuário registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => "window.dataTables.dataAdd('table_list_user', ['{$this->entity->id}','{$this->entity->name}','{$this->entity->username}','{$this->entity->email}','{$this->entity->birth}','{$this->entity->register}','{$this->entity->lastaccess}','{$this->entity->status}','{$this->entity->type}']);"
+                'script' => "window.DataTables.dataAdd('table_list_user', ['{$this->entity->id}','{$this->entity->name}','{$this->entity->username}','{$this->entity->email}','{$this->entity->birth}','{$this->entity->register}','{$this->entity->lastaccess}','{$this->entity->status}','{$this->entity->type}']);"
             ]);
 
         }catch(Exception $er){

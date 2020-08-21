@@ -21,7 +21,7 @@
                     <input type="password" id="new_password2" name="new_password2" label="Confirmar senha" maxlength="20" >
                 </li>
                 <li class="li-btn">
-                    <button>Registar</button>
+                    <button class="submit">Registar</button>
                 </li>
             </ul>   
         </form>

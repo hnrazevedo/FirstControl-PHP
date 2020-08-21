@@ -67,4 +67,9 @@ const Mask = function() {
     };
 }();
 
+document.addEventListener('DOMContentLoaded',function(){
+    Mask.start();
+    window.Mask = Mask;
+});
+
 export default Mask;
