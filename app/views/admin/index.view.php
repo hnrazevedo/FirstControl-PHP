@@ -25,5 +25,6 @@
         </main>
         <?= $this->include('../global/dialog_loading') ?>
         <?= $this->include('../global/dialog_message') ?>
+        <?= $this->include('../global/dialog_confirm') ?>
     </body>
 </html>

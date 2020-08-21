@@ -2,6 +2,7 @@
 
 const Dialog =  function(){
     return {
+        callback:null,
         start(){
 
             if(document.querySelector('dialog') != null){
@@ -68,6 +69,31 @@ const Dialog =  function(){
                     document.querySelector('dialog.loading').removeAttribute('open');
                 }
             },5000);
+        },
+        confirm(callback){
+            Dialog.callback = callback;
+
+            var dial = document.querySelector('dialog#d_confirm');
+            dial.setAttribute('open','open');
+
+            dial.querySelectorAll('button').forEach((button,b) => {
+                button.removeEventListener('click',Dialog.testConfirm);
+                button.addEventListener('click',Dialog.testConfirm);
+            });
+
+        },
+        testConfirm(e){
+            var value = e.target.getAttribute('id');
+
+            if(value === 'cfm_confirm'){
+                var callback = Dialog.callback;
+                e.target.closest('dialog').removeAttribute('open');
+                callback();
+                return true;
+            }
+
+            e.target.closest('dialog').removeAttribute('open');
+
         }
     };
 }();

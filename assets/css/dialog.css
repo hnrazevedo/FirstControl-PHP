@@ -27,6 +27,10 @@ dialog .title{
   margin: 0 .5em;
 }
 
+dialog form ul li:last-child{
+  margin-bottom:0;
+}
+
 dialog > div{
     background: white;
     padding: .5em;

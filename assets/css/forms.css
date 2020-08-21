@@ -144,8 +144,15 @@ form input[type="password"].error:focus{
 }
 /*------------------------------------------------------*/
 /* Buttons */
-form li.li-btn{
-    text-align: right;
+form .list_buttons{
+    text-align:right;
+}
+
+form .list_buttons button{
+    margin-right: .5em;
+}
+form .list_buttons button:last-child{
+    margin-right:0;
 }
 button,
 form input[type="submit"],
@@ -174,7 +181,7 @@ form button::before{
     content:"";
     position:absolute;
     width:0;
-    height: 0;
+    height: 50%;
     background: rgba(0,0,0,.5);
     top:50%;
     left:50%;
@@ -190,7 +197,7 @@ form button:active::before{
     top:-75%;
     width: 150%;
     height: 250%;
-    transition: all .5s ease;
+    transition: all .3s ease;
 }
 
 form input[type="submit"]:disabled,

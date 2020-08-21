@@ -6,7 +6,7 @@
 
 </script>
 <div class="table">
-    <form provider="admin" role="status_user" access="/admin/controller/user">
+    <form provider="admin" role="status_user" access="/admin/controller/user" confirm="true">
         <input type="hidden" id="role" name="role" value="block">
 
         <div class="buttons">
