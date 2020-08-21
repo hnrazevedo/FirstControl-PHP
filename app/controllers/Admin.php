@@ -86,11 +86,17 @@ class Admin extends Controller{
 
         $users = (is_array($result)) ? $result : [$result];
 
-        $method = ($data['role'] == 'block') ? 'bloqueados' : 'liberados';
+        $method = ($data['role'] == 'block') ? 'bloqueados' : '';
+        $method = ($data['role'] == 'live') ? 'liberados' : $method;
+        $method = ($data['role'] == 'remove') ? 'removidos' : $method;
 
         foreach($users as $user){
-            $user->status = ($data['role'] == 'block') ? 0 : 1;
-            $user->save();
+            if($data['role'] != 'remove'){
+                $user->status = ($data['role'] == 'block') ? 0 : 1;
+                $user->save();
+            }else{
+                $user->remove(true);
+            }
         }
 
         echo json_encode([

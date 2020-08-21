@@ -19,6 +19,9 @@
             <button class="submit" onclick="workDataTable('live')">
                 Liberar
             </button>
+            <button class="submit" onclick="workDataTable('remove')">
+                Deletar
+            </button>
         </div>
 
         <hr>
