@@ -1,11 +1,12 @@
 <?php
 
-namespace Controller;
+namespace App\Controller;
 
 use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
-use Controller\User as User_Controller;
-use Model\User as Model;
+use App\Controller\User as User_Controller;
+use App\Model\User as Model;
+use App\Engine\Util;
 use Exception;
 
 
@@ -38,9 +39,9 @@ class Admin extends Controller{
         Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',$data);
     }
 
-    public function result_list(array $data)
+    public function result_list($entity)
     {
-        switch($data['GET']['entity'])
+        switch($entity)
         {
             case 'users':
                 echo json_encode($this->getListUser());
@@ -54,6 +55,9 @@ class Admin extends Controller{
     public function getListUser()
     {
         $users = $this->entity->find()->except(['password','code'])->execute()->toEntity();
+
+        $users = (is_array($users)) ? $users : [$users];
+
         $return = [];
         foreach($users as $user => $result){
             $date = [];
@@ -69,15 +73,14 @@ class Admin extends Controller{
         return $return;
     }
 
-    public function user_register(array $data)
+    public function user_register()
     {
-        (new User_Controller())->admin_register($data['POST']); 
+        (new User_Controller())->admin_register(Util::getData()['POST']); 
     }
 
-    public function status_user(array $data)
+    public function status_user($role, $dataselect)
     {
-        $data = json_decode($data['POST']['data'],true);
-        $selects = json_decode($data['dataselect']);
+        $selects = json_decode($dataselect);
 
         $result = $this->entity->find()->where([
             ['id','in',$selects],
@@ -95,13 +98,13 @@ class Admin extends Controller{
 
         $users = (is_array($result)) ? $result : [$result];
 
-        $method = ($data['role'] == 'block') ? 'bloqueados' : '';
-        $method = ($data['role'] == 'live') ? 'liberados' : $method;
-        $method = ($data['role'] == 'remove') ? 'removidos' : $method;
+        $method = ($role == 'block') ? 'bloqueados' : '';
+        $method = ($role == 'live') ? 'liberados' : $method;
+        $method = ($role == 'remove') ? 'removidos' : $method;
 
         foreach($users as $user){
-            if($data['role'] != 'remove'){
-                $user->status = ($data['role'] == 'block') ? 0 : 1;
+            if($role != 'remove'){
+                $user->status = ($role== 'block') ? 0 : 1;
                 $user->save();
             }else{
                 $user->remove(true);

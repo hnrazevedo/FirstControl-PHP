@@ -1,10 +1,10 @@
 <?php
 
-namespace Filter;
+namespace App\Filter;
 
-use HnrAzevedo\Filter\Filter;
+use HnrAzevedo\Filter\Filter as HnrFilter;
 
-class User extends Filter{
+class User extends HnrFilter{
 
     public function user_in(): bool
     {

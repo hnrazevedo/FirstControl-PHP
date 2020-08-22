@@ -1,10 +1,10 @@
 <?php
 
-namespace Controller;
+namespace App\Controller;
 
 use HnrAzevedo\Router\Controller;
-use Model\Page as Model;
-use Model\Authenticator as Authenticator;
+use App\Model\Page as Model;
+use App\Model\Authenticator as Authenticator;
 use Exception;
 
 class Page extends Controller{

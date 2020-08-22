@@ -15,16 +15,17 @@
         "matthiasmullie/minify": "^1.3",
 
         "hnrazevedo/datamanager": "^1.0",
-        "hnrazevedo/router": "^1.0",
+        "hnrazevedo/router": "^1.1",
         "hnrazevedo/validator": "^1.0",
         "hnrazevedo/viewer": "^1.0"
     },
     "autoload": {
         "psr-4": {
-            "Controller\\": "app/controllers",
-            "Rules\\": "app/rules",
-            "Engine\\":"app/engine",
-            "Model\\": "app/models"
+            "App\\Controller\\": "app/controllers",
+            "App\\Engine\\":"app/engine",
+            "App\\Model\\": "app/models",
+            "App\\Filter\\":"app/filters",
+            "App\\Rules\\":"app/rules"
         },
         "files":[
             "app/config.php",

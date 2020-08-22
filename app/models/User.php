@@ -1,6 +1,6 @@
 <?php
 
-namespace Model;
+namespace App\Model;
 
 use HnrAzevedo\Datamanager\Model as Entity;
 

@@ -1,5 +1,5 @@
 <?php
-namespace Engine;
+namespace App\Engine;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as MailException;

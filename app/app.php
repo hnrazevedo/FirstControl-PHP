@@ -2,7 +2,7 @@
 
 use HnrAzevedo\Router\Router;
 use HnrAzevedo\Viewer\Viewer;
-use Engine\Util;
+use App\Engine\Util;
 
 try{
 
@@ -10,10 +10,9 @@ try{
 
     Util::createTemp();
 
-    Router::create()->dispatch();
+    Router::dispatch();
 
 }catch(Exception $er){
-
     if(Util::getProtocol() === 'ajax'){
         
         echo json_encode([

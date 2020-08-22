@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d5497cba1c70fb5f8b8e2f573a447483",
+    "content-hash": "d265db0db34d6a8cea6ce94892648a15",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
-            "version": "v1.0.7",
+            "version": "v1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Datamanager.git",
-                "reference": "278aa3b723d44e4bd93c7ac00dff8fdf65ffc330"
+                "reference": "7a17689bb908d805afb6202706a8d9586a402ff1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/278aa3b723d44e4bd93c7ac00dff8fdf65ffc330",
-                "reference": "278aa3b723d44e4bd93c7ac00dff8fdf65ffc330",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/7a17689bb908d805afb6202706a8d9586a402ff1",
+                "reference": "7a17689bb908d805afb6202706a8d9586a402ff1",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "Datamanager is a simple persistence abstraction component in the database.",
-            "time": "2020-08-18T17:47:17+00:00"
+            "time": "2020-08-21T13:58:07+00:00"
         },
         {
             "name": "hnrazevedo/filter",
@@ -83,16 +83,16 @@
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v1.0.4",
+            "version": "v1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "024132eb96946da100387882d27e5849147ab87e"
+                "reference": "5891c791c7119644ff68d744ad59d5db4d63c2f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/024132eb96946da100387882d27e5849147ab87e",
-                "reference": "024132eb96946da100387882d27e5849147ab87e",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/5891c791c7119644ff68d744ad59d5db4d63c2f7",
+                "reference": "5891c791c7119644ff68d744ad59d5db4d63c2f7",
                 "shasum": ""
             },
             "require": {
@@ -104,7 +104,8 @@
             "autoload": {
                 "psr-4": {
                     "HnrAzevedo\\Router\\": "src/",
-                    "Example\\Controllers\\": "examples/Controllers/"
+                    "Example\\Controllers\\": "examples/Controllers/",
+                    "Example\\Filters\\": "examples/Filters/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -119,20 +120,20 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-08-18T17:12:31+00:00"
+            "time": "2020-08-22T01:40:58+00:00"
         },
         {
             "name": "hnrazevedo/validator",
-            "version": "v1.0.4",
+            "version": "v1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Validator.git",
-                "reference": "c92a70cda0a902f261942d47ccd5fe07f720c4f2"
+                "reference": "5146d9d8235b991c76e6620da0bb2647db68903f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/c92a70cda0a902f261942d47ccd5fe07f720c4f2",
-                "reference": "c92a70cda0a902f261942d47ccd5fe07f720c4f2",
+                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/5146d9d8235b991c76e6620da0bb2647db68903f",
+                "reference": "5146d9d8235b991c76e6620da0bb2647db68903f",
                 "shasum": ""
             },
             "require": {
@@ -141,7 +142,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "HnrAzevedo\\Validator\\": "src/"
+                    "HnrAzevedo\\Validator\\": "src/",
+                    "Example\\Rules\\": "examples/Rules/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -156,7 +158,7 @@
                 }
             ],
             "description": "Validator is a simple data validation component.",
-            "time": "2020-08-20T19:34:53+00:00"
+            "time": "2020-08-22T03:06:40+00:00"
         },
         {
             "name": "hnrazevedo/viewer",
@@ -364,6 +366,12 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "funding": [
+                {
+                    "url": "https://github.com/synchro",
+                    "type": "github"
+                }
+            ],
             "time": "2020-07-14T18:50:27+00:00"
         }
     ],
@@ -376,5 +384,6 @@
     "platform": {
         "php": ">=7.4"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

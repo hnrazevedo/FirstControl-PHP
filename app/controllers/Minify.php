@@ -1,9 +1,9 @@
 <?php
 
-namespace Controller;
+namespace App\Controller;
 
-use Engine\Logger;
-use Engine\Minify as Engine;
+use App\Engine\Logger;
+use App\Engine\Minify as Engine;
 
 class Minify{
 

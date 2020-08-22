@@ -1,6 +1,6 @@
 <?php
 
-namespace Engine;
+namespace App\Engine;
 
 use MatthiasMullie\Minify as _Minify;
 

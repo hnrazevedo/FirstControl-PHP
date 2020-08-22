@@ -1,10 +1,10 @@
 <?php
 
-namespace Controller;
+namespace App\Controller;
 
 use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
-use Model\User as Model;
+use App\Model\User as Model;
 use Engine\Util;
 use Exception;
 
@@ -25,14 +25,12 @@ class User extends Controller{
         header('Location: /');
     }
 
-    public function login()
+    public function login($username, $password)
     {
         try{
-
-            $data = json_decode(Util::getData()['POST']['data'],true);
-
+            
             $user = $this->entity->find()->where([
-                ['username','=',$data['log_username']],
+                ['username','=',$username],
                 ['status','=',1]
             ])->execute();
     
@@ -42,7 +40,7 @@ class User extends Controller{
 
             $user = $user->toEntity();
 
-            if(!password_verify($data['log_password'], $user->password)){
+            if(!password_verify($password, $user->password)){
                 throw new Exception('Invalid password.');
             }
 
