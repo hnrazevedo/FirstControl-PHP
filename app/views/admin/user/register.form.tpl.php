@@ -22,7 +22,7 @@
                 </li>
                 <li>
                     <div class="list_buttons">
-                        <button class="submit">Registar</button>
+                        <button class="submit">Registrar</button>
                     </div>
                 </li>
             </ul>   

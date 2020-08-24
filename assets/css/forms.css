@@ -151,6 +151,7 @@ form .cancel{
 }
 form .list_buttons{
     text-align:right;
+    margin-bottom:.3em;
 }
 
 form .list_buttons button{
@@ -212,6 +213,15 @@ form button:disabled{
     border-color:rgba(0,0,0,.1);
     cursor: not-allowed;
 }
-
+form button.icon{
+    position: relative;
+    padding-right: 3em;
+}
+form button.icon img{
+    position: absolute;
+    right: .7em;
+    height: 1.5em;
+    bottom:.45em;
+}
 
 /*------------------------------------------------------*/

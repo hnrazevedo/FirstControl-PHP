@@ -10,17 +10,21 @@
         <input type="hidden" id="role" name="role" value="block">
 
         <div class="buttons">
-            <button dialog="#register_user_form">
+            <button dialog="#register_user_form" class="icon">
                 Incluir
+                <img src="{{system.uri}}/assets/img/icon.add.svg">
             </button>
-            <button class="submit" onclick="workDataTable('block')">
+            <button class="submit icon" onclick="workDataTable('block')">
                 Bloquear
+                <img src="{{system.uri}}/assets/img/icon.lock.svg">
             </button>
-            <button class="submit" onclick="workDataTable('live')">
-                Liberar
+            <button class="submit icon" onclick="workDataTable('live')">
+                Desbloquear
+                <img src="{{system.uri}}/assets/img/icon.unlock.svg">
             </button>
-            <button class="submit" onclick="workDataTable('remove')">
+            <button class="submit icon" onclick="workDataTable('remove')">
                 Deletar
+                <img src="{{system.uri}}/assets/img/icon.delete.svg">
             </button>
         </div>
 
