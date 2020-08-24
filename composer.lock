@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a10600aa049e54dae0884f5ac356005e",
+    "content-hash": "92535516f7d68345e8c30a67162c1ebb",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
-            "version": "v1.0.10",
+            "version": "v1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Datamanager.git",
-                "reference": "7a17689bb908d805afb6202706a8d9586a402ff1"
+                "reference": "19530f17015ab45f8c7ec5527101c8f75b39263a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/7a17689bb908d805afb6202706a8d9586a402ff1",
-                "reference": "7a17689bb908d805afb6202706a8d9586a402ff1",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/19530f17015ab45f8c7ec5527101c8f75b39263a",
+                "reference": "19530f17015ab45f8c7ec5527101c8f75b39263a",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "Datamanager is a simple persistence abstraction component in the database.",
-            "time": "2020-08-21T13:58:07+00:00"
+            "time": "2020-08-24T12:42:57+00:00"
         },
         {
             "name": "hnrazevedo/filter",
@@ -83,16 +83,16 @@
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v1.2.2",
+            "version": "v1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "64a5b7d2015b95aa63cb8a462d4729d7097e7a7d"
+                "reference": "fb1aeb73a1ab9916e9c55293a551306fb8e6a5f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/64a5b7d2015b95aa63cb8a462d4729d7097e7a7d",
-                "reference": "64a5b7d2015b95aa63cb8a462d4729d7097e7a7d",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/fb1aeb73a1ab9916e9c55293a551306fb8e6a5f4",
+                "reference": "fb1aeb73a1ab9916e9c55293a551306fb8e6a5f4",
                 "shasum": ""
             },
             "require": {
@@ -120,20 +120,20 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-08-23T03:00:05+00:00"
+            "time": "2020-08-24T12:44:51+00:00"
         },
         {
             "name": "hnrazevedo/validator",
-            "version": "v1.1.6",
+            "version": "v1.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Validator.git",
-                "reference": "5146d9d8235b991c76e6620da0bb2647db68903f"
+                "reference": "7fe5816883e575210a59bb61b60e61d2601c809c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/5146d9d8235b991c76e6620da0bb2647db68903f",
-                "reference": "5146d9d8235b991c76e6620da0bb2647db68903f",
+                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/7fe5816883e575210a59bb61b60e61d2601c809c",
+                "reference": "7fe5816883e575210a59bb61b60e61d2601c809c",
                 "shasum": ""
             },
             "require": {
@@ -158,20 +158,20 @@
                 }
             ],
             "description": "Validator is a simple data validation component.",
-            "time": "2020-08-22T03:06:40+00:00"
+            "time": "2020-08-24T12:44:01+00:00"
         },
         {
             "name": "hnrazevedo/viewer",
-            "version": "v1.0.2",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "2ace0d0e6773e3eccd98c935a657752be48d2376"
+                "reference": "28d65c420492797e3f2f60f41d3e922a66821b4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/2ace0d0e6773e3eccd98c935a657752be48d2376",
-                "reference": "2ace0d0e6773e3eccd98c935a657752be48d2376",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/28d65c420492797e3f2f60f41d3e922a66821b4e",
+                "reference": "28d65c420492797e3f2f60f41d3e922a66821b4e",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-08-15T23:15:11+00:00"
+            "time": "2020-08-24T18:24:57+00:00"
         },
         {
             "name": "matthiasmullie/minify",

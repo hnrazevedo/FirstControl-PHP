@@ -12,19 +12,19 @@
         <div class="buttons">
             <button dialog="#register_user_form" class="icon">
                 Incluir
-                <img src="{{system.uri}}/assets/img/icon.add.svg">
+                <img src="{{ $system.uri }}/assets/img/icon.add.svg">
             </button>
             <button class="submit icon" onclick="workDataTable('block')">
                 Bloquear
-                <img src="{{system.uri}}/assets/img/icon.lock.svg">
+                <img src="{{ $system.uri }}/assets/img/icon.lock.svg">
             </button>
             <button class="submit icon" onclick="workDataTable('live')">
                 Desbloquear
-                <img src="{{system.uri}}/assets/img/icon.unlock.svg">
+                <img src="{{ $system.uri }}/assets/img/icon.unlock.svg">
             </button>
             <button class="submit icon" onclick="workDataTable('remove')">
                 Deletar
-                <img src="{{system.uri}}/assets/img/icon.delete.svg">
+                <img src="{{ $system.uri }}/assets/img/icon.delete.svg">
             </button>
         </div>
 

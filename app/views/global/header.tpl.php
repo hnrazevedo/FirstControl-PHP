@@ -1,4 +1,4 @@
-<link href="{{system.uri}}/assets/css/header.css" rel="stylesheet" type="text/css">
+<link href="{{ $system.uri }}/assets/css/header.css" rel="stylesheet" type="text/css">
 <header>
     <ul>
         <div class="logo">
@@ -41,7 +41,7 @@
                 $a.innerHTML = $data[$menu]['name'];
                 var $li = document.createElement('li');
                 $li.setAttribute('id',$data[$menu]['id']);
-                if("{{pageID}}" == $data[$menu]['id']){
+                if("{{ $pageID }}" == $data[$menu]['id']){
                     $li.classList.add('act');
                     $ul.querySelector('.sub-title.'+$data[$menu]['submenu']).classList.add('act');
                 }
