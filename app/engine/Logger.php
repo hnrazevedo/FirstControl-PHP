@@ -59,11 +59,11 @@ class Logger implements LoggerInterface{
         $this->level = $level;
         $path = $this->replace($this->config['logger.path'],$context);
         $filename = strtolower($this->replace($this->config['logger.filename'],$context));
-        $path = BASEPATH.str_replace(['\\','/'],DS,$path);
+        $path = SYSTEM['basepath'].str_replace(['\\','/'],DIRECTORY_SEPARATOR,$path);
 
         @mkdir($path,0777,true);
 
-        file_put_contents($path.$filename,'['.$level.']['.$_SERVER['REMOTE_ADDR'].']['.date('d/m/Y h:m:s').']['.URI.'] [Message] '.$message . ' [Context] '.json_encode($context) ."\n",FILE_APPEND);
+        file_put_contents($path.$filename,'['.$level.']['.$_SERVER['REMOTE_ADDR'].']['.date('d/m/Y h:m:s').']['.SYSTEM['uri'].'] [Message] '.$message . ' [Context] '.json_encode($context) ."\n",FILE_APPEND);
     }
 
     private function replace($string,$context){

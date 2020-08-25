@@ -13,22 +13,14 @@ try{
     Router::dispatch();
 
 }catch(Exception $er){
-    if(Util::getProtocol() === 'ajax'){
-        
-        echo json_encode([
-            'error' => [
-                'message' => $er->getMessage()
-            ]
-        ]);
+    $data = [
+        'error' => ['code' => $er->getCode(),'message' => $er->getMessage()]
+    ];
 
+    if(Util::getProtocol() === 'ajax'){
+        echo json_encode($data);
     }else{
-        Viewer::create(SYSTEM['basepath'].'app/views/global/')
-              ->render('error',[
-                    'error' => [
-                        'code' => $er->getCode(),
-                        'message' => $er->getMessage()
-                        ]
-                ]);
+        Viewer::create(SYSTEM['basepath'].'app/views/global/')->render('error',$data);
     }
 
 }finally{

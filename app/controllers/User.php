@@ -68,7 +68,7 @@ class User extends Controller{
 
     public function dashboard()
     {
-        Viewer::create(SYSTEM['basepath'].'app/views/')->render('dashboard',['pageID'=>1]);
+        Viewer::create(SYSTEM['basepath'].'app/views/')->render('index',['pageID'=>1]);
     }
 
     public function view_login()

@@ -25,13 +25,13 @@ Class Util{
 
                 if($file !== '.' && $file !== '..'){
 
-                    if(is_dir($path.DS.$file)){
-                        self::delete($path.DS.$file);
+                    if(is_dir($path.DIRECTORY_SEPARATOR.$file)){
+                        self::delete($path.DIRECTORY_SEPARATOR.$file);
                     }
 
                 }
 
-            	@unlink($path.DS.$file);
+            	@unlink($path.DIRECTORY_SEPARATOR.$file);
             }
 
             $dir -> close();
@@ -53,8 +53,8 @@ Class Util{
 
         $fileName = $pathString .'['. date('d-m-Y h-m-s').'].zip';
 
-        $path      = BASEPATH . DS . $path;
-        $fileZip  = TEMPDIR. DS .$fileName;
+        $path      = SYSTEM['basepath'] . DIRECTORY_SEPARATOR . $path;
+        $fileZip  = SYSTEM['temp'] . DIRECTORY_SEPARATOR .$fileName;
 
         if(!file_exists($path)){
             throw new Exception("Diretório inexistente: {$path}.");
