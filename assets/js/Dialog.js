@@ -9,9 +9,11 @@ const Dialog =  function(){
                 document.querySelectorAll('dialog').forEach(function(d,i){
 
                     /* Add a link to close */
-                    var close = document.createElement('a');
-                    close.setAttribute('close',true);
-                    d.prepend(close);
+                    if(!d.classList.contains('fixed')){
+                        var close = document.createElement('a');
+                        close.setAttribute('close',true);
+                        d.prepend(close);
+                    }
 
                     /* Add div title if settabled */
                     if(d.getAttribute('title') != null){

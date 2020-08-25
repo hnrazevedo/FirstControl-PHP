@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d265db0db34d6a8cea6ce94892648a15",
+    "content-hash": "92535516f7d68345e8c30a67162c1ebb",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
@@ -162,16 +162,16 @@
         },
         {
             "name": "hnrazevedo/viewer",
-            "version": "v1.0.2",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "2ace0d0e6773e3eccd98c935a657752be48d2376"
+                "reference": "28d65c420492797e3f2f60f41d3e922a66821b4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/2ace0d0e6773e3eccd98c935a657752be48d2376",
-                "reference": "2ace0d0e6773e3eccd98c935a657752be48d2376",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/28d65c420492797e3f2f60f41d3e922a66821b4e",
+                "reference": "28d65c420492797e3f2f60f41d3e922a66821b4e",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-08-15T23:15:11+00:00"
+            "time": "2020-08-24T18:24:57+00:00"
         },
         {
             "name": "matthiasmullie/minify",
