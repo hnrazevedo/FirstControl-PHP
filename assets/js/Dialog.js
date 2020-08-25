@@ -13,21 +13,21 @@ const Dialog =  function(){
                         var close = document.createElement('a');
                         close.setAttribute('close',true);
                         d.prepend(close);
+
+                        if(d.querySelector('.heading') != null){
+                            var close = document.createElement('a');
+                            close.classList.add('close');
+                            d.querySelector('.heading').append(close);
+                            close.addEventListener('click',Dialog.closeClick);
+                        }
                     }
 
-                    /* Add div title if settabled */
-                    if(d.getAttribute('title') != null){
-                        var div = document.createElement('div');
-                        div.classList.add('title');
-                        div.innerHTML = `<h3>${d.getAttribute("title")}</h3>`;
-                        d.querySelector('div').prepend(div);
-                    }
                 });
             }
 
             document.querySelectorAll('[close]').forEach((untarget, i) => {
-                untarget.removeEventListener('click',this.closeClick);
-                untarget.addEventListener('click',this.closeClick);
+                untarget.removeEventListener('click',Dialog.closeClick);
+                untarget.addEventListener('click',Dialog.closeClick);
             });
 
             Dialog.eventsDialog();

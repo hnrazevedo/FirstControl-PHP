@@ -31,18 +31,84 @@ dialog form ul li:last-child{
   margin-bottom:0;
 }
 
+dialog div.heading{
+  color: #212121;
+  padding: 1em 3.6em .8em 1em;
+  font-size: 1.3em;
+  position: relative;
+}
+dialog div.heading  a.close{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1.5em;
+  height: 1.5em;
+  margin: .8em 1.1em ;
+  border-radius: 100%;
+  border:solid 2px transparent;
+  cursor: pointer;
+  transition:background .3s ease;
+}
+dialog div.heading  a.close:hover{
+  background:rgba(0,0,0,.1);
+  transition:background .3s ease;
+}
+dialog div.heading  a.close:focus,
+dialog div.heading  a.close:active{
+  background:rgba(0,0,0,.1);
+  border:solid 2px rgba(0,0,0,.2);
+  transition:all .3s ease;
+}
+
+dialog div.heading  a.close::before,
+dialog div.heading  a.close::after{
+  content:"";
+  position: absolute;
+  width: 1em;
+  height: 1px;
+  left: .25em;
+  top: .75em;
+  background:rgb(100,100,100);
+  transform: rotate(45deg);
+}
+
+dialog div.heading  a.close::after{
+  transform: rotate(-45deg);
+}
+
 dialog > div{
     background: white;
-    padding: .5em;
     width: max-content;
     box-shadow: 0 0 5px rgba(0,0,0,.2);
     margin:auto;
+    border-radius: 3px;
 }
 
-dialog p{
-    margin:0;
-    font-size: .9em;
+dialog div.content{
+  color:#5f6368;
+  padding:0 1.5em;
+  font-size: .9em;
+  letter-spacing: .2px;
+  line-height: 20px;
+
+  margin:0;
+  box-shadow: unset;
+  height: auto;
 }
+
+dialog form p{
+  margin:0 !important;
+}
+
+
+dialog form div.buttons{
+  padding:1em 0;
+}
+
+dialog form{
+  margin: 0;
+}
+
 
 dialog a[close]{
     position: absolute;

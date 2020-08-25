@@ -66,6 +66,17 @@ div.table select.dataTable{
     display: none;
 }
 
+div.table form div.buttons{
+    flex-direction: initial;
+}
+div.table form div.buttons button{
+    margin-left:0;
+}
+
+div.table .DataTables-buttons button{
+    border-radius: 3px;
+}
+
 div.table .datatable>tbody>tr>td,
 div.table .datatable>tbody>tr>th,
 div.table .datatable>tfoot>tr>td,

@@ -92,7 +92,7 @@ input + label{
 input:focus + label,
 input:not([value=""]) + label{
     color:rgb(66,133,244);
-    transform: translate(-1em,-1.7em) scale(.8);
+    transform: translate(-.8em,-1.8em) scale(.9);
     transition: transform .5s ease, color .5s ease;
 }
 input.error + label{
@@ -116,7 +116,7 @@ form input[type="password"]{
 form input[type="text"],
 form input[type="password"],
 form textarea{
-    margin-top:1em;
+    margin-top:.95em;
     width: 100%;
     padding: .6em;
     border: solid 1px rgba(0,0,0,.3);
@@ -144,21 +144,37 @@ form input[type="password"].error:focus{
 }
 /*------------------------------------------------------*/
 /* Buttons */
-form .cancel{
+form button.cancel{
     background:white !important;
-    color:rgb(185, 47, 34) !important;
+    color:rgb(120, 120, 120) !important;
     border:none !important;
+    transition:background .3s ease;
 }
-form .list_buttons{
-    text-align:right;
-    margin-bottom:.3em;
+form button.cancel:hover{
+    background:rgba(0,0,0,.05) !important;
+    transition:background .3s ease;
+}
+form button.cancel:focus{
+    background:rgba(0,0,0,.2) !important;
+    transition:background .3s ease;
+}
+form div.buttons button:hover{
+    box-shadow: 1px 1px 5px rgba(66,133,244,.7);
+    transition: box-shadow .3s ease;
+}
+form div.buttons{
+    box-shadow: none;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
 }
 
-form .list_buttons button{
-    margin-right: .5em;
+form div.buttons button{
+    margin-left: .5em;
+    border-radius: 3px;
 }
-form .list_buttons button:last-child{
-    margin-right:0;
+form div.buttons button:last-child{
+    margin-left:0;
 }
 button,
 form input[type="submit"],
@@ -174,6 +190,8 @@ form button{
     position: relative;
     overflow: hidden;
     font-weight: 700;
+    box-shadow: 0 1px 5px rgba(66,133,244,0);
+    transition: box-shadow .3s ease;
 }
 
 button{

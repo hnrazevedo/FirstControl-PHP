@@ -1,6 +1,7 @@
 <dialog id="d_message">
-    <a close="close"></a>
     <div>
-        <p></p>
+        <div class="content">
+            <p></p>
+        </div>
     </div>
 </dialog>
