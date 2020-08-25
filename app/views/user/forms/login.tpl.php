@@ -9,8 +9,10 @@
                 <li>
                     <input type="password" name="log_password" id="log_password" placeholder="Senha" label="Senha" maxlength="20">
                 </li>
-                <li class="li-btn">
-                    <button class="submit">Acessar</button>
+                <li>
+                    <div class="list_buttons">
+                        <button class="submit">Acessar</button>
+                    </div>
                 </li>
             </ul>
         </form>

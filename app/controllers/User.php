@@ -46,6 +46,7 @@ class User extends Controller{
 
             $user->lastaccess = date('Y-m-d H:i:s');
             $user->save();
+
         
             $_SESSION['user'] = serialize($user);
 
