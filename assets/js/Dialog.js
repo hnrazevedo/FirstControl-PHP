@@ -17,6 +17,7 @@ const Dialog =  function(){
                         if(d.querySelector('.heading') != null){
                             var close = document.createElement('a');
                             close.classList.add('close');
+                            close.dataset.tooltip = "Fechar";
                             d.querySelector('.heading').append(close);
                             close.addEventListener('click',Dialog.closeClick);
                         }

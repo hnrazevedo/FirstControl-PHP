@@ -35,3 +35,8 @@ hr{
 main .content h1{
     font-weight: 400;
 }
+
+[data-tooltip]::after{
+    content:attr(data-tooltip);
+    position: absolute;  
+}
