@@ -69,7 +69,7 @@
                     return res.json();
                 })
                 .then(post => {
-                    mountMenu(post);
+                    //mountMenu(post);
                 })
                 .catch(err => {
                     console.log(err);

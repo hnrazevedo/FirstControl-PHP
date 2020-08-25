@@ -17,7 +17,7 @@
         "hnrazevedo/datamanager": "^1.0",
         "hnrazevedo/router": "^1.2",
         "hnrazevedo/validator": "^1.1",
-        "hnrazevedo/viewer": "^1.1"
+        "hnrazevedo/viewer": "^1.2"
     },
     "autoload": {
         "psr-4": {
