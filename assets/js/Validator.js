@@ -1,13 +1,13 @@
-import Submitter from "./Submitter.js";
-import Dialog from "./Dialog.js";
-
 "use strict";
 
 const Validator = function(){
     return{
         forms:[],
+        rules:[],
         options:[],
-        start(){
+        start(options){
+            Validator.setOptions(options);
+
             if(document.querySelectorAll('form[provider]')!=undefined){
                 document.querySelectorAll('form[provider]').forEach(function(frm,i){
         
@@ -70,10 +70,24 @@ const Validator = function(){
                 });
             }
         },
-        needValidate(f,options){
+        setOptions(options){
+            Validator.options['alert'] = ("alert" in options) 
+                ? options['alert'] 
+                : function(m,c) {alert(m)};
+
+            Validator.options['submitter'] = ("submitter" in options) 
+                ? options['submitter'] 
+                : function(form) {
+                    if(form.constructor.name == 'SubmitEvent'){
+                        form.target.submit();
+                    }
+                };
+
+        },
+        needValidate(f,rules){
             var id = `${f.getAttribute('provider')}.${f.getAttribute('role')}`;
 
-            Validator.forms[id] = {'form' : f, 'options' : options};
+            Validator.forms[id] = {'form' : f, 'rules' : rules};
 
             Validator.forms[id]['form'].addEventListener('submit',function(e){
                 e.preventDefault();
@@ -83,7 +97,7 @@ const Validator = function(){
             if(Validator.forms[id]['form'].querySelectorAll('input,textarea')!=undefined){
                 Validator.forms[id]['form'].querySelectorAll('input,textarea').forEach(input => input.addEventListener('blur',function(e){
                     try{
-                        Validator.checkInput(id,input,options[input.getAttribute('name')]);
+                        Validator.checkInput(id,input,rules[input.getAttribute('name')]);
                         Validator.inputShowMessage(id,input,'.');
                     }catch(err){
                         Validator.inputShowMessage(id,input,err.message,'error');
@@ -101,15 +115,15 @@ const Validator = function(){
                 Validator.forms[id]['form'].querySelectorAll('.error').forEach(err => err.classList.remove('error'));
             }
         
-            for(var opt in Validator.forms[id]['options']){
-                field = opt.toLowerCase().replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+            for(var rule in Validator.forms[id]['rules']){
+                field = rule.toLowerCase().replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
         
                 try{
-                    if(Validator.forms[id]['form'].querySelector('[name="'+opt+'"]')!=undefined){
-                        Validator.checkInput(id,Validator.forms[id]['form'].querySelector('[name="'+opt+'"]'),Validator.forms[id]['options'][opt]);
+                    if(Validator.forms[id]['form'].querySelector('[name="'+rule+'"]')!=undefined){
+                        Validator.checkInput(id,Validator.forms[id]['form'].querySelector('[name="'+rule+'"]'),Validator.forms[id]['rules'][rule]);
                     }else{
                         valid = false;
-                        Validator.inputShowMessage(id,null,`Era esperado um campo com o nome '${opt}' para está operação.`,'error');
+                        Validator.inputShowMessage(id,null,`Era esperado um campo com o nome '${rule}' para está operação.`,'error');
                     }
         
                 }catch(err){
@@ -119,7 +133,7 @@ const Validator = function(){
             }
         
             if(valid){
-                Submitter.work(e);
+                Validator.options.submitter(e);
             }
         },  
         checkInput(id,input,rules){
@@ -166,9 +180,6 @@ const Validator = function(){
                             }
                         }
                         break;
-                    case 'mincount':
-                        //
-                        break;
                 }
             }
         },
@@ -194,9 +205,11 @@ const Validator = function(){
                     return true;
                 }
                 
-                Dialog.popUp(t,'error');
+                console.log(1);
+                Validator.options.alert(t,'error');
                 return true;
             }
+            Validator.options.alert(t,'error');
             
             Validator.forms[id]['form'].classList.add('disabled');
             Validator.forms[id]['form'].querySelector('.panel-message').classList.add('error');
@@ -206,9 +219,7 @@ const Validator = function(){
     }
 }();
 
-document.addEventListener('DOMContentLoaded',function(){
-    Validator.start();
+export default async function(){
     window.Validator = Validator;
-});
-
-export default Validator;
+    return Validator;
+}

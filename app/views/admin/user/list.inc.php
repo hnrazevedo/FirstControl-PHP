@@ -51,9 +51,12 @@
 <?= $this->include('user/register.form') ?>
 
 <script type="module">
-    import DataTables from "/assets/js/DataTables.js";
+    setTimeout(function(){
+        (async function(){
+            await (await import("/assets/js/DataTables.js")).default();
+            window.DataTables.importFromURL('table_list_user','/admin/result/list/users');
+        })();
+    },500);
     
-    DataTables.importFromURL('table_list_user','/admin/result/list/users');
 
-    
 </script>

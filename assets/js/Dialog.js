@@ -101,9 +101,7 @@ const Dialog =  function(){
     };
 }();
 
-document.addEventListener('DOMContentLoaded',function(){
-    Dialog.start();
+export default async function(){
     window.Dialog = Dialog;
-});
-
-export default Dialog;
+    return Dialog;
+}

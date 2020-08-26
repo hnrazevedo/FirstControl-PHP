@@ -2,22 +2,31 @@
 
 const Mask = function() {
     return {
+        masks:{
+            '#':'\\d',
+            'A':'[A-Z]',
+            'a':'[a-z]',
+            'S':'[a-zA-Z]',
+            'X':'[0-9a-zA-Z]'
+        },
         start(){
             if(document.querySelector('[data-mask]') != null){
                 document.querySelectorAll('[data-mask]').forEach(function(input,i){
-                    Mask.format('[data-mask="'+input.dataset.mask+'"]');
+                    Mask.add(input);
                 });
             }
         },
-        format(element) {            
-            var el = document.querySelector(element);
+        add(element){
+            Mask.format(element);
+        },
+        format(el) {            
             var maskForm = '';
             
             maskForm = el.dataset.mask;
             el.maxLength = maskForm.length;
             
-            el.addEventListener('keypress', function (e){
-                if (e.keyCode !== 8 || e.keyCode !== 46) {   
+            el.addEventListener('keyup', function (e){
+                if (e.keyCode !== 8 && e.keyCode !== 46) { 
                     costume(maskForm);
                 }
             });
@@ -31,45 +40,25 @@ const Mask = function() {
                     c = data.charAt(i);
                     m = mask.charAt(i);
 
-                    switch (mask.charAt(i)) {
-                        case '#' : 
-                            if (/\d/.test(c)) {
-                                value += c;
-                                continue;
-                            } 
-                            break;
-                        case 'A' : 
-                            if (/[a-z]/i.test(c)) {
-                                value += c;
-                                continue;
-                            } 
-                            break;
-                        case 'N' : 
-                            if (/[a-z0-9]/i.test(c)) {
-                                value += c;
-                                continue;
-                            }
-                            break;
-
-                        case 'X' : 
+                    if(Mask.masks[m] != undefined){
+                        if((new RegExp(Mask.masks[m])).test(c)){
                             value += c;
                             continue;
-
-                        default  : 
-                            value += m; 
-                            continue;
+                        }
+                    }else{
+                        value += m;
+                        continue;
                     }
                     x = 0;
                 }
                 el.value = value;                
             }
+            
         }
     };
 }();
 
-document.addEventListener('DOMContentLoaded',function(){
-    Mask.start();
+export default async function(){
     window.Mask = Mask;
-});
-
-export default Mask;
+    return Mask;
+}

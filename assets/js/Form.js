@@ -219,9 +219,7 @@ const Form = function(){
     };
 }();
 
-document.addEventListener('DOMContentLoaded',function(){
-    Form.start();
+export default async function(){
     window.Form = Form;
-});
-
-export default Form;
+    return Form;
+}

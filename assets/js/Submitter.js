@@ -1,5 +1,3 @@
-import Dialog from "./Dialog.js";
-
 "use strict";
 
 const Submitter = function(){
@@ -179,7 +177,7 @@ const Submitter = function(){
                 switch(r){
                     case 'success':
                         if(typeof Submitter.response[r]['message'] != 'undefined'){
-                            Dialog.popUp(Submitter.response[r]['message'],'success');
+                            window.Dialog.popUp(Submitter.response[r]['message'],'success');
                         }
                     break;
                     case 'error':
@@ -197,13 +195,13 @@ const Submitter = function(){
                                     Submitter.form.querySelector('p[name="'+Submitter.response[r][er]['input']+'"]').style.display = 'block';
                                 }else{
                                     var inputText = (input != null) ? input.getAttribute('label') : '';
-                                    Dialog.popUp(`${inputText}: ${message}`,'error');
+                                    window.Dialog.popUp(`${inputText}: ${message}`,'error');
                                 }
                             }
                         }
                         
                         if(typeof Submitter.response[r]['message'] != 'undefined') {
-                            Dialog.popUp(Submitter.response[r]['message'],'error');
+                            window.Dialog.popUp(Submitter.response[r]['message'],'error');
                         }
                     break;
                     case 'reset':
@@ -232,7 +230,7 @@ const Submitter = function(){
         },
         onError(e){
             console.log(e);
-            Dialog.popUp(e,'error');
+            window.Dialog.popUp(e,'error');
             return this;
         },
         isJson(json){
@@ -261,4 +259,7 @@ const Submitter = function(){
 	};
 }();
 
-export default Submitter;
+export default async function(){
+    window.Submitter = Submitter;
+    return Submitter;
+}

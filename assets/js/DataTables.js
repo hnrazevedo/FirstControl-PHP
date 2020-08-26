@@ -1,4 +1,3 @@
-import Submitter from "./Submitter.js";
 import {DataTable} from "/../assets/addons/Simple-DataTables/datatable.js";
 
 "use strict";
@@ -132,7 +131,7 @@ const DataTables = function(){
             return table;
         },
         async importFromURL(id,url){
-            DataTables.dataAdd(id, await Submitter.setUrl(url).execute(true));
+            DataTables.dataAdd(id, await window.Submitter.setUrl(url).execute(true));
         },
         getSelecteds(DataTables){
             var value = [];
@@ -206,9 +205,7 @@ const DataTables = function(){
     }
 }();
 
-document.addEventListener('DOMContentLoaded',function(){
-    DataTables.start();
+export default async function(){
     window.DataTables = DataTables;
-});
-
-export default DataTables;
+    return DataTables;
+}
