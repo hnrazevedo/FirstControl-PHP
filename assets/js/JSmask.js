@@ -12,14 +12,12 @@ const Mask = function() {
         start(){
             if(document.querySelector('[data-mask]') != null){
                 document.querySelectorAll('[data-mask]').forEach(function(input,i){
-                    Mask.add(input);
+                    Mask.format('[data-mask="'+input.dataset.mask+'"]');
                 });
             }
         },
-        add(element){
-            Mask.format(element);
-        },
-        format(el) {            
+        format(element) {            
+            var el = document.querySelector(element);
             var maskForm = '';
             
             maskForm = el.dataset.mask;
@@ -58,7 +56,6 @@ const Mask = function() {
     };
 }();
 
-export default async function(){
-    window.Mask = Mask;
-    return Mask;
+if (/complete|interactive|loaded/.test(document.readyState)) {
+    Mask.start();
 }

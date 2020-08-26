@@ -1,5 +1,3 @@
-import Validator from "./Validator.js";
-
 "use strict";
 
 const Form = function(){
@@ -49,7 +47,7 @@ const Form = function(){
     
                                 var p = document.createElement('p');
                                 p.setAttribute('name',input.getAttribute('name'));
-                                p.classList.add('message');
+                                p.classList.add('message','inputMessage');
                                 input.nextSibling.after(p);
                                 break;
                             case 'maxlength':
@@ -64,7 +62,7 @@ const Form = function(){
                                         var length = document.createElement('length');
                                         var p = document.createElement('p');
                                         p.setAttribute('name',input.getAttribute('name'));
-                                        p.classList.add('message');
+                                        p.classList.add('message','inputMessage');
                                         length.style.opacity = 0;
                                         input.nextSibling.after(length);
                                         input.nextSibling.after(p);
@@ -78,7 +76,7 @@ const Form = function(){
                                         input.nextSibling.after(length);
                                         var p = document.createElement('p');
                                         p.setAttribute('name',input.getAttribute('name'));
-                                        p.classList.add('message');
+                                        //p.classList.add('message');
                                         input.nextSibling.after(p);
                                         break;
                                 }

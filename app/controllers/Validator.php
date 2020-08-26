@@ -17,7 +17,7 @@ class Validator{
         }
 
         $json = Sys_Validator::toJson($data);
-        $script = "Validator.needValidate(document.querySelector('form[provider=\"{$data['provider']}\"][role=\"{$data['role']}\"]'),{$json});";
+        $script = "Validator.load(document.querySelector('form[provider=\"{$data['provider']}\"][role=\"{$data['role']}\"]'),{$json});";
         echo json_encode(['success'=>$script]);
     }
 
