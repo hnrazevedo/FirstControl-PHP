@@ -1,5 +1,4 @@
-div.table .dataTables_scroll,
-div.table table.datatable{
+div.table .dataTable-container{
     border:solid 1px rgb(200,200,200);
 }
 
@@ -379,3 +378,63 @@ div.table select.datatable{
     padding:1em;
     border:solid 1px red;
 }
+
+
+
+
+
+
+
+
+@media
+    only screen 
+    and (max-width: 760px), (min-device-width: 768px) 
+    and (max-device-width: 1024px)  {
+
+        div.table table,
+        div.table table thead,
+        div.table table tbody,
+        div.table table th,
+        div.table table td,
+        div.table table tr {
+			display: block;
+		}
+
+		div.table table thead tr {
+            display: flex;
+        }
+        div.table table tbody tr{
+            border-bottom:solid 2px rgba(0,0,0,.1);
+        }
+        
+        
+        div.table table:not(.fake) tbody tr:active,
+        div.table table tr.selected{
+            border-bottom:solid 2px #1967d2;
+        }
+
+        div.table table:not(.fake) tbody tr:active td,
+        div.table table tr.selected td{
+            border:none;
+            border-bottom:solid 1px rgba(0,0,0,.1);
+        }
+      
+    
+    div.table table tbody td {
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+            padding-left: 50%;
+            max-width: 100%;
+            width: calc(100% - 36px);;
+		}
+
+		div.table table td:before {
+            padding-right: 1em;
+            font-weight: bold;
+		}
+
+        td:before { content: attr(data-legend); }
+        
+
+	}

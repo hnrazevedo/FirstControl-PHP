@@ -21,6 +21,9 @@ const DataTables = function(){
                 dataTable.on('datatable.init', function(){
                     DataTables.dataInit(dataTable);
                 });
+                dataTable.on('datatable.sort', function(){
+                    DataTables.dataContent(dataTable);
+                });
             });
         },
         createDataTable(table){
@@ -78,6 +81,11 @@ const DataTables = function(){
                 option.value = id;
                 option.innerHTML = id;
                 select.appendChild(option);
+
+                tr.querySelectorAll('td')?.forEach(function(td,tdd){
+                    let th = dataTable.table.querySelector('th:nth-child('+(tdd+1)+') a')?.innerHTML + ':' ?? '';
+                    td.dataset.legend = th;
+                });
 
                 tr.addEventListener('click',DataTables.clickTr);
             });
