@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d888f6365f6bccf4020bcd8466f84b04",
+    "content-hash": "24f75cf707672091f92884016494a844",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
@@ -83,16 +83,16 @@
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v1.2.4",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "fb1aeb73a1ab9916e9c55293a551306fb8e6a5f4"
+                "reference": "d2b7b831a63ba33111a49f0308194d63f382df8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/fb1aeb73a1ab9916e9c55293a551306fb8e6a5f4",
-                "reference": "fb1aeb73a1ab9916e9c55293a551306fb8e6a5f4",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/d2b7b831a63ba33111a49f0308194d63f382df8b",
+                "reference": "d2b7b831a63ba33111a49f0308194d63f382df8b",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +120,7 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-08-24T12:44:51+00:00"
+            "time": "2020-08-27T20:10:25+00:00"
         },
         {
             "name": "hnrazevedo/validator",
