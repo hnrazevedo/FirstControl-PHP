@@ -17,7 +17,7 @@
             body p:first-child{
                 text-align: center;
             }
-            body p:last-child{
+            body p{
                 margin:1em;
             }
             hr{

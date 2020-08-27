@@ -15,7 +15,7 @@
         "matthiasmullie/minify": "^1.3",
 
         "hnrazevedo/datamanager": "^1.0",
-        "hnrazevedo/router": "^1.3",
+        "hnrazevedo/router": "^1.4",
         "hnrazevedo/validator": "^1.1",
         "hnrazevedo/viewer": "^1.2"
     },
