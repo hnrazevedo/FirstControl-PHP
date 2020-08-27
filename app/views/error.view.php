@@ -17,6 +17,9 @@
             body p:first-child{
                 text-align: center;
             }
+            body p:last-child{
+                margin:1em;
+            }
             hr{
                 height: 1px;
                 border:none;
@@ -27,7 +30,7 @@
         </style>
     </head>
     <body>
-        <?= $this->include('background') ?>
+        <?= $this->include('global/background') ?>
         <main>
             <dialog open="open" class="fixed">
                 <div>
