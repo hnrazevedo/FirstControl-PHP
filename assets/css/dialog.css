@@ -82,6 +82,7 @@ dialog > div{
     box-shadow: 0 0 5px rgba(0,0,0,.2);
     margin:auto;
     border-radius: 3px;
+    overflow: hidden;
 }
 
 dialog div.content{

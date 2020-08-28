@@ -5,9 +5,9 @@ define("DATAMANAGER_CONFIG", [
     "host" => "localhost",
     "charset" => "utf8",
     "port" => 3306,
-    "username" => "root",
+    "username" => "henri",
     "password" => "908077",
-    "database" => "firstcontrol",
+    "database" => "fControl",
     "timezone" => "America/Sao_Paulo",
     "options" => [
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",

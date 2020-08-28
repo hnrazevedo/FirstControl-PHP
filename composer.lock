@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a8d9d1bacf1e1e5d997754e56958a5f",
+    "content-hash": "b8d700bc1b26969b2bf73531c7600959",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
-            "version": "v1.0.12",
+            "version": "v1.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Datamanager.git",
-                "reference": "19530f17015ab45f8c7ec5527101c8f75b39263a"
+                "reference": "81e39ceb2575989e1612296e06012c96fce36f0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/19530f17015ab45f8c7ec5527101c8f75b39263a",
-                "reference": "19530f17015ab45f8c7ec5527101c8f75b39263a",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/81e39ceb2575989e1612296e06012c96fce36f0a",
+                "reference": "81e39ceb2575989e1612296e06012c96fce36f0a",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "Datamanager is a simple persistence abstraction component in the database.",
-            "time": "2020-08-24T12:42:57+00:00"
+            "time": "2020-08-28T12:03:53+00:00"
         },
         {
             "name": "hnrazevedo/filter",
@@ -83,16 +83,16 @@
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v1.4.0",
+            "version": "v1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "dfe554f003f6cb1695561b0eeb6bcca6d54cd0c5"
+                "reference": "26b8257590beea58bba4cda09382d5553f55f2fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/dfe554f003f6cb1695561b0eeb6bcca6d54cd0c5",
-                "reference": "dfe554f003f6cb1695561b0eeb6bcca6d54cd0c5",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/26b8257590beea58bba4cda09382d5553f55f2fc",
+                "reference": "26b8257590beea58bba4cda09382d5553f55f2fc",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +120,7 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-08-27T23:46:44+00:00"
+            "time": "2020-08-28T14:05:31+00:00"
         },
         {
             "name": "hnrazevedo/validator",
