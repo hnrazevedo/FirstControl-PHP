@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded',function(){
     
     /* JSmask */
     let JSmask = document.createElement('script');
-    //JSmask.setAttribute('src','https://cdn.jsdelivr.net/gh/hnrazevedo/JSmask/JSmask.js');
+    //JSmask.setAttribute('src','https://cdn.jsdelivr.net/gh/hnrazevedo/JSmask@lasted/JSmask.js');
     JSmask.setAttribute('src','http://localhost/assets/js/JSmask.js');
     JSmask.setAttribute('type','text/javascript');
     document.head.append(JSmask);
 
     let JSvalidator = document.createElement('script');
-    JSvalidator.setAttribute('src','https://cdn.jsdelivr.net/gh/hnrazevedo/JSvalidator/JSvalidator.js');
-    //JSvalidator.setAttribute('src','http://localhost/assets/js/JSvalidator.js');
+    //JSvalidator.setAttribute('src','https://cdn.jsdelivr.net/gh/hnrazevedo/JSvalidator@lasted/JSvalidator.js');
+    JSvalidator.setAttribute('src','http://localhost/assets/js/JSvalidator.js');
     JSvalidator.setAttribute('type','text/javascript');
     document.head.append(JSvalidator);
 

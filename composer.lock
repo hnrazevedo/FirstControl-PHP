@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b8d700bc1b26969b2bf73531c7600959",
+    "content-hash": "614f5521fe194f6b8e1f36d3549b78c9",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
@@ -83,16 +83,16 @@
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v1.5.1",
+            "version": "v1.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "26b8257590beea58bba4cda09382d5553f55f2fc"
+                "reference": "562baf61ae5a30d6d1bda947e1743394b6eecb45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/26b8257590beea58bba4cda09382d5553f55f2fc",
-                "reference": "26b8257590beea58bba4cda09382d5553f55f2fc",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/562baf61ae5a30d6d1bda947e1743394b6eecb45",
+                "reference": "562baf61ae5a30d6d1bda947e1743394b6eecb45",
                 "shasum": ""
             },
             "require": {
@@ -120,20 +120,20 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-08-28T14:05:31+00:00"
+            "time": "2020-08-30T13:25:43+00:00"
         },
         {
             "name": "hnrazevedo/validator",
-            "version": "v1.1.7",
+            "version": "v1.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Validator.git",
-                "reference": "7fe5816883e575210a59bb61b60e61d2601c809c"
+                "reference": "e1753f406ac8094180a0906405af88ca8d0a08fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/7fe5816883e575210a59bb61b60e61d2601c809c",
-                "reference": "7fe5816883e575210a59bb61b60e61d2601c809c",
+                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/e1753f406ac8094180a0906405af88ca8d0a08fd",
+                "reference": "e1753f406ac8094180a0906405af88ca8d0a08fd",
                 "shasum": ""
             },
             "require": {
@@ -158,7 +158,7 @@
                 }
             ],
             "description": "Validator is a simple data validation component.",
-            "time": "2020-08-24T12:44:01+00:00"
+            "time": "2020-08-28T22:23:50+00:00"
         },
         {
             "name": "hnrazevedo/viewer",
@@ -366,12 +366,6 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "funding": [
-                {
-                    "url": "https://github.com/synchro",
-                    "type": "github"
-                }
-            ],
             "time": "2020-07-14T18:50:27+00:00"
         }
     ],
@@ -384,6 +378,5 @@
     "platform": {
         "php": ">=7.4"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }
