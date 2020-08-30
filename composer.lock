@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "614f5521fe194f6b8e1f36d3549b78c9",
+    "content-hash": "831d6d5aa7e761a1d18deff6f54cc648",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
@@ -83,16 +83,16 @@
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v1.6.4",
+            "version": "v1.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "562baf61ae5a30d6d1bda947e1743394b6eecb45"
+                "reference": "0e3dc60bfd635c36ced5d638e5635ebf5c224e13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/562baf61ae5a30d6d1bda947e1743394b6eecb45",
-                "reference": "562baf61ae5a30d6d1bda947e1743394b6eecb45",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/0e3dc60bfd635c36ced5d638e5635ebf5c224e13",
+                "reference": "0e3dc60bfd635c36ced5d638e5635ebf5c224e13",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +120,7 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-08-30T13:25:43+00:00"
+            "time": "2020-08-30T21:30:36+00:00"
         },
         {
             "name": "hnrazevedo/validator",
@@ -162,16 +162,16 @@
         },
         {
             "name": "hnrazevedo/viewer",
-            "version": "v1.2.2",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "a265c4e9e854ddd0bde3de5a67fbc43c7c9cf5f6"
+                "reference": "b831fd911f85023a54992f2ac8d9dd2b41ef5179"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/a265c4e9e854ddd0bde3de5a67fbc43c7c9cf5f6",
-                "reference": "a265c4e9e854ddd0bde3de5a67fbc43c7c9cf5f6",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/b831fd911f85023a54992f2ac8d9dd2b41ef5179",
+                "reference": "b831fd911f85023a54992f2ac8d9dd2b41ef5179",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-08-25T15:20:07+00:00"
+            "time": "2020-08-30T22:27:06+00:00"
         },
         {
             "name": "matthiasmullie/minify",

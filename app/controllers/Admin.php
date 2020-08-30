@@ -19,14 +19,37 @@ class Admin extends Controller{
         $this->entity = new Model();
     }
 
-    public function view_users()
+    public function view_users($id)
     {
+        if((strlen($id) > 0)){
+            $this->viewUserById($id);
+            return true;
+        }
+
         $data = [
             'title' => 'Registros de usuários',
             'page' => '../admin/user/list',
             'pageID' => 2
         ];
-        Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',$data);
+        Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
+    }
+
+    private function viewUserById(int $id)
+    {
+        $user = $this->entity->find($id)->execute()->toEntity();
+        
+        if(is_null($user)){
+            throw new Exception('User not found.',404);
+        }
+
+        $data = [
+            'title' => 'Registros de usuários',
+            'page' => '../admin/user/details',
+            'pageID' => 3,
+            'user' => $user
+        ];
+        
+        Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function view_dashboard()
@@ -36,7 +59,7 @@ class Admin extends Controller{
             'page' => '../admin/dashboard/dashboard',
             'pageID' => 3
         ];
-        Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',$data);
+        Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function result_list($entity)

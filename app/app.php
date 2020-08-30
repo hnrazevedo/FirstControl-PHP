@@ -6,7 +6,7 @@ use App\Engine\Util;
 
 try{
 
-    $_SESSION['data']['system'] = get_defined_constants()['SYSTEM']; 
+    $_SESSION['view']['data']['system'] = get_defined_constants()['SYSTEM']; 
 
     Util::createTemp();
 
@@ -24,6 +24,8 @@ try{
     }
 
 }finally{
+    
+    unset($_SESSION['view']['data']['system']);
 
     Util::delete(SYSTEM['temp']);
 

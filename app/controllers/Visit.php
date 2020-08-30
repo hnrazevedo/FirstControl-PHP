@@ -9,7 +9,7 @@ class Visit extends Controller{
 
     public function view_page()
     {
-        Viewer::create(SYSTEM['basepath'].'app/views/visits/')->render('index');
+        Viewer::create(SYSTEM['basepath'].'app/views/visits/')->render('index',$_SESSION['view']['data']);
     }
 
 }
