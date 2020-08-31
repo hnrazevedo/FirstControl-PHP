@@ -20,7 +20,7 @@ try{
     if(Util::getProtocol() === 'ajax'){
         echo json_encode($data);
     }else{
-        Viewer::create(SYSTEM['basepath'].'app/views/')->render('error',$data);
+        Viewer::create(SYSTEM['basepath'].'app/views/')->render('error',array_merge($data,$_SESSION['view']['data']));
     }
 
 }finally{
