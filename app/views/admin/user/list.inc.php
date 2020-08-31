@@ -4,6 +4,31 @@
         document.querySelector('form[role="status_user"] [name="role"]').value = role;
     }
 
+    function popUp(){
+        var $select = document.querySelector('form[provider="admin"][role="status_user"]').querySelector('select#dataselect');
+        var $id = null;
+        var $sel = 0;
+        $select.childNodes.forEach((option, o) => {
+            if(option.selected === true){
+                $sel++;
+                if($sel > 1){
+                    window.Dialog.popUp('Selecione apenas um usuário');
+                    $id = null;
+                    return false;
+                }
+                $id = option.value;
+            }
+        });
+
+        if($id != null){
+            window.open (
+                '/admin/users/'+$id,
+                'pagina',
+                "menubar=0,resizable=0,width="+screen.width+", height="+screen.height+",scrollbars=no,top=0, left=0");
+        }
+        
+    }
+
 </script>
 <div class="table">
     <form provider="admin" role="status_user" access="/admin/controller/user" confirm="true">
@@ -17,6 +42,10 @@
             <button class="submit icon" onclick="workDataTable('block')">
                 Bloquear
                 <img src="{{ $system.uri }}/assets/img/icon.lock.svg">
+            </button>
+            <button class="popUp icon" onclick="popUp()">
+                Detalhes
+                <img src="{{ $system.uri }}/assets/img/icon.details.svg">
             </button>
             <button class="submit icon" onclick="workDataTable('live')">
                 Desbloquear

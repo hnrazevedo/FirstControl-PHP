@@ -95,6 +95,10 @@ input:not([value=""]) + label{
     transform: translate(-.8em,-1.8em) scale(.9);
     transition: transform .5s ease, color .5s ease;
 }
+input[disabled] + label{
+    color:rgb(100,100,100);
+    font-weight: bold;
+}
 input.error + label{
     color:rgb(185, 47, 34);
 }
@@ -128,13 +132,18 @@ form textarea:focus{
     box-shadow: 0 0 5px rgba(0,0,0,.35) !important;
 }
 
-form input[type="text"]:hover,
-form input[type="password"]:hover,
-form textarea:hover{
+form input[type="text"]:not([disabled]):hover,
+form input[type="password"]:not([disabled]):hover,
+form textarea:not([disabled]):hover{
     border: solid 1px rgba(0,0,0,.4);
     box-shadow: 0 0 5px rgba(0,0,0,.25);
 }
 
+form input[type="text"][disabled],
+form input[type="text"][disabled],
+form textarea[disabled]{
+    background:rgba(0,0,0,.1);
+}
 
 form input[type="text"].error,
 form input[type="password"].error,

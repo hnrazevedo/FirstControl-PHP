@@ -182,8 +182,9 @@ const Submitter = function(){
                     break;
                     case 'error':
                         if(typeof Submitter.response[r] === "object"){
-                            Submitter.response[r] = (Object.keys(Submitter.response[r]).length > 1) ? Submitter.response[r].reverse() : Submitter.response[r];
                             for(var er in Submitter.response[r]){
+                                
+                                console.log(Submitter.response[r]);
 
                                 var input = (Submitter.form.querySelector("[name='"+Submitter.response[r][er]['input']+"']") != null) ? Submitter.form.querySelector("[name='"+Submitter.response[r][er]['input']+"']") : null;
                                 var message = Submitter.response[r][er]['message'];
@@ -194,8 +195,8 @@ const Submitter = function(){
                                     Submitter.form.querySelector('p[name="'+Submitter.response[r][er]['input']+'"]').innerHTML = input.getAttribute('label')+" "+message;
                                     Submitter.form.querySelector('p[name="'+Submitter.response[r][er]['input']+'"]').style.display = 'block';
                                 }else{
-                                    var inputText = (input != null) ? input.getAttribute('label') : '';
-                                    window.Dialog.popUp(`${inputText}: ${message}`,'error');
+                                    var inputText = (input != null) ? input.getAttribute('label')+':' : '';
+                                    window.Dialog.popUp(`${inputText} ${message}`,'error');
                                 }
                             }
                         }

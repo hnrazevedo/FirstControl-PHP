@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
-            "version": "v1.0.16",
+            "version": "v1.0.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Datamanager.git",
-                "reference": "dd44f4e53fdeb5700845408251418338be8fee98"
+                "reference": "0f077f6b3f288532d66ad8491de7b861f5c5ef47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/dd44f4e53fdeb5700845408251418338be8fee98",
-                "reference": "dd44f4e53fdeb5700845408251418338be8fee98",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/0f077f6b3f288532d66ad8491de7b861f5c5ef47",
+                "reference": "0f077f6b3f288532d66ad8491de7b861f5c5ef47",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "Datamanager is a simple persistence abstraction component in the database.",
-            "time": "2020-08-30T23:12:58+00:00"
+            "time": "2020-08-31T15:14:47+00:00"
         },
         {
             "name": "hnrazevedo/filter",
@@ -83,16 +83,16 @@
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v1.6.6",
+            "version": "v1.6.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "0e3dc60bfd635c36ced5d638e5635ebf5c224e13"
+                "reference": "24256bab9e326f9b27213858185ba262afb1e7b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/0e3dc60bfd635c36ced5d638e5635ebf5c224e13",
-                "reference": "0e3dc60bfd635c36ced5d638e5635ebf5c224e13",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/24256bab9e326f9b27213858185ba262afb1e7b0",
+                "reference": "24256bab9e326f9b27213858185ba262afb1e7b0",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +120,7 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-08-30T21:30:36+00:00"
+            "time": "2020-08-31T15:11:34+00:00"
         },
         {
             "name": "hnrazevedo/validator",
@@ -162,16 +162,16 @@
         },
         {
             "name": "hnrazevedo/viewer",
-            "version": "v1.3.2",
+            "version": "v1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "1ad2f5f2d2bfda16e3ab84a8a1cc6afca0731e14"
+                "reference": "40774653e9a7db77f092cfd5c70d75390c463f28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/1ad2f5f2d2bfda16e3ab84a8a1cc6afca0731e14",
-                "reference": "1ad2f5f2d2bfda16e3ab84a8a1cc6afca0731e14",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/40774653e9a7db77f092cfd5c70d75390c463f28",
+                "reference": "40774653e9a7db77f092cfd5c70d75390c463f28",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-08-30T23:10:36+00:00"
+            "time": "2020-08-31T13:58:34+00:00"
         },
         {
             "name": "matthiasmullie/minify",
@@ -366,6 +366,12 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "funding": [
+                {
+                    "url": "https://github.com/synchro",
+                    "type": "github"
+                }
+            ],
             "time": "2020-07-14T18:50:27+00:00"
         }
     ],
@@ -378,5 +384,6 @@
     "platform": {
         "php": ">=7.4"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

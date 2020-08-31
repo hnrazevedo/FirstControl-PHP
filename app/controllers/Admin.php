@@ -44,12 +44,16 @@ class Admin extends Controller{
 
         $data = [
             'title' => 'Registros de usuários',
-            'page' => '../admin/user/details',
-            'pageID' => 3,
+            'pageID' => 4,
             'user' => $user
         ];
         
-        Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
+        Viewer::create(SYSTEM['basepath'].'app/views/admin/user/')->render('details',array_merge($data, $_SESSION['view']['data']));
+    }
+
+    public function edit_user()
+    {
+        var_dump(Util::getData()['POST']);
     }
 
     public function view_dashboard()
