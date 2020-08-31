@@ -9,22 +9,22 @@
             <form provider="user" role="user_register" access="/admin/controller/user">        
                 <ul>
                     <li>
-                        <input type="text" id="new_name" name="new_name" label="Nome Completo" maxlength="50">
+                        <input type="text" id="edit_name" name="edit_name" label="Nome Completo" maxlength="50">
                     </li>
                     <li>
-                        <input type="text" id="new_username" name="new_username" label="Usuário" maxlength="20">
+                        <input type="text" id="edit_username" name="edit_username" label="Usuário" maxlength="20">
                     </li>
                     <li>
-                        <input type="text" id="mew_email" name="new_email" label="Email" maxlength="100">
+                        <input type="text" id="edit_email" name="edit_email" label="Email" maxlength="100">
                     </li>
                     <li>
-                        <input type="text" id="new_birth" name="new_birth" label="Data de nascimento" data-mask="##/##/####" >
+                        <input type="text" id="edit_birth" name="edit_birth" label="Data de nascimento" data-mask="##/##/####" >
                     </li>
                     <li>
-                        <input type="password" id="new_password" name="new_password" label="Senha" maxlength="20" >
+                        <input type="password" id="edit_password" name="edit_password" label="Senha" maxlength="20" >
                     </li>
                     <li>
-                        <input type="password" id="new_password2" name="new_password2" label="Confirmar senha" maxlength="20" >
+                        <input type="password" id="edit_password2" name="edit_password2" label="Confirmar senha" maxlength="20" >
                     </li>
                     <li>
                         <div class="buttons">

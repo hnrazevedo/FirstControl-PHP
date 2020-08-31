@@ -13,7 +13,7 @@
                         <input type="text" id="new_username" name="new_username" label="Usuário" maxlength="20">
                     </li>
                     <li>
-                        <input type="text" id="mew_email" name="new_email" label="Email" maxlength="100">
+                        <input type="text" id="new_email" name="new_email" label="Email" maxlength="100">
                     </li>
                     <li>
                         <input type="text" id="new_birth" name="new_birth" label="Data de nascimento" data-mask="##/##/####" >
