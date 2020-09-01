@@ -25,6 +25,21 @@ const DataTables = function(){
                     DataTables.dataContent(dataTable);
                 });
             });
+            DataTables.documentEvents();
+        },
+        documentEvents(){
+            window.addEventListener('resize',function(){
+                DataTables.tables.forEach((dataTable) => {
+                    if(dataTable.table.closest('div.dataTable-container').clientWidth < dataTable.table.closest('div.dataTable-container').scrollWidth && !dataTable.table.closest('div.table').classList.contains('min')){
+                        dataTable.table.setAttribute('min-width',dataTable.table.closest('div.dataTable-container').scrollWidth);
+                        dataTable.table.closest('div.table').classList.add('min');
+                    }else{
+                        if(dataTable.table.closest('div.dataTable-container').clientWidth >= dataTable.table.getAttribute('min-width')){
+                            dataTable.table.closest('div.table').classList.remove('min');
+                        }
+                    }
+                });
+            });
         },
         createDataTable(table){
             var select = document.createElement('select');

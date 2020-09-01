@@ -381,10 +381,52 @@ div.table select.datatable{
 
 
 
+/* teste */
+div.table.min table,
+div.table.min table thead,
+div.table.min table tbody,
+div.table.min table th,
+div.table.min table td,
+div.table.min table tr {
+    display: block;
+}
+
+div.table.min table thead tr {
+    display: flex;
+}
+div.table.min table tbody tr{
+    border-bottom:solid 2px rgba(0,0,0,.1);
+}
+        
+div.table.min table:not(.fake) tbody tr:active,
+div.table.min table tr.selected{
+    border-bottom:solid 2px #1967d2;
+}
+
+div.table.min table:not(.fake) tbody tr:active td,
+div.table.min table tr.selected td{
+    border:none;
+    border-bottom:solid 1px rgba(0,0,0,.1);
+}
+      
+div.table.min table tbody td {
+    border: none;
+	border-bottom: 1px solid #eee;
+	position: relative;
+    max-width: 100%;
+    width: calc(100% - 36px);;
+}
+
+div.table.min table td:before {
+    padding-right: 1em;
+    font-weight: bold;
+}
+
+div.table.min td:before { content: attr(data-legend); }
+/* teste */
 
 
-
-
+/*
 
 @media
     only screen 
@@ -437,4 +479,6 @@ div.table select.datatable{
         td:before { content: attr(data-legend); }
         
 
-	}
+    }
+    
+    */
