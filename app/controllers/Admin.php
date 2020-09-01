@@ -53,7 +53,27 @@ class Admin extends Controller{
 
     public function edit_user()
     {
-        var_dump(Util::getData()['POST']);
+        $data = json_decode(Util::getData()['POST']['data'],true);
+        $user = $this->entity->find($data['edit_id'])->execute();
+
+
+        if($user->getCount()===0){
+            throw new Exception('User not found.');
+        }
+
+        $user = $user->toEntity();
+
+        $user->password = password_hash($data['edit_password'],PASSWORD_DEFAULT);
+
+        $user->save();
+
+        echo json_encode([
+            'success' => [
+                'message' => 'User updated successfully.<br>This page will be closed in 3s.'
+            ],
+            'script' => 'setTimeout(function(){window.close();},3000);'
+        ]);
+        
     }
 
     public function view_dashboard()
