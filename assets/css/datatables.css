@@ -416,6 +416,12 @@ div.table.min table tbody td {
     max-width: 100%;
     width: calc(100% - 36px);;
 }
+div.table.min table thead th{
+    overflow: hidden;
+}
+div.table.min table thead{
+    overflow: auto;
+}
 
 div.table.min table td:before {
     padding-right: 1em;

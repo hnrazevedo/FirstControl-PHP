@@ -21,6 +21,9 @@
         <li>
             <a href="/admin/users">Usuários</a>
         </li>  
+        <li>
+            <a href="/visitants">Visitantes</a>
+        </li>
 
 
         <li>

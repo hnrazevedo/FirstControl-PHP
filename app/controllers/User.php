@@ -5,7 +5,6 @@ namespace App\Controller;
 use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\User as Model;
-use Engine\Util;
 use Exception;
 
 

@@ -56,12 +56,15 @@ class Admin extends Controller{
         $data = json_decode(Util::getData()['POST']['data'],true);
         $user = $this->entity->find($data['edit_id'])->execute();
 
-
         if($user->getCount()===0){
             throw new Exception('User not found.');
         }
 
         $user = $user->toEntity();
+
+        if($user->type === '1'){
+            throw new Exception('User is admin.<br>Update not allowed.');
+        }
 
         $user->password = password_hash($data['edit_password'],PASSWORD_DEFAULT);
 
@@ -73,7 +76,6 @@ class Admin extends Controller{
             ],
             'script' => 'setTimeout(function(){window.close();},3000);'
         ]);
-        
     }
 
     public function view_dashboard()
@@ -101,9 +103,15 @@ class Admin extends Controller{
 
     public function getListUser()
     {
-        $users = $this->entity->find()->except(['password','code'])->execute()->toEntity();
+        $users = $this->entity->find()->except(['password','code'])->where([
+            ['type','=','0']
+        ])->execute()->toEntity();
 
         $users = (is_array($users)) ? $users : [$users];
+
+        if(is_null($users[0])){
+            return false;
+        }
 
         $return = [];
         foreach($users as $user => $result){

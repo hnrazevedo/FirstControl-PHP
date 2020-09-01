@@ -61,7 +61,7 @@
 
         <hr>
 
-        <table class="datatable" id="table_list_user" title="Registro de usuários">
+        <table class="datatable" id="table_list_visitants" title="Registro de visitantes">
             <thead>
                 <th>ID</th>
                 <th>Nome</th>
@@ -78,14 +78,11 @@
     </form>
 </div>
 
-
-<?= $this->include('user/register.form') ?>
-
 <script type="module">
     setTimeout(function(){
         (async function(){
             await (await import("/assets/js/DataTables.js")).default();
-            window.DataTables.importFromURL('table_list_user','/admin/result/list/users');
+            window.DataTables.importFromURL('table_list_visitants','/visitants/list');
         })();
     },500);
     

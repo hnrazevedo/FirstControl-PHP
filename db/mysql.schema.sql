@@ -36,6 +36,17 @@ CREATE TABLE IF NOT EXISTS authorization(
     form BIGINT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS visitant(
+    id BIGINT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    cpf BIGINT(11) NOT NULL UNIQUE,
+    rg BIGINT(9) NOT NULL UNIQUE,
+    birth DATE NOT NULL,
+    lastvisit DATETIME NOT NULL,
+    register DATETIME NOT NULL,
+    PRIMARY KEY(id)
+);
+
 
 ALTER TABLE authorization ADD FOREIGN KEY (user) REFERENCES user(id);
 ALTER TABLE authorization ADD FOREIGN KEY (page) REFERENCES page(id);
