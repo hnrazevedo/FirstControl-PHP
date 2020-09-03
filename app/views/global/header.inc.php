@@ -62,7 +62,7 @@
         }  
 
 
-        if(self.fetch) {
+        /*if(self.fetch) {
             fetch('/get_menu_list',
                 {
                     method: 'POST',
@@ -89,6 +89,6 @@
                     console.log(xhr.response);
                 }
             });
-        }      
+        }    */  
     });
 </script>       

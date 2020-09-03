@@ -101,7 +101,4 @@ const Dialog =  function(){
     };
 }();
 
-export default async function(){
-    window.Dialog = Dialog;
-    return Dialog;
-}
+export default Dialog;

@@ -82,7 +82,7 @@ const Submitter = function(){
 
             var data = JSON.stringify(Object.fromEntries(Submitter.data));
     
-            Submitter.data = new FormData();
+            Submitter.data = new FormData(Submitter.form);
             Submitter.data.append('data',data);
             Submitter.data.append('provider',Submitter.form.getAttribute('provider'));
             Submitter.data.append('role',Submitter.form.getAttribute('role'));
@@ -133,7 +133,7 @@ const Submitter = function(){
                     Submitter.requestLoadEnd();
                 })
                 .catch(err => {
-                    console.log(err);
+                    //console.log(err);
                 });
         },
         XMLHttpRequest(){
@@ -258,7 +258,4 @@ const Submitter = function(){
 	};
 }();
 
-export default async function(){
-    window.Submitter = Submitter;
-    return Submitter;
-}
+export default Submitter;

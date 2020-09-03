@@ -1,18 +1,14 @@
 <script>
 
-    function workDataTable(role){
-        document.querySelector('form[role="status_user"] [name="role"]').value = role;
-    }
-
     function popUp(){
-        var $select = document.querySelector('form[provider="admin"][role="status_user"]').querySelector('select#dataselect');
+        var $select = document.querySelector('form[provider="visitant"][role="statusVisitant"]').querySelector('select#dataselect');
         var $id = null;
         var $sel = 0;
         $select.childNodes.forEach((option, o) => {
             if(option.selected === true){
                 $sel++;
                 if($sel > 1){
-                    window.Dialog.popUp('Selecione apenas um usuário.');
+                    window.Dialog.popUp('Selecione apenas um visitante.');
                     $id = null;
                     return false;
                 }
@@ -22,7 +18,7 @@
 
         if($id != null){
             window.open (
-                '/admin/users/'+$id,
+                '/visitant/details/'+$id,
                 'pagina',
                 "menubar=0,resizable=0,width="+screen.width+", height="+screen.height+",scrollbars=no,top=0, left=0");
         }else{
@@ -33,29 +29,17 @@
 
 </script>
 <div class="table">
-    <form provider="admin" role="status_user" access="/admin/controller/user" confirm="true">
+    <form provider="visitant" role="statusVisitant" access="/controller/visitant" confirm="true">
         <input type="hidden" id="role" name="role" value="block">
 
         <div class="buttons">
-            <button dialog="#register_user_form" class="icon">
+            <button dialog="#register_visitant_form" class="icon">
                 Incluir
                 <img src="{{ $system.uri }}/assets/img/icon.add.svg">
-            </button>
-            <button class="submit icon" onclick="workDataTable('block')">
-                Bloquear
-                <img src="{{ $system.uri }}/assets/img/icon.lock.svg">
             </button>
             <button class="popUp icon" onclick="popUp()">
                 Detalhes
                 <img src="{{ $system.uri }}/assets/img/icon.details.svg">
-            </button>
-            <button class="submit icon" onclick="workDataTable('live')">
-                Desbloquear
-                <img src="{{ $system.uri }}/assets/img/icon.unlock.svg">
-            </button>
-            <button class="submit icon" onclick="workDataTable('remove')">
-                Deletar
-                <img src="{{ $system.uri }}/assets/img/icon.delete.svg">
             </button>
         </div>
 
@@ -65,26 +49,28 @@
             <thead>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>Nome de usuário</th>
-                <th>Email</th>
+                <th>CPF</th>
+                <th>RG</th>
                 <th>Nascimento</th>
+                <th>Ult. Visita</th>
                 <th>Registro</th>
-                <th>Ultimo acesso</th>
-                <th>Status</th>
-                <th>Tipo</th>
+                <th>Empresa</th>
+                <th>Celular</th>
+                <th>Email</th>
             </thead>
             <tbody></tbody>
         </table>
     </form>
 </div>
 
-<script type="module">
+<?= $this->include('visitants/register.form') ?>
+
+<script>
+
+window.addEventListener('load',function(){
     setTimeout(function(){
-        (async function(){
-            await (await import("/assets/js/DataTables.js")).default();
-            window.DataTables.importFromURL('table_list_visitants','/visitants/list');
-        })();
+        window.DataTables.importFromURL('table_list_visitants','/visitants/list');
     },500);
-    
+});
 
 </script>

@@ -172,3 +172,5 @@ const Validator = function(){
         }
     }
 }();
+
+window.Validator = Validator;

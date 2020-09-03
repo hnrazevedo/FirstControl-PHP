@@ -7,7 +7,7 @@ use HnrAzevedo\Viewer\Viewer;
 
 class Visit extends Controller{
 
-    public function view_page()
+    public function viewPage()
     {
         Viewer::create(SYSTEM['basepath'].'app/views/visits/')->render('index',$_SESSION['view']['data']);
     }

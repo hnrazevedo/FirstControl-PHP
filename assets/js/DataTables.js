@@ -228,7 +228,4 @@ const DataTables = function(){
     }
 }();
 
-export default async function(){
-    window.DataTables = DataTables;
-    return DataTables;
-}
+export default DataTables;

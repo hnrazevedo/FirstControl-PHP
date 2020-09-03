@@ -44,6 +44,10 @@ CREATE TABLE IF NOT EXISTS visitant(
     birth DATE NOT NULL,
     lastvisit DATETIME NOT NULL,
     register DATETIME NOT NULL,
+    company VARCHAR(50) NOT NULL,
+    phone BIGINT(11) NOT NULL,
+    email VARCHAR(100),
+    photo VARCHAR(50) NOT NULL UNIQUE,
     PRIMARY KEY(id)
 );
 

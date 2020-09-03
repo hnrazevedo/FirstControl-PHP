@@ -146,6 +146,10 @@ const Form = function(){
                 input.addEventListener('keypress',t.inputKeyUp);
                 input.addEventListener('keyup',t.inputKeyUp);
             });
+
+            document.querySelectorAll('input[type="file"]').forEach((input, i) => {
+                input.addEventListener('change',t.inputChange);
+            });
     
             document.addEventListener('click',t.unFocus);
             window.addEventListener('hashchange', t.windowHistory);
@@ -155,6 +159,17 @@ const Form = function(){
         },
         windowHistory(){
             window.history.pushState("Object", "",(window.location.href).split('#')[0]);
+        },
+        inputChange(e){
+            if(e.target.files.length === 1){
+                e.target.setAttribute('textDefault',e.target.getAttribute('text'));
+                e.target.setAttribute('text',e.target.files[0]['name']);
+                e.target.classList.add("select");
+            }else{
+                e.target.setAttribute('text',e.target.getAttribute('textDefault'));
+                e.target.classList.remove("select");
+            }
+            
         },
         unFocus(e){
             if(e.target.closest('.select-data.focus') == null && e.target.tagName != 'SELECT' && e.target.querySelector('.select-data') != null){
@@ -217,7 +232,4 @@ const Form = function(){
     };
 }();
 
-export default async function(){
-    window.Form = Form;
-    return Form;
-}
+export default Form;

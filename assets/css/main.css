@@ -24,6 +24,11 @@ main .content{
     height: calc(100% - 3em);
 }
 
+main img.notFound{
+    filter: invert(1);
+    background: rgba(255,255,255,0.3);
+}
+
 hr{
     border:none;
     height: 1px;

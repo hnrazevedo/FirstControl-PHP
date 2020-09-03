@@ -81,13 +81,12 @@
 
 <?= $this->include('user/register.form') ?>
 
-<script type="module">
-    setTimeout(function(){
-        (async function(){
-            await (await import("/assets/js/DataTables.js")).default();
-            window.DataTables.importFromURL('table_list_user','/admin/result/list/users');
-        })();
-    },500);
-    
 
+
+<script type="module">
+window.addEventListener('load',function(){
+    setTimeout(function(){
+        window.DataTables.importFromURL('table_list_user','/admin/result/list/users');
+    },500);
+});
 </script>
