@@ -103,8 +103,6 @@ class Visitant extends Controller{
             throw new Exception('Visitant not found.',404);
         }
 
-        $visitant->photo = ($visitant->photo === $visitant->cpf) ? 'default.svg' : $visitant->photo;
-
         $data = [
             'title' => 'Registros de visitantes',
             'pageID' => 4,
