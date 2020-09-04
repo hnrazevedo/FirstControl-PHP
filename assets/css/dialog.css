@@ -7,7 +7,7 @@ dialog{
     border: none;
     background: rgba(0,0,0,.3);
     padding: 0;
-    z-index: 999;
+    z-index: 990;
 
     -moz-box-pack: center;
     -moz-box-align: center;

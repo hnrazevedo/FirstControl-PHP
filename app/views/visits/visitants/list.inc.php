@@ -17,10 +17,13 @@
         });
 
         if($id != null){
-            window.open (
+            var popup = window.open (
                 '/visitant/details/'+$id,
                 'pagina',
-                "menubar=0,resizable=0,width="+screen.width+", height="+screen.height+",scrollbars=no,top=0, left=0");
+                "menubar=0,width="+screen.availWidth+", height="+screen.availHeight+",top=0, left=0");
+            
+            popup.moveTo(0, 0);
+            popup.resizeTo(screen.width, screen.height);
         }else{
             window.Dialog.popUp('Seleção de registros é obrigatório.');
         }

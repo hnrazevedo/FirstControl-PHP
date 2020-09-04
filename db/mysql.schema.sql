@@ -51,6 +51,32 @@ CREATE TABLE IF NOT EXISTS visitant(
     PRIMARY KEY(id)
 );
 
+CREATE TABLE IF NOT EXISTS car(
+    id BIGINT AUTO_INCREMENT NOT NULL,
+    board VARCHAR(8) NOT NULL UNIQUE,
+    brand VARCHAR(20) NOT NULL,
+    model VARCHAR(20) NOT NULL,
+    color VARCHAR(10) NOT NULL,
+    axes INT(1) NOT NULL,
+    driver BIGINT(11) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS visit(
+    id BIGINT AUTO_INCREMENT NOT NULL,
+    visitant BIGINT(11) NOT NULL,
+    started DATETIME NOT NULL,
+    finished DATETIME NOT NULL,
+    reason VARCHAR(100) NOT NULL,
+    responsible VARCHAR(50) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+
+ALTER TABLE visit ADD FOREIGN KEY (visitant) REFERENCES visitant(id);
+ALTER TABLE car ADD FOREIGN KEY (driver) REFERENCES visitant(id);
+
+
 
 ALTER TABLE authorization ADD FOREIGN KEY (user) REFERENCES user(id);
 ALTER TABLE authorization ADD FOREIGN KEY (page) REFERENCES page(id);

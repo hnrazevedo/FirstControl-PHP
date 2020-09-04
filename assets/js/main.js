@@ -29,6 +29,11 @@ window.addEventListener('load',function(){
     DataTables.start();
     
     requestValidateAll();
+
+    setTimeout(function(){
+        document.querySelector('body').classList.add('loaded');
+    },500)
+    
 });
 
 

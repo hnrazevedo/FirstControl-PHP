@@ -95,7 +95,6 @@ const Validator = function(){
             for(var rule in rules){
                 let fieldText = ( input.parentNode.querySelector(`label[for="${input.getAttribute('name')}"]`) != null ) ? input.parentNode.querySelector(`label[for="${input.getAttribute('name')}"]`).innerHTML : input.getAttribute('label');
                 let required = ((typeof rules['required']) === 'boolean') ? rules['required'] : false;
-
                 switch(rule){
                     case 'required':
                         if(required && input.value.length===0){
@@ -159,8 +158,11 @@ const Validator = function(){
 
                     return true;
                 }
-                
-                Validator.$options.alert(t,'error');
+
+                if(t != '.'){
+                    Validator.$options.alert(t,'error');
+                }
+
                 return true;
             }
             Validator.$options.alert(t,'error');
