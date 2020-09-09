@@ -2,6 +2,6 @@
 
 use HnrAzevedo\Router\Router;
 
-Router::get('/','User:view_login');
-Router::get('/logout','User:logout');
-Router::get('/dashboard','User:dashboard')->filter('User:user_in');
+Router::get('/','App\\Controller\\User:view_login');
+Router::get('/logout','App\\Controller\\User:logout');
+Router::get('/dashboard','App\\Controller\\User:dashboard')->filter('App\\Filter\\User:user_in');

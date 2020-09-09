@@ -6,16 +6,16 @@ use HnrAzevedo\Router\Router;
 
 Router::group('/admin',function(){
     
-    Router::get('/','Admin:view_dashboard');
-    Router::get('/users/{?id}','Admin:view_users')
+    Router::get('/','App\\Controller\\Admin:view_dashboard');
+    Router::get('/users/{?id}','App\\Controller\\Admin:view_users')
           ->where('id','[0-9]{1,11}');
 
-    Router::ajax('/result/list/{entity}','Admin:result_list');
+    Router::ajax('/result/list/{entity}','App\\Controller\\Admin:result_list');
 
-    Router::ajax('/controller/{entity}','Admin:method');
+    Router::ajax('/controller/{entity}','App\\Controller\\Admin:method');
 
 })->filter(
-    ['User:user_in','Admin:is_admin']//,'Authenticator:authRoute']
+    ['App\\Filter\\User:user_in','App\\Filter\\Admin:is_admin']//,'Authenticator:authRoute']
 );
 
 

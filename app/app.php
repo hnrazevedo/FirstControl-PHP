@@ -10,6 +10,14 @@ try{
 
     Util::createTemp();
 
+    $path = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'routes';
+
+    foreach (scandir($path) as $routeFile) {
+        if(pathinfo($path.DIRECTORY_SEPARATOR.$routeFile, PATHINFO_EXTENSION) === 'php'){
+            require_once($path. DIRECTORY_SEPARATOR .$routeFile);
+        }
+    }
+
     Router::dispatch();
 
 }catch(Exception $er){
