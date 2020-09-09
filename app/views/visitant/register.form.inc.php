@@ -32,7 +32,7 @@
                     </li>
                     <li>
                         <div class="buttons">
-                            <button class="submit">Registrar</button>
+                            <button class="submit  btn btn-primary">Registrar</button>
                         </div>
                     </li>
                 </ul>   

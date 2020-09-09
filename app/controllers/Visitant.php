@@ -23,7 +23,7 @@ class Visitant extends Controller{
         $data = [
             'title' => 'Visitantes'
         ];
-        Viewer::create(SYSTEM['basepath'].'app/views/visits/')->render('index' ,array_merge($data, $_SESSION['view']['data']));
+        Viewer::create(SYSTEM['basepath'].'app/views/visitant/')->render('index' ,array_merge($data, $_SESSION['view']['data']));
     }
 
     public function listVisitants()
@@ -109,6 +109,6 @@ class Visitant extends Controller{
             'visitant' => $visitant
         ];
         
-        Viewer::create(SYSTEM['basepath'].'app/views/visits/visitants/')->render('details',array_merge($data, $_SESSION['view']['data']));
+        Viewer::create(SYSTEM['basepath'].'app/views/visitant/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
 }

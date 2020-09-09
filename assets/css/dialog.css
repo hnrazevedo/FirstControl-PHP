@@ -66,8 +66,8 @@ dialog div.heading  a.close::after{
   position: absolute;
   width: 1em;
   height: 1px;
-  left: .25em;
-  top: .75em;
+  left: .2em;
+  top: .65em;
   background:rgb(100,100,100);
   transform: rotate(45deg);
 }
@@ -91,6 +91,7 @@ dialog div.content{
   font-size: .9em;
   letter-spacing: .2px;
   line-height: 20px;
+  width:100%;
 
   margin:0;
   box-shadow: unset;
@@ -124,6 +125,7 @@ dialog a[close]{
 
 /* Message */
 dialog#d_message p{
+  margin:revert;
   font-family: 'Open Sans', sans-serif;
 }
 /* Message */

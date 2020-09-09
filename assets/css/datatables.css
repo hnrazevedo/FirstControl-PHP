@@ -17,7 +17,8 @@ div.table table tbody{
 
 div.table .dataTable-container{
     overflow: auto;
-    max-height: 69vh;
+    max-height: 65vh;
+    padding:0 !important;
 }
 
 div.table .dataTable-input{
@@ -368,7 +369,7 @@ div.table .dataTables_wrapper .dataTables_info{
 
 
 div.table .buttons button{
-    margin-right: .2em;
+    margin-right: .5rem;
 }
 
 
@@ -414,7 +415,7 @@ div.table.min table tbody td {
 	border-bottom: 1px solid #eee;
 	position: relative;
     max-width: 100%;
-    width: calc(100% - 36px);;
+    /*width: calc(100% - 36px);*/
 }
 div.table.min table thead th{
     overflow: hidden;

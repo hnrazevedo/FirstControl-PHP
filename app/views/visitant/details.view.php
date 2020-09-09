@@ -16,7 +16,7 @@
 
     </head>
     <body>
-        <?= $this->include('../../global/background') ?>
+        <?= $this->include('../global/background') ?>
         <main>
             <dialog id="edit_visitant_form" open="open" class="fixed">
                 <div>    
@@ -67,7 +67,7 @@
             </dialog>
             
         </main>
-        <?= $this->include('../../global/dialog_loading') ?>
-        <?= $this->include('../../global/dialog_message') ?>
+        <?= $this->include('../global/dialog_loading') ?>
+        <?= $this->include('../global/dialog_message') ?>
     </body>
 </html>

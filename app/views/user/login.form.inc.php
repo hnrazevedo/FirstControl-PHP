@@ -14,7 +14,7 @@
                     </li>
                     <li>
                         <div class="buttons">
-                            <button class="submit">Acessar</button>
+                            <button class="submit btn btn-primary">Acessar</button>
                         </div>
                     </li>
                 </ul>

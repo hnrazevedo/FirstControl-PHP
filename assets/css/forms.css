@@ -82,18 +82,18 @@ input::placeholder{
 /* Labels */
 input + label{
     position: absolute;
-    top:1.45em;
+    top:1.6em;
     left:.65em;
     pointer-events: none;
-    font-size: .9em;
     transition: transform .5s ease, color .5s ease;
-    color:rgba(0,0,0,.5)
+    color:rgba(0,0,0,.5);
+    width:100%;
 }
 input[type="file"] + label,
 input:focus + label,
 input:not([value=""]) + label{
     color:rgb(66,133,244);
-    transform: translate(-.8em,-1.8em) scale(.9);
+    transform: translate(-1.6em,-2em) scale(.9);
     transition: transform .5s ease, color .5s ease;
 }
 input[disabled] + label{
@@ -107,8 +107,8 @@ input.error + label{
 /* Length */
 form length{
     position: absolute;
-    right: .5em;
-    top:1.75em;
+    right: 1em;
+    top: 2.1em;
     font-size: .8em;
     color:rgba(0,0,0,.6);
 }
@@ -121,7 +121,7 @@ form input[type="password"]{
 form input[type="text"],
 form input[type="password"],
 form textarea{
-    margin-top:.95em;
+    margin-top:1em;
     width: 100%;
     padding: .6em;
     border: solid 1px rgba(0,0,0,.3);
@@ -159,7 +159,7 @@ form input[type="file"]{
     top: .95em;
     padding: .6em 0;
     width: 100%;
-    height: 33px;
+    height: 39.25px;
     position: relative;
     cursor: pointer;
     display: block;
@@ -170,7 +170,7 @@ form input[type="file"].select::after{
 form input[type="file"]::after{
     position: absolute;
     content:attr(text);
-    width: calc(100% - 1.3em);
+    width: 100%;
     padding: .6em .65em;
     background:white;
     left:0;
@@ -206,6 +206,7 @@ form div.buttons button:hover{
     transition: box-shadow .3s ease;
 }
 form div.buttons{
+    margin:.5rem 0;
     box-shadow: none;
     display: flex;
     flex-direction: row-reverse;
@@ -280,9 +281,19 @@ form button.icon{
 }
 form button.icon img{
     position: absolute;
-    right: .7em;
-    height: 1.5em;
-    bottom:.45em;
+    right: .8em;
+    height: 1.3em;
+    bottom:.65em;
+}
+
+.btn-primary{
+    border:solid 1px rgb(66,133,244) !important;
+    background: rgb(66,133,244) !important;
+}
+
+.btn{
+    font-size: .9rem !important;
+    font-weight: 600 !important;
 }
 
 /*------------------------------------------------------*/
