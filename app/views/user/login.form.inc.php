@@ -1,4 +1,4 @@
-<dialog open="open" class="fixed">
+<dialog class="fixed open">
     <div>
         <div class="heading">
             <span>Acessar sistema</span>

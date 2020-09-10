@@ -24,7 +24,8 @@
             "App\\Model\\": "app/models",
             "App\\Filter\\":"app/filters",
             "App\\Rules\\":"app/rules",
-            "App\\Engine\\":"app/Engine"
+            "App\\Engine\\":"app/engine",
+            "App\\Helpers\\":"app/helpers"
         },
         "files":[
             "app/config.php",

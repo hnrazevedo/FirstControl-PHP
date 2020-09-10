@@ -6,10 +6,12 @@ use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\Visitant as Model;
 use App\Engine\Util;
+use App\Helpers\Mask;
 use Exception;
 
 
 class Visitant extends Controller{
+    use Mask;
 
     private ?Model $entity;
 
@@ -42,7 +44,20 @@ class Visitant extends Controller{
             foreach($result->getData() as $field => $data){
                 
                 if($result->$field != null){
-                    $date[] = $result->$field;
+                    switch($field){
+                        case 'cpf':
+                            $date[] = $this->replaceCPF($result->$field);
+                        break;
+                        case 'rg':
+                            $date[] = $this->replaceRG($result->$field);
+                        break;
+                        case 'phone':
+                            $date[] = $this->replaceCellPhone($result->$field);
+                        break;
+                        default:
+                            $date[] = $result->$field;
+                        break;
+                    }
                 }
 
             }
@@ -102,6 +117,10 @@ class Visitant extends Controller{
         if(is_null($visitant)){
             throw new Exception('Visitant not found.',404);
         }
+
+        $visitant->cpf = $this->replaceCPF($visitant->cpf);
+        $visitant->rg = $this->replaceRG($visitant->rg);
+        $visitant->phone = $this->replaceCellPhone($visitant->phone);
 
         $data = [
             'title' => 'Registros de visitantes',

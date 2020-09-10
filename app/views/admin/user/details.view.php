@@ -17,9 +17,8 @@
     
     </head>
     <body>
-        <?= $this->include('../../global/background') ?>
         <main>
-            <dialog id="edit_user_form" open="open" class="fixed">
+            <dialog id="edit_user_form" class="fixed open">
                 <div>    
                     <div class="heading">
                         <span>Detalhes de registro</span>
@@ -27,37 +26,45 @@
                     <div class="content">
                         <form provider="admin" role="edit_user" access="/admin/controller/admin">     
                             <input type="hidden" value="{{ $user.id }}" id="edit_id" name="edit_id">   
-                            <ul>
-                                <li>
+                            <div class="row">
+                                <div class="col-sm">
                                     <input type="text" value="{{ $user.id }}" label="ID" disabled="disabled">
-                                </li>
-                                <li>
+                                </div>
+                                <div class="col-sm">
                                     <input type="text" value="{{ $user.lastaccess }}" label="Último acesso" disabled="disabled">
-                                </li>
-                                <li>
+                                </div>
+                            </div>  
+                            <div class="row">
+                                <div class="col-sm">
                                     <input type="text" value="{{ $user.name }}" label="Nome Completo" disabled="disabled">
-                                </li>
-                                <li>
+                                </div>
+                                <div class="col-sm">
                                     <input type="text" value="{{ $user.username }}" label="Usuário" disabled="disabled">
-                                </li>
-                                <li>
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-sm">
                                     <input type="text" value="{{ $user.email }}" label="Email" disabled="disabled">
-                                </li>
-                                <li>
+                                </div>
+                                <div class="col-sm">
                                     <input type="text" value="{{ $user.birth }}" label="Data de nascimento" disabled="disabled">
-                                </li>
-                                <li>
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-sm">
                                     <input type="password" id="edit_password" name="edit_password" label="Senha" maxlength="20" >
-                                </li>
-                                <li>
+                                </div>
+                                <div class="col-sm">
                                     <input type="password" id="edit_password2" name="edit_password2" label="Confirmar senha" maxlength="20" >
-                                </li>
-                                <li>
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-sm">
                                     <div class="buttons">
                                         <button class="submit btn btn-primary">Atualizar</button>
                                     </div>
-                                </li>
-                            </ul>   
+                                </div>
+                            </div>    
                         </form>
                     </div>
                 </div>

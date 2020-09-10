@@ -113,7 +113,7 @@ const Submitter = function(){
             }
     
             if(document.querySelector('dialog.loading') != null){
-                document.querySelector('dialog.loading').setAttribute('open',true);
+                document.querySelector('dialog.loading').classList.add('open');
             }
             
             return this;
@@ -250,7 +250,7 @@ const Submitter = function(){
                 });
                 document.querySelector('form.submitting').classList.remove('submitting');
                 if(document.querySelector('dialog.loading') != null){
-                    document.querySelector('dialog.loading').removeAttribute('open',false);
+                    document.querySelector('dialog.loading').classList.remove('open');
                 }
             }
             return this;

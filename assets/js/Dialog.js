@@ -34,7 +34,7 @@ const Dialog =  function(){
             Dialog.eventsDialog();
         },
         closeClick(e){
-            e.target.closest('dialog').removeAttribute('open');
+            e.target.closest('dialog').classList.toggle('open');
         },
         popUp(m,c){
             if(document.querySelector("dialog#d_message p") == null){
@@ -43,7 +43,7 @@ const Dialog =  function(){
             document.querySelector("dialog#d_message p").classList.remove(['sucess','error']);
             document.querySelector("dialog#d_message p").classList.add(c);
             document.querySelector("dialog#d_message p").innerHTML = m;
-            document.querySelector("dialog#d_message").setAttribute('open',true);
+            document.querySelector("dialog#d_message").classList.add('open');
         },
         eventsDialog(){
             /* click in element attr dialog="#refer" */
@@ -51,7 +51,7 @@ const Dialog =  function(){
                 document.querySelectorAll('[dialog]').forEach(function(dialog,i){
                     dialog.addEventListener('click',function(){
                         if(document.querySelector('dialog'+dialog.getAttribute('dialog')) != null){
-                            document.querySelector('dialog'+dialog.getAttribute('dialog')).setAttribute('open','open');
+                            document.querySelector('dialog'+dialog.getAttribute('dialog')).classList.toggle('open');
                         }
                     });
                 });
@@ -59,25 +59,20 @@ const Dialog =  function(){
 
             /* press ESC to close */
             document.addEventListener('keydown',function(e){
-                if(document.querySelector('dialog[open]:not(.fixed)') != null && e.keyCode == 27){
-                    document.querySelectorAll('dialog[open]:not(.fixed)').forEach(function(dialog,d){
-                        dialog.removeAttribute('open');
+                if(document.querySelector('dialog.open:not(.fixed)') != null && e.keyCode == 27){
+                    document.querySelectorAll('dialog.open:not(.fixed)').forEach(function(dialog,d){
+                        dialog.classList.toggle('open');
                     });
                 }
             });
 
-            /* Close dialog loading */
-            setTimeout(function(){
-                if(document.querySelector('dialog.loading') != null){
-                    document.querySelector('dialog.loading').removeAttribute('open');
-                }
-            },5000);
+
         },
         confirm(callback){
             Dialog.callback = callback;
 
             var dial = document.querySelector('dialog#d_confirm');
-            dial.setAttribute('open','open');
+            dial.classList.toggle('open');
 
             dial.querySelectorAll('button').forEach((button,b) => {
                 button.removeEventListener('click',Dialog.testConfirm);
@@ -90,12 +85,12 @@ const Dialog =  function(){
 
             if(value === 'cfm_confirm'){
                 var callback = Dialog.callback;
-                e.target.closest('dialog').removeAttribute('open');
+                e.target.closest('dialog').classList.toggle('open');
                 callback();
                 return true;
             }
 
-            e.target.closest('dialog').removeAttribute('open');
+            e.target.closest('dialog').classList.toggle('open');
 
         }
     };

@@ -9,7 +9,6 @@ use Exception;
 
 
 class User extends Controller{
-
     private ?Model $entity;
 
     public function __construct()
@@ -27,9 +26,6 @@ class User extends Controller{
     public function login($username, $password)
     {
         try{
-
-            
-            
             $user = $this->entity->find()->where([
                 ['username','=',$username],
                 ['status','=',1]

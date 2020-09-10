@@ -6,15 +6,19 @@
         </div>
         <div class="content">
             <form>
-                <ul>
-                    <li>Você tem certeza que deseja realizar está operação?</li>
-                    <li class="li-btn">
+                <div class="row">
+                    <div class="col-sm">
+                        <span>Você tem certeza que deseja realizar está operação?</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
                         <div class="buttons">
                             <button id="cfm_confirm">Confirmar</button>
                             <button id="cfm_cancel" class="cancel">Cancelar</button>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

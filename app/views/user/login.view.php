@@ -14,7 +14,6 @@
     
     </head>
     <body>
-        <?= $this->include('../global/background') ?>
         <main>
             <?= $this->include('login.form') ?>
         </main>

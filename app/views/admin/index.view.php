@@ -17,7 +17,6 @@
 
     </head>
     <body>
-        <?= $this->include('../global/background') ?>
         <?= $this->include('../global/header') ?>
         <main>
             <div class="content">

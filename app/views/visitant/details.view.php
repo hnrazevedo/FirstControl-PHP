@@ -19,9 +19,8 @@
 
     </head>
     <body>
-        <?= $this->include('../global/background') ?>
         <main>
-            <dialog id="edit_visitant_form" open="open" class="fixed">
+            <dialog id="edit_visitant_form" class="fixed open">
                 <div>    
                     <div class="heading">
                         <span>Detalhes de {{ $visitant.name }}</span>
@@ -33,37 +32,49 @@
                             </a>
                         </div>
                         <form>     
-                            <input type="hidden" value="{{ $visitant.id }}" id="edit_id" name="edit_id">   
-                            <ul>
-                                <li>
+                            <input type="hidden" value="{{ $visitant.id }}" id="edit_id" name="edit_id">
+                            <div class="row">
+                                <div class="col-sm">
                                     <input type="text" value="{{ $visitant.id }}" label="ID" disabled="disabled">
-                                </li>
-                                <li>
+                                </div>
+                                <div class="col-sm">
                                     <input type="text" value="{{ $visitant.lastvisit }}" label="Última visita" disabled="disabled">
-                                </li>
-                                <li>
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-sm">
                                     <input type="text" value="{{ $visitant.name }}" label="Nome Completo" disabled="disabled">
-                                </li>
-                                <li>
-                                    <input type="text" value="{{ $visitant.cpf }}" label="CPF" disabled="disabled">
-                                </li>
-                                <li>
-                                    <input type="text" value="{{ $visitant.rg }}" label="RG" disabled="disabled">
-                                </li>
-                                <li>
+                                </div>
+                                <div class="col-sm">
                                     <input type="text" value="{{ $visitant.email }}" label="Email" disabled="disabled">
-                                </li>
-                                <li>
+                                </div>
+                            </div>   
+                            <div class="row">
+                                <div class="col-sm">
+                                    <input type="text" value="{{ $visitant.cpf }}" label="CPF" disabled="disabled">
+                                </div>
+                                <div class="col-sm">
+                                    <input type="text" value="{{ $visitant.rg }}" label="RG" disabled="disabled">
+                                </div>
+                            </div>   
+                            <div class="row">
+                                <div class="col-sm">
                                     <input type="text" value="{{ $visitant.birth }}" label="Data de nascimento" disabled="disabled">
-                                </li>
-                                <li>
+                                </div>
+                                <div class="col-sm">
                                     <input type="text" value="{{ $visitant.phone }}" label="Contato" disabled="disabled">
-                                </li>
-                                <li>
+                                </div>
+                            </div>   
+                            <div class="row">
+                                <div class="col-sm">
                                     <input type="text" value="{{ $visitant.company }}" label="Empresa" disabled="disabled">
-                                </li>
-                                <li></li>
-                            </ul>   
+                                </div>
+                            </div>   
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="buttons"></div>
+                                </div>
+                            </div>      
                         </form>
                     </div>
                 </div>
