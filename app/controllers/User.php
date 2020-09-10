@@ -27,6 +27,8 @@ class User extends Controller{
     public function login($username, $password)
     {
         try{
+
+            
             
             $user = $this->entity->find()->where([
                 ['username','=',$username],

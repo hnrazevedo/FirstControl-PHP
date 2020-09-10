@@ -17,6 +17,18 @@ JSvalidator.setAttribute('src','http://localhost/assets/js/JSvalidator.js');
 JSvalidator.setAttribute('type','text/javascript');
 document.head.append(JSvalidator);
 
+/* AOS */    
+let JSaos = document.createElement('script');
+JSaos.setAttribute('src','http://localhost/assets/addons/aos/aos.js');
+JSaos.setAttribute('type','text/javascript');
+document.head.append(JSaos);
+
+let CSSaos = document.createElement('script');
+CSSaos.setAttribute('src','http://localhost/assets/addons/aos/aos.css');
+CSSaos.setAttribute('rel','stylesheet');
+CSSaos.setAttribute('type','text/css');
+document.head.append(CSSaos);
+
 window.addEventListener('load',function(){
 
     window.Form = Form;
@@ -27,6 +39,7 @@ window.addEventListener('load',function(){
     Form.start();
     Dialog.start();
     DataTables.start();
+    AOS.init();
     
     requestValidateAll();
 

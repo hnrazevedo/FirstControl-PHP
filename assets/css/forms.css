@@ -8,17 +8,6 @@ form.disabled{
     pointer-events: none;
     filter: saturate(0.5);
 }
-
-/* List */
-form ul{
-    margin:0;
-    padding:0;
-}
-form li{
-    list-style: none;
-    margin: 0 0 1em 0;
-    position: relative;
-}
 /*-----------------------------------*/
 
 
@@ -82,18 +71,18 @@ input::placeholder{
 /* Labels */
 input + label{
     position: absolute;
-    top:1.6em;
-    left:.65em;
+    top:2.6em;
+    left:1.65em;
     pointer-events: none;
     transition: transform .5s ease, color .5s ease;
     color:rgba(0,0,0,.5);
-    width:100%;
+    width:max-content;
 }
 input[type="file"] + label,
 input:focus + label,
 input:not([value=""]) + label{
     color:rgb(66,133,244);
-    transform: translate(-1.6em,-2em) scale(.9);
+    transform: translate(-1em,-2em) scale(.9);
     transition: transform .5s ease, color .5s ease;
 }
 input[disabled] + label{
@@ -107,8 +96,8 @@ input.error + label{
 /* Length */
 form length{
     position: absolute;
-    right: 1em;
-    top: 2.1em;
+    right: 2em;
+    top: 3.35em;
     font-size: .8em;
     color:rgba(0,0,0,.6);
 }
@@ -121,7 +110,7 @@ form input[type="password"]{
 form input[type="text"],
 form input[type="password"],
 form textarea{
-    margin-top:1em;
+    margin-top:2em;
     width: 100%;
     padding: .6em;
     border: solid 1px rgba(0,0,0,.3);
@@ -156,7 +145,7 @@ form input[type="password"].error:focus{
 /* Input file */
 form input[type="file"]{
     border: solid 1px rgba(0,0,0,.3);
-    top: .95em;
+    top: 2em;
     padding: .6em 0;
     width: 100%;
     height: 39.25px;
@@ -297,3 +286,11 @@ form button.icon img{
 }
 
 /*------------------------------------------------------*/
+
+
+
+
+
+form .row > div{
+    position:relative;
+}

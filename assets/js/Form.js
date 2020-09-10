@@ -7,7 +7,7 @@ const Form = function(){
 
             document.querySelectorAll('form[provider]').forEach((form, i) => {
                 form.setAttribute('method','POST');
-                form.setAttribute('enctype','multipart/form-data');
+                //form.setAttribute('enctype','multipart/form-data');
                 var divM = document.createElement('div');
                 divM.classList.add('panel-message');
                 form.prepend(divM);
