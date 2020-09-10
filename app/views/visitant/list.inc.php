@@ -36,13 +36,11 @@
         <input type="hidden" id="role" name="role" value="block">
 
         <div class="buttons">
-            <button dialog="#register_visitant_form" class="icon  btn btn-primary">
+            <button dialog="#register_visitant_form" class="btn btn-primary">
                 Incluir
-                <img src="{{ $system.uri }}/assets/img/icon.add.svg">
             </button>
-            <button class="popUp icon  btn btn-primary" onclick="popUp()">
+            <button class="popUp btn btn-primary" onclick="popUp()">
                 Detalhes
-                <img src="{{ $system.uri }}/assets/img/icon.details.svg">
             </button>
         </div>
 

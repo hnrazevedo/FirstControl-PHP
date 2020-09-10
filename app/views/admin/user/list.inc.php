@@ -40,25 +40,20 @@
         <input type="hidden" id="role" name="role" value="block">
 
         <div class="buttons">
-            <button dialog="#register_user_form" class="icon btn btn-primary">
+            <button dialog="#register_user_form" class="btn btn-primary">
                 Incluir
-                <img src="{{ $system.uri }}/assets/img/icon.add.svg">
             </button>
-            <button class="submit icon btn btn-primary" onclick="workDataTable('block')">
+            <button class="submit btn btn-primary" onclick="workDataTable('block')">
                 Bloquear
-                <img src="{{ $system.uri }}/assets/img/icon.lock.svg">
             </button>
-            <button class="popUp icon btn btn-primary" onclick="popUp()">
+            <button class="popUp btn btn-primary" onclick="popUp()">
                 Detalhes
-                <img src="{{ $system.uri }}/assets/img/icon.details.svg">
             </button>
-            <button class="submit icon btn btn-primary" onclick="workDataTable('live')">
+            <button class="submit btn btn-primary" onclick="workDataTable('live')">
                 Desbloquear
-                <img src="{{ $system.uri }}/assets/img/icon.unlock.svg">
             </button>
-            <button class="submit icon btn btn-primary" onclick="workDataTable('remove')">
+            <button class="submit btn btn-primary" onclick="workDataTable('remove')">
                 Deletar
-                <img src="{{ $system.uri }}/assets/img/icon.delete.svg">
             </button>
         </div>
 

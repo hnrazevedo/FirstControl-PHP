@@ -266,7 +266,7 @@ form button:disabled{
 }
 form button.icon{
     position: relative;
-    padding-right: 3em;
+    padding:.3rem .5rem !important;
 }
 form button.icon img{
     position: absolute;
@@ -288,9 +288,10 @@ form button.icon img{
 /*------------------------------------------------------*/
 
 
-
-
-
 form .row > div{
     position:relative;
+}
+
+form h6{
+    margin-bottom: 0;
 }
