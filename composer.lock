@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69ac6bdbe8cda414643696ea6f724eec",
+    "content-hash": "1c50e8deeaa9bc5563d8c10a0dead3df",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",

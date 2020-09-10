@@ -51,10 +51,12 @@ div.table table.datatable thead th{
 
 div.table .datatable-bottom,div.table .datatable-top{
     padding: 8px 0px;
+    padding-top:0;
 }
 
 div.table .dataTables-buttons button{
     margin-right: .5em;
+    margin-bottom:.5em;
 }
 
 div.table .dataTables-buttons + div{

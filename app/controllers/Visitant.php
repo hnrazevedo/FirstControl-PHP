@@ -99,6 +99,14 @@ class Visitant extends Controller{
 
             $this->entity->save();
 
+            echo json_encode([
+                'success' => [
+                    'message' => 'Visitante registrado com sucesso!'
+                ],
+                'reset' => true,
+                'script' => "window.DataTables.dataAdd('table_list_visitants', ['{$this->entity->id}','{$this->entity->name}','{$this->replaceCPF($this->entity->cpf)}','{$this->replaceRG($this->entity->rg)}','{$this->entity->birth}','{$this->entity->lastvisit}','{$this->entity->register}','{$this->entity->company}','{$this->replaceCellPhone($this->entity->phone)}','{$this->entity->email}']);"
+            ]);
+
             
         }catch(Exception $er){
             

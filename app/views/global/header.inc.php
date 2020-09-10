@@ -24,6 +24,9 @@
         <li>
             <a href="/visitants">Visitantes</a>
         </li>
+        <li>
+            <a href="/car">Veículos</a>
+        </li>
 
 
         <li>

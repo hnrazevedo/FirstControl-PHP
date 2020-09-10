@@ -1,14 +1,14 @@
 <script>
 
     function popUp(){
-        var $select = document.querySelector('form[provider="visit"][role="statusVisit"]').querySelector('select#dataselect');
+        var $select = document.querySelector('form[provider="car"][role="statusCar"]').querySelector('select#dataselect');
         var $id = null;
         var $sel = 0;
         $select.childNodes.forEach((option, o) => {
             if(option.selected === true){
                 $sel++;
                 if($sel > 1){
-                    window.Dialog.popUp('Selecione apenas um visite.');
+                    window.Dialog.popUp('Selecione apenas um veículo.');
                     $id = null;
                     return false;
                 }
@@ -18,7 +18,7 @@
 
         if($id != null){
             var popup = window.open (
-                '/visit/details/'+$id,
+                '/car/details/'+$id,
                 'pagina',
                 "menubar=0,width="+screen.availWidth+", height="+screen.availHeight+",top=0, left=0");
             
@@ -32,11 +32,11 @@
 
 </script>
 <div class="table">
-    <form provider="visit" role="statusVisit" access="/controller/visit" confirm="true">
+    <form provider="car" role="statusCar" access="/controller/car" confirm="true">
         <input type="hidden" id="role" name="role" value="block">
 
         <div class="buttons">
-            <button dialog="#register_visit_form" class="btn btn-primary">
+            <button dialog="#register_car_form" class="btn btn-primary">
                 Incluir
             </button>
             <button class="popUp btn btn-primary" onclick="popUp()">
@@ -46,16 +46,15 @@
 
         <hr>
 
-        <table class="datatable" id="table_list_visits" title="Registro de visites">
+        <table class="datatable" id="table_list_cars" title="Registro de veículos">
             <thead>
                 <th>ID</th>
-                <th>Visitante</th>
-                <th>CPF</th>
-                <th>Entrada</th>
-                <th>Saída</th>
-                <th>Razão/Motivo</th>
-                <th>Responsável</th>
-                <th>Veículo</th>
+                <th>Placa</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Cor</th>
+                <th>Nº eixos</th>
+                <th>Motorista</th>
             </thead>
             <tbody></tbody>
         </table>
@@ -68,7 +67,7 @@
 
 window.addEventListener('load',function(){
     setTimeout(function(){
-        window.DataTables.importFromURL('table_list_visits','/visit/list');
+        window.DataTables.importFromURL('table_list_cars','/car/list');
     },500);
 });
 

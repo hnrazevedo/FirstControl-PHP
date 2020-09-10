@@ -5,11 +5,14 @@ namespace App\Controller;
 use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\Visit as Model;
+use App\Model\Visitant as Visitant;
+use App\Helpers\Mask;
 use App\Engine\Util;
 use Exception;
 
 
 class Visit extends Controller{
+    use Mask;
 
     private ?Model $entity;
 
@@ -28,7 +31,7 @@ class Visit extends Controller{
 
     public function listVisits()
     {
-        $visits = $this->entity->find()->except('photo')->execute()->toEntity();
+        $visits = $this->entity->find()->execute()->toEntity();
 
         $visits = (is_array($visits)) ? $visits : [$visits];
 
@@ -38,14 +41,18 @@ class Visit extends Controller{
 
         $return = [];
         foreach($visits as $visit => $result){
-            $date = [];
-            foreach($result->getData() as $field => $data){
-                
-                if($result->$field != null){
-                    $date[] = $result->$field;
-                }
-
-            }
+            $visitant = (new Visitant())->find($result->visitant)->only(['name','cpf'])->execute()->toEntity();
+            $date = [
+                $result->id,
+                $visitant->name,
+                $this->replaceCPF($visitant->cpf),
+                $result->started,
+                $result->finished,
+                $result->reason,
+                $result->responsible,
+                'PLACA'
+            ];
+            
             $return[] = array_values($date);
         }
 

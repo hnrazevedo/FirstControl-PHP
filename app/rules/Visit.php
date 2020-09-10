@@ -10,7 +10,7 @@ Class Visit{
     public function __construct()
     {
         Validator::add($this,function(Rules $rules){
-            $rules->setAction('statusVisitant')
+            $rules->setAction('statusVisit')
                   ->addField('dataselect',['mincount'=>1,'required'=>true])
                   ->addField('role',['minlength'=>1,'maxlength'=>20 ,'required'=>true]);
             
