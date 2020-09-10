@@ -10,7 +10,7 @@
             <h4>Sistema</h4>
         </div>
         <li>
-            <a href="/visits">Visitas</a>
+            <a href="/visit">Visitas</a>
         </li>
 
         <hr>
