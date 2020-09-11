@@ -2,7 +2,7 @@
 <header class="col-md-2 d-none d-md-block bg-light sidebar">
     <ul>
         <div class="logo">
-            <div class="icon"></div>
+            <img src="{{ $system.uri }}/assets/img/logo.png" style="width:2em" />
             <span>FirstControl</span>
         </div>
 
