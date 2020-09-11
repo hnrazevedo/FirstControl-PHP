@@ -74,18 +74,8 @@ class Visitant extends Controller{
         
         $tmpPhoto = null;
         try{
-            $this->entity->name = $data['new_name'];
-            $this->entity->cpf = str_replace(['.','-'],'',$data['new_cpf']);
-            $this->entity->rg = str_replace(['.','-'],'',$data['new_rg']);
-            $this->entity->email = $data['new_email'];
-            $this->entity->birth = $data['new_birth'];
-            $this->entity->phone = str_replace(['(',')',' ','-'],'',$data['new_phone']);
-            $this->entity->company = $data['new_company'];
-            $this->entity->register = date('Y-m-d H:i:s');
-            $this->entity->lastvisit = date('Y-m-d H:i:s');
-            $this->entity->photo = $this->entity->cpf;
 
-            $this->entity->persist();
+            $this->persistEntity($data);
 
             $photo = $this->entity->cpf;
 
@@ -118,6 +108,24 @@ class Visitant extends Controller{
        
     }
 
+    public function persistEntity(array $data): Model
+    {
+        $this->entity->name = $data['new_name'];
+        $this->entity->cpf = str_replace(['.','-'],'',$data['new_cpf']);
+        $this->entity->rg = str_replace(['.','-'],'',$data['new_rg']);
+        $this->entity->email = $data['new_email'];
+        $this->entity->birth = $data['new_birth'];
+        $this->entity->phone = str_replace(['(',')',' ','-'],'',$data['new_phone']);
+        $this->entity->company = $data['new_company'];
+        $this->entity->register = date('Y-m-d H:i:s');
+        $this->entity->lastvisit = date('Y-m-d H:i:s');
+        $this->entity->photo = $this->entity->cpf;
+
+        $this->entity->persist();
+
+        return $this->entity;
+    }
+
     public function viewDetails($id)
     {
         $visitant = $this->entity->find($id)->execute()->toEntity();
@@ -144,6 +152,7 @@ class Visitant extends Controller{
         $visitant = $this->entity->find()->where([
             'cpf','=',str_replace(['.','-'],'',$cpf)
         ])->execute()->toEntity();
+
         
         if(is_null($visitant)){
             throw new Exception('Visitant not found.',404);

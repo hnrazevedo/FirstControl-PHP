@@ -72,14 +72,7 @@ class Car extends Controller{
             throw new Exception('Driver not found.');
         }
 
-        $this->entity->board = $data['new_board'];
-        $this->entity->brand = $data['new_brand'];
-        $this->entity->model = $data['new_model'];
-        $this->entity->color = $data['new_color'];
-        $this->entity->axes = $data['new_axes'];
-        $this->entity->driver = $visitant->id;
-
-        $this->entity->persist();
+        $this->persistEntity(array_merge($data,[ 'new_visitant' => $visitant->id ]));
 
         echo json_encode([
             'success' => [
@@ -88,6 +81,20 @@ class Car extends Controller{
             'reset' => true,
             'script' => "window.DataTables.dataAdd('table_list_cars', ['{$this->entity->id}','{$this->entity->board}','{$this->entity->brand}','{$this->entity->model}','{$this->entity->color}','{$this->entity->axes}','{$visitant->name}']);"
         ]);
+    }
+
+    public function persistEntity(array $data): Model
+    {
+        $this->entity->board = $data['new_board'];
+        $this->entity->brand = $data['new_brand'];
+        $this->entity->model = $data['new_model'];
+        $this->entity->color = $data['new_color'];
+        $this->entity->axes = $data['new_axes'];
+        $this->entity->driver = $data['new_visitant'];
+
+        $this->entity->persist();
+
+        return $this->entity;
     }
 
     public function viewDetails($id)

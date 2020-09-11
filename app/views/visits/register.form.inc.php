@@ -36,6 +36,9 @@
                     <div class="col-4">
                         <input type="text" id="new_email" name="new_email" label="Email" maxlength="100" class="visitant">
                     </div>
+                    <div class="col-4">
+                        <input type="file" id="new_photo" name="new_photo" label="Foto" accept=".jpg,.png" text="Selecione uma foto">
+                    </div>
                 </div>
 
                 <br />
@@ -69,6 +72,22 @@
                 
                 <div class="row">
                     <div class="col-sm">
+                        <h6>Detalhes</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <input type="text" id="new_reason" name="new_reason" label="Razão/Motivo" maxlength="100">
+                    </div>
+                    <div class="col-4">
+                        <input type="text" id="new_responsible" name="new_responsible" label="Responsável" maxlength="50">
+                    </div>
+                </div>
+
+                <!--<br/>
+                
+                <div class="row">
+                    <div class="col-sm">
                         <h6>Pesagem</h6>
                     </div>
                 </div>
@@ -82,7 +101,7 @@
                     <div class="col-sm">
                         <input type="text" id="new_nf" name="new_nf" label="Nota Fiscal">
                     </div>
-                </div>  
+                </div> -->
 
                 <div class="row">
                     <div class="col-sm">
@@ -109,7 +128,7 @@
 
             if(visitant.error === undefined){
                 for(var field in visitant){
-                    input = form.querySelector('input#new_'+field);
+                    input = form.querySelector('input#new_'+field+':not([type="file"])');
                     if(input != undefined){
                         input.value = visitant[field];
                         input.setAttribute('value',visitant[field]);
