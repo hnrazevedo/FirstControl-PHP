@@ -13,7 +13,7 @@
             <a href="/visit">Visitas</a>
         </li>
 
-        <hr>
+        <hr />
 
         <div class="sub-title">
             <h4>Cadastros</h4>
@@ -28,11 +28,9 @@
             <a href="/car">Veículos</a>
         </li>
 
-
         <li>
             <a href="/logout">Sair</a>
         </li>     
-                
     </ul>
 </header>
 

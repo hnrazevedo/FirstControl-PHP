@@ -18,7 +18,8 @@
             <?= $this->include('global/header') ?>
             <main class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                 <div class="content">
-                    <h1>Dashboard</h1>
+                    <h1>{{ $title }}</h1>
+                    <?= $this->include($page) ?>
                 </div>
             </main>
         </div>

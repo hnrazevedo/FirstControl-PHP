@@ -27,8 +27,7 @@ class User extends Controller{
     {
         try{
             $user = $this->entity->find()->where([
-                ['username','=',$username],
-                ['status','=',1]
+                ['username','=',$username]
             ])->execute();
     
             if($user->getCount() === 0){
@@ -36,6 +35,10 @@ class User extends Controller{
             }
 
             $user = $user->toEntity();
+
+            if($user->status == 0){
+                throw new Exception('User is blocked.');
+            }         
 
             if(!password_verify($password, $user->password)){
                 throw new Exception('Invalid password.');
@@ -65,7 +68,12 @@ class User extends Controller{
 
     public function dashboard()
     {
-        Viewer::create(SYSTEM['basepath'].'app/views/')->render('index',array_merge(['pageID'=>1], $_SESSION['view']['data']));
+        $data = [
+            'page' => '/user/dashboard',
+            'title' => 'Dashboard',
+            'pageID' => 1
+        ];
+        Viewer::create(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function view_login()
