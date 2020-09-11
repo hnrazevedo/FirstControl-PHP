@@ -1,4 +1,4 @@
-<dialog id="register_visitant_form">
+<dialog id="register_visit_form">
     <div>    
         <div class="heading">
             <span>Cadastro de nova visita</span>
@@ -12,29 +12,29 @@
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <input type="text" id="new_cpf" name="new_cpf" label="CPF" data-mask="###.###.###-##">
+                        <input type="text" id="new_cpf" name="new_cpf" label="CPF" data-mask="###.###.###-##" class="visitant">
                     </div>
                     <div class="col-sm">
-                        <input type="text" id="new_rg" name="new_rg" label="RG" data-mask="##.###.###-#">
+                        <input type="text" id="new_rg" name="new_rg" label="RG" data-mask="##.###.###-#" class="visitant">
                     </div>
                     <div class="col-sm">
-                        <input type="text" id="new_company" name="new_company" label="Empresa">
+                        <input type="text" id="new_company" name="new_company" label="Empresa" maxlength="50" class="visitant">
                     </div>
                 </div>  
                 <div class="row">
                     <div class="col-sm">
-                        <input type="text" id="new_name" name="new_name" label="Nome completo" >
+                        <input type="text" id="new_name" name="new_name" label="Nome completo" maxlength="50" class="visitant">
                     </div>
                     <div class="col-sm">
-                        <input type="text" id="new_bitrh" name="new_bitrh" label="Data de nascimento" data-mask="##/##/####" >
+                        <input type="text" id="new_birth" name="new_birth" label="Data de nascimento" data-mask="##/##/####" class="visitant">
                     </div>
                     <div class="col-sm">
-                        <input type="text" id="new_phone" name="new_phone" label="Telefone" data-mask="(##) #####-####">
+                        <input type="text" id="new_phone" name="new_phone" label="Telefone" data-mask="(##) #####-####" class="visitant">
                     </div>
                 </div>   
                 <div class="row">
                     <div class="col-4">
-                        <input type="text" id="new_email" name="new_email" label="Email" >
+                        <input type="text" id="new_email" name="new_email" label="Email" maxlength="100" class="visitant">
                     </div>
                 </div>
 
@@ -47,21 +47,21 @@
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <input type="text" id="new_board" name="new_board" label="Placa">
+                        <input type="text" id="new_board" name="new_board" label="Placa" maxlength="8" class="car">
                     </div>
                     <div class="col-sm">
-                        <input type="text" id="new_brand" name="new_brand" label="Marca">
+                        <input type="text" id="new_brand" name="new_brand" label="Marca" maxlength="20" class="car">
                     </div>
                     <div class="col-sm">
-                        <input type="text" id="new_model" name="new_model" label="Modelo" >
+                        <input type="text" id="new_model" name="new_model" label="Modelo" maxlength="20" class="car">
                     </div>
                 </div>  
                 <div class="row">
                     <div class="col-4">
-                        <input type="text" id="new_color" name="new_color" label="Cor" >
+                        <input type="text" id="new_color" name="new_color" label="Cor" maxlength="10" class="car">
                     </div>
                     <div class="col-4">
-                        <input type="text" id="new_axes" name="new_axes" label="Eixos" >
+                        <input type="text" id="new_axes" name="new_axes" label="Nº eixos" data-mask="#" class="car">
                     </div>
                 </div>
 
@@ -95,3 +95,51 @@
         </div>
     </div>
 </dialog>
+<script>
+    window.addEventListener('load',function(){
+        var form = document.querySelector('form[provider="visit"][role="visitRegister"]');
+
+        form.querySelector('input#new_cpf').addEventListener('blur', async evt => {
+
+            if(evt.target.value.length !== parseInt(evt.target.getAttribute('maxlength'))){
+                return false;
+            }
+
+            let visitant = await window.Submitter.setUrl('/visitant/json/'+evt.target.value).execute(true);
+
+            if(visitant.error === undefined){
+                for(var field in visitant){
+                    input = form.querySelector('input#new_'+field);
+                    if(input != undefined){
+                        input.value = visitant[field];
+                        input.setAttribute('value',visitant[field]);
+                    }  
+                };
+            }else{
+                form.querySelectorAll('input.visitant:not(#new_cpf)').forEach(input => {
+                    input.value = '';
+                    input.setAttribute('value','');
+                });
+            }
+        });
+
+        form.querySelector('input#new_board').addEventListener('blur', async evt => {
+            let car = await window.Submitter.setUrl('/car/json/'+evt.target.value).execute(true);
+
+            if(car.error === undefined){
+                for(var field in car){
+                    input = form.querySelector('input#new_'+field);
+                    if(input != undefined){
+                        input.value = car[field];
+                        input.setAttribute('value',car[field]);
+                    }  
+                };
+            }else{
+                form.querySelectorAll('input.car:not(#new_board)').forEach(input => {
+                    input.value = '';
+                    input.setAttribute('value','');
+                });
+            }
+        });
+    });    
+</script>

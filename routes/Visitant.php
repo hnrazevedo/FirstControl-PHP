@@ -14,3 +14,7 @@ Router::ajax('/visitants/list','App\\Controller\\Visitant:listVisitants')
 
 Router::ajax('/controller/visitant','App\\Controller\\Visitant:method')
       ->filter('App\\Filter\\User:user_in');
+
+Router::ajax('/visitant/json/{cpf}','App\\Controller\\Visitant:toJson')
+      ->where('cpf','[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}')
+      ->filter('App\\Filter\\User:user_in');

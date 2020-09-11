@@ -14,3 +14,7 @@ Router::ajax('/car/list','App\\Controller\\Car:listCars')
 
 Router::ajax('/controller/car','App\\Controller\\Car:method')
       ->filter('App\\Filter\\User:user_in');
+
+      
+Router::ajax('/car/json/{board}','App\\Controller\\Car:toJson')
+      ->filter('App\\Filter\\User:user_in');

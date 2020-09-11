@@ -138,4 +138,21 @@ class Visitant extends Controller{
         
         Viewer::create(SYSTEM['basepath'].'app/views/visitant/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
+
+    public function toJson($cpf)
+    {
+        $visitant = $this->entity->find()->where([
+            'cpf','=',str_replace(['.','-'],'',$cpf)
+        ])->execute()->toEntity();
+        
+        if(is_null($visitant)){
+            throw new Exception('Visitant not found.',404);
+        }
+
+        $visitant->cpf = $this->replaceCPF($visitant->cpf);
+        $visitant->rg = $this->replaceRG($visitant->rg);
+        $visitant->phone = $this->replaceCellPhone($visitant->phone);
+
+        echo $visitant->toJson();
+    }
 }

@@ -117,4 +117,17 @@ class Car extends Controller{
         Viewer::create(SYSTEM['basepath'].'app/views/car/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
 
+    public function toJson($board)
+    {
+        $car = $this->entity->find()->where([
+            'board','=',$board
+        ])->execute()->toEntity();
+        
+        if(is_null($car)){
+            throw new Exception('Car not found.',404);
+        }
+
+        echo $car->toJson();
+    }
+
 }
