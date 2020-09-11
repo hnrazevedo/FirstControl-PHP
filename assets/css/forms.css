@@ -17,6 +17,7 @@ form p.message{
     margin:0;
     display:block;
     max-height: 0;
+    text-align:left;
     transition:max-height .5s ease, margin .5s ease;
     font-size: .8em;
 }
@@ -294,4 +295,31 @@ form .row > div{
 
 form h6{
     margin-bottom: 0;
+}
+
+body.signin{
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+body.signin form{
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+    background:white;
+    border-radius:3px;
+    /*box-shadow: 0 0 5px rgba(0,0,0,.5);*/
+}
+
+body.signin form .buttons{
+    margin-top:2em;
 }

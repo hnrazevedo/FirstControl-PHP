@@ -2,7 +2,6 @@
     <head>
         <title>{{ $system.appname }}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel="shortcut icon" href="{{ $system.uri }}/assets/img/favicon.ico" type="image/x-icon">
 
         <script src="{{ $system.uri }}/assets/js/main.js" type="module"></script>
 
@@ -12,10 +11,11 @@
 
         <script src="{{ $system.uri }}/assets/addons/bootstrap/popper.min.js"></script>
     </head>
-    <body>
+    <body class="text-center signin">
         <main>
             <?= $this->include('login.form') ?>
         </main>
+
         <?= $this->include('../global/dialog_loading') ?>
         <?= $this->include('../global/dialog_message') ?>
 

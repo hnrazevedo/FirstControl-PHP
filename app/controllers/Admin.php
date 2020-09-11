@@ -28,7 +28,7 @@ class Admin extends Controller{
 
         $data = [
             'title' => 'Registros de usuários',
-            'page' => '../admin/user/list',
+            'page' => '../user/list',
             'pageID' => 2
         ];
         Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
@@ -48,7 +48,7 @@ class Admin extends Controller{
             'user' => $user
         ];
         
-        Viewer::create(SYSTEM['basepath'].'app/views/admin/user/')->render('details',array_merge($data, $_SESSION['view']['data']));
+        Viewer::create(SYSTEM['basepath'].'app/views/user/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function edit_user()
@@ -170,7 +170,7 @@ class Admin extends Controller{
             'success' => [
                 'message' => "Usuários selecionados ${method} com sucesso!" 
             ],
-            'script' => 'setTimeout(function(){window.location.href="/admin/users"},2000)'
+            'script' => 'setTimeout(function(){window.location.href="/users"},2000)'
         ]);
        
     }

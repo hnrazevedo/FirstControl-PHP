@@ -27,24 +27,17 @@ body{
     position: relative;
     display: flex;
     position: relative;
-    background-color:rgb(66,133,244) !important;
+    display: -webkit-box;
+    display:box;
+    display: -ms-box;
 }
 main{
-    display: inline-block;
-    vertical-align: top;
-    overflow: hidden;
+    display: block;
+    overflow: auto;
     width: 100%;
     flex-grow: 1;
     max-height: 100vh;
-}
-main .content{
-    width: calc(100% - 2em);
-    background:white;
-    margin:1em;
-    padding:.5em;
-    box-shadow: 0 0 5px rgba(0,0,0,.5);
-    overflow: auto;
-    height: calc(100% - 2em);
+    height: auto;
 }
 
 main img.notFound{

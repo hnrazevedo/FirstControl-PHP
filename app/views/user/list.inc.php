@@ -76,10 +76,7 @@
     </form>
 </div>
 
-
-<?= $this->include('user/register.form') ?>
-
-
+<?= $this->include('../user/register.form') ?>
 
 <script type="module">
 window.addEventListener('load',function(){

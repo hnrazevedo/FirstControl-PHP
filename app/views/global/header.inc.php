@@ -1,9 +1,9 @@
 <link href="{{ $system.uri }}/assets/css/header.css" rel="stylesheet" type="text/css">
-<header>
+<header class="col-md-2 d-none d-md-block bg-light sidebar">
     <ul>
         <div class="logo">
             <div class="icon"></div>
-            <span>FirstControl-PHP</span>
+            <span>FirstControl</span>
         </div>
 
         <div class="sub-title">

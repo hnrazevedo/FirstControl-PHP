@@ -2,7 +2,6 @@
     <head>
         <title>{{ $system.appname }}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel="shortcut icon" href="{{ $system.uri }}/assets/img/favicon.ico" type="image/x-icon">
 
         <script src="{{ $system.uri }}/assets/js/main.js" type="module"></script>
 
@@ -15,13 +14,14 @@
         <script src="{{ $system.uri }}/assets/addons/bootstrap/popper.min.js"></script>
     </head>
     <body>
-        <?= $this->include('global/header') ?>
-        <main>
-            <div class="content">
-                <h1>Dashboard</h1>
-            </div>
-        </main>
-
+        <div class="row">
+            <?= $this->include('global/header') ?>
+            <main class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div class="content">
+                    <h1>Dashboard</h1>
+                </div>
+            </main>
+        </div>
         <link rel="stylesheet" href="{{ $system.uri }}/assets/addons/bootstrap/bootstrap.min.css">
         <script src="{{ $system.uri }}/assets/addons/bootstrap/bootstrap.min.js"></script>
     </body>
