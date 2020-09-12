@@ -6,12 +6,12 @@ use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\Visitant as Model;
 use App\Engine\Util;
-use App\Helpers\Mask;
+use App\Helpers\{Mask , Validate};
 use Exception;
 
 
 class Visitant extends Controller{
-    use Mask;
+    use Mask, Validate;
 
     private ?Model $entity;
 
@@ -75,6 +75,10 @@ class Visitant extends Controller{
         $tmpPhoto = null;
         try{
 
+            if(!$this->isValidCPF($data['new_cpf'])){
+                throw new Exception('CPF invalid.');
+            }
+
             $this->persistEntity($data);
 
             $photo = $this->entity->cpf;
@@ -96,16 +100,11 @@ class Visitant extends Controller{
                 'reset' => true,
                 'script' => "window.DataTables.dataAdd('table_list_visitants', ['{$this->entity->id}','{$this->entity->name}','{$this->replaceCPF($this->entity->cpf)}','{$this->replaceRG($this->entity->rg)}','{$this->entity->birth}','{$this->entity->lastvisit}','{$this->entity->register}','{$this->entity->company}','{$this->replaceCellPhone($this->entity->phone)}','{$this->entity->email}']);"
             ]);
-
-            
+   
         }catch(Exception $er){
-            
             @unlink($tmpPhoto);
-
             throw $er;
-          
         }
-       
     }
 
     public function persistEntity(array $data): Model

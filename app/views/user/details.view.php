@@ -14,63 +14,47 @@
 
         <script src="{{ $system.uri }}/assets/addons/bootstrap/popper.min.js"></script>
     </head>
-    <body>
-        <main>
-            <dialog id="edit_user_form" class="fixed open">
-                <div>    
-                    <div class="heading">
-                        <span>Detalhes de registro</span>
+    <body class="text-center center">
+        <main style="max-width:1000px">
+            <form provider="admin" role="edit_user" access="/admin/controller/admin">     
+                <h4>Detalhes de registro</h4>
+                <input type="hidden" value="{{ $user.id }}" id="edit_id" name="edit_id">   
+                <div class="row container">
+                    <div class="col-sm-6 col-md-4">
+                        <input type="text" value="{{ $user.id }}" label="ID" disabled="disabled">
                     </div>
-                    <div class="content">
-                        <form provider="admin" role="edit_user" access="/admin/controller/admin">     
-                            <input type="hidden" value="{{ $user.id }}" id="edit_id" name="edit_id">   
-                            <div class="row">
-                                <div class="col-sm">
-                                    <input type="text" value="{{ $user.id }}" label="ID" disabled="disabled">
-                                </div>
-                                <div class="col-sm">
-                                    <input type="text" value="{{ $user.lastaccess }}" label="Último acesso" disabled="disabled">
-                                </div>
-                            </div>  
-                            <div class="row">
-                                <div class="col-sm">
-                                    <input type="text" value="{{ $user.name }}" label="Nome Completo" disabled="disabled">
-                                </div>
-                                <div class="col-sm">
-                                    <input type="text" value="{{ $user.username }}" label="Usuário" disabled="disabled">
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                    <input type="text" value="{{ $user.email }}" label="Email" disabled="disabled">
-                                </div>
-                                <div class="col-sm">
-                                    <input type="text" value="{{ $user.birth }}" label="Data de nascimento" disabled="disabled">
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                    <input type="password" id="edit_password" name="edit_password" label="Senha" maxlength="20" >
-                                </div>
-                                <div class="col-sm">
-                                    <input type="password" id="edit_password2" name="edit_password2" label="Confirmar senha" maxlength="20" >
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="buttons">
-                                        <button class="submit btn btn-primary">Atualizar</button>
-                                    </div>
-                                </div>
-                            </div>    
-                        </form>
+                    <div class="col-sm-6 col-md-4">
+                        <input type="text" value="{{ $user.lastaccess }}" label="Último acesso" disabled="disabled">
                     </div>
-                </div>
-            </dialog>
-            
+                    <div class="col-sm-6 col-md-4">
+                        <input type="text" value="{{ $user.name }}" label="Nome Completo" disabled="disabled">
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <input type="text" value="{{ $user.username }}" label="Usuário" disabled="disabled">
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <input type="text" value="{{ $user.email }}" label="Email" disabled="disabled">
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <input type="text" value="{{ $user.birth }}" label="Data de nascimento" disabled="disabled">
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <input type="password" id="edit_password" name="edit_password" label="Senha" maxlength="20" >
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <input type="password" id="edit_password2" name="edit_password2" label="Confirmar senha" maxlength="20" >
+                    </div>
+                    <div class="col-12">
+                        <div class="buttons">
+                            <button class="submit btn btn-primary">Atualizar</button>
+                        </div>
+                    </div>
+                </div>    
+            </form>
         </main>
-        <?= $this->include('../../global/dialog_loading') ?>
-        <?= $this->include('../../global/dialog_message') ?>
+
+        <?= $this->include('../global/dialog_loading') ?>
+        <?= $this->include('../global/dialog_message') ?>
 
         <link rel="stylesheet" href="{{ $system.uri }}/assets/addons/bootstrap/bootstrap.min.css">
         <script src="{{ $system.uri }}/assets/addons/bootstrap/bootstrap.min.js"></script>
