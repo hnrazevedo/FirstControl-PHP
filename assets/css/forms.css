@@ -297,20 +297,8 @@ form h6{
     margin-bottom: 0;
 }
 
-body.signin{
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: flex;
-    -ms-flex-align: center;
-    -ms-flex-pack: center;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-body.signin form{
+
+body.center form.signin{
     width: 100%;
     max-width: 330px;
     padding: 15px;

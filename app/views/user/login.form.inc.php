@@ -1,5 +1,5 @@
 
-<form provider="user" role="login" access="/controller/user" method="post" class="form-signin">
+<form provider="user" role="login" access="/controller/user" method="post" class="form-signin signin">
     <img class="mb-4" src="{{ $system.uri }}/assets/img/logo.png" alt="" width="72" height="72">
     <h4>FirstControl</h4>
     <div class="row">

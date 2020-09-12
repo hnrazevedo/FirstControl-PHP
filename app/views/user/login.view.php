@@ -11,7 +11,7 @@
 
         <script src="{{ $system.uri }}/assets/addons/bootstrap/popper.min.js"></script>
     </head>
-    <body class="text-center signin">
+    <body class="text-center center">
         <main>
             <?= $this->include('login.form') ?>
         </main>
