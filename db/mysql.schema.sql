@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS user(
     birth DATE NOT NULL,
     register DATETIME NOT NULL,
     lastaccess DATETIME NOT NULL,
-    status SMALLINT(1) NOT NULL DEFAULT(0),
-    type SMALLINT(1) NOT NULL DEFAULT(0),
+    status SMALLINT(1) NOT NULL,
+    type SMALLINT(1) NOT NULL ,
     PRIMARY KEY(id)
 );
 

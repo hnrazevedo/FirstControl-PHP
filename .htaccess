@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+        Options -Indexes
+    </IfModule>
+
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+
+    <FilesMatch "\.(inc|txt|htaccess|php|json|mp4|webm|m4v)$">
+        Deny from all
+    </FilesMatch>
+
+    <FilesMatch "index.php">
+        allow from all
+    </FilesMatch>
+
+</IfModule>
