@@ -22,6 +22,7 @@ body:not(.loaded)::before{
 }
 
 body.center,
+body.dataTablePrint,
 body.center main{
     display: -ms-flexbox;
     display: -webkit-box;

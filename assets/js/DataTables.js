@@ -112,6 +112,7 @@ const DataTables = function(){
     
             buttons.buttons.forEach((button, i) => {
                 var b = document.createElement('button');
+                b.classList.add('btn','btn-primary');
                 b.setAttribute('data-role',button.role);
                 b.setAttribute('value',button.text);
                 b.innerHTML = button.text;

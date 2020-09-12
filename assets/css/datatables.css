@@ -491,3 +491,45 @@ div.table.min td:before { content: attr(data-legend); }
     }
     
     */
+
+body.dataTablePrint::before,
+body.dataTablePrint::after{
+    display: none;
+}
+
+body.dataTablePrint table{
+    border:solid 1px black;
+}
+
+body.dataTablePrint table tr td{
+    text-align: left;
+}
+
+body.dataTablePrint table tr td,
+body.dataTablePrint table tr th{
+    padding:.5rem .3rem;
+    border-right: solid 1px rgba(0,0,0,.3);
+    border-bottom: solid 1px rgba(0,0,0,.5);
+}
+
+body.dataTablePrint table tr th{
+    border-bottom: solid 2px rgba(0,0,0,.7);
+}
+
+body.dataTablePrint{
+    text-align: center;
+    align-items: baseline !important;
+}
+
+body.dataTablePrint table{
+    border-spacing: 0;
+    border-collapse: separate;
+}
+
+body.dataTablePrint table tr:last-child td{
+    border-bottom:none;
+}
+body.dataTablePrint table tr th:last-child,
+body.dataTablePrint table tr td:last-child{
+    border-right: none;
+}

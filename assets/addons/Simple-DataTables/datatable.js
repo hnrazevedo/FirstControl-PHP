@@ -1490,14 +1490,17 @@ export class DataTable {
         w.document.body.classList.add('dataTablePrint')
         w.document.body.appendChild(table)
 
-        // Print
-        w.print()
-        
         setTimeout(function(){
-            w.close()
-        },100)
-        
-        
+            let script = w.document.createElement('script')
+            script.innerHTML = 'window.print()'
+            w.document.body.appendChild(script);
+    
+            let scriptt = w.document.createElement('script')
+            scriptt.innerHTML = 'window.close()'
+            w.document.body.appendChild(scriptt);
+    
+        },200);
+
 
         
     }
