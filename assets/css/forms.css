@@ -83,8 +83,11 @@ input[type="file"] + label,
 input:focus + label,
 input:not([value=""]) + label{
     color:rgb(66,133,244);
-    transform: translate(-1em,-2em) scale(.9);
+    transform: translate(-1.9em,-2em) scale(.9);
     transition: transform .5s ease, color .5s ease;
+    width: 100%;
+    text-align: left;
+
 }
 input[disabled] + label{
     color:rgb(100,100,100);
