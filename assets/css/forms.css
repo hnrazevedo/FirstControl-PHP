@@ -75,19 +75,21 @@ form input + label{
     top:2.6em;
     left:1.65em;
     pointer-events: none;
-    transition: transform .5s ease, color .5s ease;
+    transition: all .5s ease;
     color:rgba(0,0,0,.5);
-    width:max-content;
+    width:20rem;
+    max-width: 100%;
+    text-align:left;
 }
 form input[type="file"] + label,
 form input:focus + label,
 form input:not([value=""]) + label{
     color:rgb(66,133,244);
-    transform: translate(-1.9em,-2em) scale(.9);
-    transition: transform .5s ease, color .5s ease;
-    width: 100%;
+    transform: translate(-.9em,-2em) scale(.9);
+    transition: all .5s ease;
     text-align: left;
-
+    left:0;
+    padding-left:10px;
 }
 form input[disabled] + label{
     color:rgb(100,100,100);
@@ -149,13 +151,13 @@ form input[type="password"].error:focus{
 /* Input file */
 form input[type="file"]{
     border: solid 1px rgba(0,0,0,.3);
-    top: 2em;
     padding: .6em 0;
     width: 100%;
     height: 39.25px;
     position: relative;
     cursor: pointer;
     display: block;
+    margin-top: 2em
 }
 form input[type="file"].select::after{
     color:black;

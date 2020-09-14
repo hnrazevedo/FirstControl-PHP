@@ -614,8 +614,8 @@ export class DataTable {
         }, false)
 
         window.addEventListener("resize", () => {
-            this.rect = this.container.getBoundingClientRect()
-            this.fixColumns()
+            //this.rect = this.container.getBoundingClientRect()
+            //this.fixColumns()
         })
     }
 

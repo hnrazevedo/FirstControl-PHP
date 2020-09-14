@@ -47,7 +47,7 @@ body{
 }
 main{
     display: block;
-    overflow: hidden;
+    overflow: auto;
     width: 100%;
     flex-grow: 1;
     max-height: 100vh;
