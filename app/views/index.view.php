@@ -2,6 +2,7 @@
     <head>
         <title>{{ $system.appname }}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <script src="{{ $system.uri }}/assets/js/main.js" type="module"></script>
 

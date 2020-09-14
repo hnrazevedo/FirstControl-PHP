@@ -2,6 +2,7 @@
     <head>
         <title>{{ $system.appname }} - Error {{ $error.code }}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link href="{{ $system.uri }}/assets/css/main.css" rel="stylesheet" type="text/css">
         <link href="{{ $system.uri }}/assets/css/dialog.css" rel="stylesheet" type="text/css">
