@@ -47,11 +47,15 @@ body{
 }
 main{
     display: block;
-    overflow: auto;
+    overflow: hidden;
     width: 100%;
     flex-grow: 1;
     max-height: 100vh;
     height: auto;
+}
+
+body > .row {
+    margin:0;
 }
 
 main img.notFound{

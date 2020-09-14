@@ -1,5 +1,7 @@
 <link href="{{ $system.uri }}/assets/css/header.css" rel="stylesheet" type="text/css">
-<header class="col-md-2 d-none d-md-block bg-light sidebar">
+<input type="checkbox" name="main-menu" id="main-menu" class="header">
+<label for="main-menu"><hr/></label>
+<header class="col-md-3 col-lg-2 d-md-block sidebar">
     <ul>
         <div class="logo">
             <img src="{{ $system.uri }}/assets/img/logo.png" style="width:2em" />

@@ -70,7 +70,7 @@ input::placeholder{
 }
 /*---------------------------------------------------- */
 /* Labels */
-input + label{
+form input + label{
     position: absolute;
     top:2.6em;
     left:1.65em;
@@ -79,9 +79,9 @@ input + label{
     color:rgba(0,0,0,.5);
     width:max-content;
 }
-input[type="file"] + label,
-input:focus + label,
-input:not([value=""]) + label{
+form input[type="file"] + label,
+form input:focus + label,
+form input:not([value=""]) + label{
     color:rgb(66,133,244);
     transform: translate(-1.9em,-2em) scale(.9);
     transition: transform .5s ease, color .5s ease;
@@ -89,11 +89,11 @@ input:not([value=""]) + label{
     text-align: left;
 
 }
-input[disabled] + label{
+form input[disabled] + label{
     color:rgb(100,100,100);
     font-weight: bold;
 }
-input.error + label{
+form input.error + label{
     color:rgb(185, 47, 34);
 }
 /*---------------------------------------------------- */

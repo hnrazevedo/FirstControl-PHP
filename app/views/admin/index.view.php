@@ -18,7 +18,7 @@
 
         <div class="row">
             <?= $this->include('../global/header') ?>
-            <main class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <main class="col-sm-12 col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                 <div class="content">
                     <h1>{{ $title }}</h1>
                     <?= $this->include($page) ?>
