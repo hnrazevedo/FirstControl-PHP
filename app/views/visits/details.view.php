@@ -42,8 +42,8 @@
 
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-sm-4 col-md-3">
-                                <div class="photo" >
+                            <div class="col-sm-4 col-md-3 preview">
+                                <div class="photo text-center center" >
                                     <a href="{{ $system.uri }}/assets/img/visitant/{{ $visitant.photo }}">
                                         <img  src="{{ $system.uri }}/assets/img/visitant/{{ $visitant.photo }}">
                                     </a>
@@ -84,8 +84,8 @@
                 <div class="row" style="width:inherit">
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-sm-4 col-md-3">
-                                <div class="photo" >
+                            <div class="col-sm-4 col-md-3 preview">
+                                <div class="photo text-center center" >
                                     <a href="{{ $system.uri }}/assets/img/car/{{ $car.photo }}">
                                         <img  src="{{ $system.uri }}/assets/img/car/{{ $car.photo }}">
                                     </a>
