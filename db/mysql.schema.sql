@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS visitant(
     company VARCHAR(50) NOT NULL,
     phone BIGINT(11) NOT NULL,
     email VARCHAR(100),
-    photo VARCHAR(50) NOT NULL UNIQUE,
+    photo VARCHAR(50) NOT NULL,
     PRIMARY KEY(id)
 );
 
@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS car(
     color VARCHAR(10) NOT NULL,
     axes INT(1) NOT NULL,
     driver BIGINT(11) NOT NULL,
+    photo VARCHAR(50) NOT NULL,
     PRIMARY KEY(id)
 );
 
@@ -69,14 +70,17 @@ CREATE TABLE IF NOT EXISTS visit(
     finished DATETIME NOT NULL,
     reason VARCHAR(100) NOT NULL,
     responsible VARCHAR(50) NOT NULL,
+    status INT(1) NOT NULL,
+    car BIGINT(11) NOT NULL,
+    user BIGINT(11) NOT NULL,
     PRIMARY KEY(id)
 );
 
 
 ALTER TABLE visit ADD FOREIGN KEY (visitant) REFERENCES visitant(id);
+ALTER TABLE visit ADD FOREIGN KEY (car) REFERENCES car(id);
+ALTER TABLE visit ADD FOREIGN KEY (user) REFERENCES user(id);
 ALTER TABLE car ADD FOREIGN KEY (driver) REFERENCES visitant(id);
-
-
 
 ALTER TABLE authorization ADD FOREIGN KEY (user) REFERENCES user(id);
 ALTER TABLE authorization ADD FOREIGN KEY (page) REFERENCES page(id);
@@ -94,3 +98,6 @@ INSERT INTO form(id, role, provider, register) VALUES(2,'user.add','admin','2000
 
 INSERT INTO authorization(user, page, form) VALUES(1,1,1);
 INSERT INTO authorization(user, page, form) VALUES(1,2,2);
+
+INSERT INTO visitant VALUES(1,' ','00000000000','000000000','2000-00-00','2000-00-00','2000-00-00',' ','00000000000',' ','default.svg');
+INSERT INTO car VALUES(1,'00000000',' ',' ',' ',1,1,'default.svg');

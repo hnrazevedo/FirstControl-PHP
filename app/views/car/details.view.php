@@ -22,6 +22,13 @@
                 <h4>Detalhes de {{ $car.board }}</h4>
                 <input type="hidden" value="{{ $car.id }}" id="edit_id" name="edit_id">
                 <div class="row container">
+                    <div class="col-12">
+                        <div class="photo">
+                            <a href="{{ $system.uri }}/assets/img/car/{{ $car.photo }}">
+                                <img src="{{ $system.uri }}/assets/img/car/{{ $car.photo }}">
+                            </a>
+                        </div>
+                    </div>   
                     <div class="col-sm-6 col-md-4">
                         <input type="text" value="{{ $car.id }}" label="ID" disabled="disabled">
                     </div>

@@ -30,7 +30,9 @@ class Car extends Controller{
 
     public function listCars()
     {
-        $cars = $this->entity->find()->execute()->toEntity();
+        $cars = $this->entity->find()->where([
+            ['id','<>',1]
+        ])->execute()->toEntity();
 
         $cars = (is_array($cars)) ? $cars : [$cars];
 
@@ -63,24 +65,49 @@ class Car extends Controller{
     public function carRegister()
     {
         $data = json_decode(Util::getData()['POST']['data'],true);
-        
-        $visitant = (new Visitant())->find()->only(['id','name'])->where([
-            'cpf','=',str_replace(['.','-'],'',$data['new_cpf'])
-        ])->execute()->toEntity();
+        $files = Util::getData()['FILES'];
+        $tmpPhoto = null;
 
-        if(is_null($visitant)){
-            throw new Exception('Driver not found.');
+        try{
+
+            $visitant = (new Visitant())->find()->only(['id','name'])->where([
+                'cpf','=',str_replace(['.','-'],'',$data['new_cpf'])
+            ])->execute()->toEntity();
+    
+            if(is_null($visitant)){
+                throw new Exception('Driver not found.');
+            }
+    
+            $this->persistEntity(array_merge($data,[ 'new_visitant' => $visitant->id ]));
+
+            $photo = 'default.svg';
+
+            if($files['new_carphoto']['error'] === 0){
+                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'car'.DIRECTORY_SEPARATOR.$data['new_board'].'.'.pathinfo($files['new_carphoto']['name'], PATHINFO_EXTENSION);
+                move_uploaded_file($files['new_carphoto']['tmp_name'],$tmpPhoto);
+                $photo = $data['new_board'].'.'.pathinfo($files['new_carphoto']['name'], PATHINFO_EXTENSION);
+            }
+
+            $this->entity->photo = $photo;
+
+            $this->entity->save();
+
+    
+            echo json_encode([
+                'success' => [
+                    'message' => 'Veículo registrado com sucesso!'
+                ],
+                'reset' => true,
+                'script' => "window.DataTables.dataAdd('table_list_cars', ['{$this->entity->id}','{$this->entity->board}','{$this->entity->brand}','{$this->entity->model}','{$this->entity->color}','{$this->entity->axes}','{$visitant->name}']);"
+            ]);
+
+        }catch(Exception $er){
+            @unlink($tmpPhoto);
+            throw $er;
         }
-
-        $this->persistEntity(array_merge($data,[ 'new_visitant' => $visitant->id ]));
-
-        echo json_encode([
-            'success' => [
-                'message' => 'Veículo registrado com sucesso!'
-            ],
-            'reset' => true,
-            'script' => "window.DataTables.dataAdd('table_list_cars', ['{$this->entity->id}','{$this->entity->board}','{$this->entity->brand}','{$this->entity->model}','{$this->entity->color}','{$this->entity->axes}','{$visitant->name}']);"
-        ]);
+        
+        
+        
     }
 
     public function persistEntity(array $data): Model
@@ -91,6 +118,7 @@ class Car extends Controller{
         $this->entity->color = $data['new_color'];
         $this->entity->axes = $data['new_axes'];
         $this->entity->driver = $data['new_visitant'];
+        $this->entity->photo = 'default.svg';
 
         $this->entity->persist();
 
@@ -99,7 +127,9 @@ class Car extends Controller{
 
     public function viewDetails($id)
     {
-        $car = $this->entity->find($id)->execute()->toEntity();
+        $car = $this->entity->find($id)->where([
+            ['id','<>',1]
+        ])->execute()->toEntity();
         
         if(is_null($car)){
             throw new Exception('Car not found.', 404);

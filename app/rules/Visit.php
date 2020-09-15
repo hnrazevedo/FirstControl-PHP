@@ -25,6 +25,7 @@ Class Visit{
                   ->addField('new_phone',['minlength'=>1,'maxlength'=>15,'regex'=>'/^\([0-9]{2}\)\ [0-9]{5}\-[0-9]{4}$/','required'=>true])                  
                   ->addField('new_company',['minlength'=>1,'maxlength'=>50,'required'=>true])
                   ->addField('new_photo',['required'=>false])
+                  ->addField('new_carphoto',['required'=>false])
                   ->addField('new_board',['minlength'=>1,'maxlength'=>8,'required'=>true])
                   ->addField('new_brand',['minlength'=>1,'maxlength'=>20,'required'=>true])  
                   ->addField('new_model',['minlength'=>1,'maxlength'=>20,'required'=>true])

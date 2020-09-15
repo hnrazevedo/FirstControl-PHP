@@ -5,7 +5,17 @@
         </div>
         <div class="content">
             <form provider="car" role="carRegister" access="/controller/car">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="photo preview text-center">
+                            <img src="/assets/img/select.svg" id="carphoto"/>
+                        </div>
+                    </div>
+                </div>
                 <div class="row" style="max-width:700px">
+                    <div class="col-sm-6  col-md-4">
+                        <input type="file" id="new_carphoto" name="new_carphoto" label="Foto" accept=".jpg,.png" text="Selecione uma foto" preview="carphoto">
+                    </div>
                     <div class="col-sm-6  col-md-4">
                         <input type="text" id="new_cpf" name="new_cpf" label="CPF motorista" data-mask="###.###.###-##">
                     </div>

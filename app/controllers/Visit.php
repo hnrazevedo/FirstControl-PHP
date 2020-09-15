@@ -7,6 +7,7 @@ use HnrAzevedo\Viewer\Viewer;
 use App\Model\Visit as Model;
 use App\Model\Visitant as Visitant;
 use App\Model\Car as Car;
+use App\Model\User as User;
 use App\Helpers\Mask;
 use App\Engine\Util;
 use App\Controller\Car as CarController;
@@ -40,6 +41,7 @@ class Visit extends Controller{
         $carController = new CarController();
         
         $tmpPhoto = null;
+        $tmpPhotoCar = null;
         try{
 
             $visitant = (new Visitant())->find()->where([
@@ -49,12 +51,12 @@ class Visit extends Controller{
             if(is_null($visitant)){
                 $visitant = $visitantController->persistEntity($data);
 
-                $photo = $visitant->cpf;
+                $photo = 'default.svg';
 
                 if($files['new_photo']['error'] === 0){
-                    $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.$photo.'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
+                    $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.str_replace(['.','-'],'',$data['new_cpf']).'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
                     move_uploaded_file($files['new_photo']['tmp_name'],$tmpPhoto);
-                    $photo .= '.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
+                    $photo = str_replace(['.','-'],'',$data['new_cpf']).'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
                 }
     
                 $visitant->photo = $photo;
@@ -68,13 +70,28 @@ class Visit extends Controller{
 
             if(is_null($car)){
                 $car = $carController->persistEntity(array_merge($data,[ 'new_visitant' => $visitant->id ]));
+
+                $photo = 'default.svg';
+
+                if($files['new_carphoto']['error'] === 0){
+                    $tmpPhotoCar = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'car'.DIRECTORY_SEPARATOR.$data['new_board'].'.'.pathinfo($files['new_carphoto']['name'], PATHINFO_EXTENSION);
+                    move_uploaded_file($files['new_carphoto']['tmp_name'],$tmpPhotoCar);
+                    $photo = $data['new_board'].'.'.pathinfo($files['new_carphoto']['name'], PATHINFO_EXTENSION);
+                }
+    
+                $car->photo = $photo;
+    
+                $car->save();
             }
 
+            $this->entity->user = (unserialize($_SESSION['user']))->id;
             $this->entity->visitant = $visitant->id;
             $this->entity->started = date('Y-m-d H:i:s');
             $this->entity->finished = '0000-00-00 00:00:00';
             $this->entity->reason = $data['new_reason'];
             $this->entity->responsible = $data['new_responsible'];
+            $this->entity->status = 0;
+            $this->entity->car = $car->id;
 
             $this->entity->persist();
 
@@ -90,6 +107,7 @@ class Visit extends Controller{
         }catch(Exception $er){
             
             @unlink($tmpPhoto);
+            @unlink($tmpPhotoCar);
 
             throw $er;
           
@@ -109,6 +127,9 @@ class Visit extends Controller{
         $return = [];
         foreach($visits as $visit => $result){
             $visitant = (new Visitant())->find($result->visitant)->only(['name','cpf'])->execute()->toEntity();
+
+            $car = (empty($result->car)) ? (new Car())->find($result->car)->only('board')->execute()->toEntity()->board : '-';
+
             $date = [
                 $result->id,
                 $visitant->name,
@@ -117,7 +138,7 @@ class Visit extends Controller{
                 $result->finished,
                 $result->reason,
                 $result->responsible,
-                'PLACA'
+                $car
             ];
             
             $return[] = array_values($date);
@@ -134,13 +155,35 @@ class Visit extends Controller{
             throw new Exception('Visit not found.', 404);
         }
 
+        $car = (new Car())->find($visit->car)->execute()->toEntity();
+        $visitant = (new Visitant())->find($visit->visitant)->execute()->toEntity();
+
+        $day = (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $visit->started) , 'd/m/Y'));
+        $dayFinal = (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $visit->finished) , 'd/m/Y'));
+
+        if($day !== $dayFinal && $visit->status != 0){
+            $day .= ' até '.$dayFinal;
+        }
+
+
+        $date = [
+            'day' =>  $day,
+            'started' => (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $visit->started) , 'H:i:s')),
+            'finished'=> (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $visit->finished) , 'H:i:s'))
+        ];
+
         $data = [
             'title' => 'Registros de visita',
             'pageID' => 4,
-            'visit' => $visit
+            'visit' => $visit,
+            'visitant' => $visitant,
+            'car' => $car,
+            'status' => ( $visit->status == 0 ) ? 'Em andamento' : 'Finalizada',
+            'date' => $date,
+            'user' => (new User())->find($visit->user)->only('name')->execute()->toEntity()
         ];
         
-        Viewer::create(SYSTEM['basepath'].'app/views/visit/')->render('details',array_merge($data, $_SESSION['view']['data']));
+        Viewer::create(SYSTEM['basepath'].'app/views/visits/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
 
 }

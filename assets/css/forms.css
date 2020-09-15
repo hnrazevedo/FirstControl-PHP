@@ -109,8 +109,8 @@ form length{
 }
 /*---------------------------------------------------- */
 /* Inputs */
-form input[type="text"],
-form input[type="password"]{
+form input[type="text"].length,
+form input[type="password"].length{
     padding-right: 5em !important;
 }
 form input[type="text"],
@@ -315,4 +315,22 @@ body.center form.signin{
 
 body.center form.signin .buttons{
     margin-top:2em;
+}
+
+form .preview img{
+    width: 10em;
+    box-shadow: 0 0 5px rgba(0,0,0,.4);
+    background: rgba(0,0,0,.1);
+}
+
+form .preview{
+    -moz-box-pack: center;
+    -moz-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    display: -moz-box !important;
+    display: -webkit-box !important;
+    display: box !important;
+    box-pack: center;
+    box-align: center;
 }

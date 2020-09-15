@@ -57,7 +57,7 @@ const Form = function(){
                                         length.setAttribute('name',input.getAttribute('name'));
                                         length.innerHTML = '<current>0</current> / <max>'+input.getAttribute('maxlength')+'</max>';
                                         input.nextSibling.after(length);
-                                       
+                                        input.classList.add('length');
                                     }else{
                                         var length = document.createElement('length');
                                         var p = document.createElement('p');
@@ -150,12 +150,29 @@ const Form = function(){
             document.querySelectorAll('input[type="file"]').forEach((input, i) => {
                 input.addEventListener('change',t.inputChange);
             });
+
+            document.querySelectorAll('input[preview]').forEach((input, i) => {
+                input.addEventListener('change',t.inputPreview);
+            });
     
             document.addEventListener('click',t.unFocus);
             window.addEventListener('hashchange', t.windowHistory);
             window.addEventListener('load',t.windowHistory);
             setTimeout(t.windowHistory,500);
     
+        },
+        inputPreview(e){
+            let input = this;
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    document.querySelector('#'+input.getAttribute('preview')).setAttribute('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
         },
         windowHistory(){
             window.history.pushState("Object", "",(window.location.href).split('#')[0]);

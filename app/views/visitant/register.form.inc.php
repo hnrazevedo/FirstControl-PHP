@@ -5,7 +5,17 @@
         </div>
         <div class="content">
             <form provider="visitant" role="visitantRegister" access="/controller/visitant">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="photo preview text-center">
+                            <img src="/assets/img/select.svg" id="visitantphoto"/>
+                        </div>
+                    </div>
+                </div>
                 <div class="row" style="max-width:700px">
+                    <div class="col-sm-6  col-md-6">
+                        <input type="file" id="new_photo" name="new_photo" label="Foto" accept=".jpg,.png" text="Selecione uma foto" preview="visitantphoto">
+                    </div>
                     <div class="col-sm-6  col-md-6">
                         <input type="text" id="new_name" name="new_name" label="Nome Completo" maxlength="50">
                     </div>
@@ -26,9 +36,6 @@
                     </div>
                     <div class="col-sm-6  col-md-6">
                         <input type="text" id="new_company" name="new_company" label="Empresa" maxlength="50" >
-                    </div>
-                    <div class="col-sm-6  col-md-6">
-                        <input type="file" id="new_photo" name="new_photo" label="Foto" accept=".jpg,.png" text="Selecione uma foto">
                     </div>
                     <div class="col-12">
                         <div class="buttons">

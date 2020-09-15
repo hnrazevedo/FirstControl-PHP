@@ -21,6 +21,7 @@ body:not(.loaded)::before{
     z-index:998;
 }
 
+.center,
 body.center,
 body.dataTablePrint,
 body.center main{
@@ -78,4 +79,16 @@ main .content h1{
 [data-tooltip]::after{
     content:attr(data-tooltip);
     position: absolute;  
+}
+
+@media (max-width: 1000px){
+    body.center,
+    body.center main{
+        -ms-flex-align: start !important;
+        -ms-flex-pack: start !important;
+        -webkit-box-align: start !important;
+        align-items: start !important;
+        -webkit-box-pack: start !important;
+        justify-content: start !important;
+    }
 }

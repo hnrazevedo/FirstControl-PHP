@@ -30,7 +30,9 @@ class Visitant extends Controller{
 
     public function listVisitants()
     {
-        $visitants = $this->entity->find()->except('photo')->execute()->toEntity();
+        $visitants = $this->entity->find()->where([
+            ['id','<>',1]
+        ])->except('photo')->execute()->toEntity();
 
         $visitants = (is_array($visitants)) ? $visitants : [$visitants];
 
@@ -81,12 +83,12 @@ class Visitant extends Controller{
 
             $this->persistEntity($data);
 
-            $photo = $this->entity->cpf;
+            $photo = 'default.svg';
 
             if($files['new_photo']['error'] === 0){
-                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.$photo.'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
+                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.str_replace(['.','-'],'',$data['new_cpf']).'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
                 move_uploaded_file($files['new_photo']['tmp_name'],$tmpPhoto);
-                $photo .= '.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
+                $photo = str_replace(['.','-'],'',$data['new_cpf']).'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
             }
 
             $this->entity->photo = $photo;
@@ -118,7 +120,7 @@ class Visitant extends Controller{
         $this->entity->company = $data['new_company'];
         $this->entity->register = date('Y-m-d H:i:s');
         $this->entity->lastvisit = date('Y-m-d H:i:s');
-        $this->entity->photo = $this->entity->cpf;
+        $this->entity->photo = 'default.svg';
 
         $this->entity->persist();
 
@@ -127,7 +129,9 @@ class Visitant extends Controller{
 
     public function viewDetails($id)
     {
-        $visitant = $this->entity->find($id)->execute()->toEntity();
+        $visitant = $this->entity->find($id)->where([
+            ['id','<>',1]
+        ])->execute()->toEntity();
         
         if(is_null($visitant)){
             throw new Exception('Visitant not found.',404);

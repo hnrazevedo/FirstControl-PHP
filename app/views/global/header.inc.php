@@ -12,8 +12,9 @@
             <h4>Sistema</h4>
         </div>
         <li>
-            <a href="/visit">Visitas</a>
+            <a href="/dashboard">Dashboard</a>
         </li>
+        
 
         <hr />
 
@@ -28,6 +29,9 @@
         </li>
         <li>
             <a href="/car">Veículos</a>
+        </li>
+        <li>
+            <a href="/visit">Visitas</a>
         </li>
 
         <li>
