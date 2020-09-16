@@ -129,13 +129,16 @@ class Visit extends Controller{
             $visitant = (new Visitant())->find($result->visitant)->only(['name','cpf'])->execute()->toEntity();
 
             $car = (empty($result->car)) ? (new Car())->find($result->car)->only('board')->execute()->toEntity()->board : '-';
-
+            $finished = ($result->status == 0) ? '-' : $result->finished; 
+            $status = ($result->status == 0) ? 'Em andamento' : 'Finalizada'; 
+ 
             $date = [
                 $result->id,
                 $visitant->name,
                 $this->replaceCPF($visitant->cpf),
                 $result->started,
-                $result->finished,
+                $finished,
+                $status,
                 $result->reason,
                 $result->responsible,
                 $car

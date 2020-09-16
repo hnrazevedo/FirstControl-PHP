@@ -9,17 +9,16 @@
         </div>
 
         <div class="sub-title">
-            <h4>Sistema</h4>
+            <h4>Geral</h4>
         </div>
         <li>
             <a href="/dashboard">Dashboard</a>
         </li>
         
-
         <hr />
 
         <div class="sub-title">
-            <h4>Cadastros</h4>
+            <h4>Administração</h4>
         </div>
         <li>
             <a href="/admin/users">Usuários</a>
@@ -34,10 +33,22 @@
             <a href="/visit">Visitas</a>
         </li>
 
+        <hr />
+
+        <div class="sub-title">
+            <h4>Relatórios</h4>
+        </div>
+        <li>
+            <a href="#">...</a>
+        </li>  
+
+        <hr />
+
         <li>
             <a href="/logout">Sair</a>
         </li>     
     </ul>
+    <div class="col-sm-12 col-md-10 footer text-center">Versão {{ $system.version }}</div>
 </header>
 
 <script>

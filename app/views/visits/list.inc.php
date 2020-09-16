@@ -53,6 +53,7 @@
                 <th>CPF</th>
                 <th>Entrada</th>
                 <th>Saída</th>
+                <th>Status</th>
                 <th>Razão/Motivo</th>
                 <th>Responsável</th>
                 <th>Veículo</th>
