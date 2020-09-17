@@ -1,6 +1,6 @@
 <br />
 <div class="row">
-    <div class="col-xl-3 col col-sm-6 col">
+    <div class="col-xl-3 col col-sm-6 col mb-2">
         <div class="card bg-dark text-white h-100">
             <div class="card-body">
                 <h5 class="card-title">Andamento</h5>
@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div class="col-xl-3 col col-sm-6 col">
+    <div class="col-xl-3 col col-sm-6 col mb-2">
         <div class="card bg-dark text-white h-100">
             <div class="card-body">
                 <h5 class="card-title">Hoje</h5>
@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class="col-xl-3 col col-sm-6 col">
+    <div class="col-xl-3 col col-sm-6 col mb-2">
         <div class="card bg-dark text-white h-100">
             <div class="card-body">
                 <h5 class="card-title">Nesta semana</h5>
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="col-xl-3 col col-sm-6 col">
+    <div class="col-xl-3 col col-sm-6 col mb-2">
         <div class="card bg-dark text-white h-100">
             <div class="card-body">
                 <h5 class="card-title">Neste mês</h5>

@@ -9,6 +9,16 @@
         </div>
 
         <div class="sub-title">
+            <h4>Usuário</h4>
+        </div>
+        <li>
+            <a>{{ $user.name }}</a>
+            <a>{{ $router.name }}</a>
+        </li>
+
+        <hr />
+
+        <div class="sub-title">
             <h4>Geral</h4>
         </div>
         <li>
@@ -42,7 +52,7 @@
             <a href="#">...</a>
         </li>  
 
-        <hr />
+        <hr class="mb-0" />
 
         <li>
             <a href="/logout">Sair</a>

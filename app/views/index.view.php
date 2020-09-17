@@ -14,7 +14,7 @@
 
         <script src="{{ $system.uri }}/assets/addons/bootstrap/popper.min.js"></script>
     </head>
-    <body>
+    <body class="d-flex">
         <div class="row">
             <?= $this->include('global/header') ?>
             <main class="col-sm-12 col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">

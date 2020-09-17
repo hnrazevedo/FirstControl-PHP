@@ -7,6 +7,7 @@ use App\Engine\Util;
 try{
 
     $_SESSION['view']['data']['system'] = get_defined_constants()['SYSTEM']; 
+    $_SESSION['view']['data']['user'] = (array_key_exists('user',$_SESSION)) ? unserialize($_SESSION['user']) : null;
 
     Util::createTemp();
 
@@ -17,6 +18,10 @@ try{
             require_once($path. DIRECTORY_SEPARATOR .$routeFile);
         }
     }
+
+    Router::load();
+
+    $_SESSION['view']['data']['router'] = Router::current(); 
 
     Router::dispatch();
 
