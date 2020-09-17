@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Datamanager.git",
-                "reference": "803999aa466f1995f79698e95bbbe9b38962c8e6"
+                "reference": "2c321e519433d3dd1cd9770ec542b19a27f18764"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/803999aa466f1995f79698e95bbbe9b38962c8e6",
-                "reference": "803999aa466f1995f79698e95bbbe9b38962c8e6",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/2c321e519433d3dd1cd9770ec542b19a27f18764",
+                "reference": "2c321e519433d3dd1cd9770ec542b19a27f18764",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "Datamanager is a simple persistence abstraction component in the database.",
-            "time": "2020-09-10T22:33:37+00:00"
+            "time": "2020-09-17T14:52:30+00:00"
         },
         {
             "name": "hnrazevedo/filter",
@@ -87,12 +87,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "6c8c10ebad324662431c5d284e657680ad1d294e"
+                "reference": "f46f33de218313cacc946e32bd65fa02ff4167de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/6c8c10ebad324662431c5d284e657680ad1d294e",
-                "reference": "6c8c10ebad324662431c5d284e657680ad1d294e",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/f46f33de218313cacc946e32bd65fa02ff4167de",
+                "reference": "f46f33de218313cacc946e32bd65fa02ff4167de",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +120,7 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-09-17T14:24:34+00:00"
+            "time": "2020-09-17T14:49:23+00:00"
         },
         {
             "name": "hnrazevedo/validator",
@@ -166,12 +166,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "e4497e0cbf16dbaa9f14e5259b05f8fe387cb3b8"
+                "reference": "164285cf2caa272e159ed738186e4eec07431c67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/e4497e0cbf16dbaa9f14e5259b05f8fe387cb3b8",
-                "reference": "e4497e0cbf16dbaa9f14e5259b05f8fe387cb3b8",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/164285cf2caa272e159ed738186e4eec07431c67",
+                "reference": "164285cf2caa272e159ed738186e4eec07431c67",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-09-01T11:53:10+00:00"
+            "time": "2020-09-17T18:29:28+00:00"
         },
         {
             "name": "matthiasmullie/minify",
