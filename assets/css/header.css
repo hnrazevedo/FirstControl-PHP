@@ -109,6 +109,13 @@ header ul div.sub-title h4{
 }
 header ul div.sub-title.act h4{
     color:rgba(0,0,0,.9);
+    font-weight: 600;
+}
+
+header ul li a.act{
+    color:rgba(0,0,0,.7);
+    font-weight: 600;
+    pointer-events: none;
 }
 
 

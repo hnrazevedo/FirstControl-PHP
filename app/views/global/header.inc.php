@@ -13,43 +13,42 @@
         </div>
         <li>
             <a>{{ $user.name }}</a>
-            <a>{{ $router.name }}</a>
         </li>
 
         <hr />
 
-        <div class="sub-title">
+        <div class="sub-title <?= (in_array($router['name'],['dashboard'])) ? 'act' : null ?>">
             <h4>Geral</h4>
         </div>
         <li>
-            <a href="/dashboard">Dashboard</a>
+            <a href="/dashboard" <?= ($router['name']==='dashboard') ? 'class="act"' : null ?>>Dashboard</a>
         </li>
         
         <hr />
 
-        <div class="sub-title">
+        <div class="sub-title <?= (in_array($router['name'],['users','visitant','car','visit'])) ? 'act' : null ?>">
             <h4>Administração</h4>
         </div>
         <li>
-            <a href="/admin/users">Usuários</a>
+            <a href="/admin/users" <?= ($router['name']==='users') ? 'class="act"' : null ?>>Usuários</a>
         </li>  
         <li>
-            <a href="/visitants">Visitantes</a>
+            <a href="/visitants" <?= ($router['name']==='visitant') ? 'class="act"' : null ?>>Visitantes</a>
         </li>
         <li>
-            <a href="/car">Veículos</a>
+            <a href="/car" <?= ($router['name']==='car') ? 'class="act"' : null ?>>Veículos</a>
         </li>
         <li>
-            <a href="/visit">Visitas</a>
+            <a href="/visit" <?= ($router['name']==='visit') ? 'class="act"' : null ?>>Visitas</a>
         </li>
 
         <hr />
 
-        <div class="sub-title">
+        <div class="sub-title <?= (in_array($router['name'],['report'])) ? 'act' : null ?>">
             <h4>Relatórios</h4>
         </div>
         <li>
-            <a href="#">...</a>
+            <a href="#" <?= ($router['name']==='report') ? 'class="act"' : null ?>>...</a>
         </li>  
 
         <hr class="mb-0" />

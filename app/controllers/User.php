@@ -73,6 +73,7 @@ class User extends Controller{
             'title' => 'Dashboard',
             'pageID' => 1
         ];
+
         Viewer::create(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
