@@ -129,9 +129,7 @@ class Visitant extends Controller{
 
     public function viewDetails($id)
     {
-        $visitant = $this->entity->find($id)->where([
-            ['id','<>',1]
-        ])->execute()->toEntity();
+        $visitant = $this->entity->find($id)->execute()->toEntity();
         
         if(is_null($visitant)){
             throw new Exception('Visitant not found.',404);

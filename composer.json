@@ -29,8 +29,7 @@
             "App\\Helpers\\":"app/helpers"
         },
         "files":[
-            "app/config.php",
-            "app/app.php"
+            "app/bootstrap.php"
         ]
     }
 }
