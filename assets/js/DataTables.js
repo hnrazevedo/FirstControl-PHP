@@ -1,11 +1,9 @@
-import {DataTable} from "/../assets/addons/Simple-DataTables/datatable.js";
-
 "use strict";
 
 const DataTables = function(){
     return {
         tables:[],
-        start(){
+        init(){
             DataTables.initTables();
             DataTables.setEvents();
         },
@@ -51,7 +49,7 @@ const DataTables = function(){
             select.classList.add('dataTable');
             table.before(select);
     
-            var dataTable = new DataTable(table,{
+            var dataTable = new simpleDatatables.DataTable(table,{
                 scrollY:true,
                 perPageSelect: [1,2,10, 50, 100, 200],
                 sortable: true,
@@ -156,7 +154,7 @@ const DataTables = function(){
             return table;
         },
         async importFromURL(id,url){
-            DataTables.dataAdd(id, await window.Submitter.setUrl(url).execute(true));
+            DataTables.dataAdd(id, await Submitter.setUrl(url).execute(true));
         },
         getSelecteds(DataTables){
             var value = [];
@@ -230,5 +228,3 @@ const DataTables = function(){
         }
     }
 }();
-
-export default DataTables;

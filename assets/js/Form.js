@@ -2,7 +2,7 @@
 
 const Form = function(){
     return {
-        start(){
+        init(){
             Form.imageBurn();
 
             document.querySelectorAll('form[provider]').forEach((form, i) => {
@@ -248,5 +248,3 @@ const Form = function(){
 
     };
 }();
-
-export default Form;

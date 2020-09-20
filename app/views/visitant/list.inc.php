@@ -70,7 +70,7 @@
 
 window.addEventListener('load',function(){
     setTimeout(function(){
-        window.DataTables.importFromURL('table_list_visitants','/visitants/list');
+        DataTables.importFromURL('table_list_visitants','/visitants/list');
     },500);
 });
 

@@ -78,10 +78,10 @@
 
 <?= $this->include('../user/register.form') ?>
 
-<script type="module">
+<script>
 window.addEventListener('load',function(){
     setTimeout(function(){
-        window.DataTables.importFromURL('table_list_user','/admin/result/list/users');
+        DataTables.importFromURL('table_list_user','/admin/result/list/users');
     },500);
 });
 </script>

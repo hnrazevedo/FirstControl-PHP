@@ -69,7 +69,7 @@
 
 window.addEventListener('load',function(){
     setTimeout(function(){
-        window.DataTables.importFromURL('table_list_visits','/visit/list');
+        DataTables.importFromURL('table_list_visits','/visit/list');
     },500);
 });
 

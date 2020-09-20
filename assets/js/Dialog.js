@@ -3,7 +3,7 @@
 const Dialog =  function(){
     return {
         callback:null,
-        start(){
+        init(){
 
             if(document.querySelector('dialog') != null){
                 document.querySelectorAll('dialog').forEach(function(d,i){
@@ -95,5 +95,3 @@ const Dialog =  function(){
         }
     };
 }();
-
-export default Dialog;

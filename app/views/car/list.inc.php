@@ -67,7 +67,7 @@
 
 window.addEventListener('load',function(){
     setTimeout(function(){
-        window.DataTables.importFromURL('table_list_cars','/car/list');
+        DataTables.importFromURL('table_list_cars','/car/list');
     },500);
 });
 

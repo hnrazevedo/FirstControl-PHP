@@ -4,15 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <script src="{{ $system.uri }}/assets/js/main.js" type="module"></script>
-
-        <link href="{{ $system.uri }}/assets/css/main.css" rel="stylesheet" type="text/css">
-        <link href="{{ $system.uri }}/assets/css/dialog.css" rel="stylesheet" type="text/css">
-        <link href="{{ $system.uri }}/assets/css/forms.css" rel="stylesheet" type="text/css">
-
-        <link href="{{ $system.uri }}/assets/css/dashboard.css" rel="stylesheet" type="text/css">
-
-        <script src="{{ $system.uri }}/assets/addons/bootstrap/popper.min.js"></script>
+        <?= $this->include('global/styles') ?>
     </head>
     <body class="d-flex">
         <div class="row">
@@ -24,7 +16,6 @@
                 </div>
             </main>
         </div>
-        <link rel="stylesheet" href="{{ $system.uri }}/assets/addons/bootstrap/bootstrap.min.css">
-        <script src="{{ $system.uri }}/assets/addons/bootstrap/bootstrap.min.js"></script>
+        <?= $this->include('global/scripts') ?>
     </body>
 </html>

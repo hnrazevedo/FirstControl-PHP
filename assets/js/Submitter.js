@@ -257,5 +257,3 @@ const Submitter = function(){
         }
 	};
 }();
-
-export default Submitter;

@@ -1,47 +1,12 @@
 'use strict';
 
-import Dialog from "./Dialog.js";
-import Submitter from "./Submitter.js"; 
-import Form from "./Form.js";
-import DataTables from "./DataTables.js";
-
-/* JSmask */
-let JSmask = document.createElement('script');
-JSmask.setAttribute('src','http://localhost/assets/js/JSmask.js');
-JSmask.setAttribute('type','text/javascript');
-document.head.append(JSmask);
-
-/* JSvalidator */    
-let JSvalidator = document.createElement('script');
-JSvalidator.setAttribute('src','http://localhost/assets/js/JSvalidator.js');
-JSvalidator.setAttribute('type','text/javascript');
-document.head.append(JSvalidator);
-
-/* AOS */    
-let JSaos = document.createElement('script');
-JSaos.setAttribute('src','http://localhost/assets/addons/aos/aos.js');
-JSaos.setAttribute('type','text/javascript');
-document.head.append(JSaos);
-
-let CSSaos = document.createElement('script');
-CSSaos.setAttribute('src','http://localhost/assets/addons/aos/aos.css');
-CSSaos.setAttribute('rel','stylesheet');
-CSSaos.setAttribute('type','text/css');
-document.head.append(CSSaos);
-
-
-
 window.addEventListener('load',function(){
 
-    window.Form = Form;
-    window.Dialog = Dialog;
-    window.DataTables = DataTables;
-    window.Submitter = Submitter;
+    
 
-    Form.start();
-    Dialog.start();
-    DataTables.start();
-    AOS.init();
+    Form.init();
+    Dialog.init();
+    DataTables.init();
     
     requestValidateAll();
 
@@ -54,9 +19,9 @@ window.addEventListener('load',function(){
 
 function requestValidateAll(){
 
-    window.Validator.options({
-        alert : window.Dialog.popUp,
-        submitter : window.Submitter.work,
+    Validator.options({
+        alert : Dialog.popUp,
+        submitter : Submitter.work,
         return: false
     });
 

@@ -193,7 +193,7 @@ div.table .dataTables_wrapper .dataTables_paginate .paginate_button{
     transition:background .2s ease;
 }
 
-div.table .dt-buttons{
+div.table .dataTable-top{
     z-index:1;
     margin-top:7px;
 }

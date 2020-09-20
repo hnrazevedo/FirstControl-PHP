@@ -5,7 +5,7 @@ const Validator = function(){
         $forms:[],
         $options:[],
         $started:false,
-        start($options){
+        init($options){
             Validator.options($options);
         },
         options($options){
@@ -31,7 +31,7 @@ const Validator = function(){
         },
         load(f,rules){
             if(!Validator.$started){
-                Validator.start();
+                Validator.init();
             }
 
             let id = (f.getAttribute('id') != null) ? f.getAttribute('id') : Validator.$forms.length;
