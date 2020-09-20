@@ -64,7 +64,8 @@ Class Util{
 
         $scanDir = scandir($path);
 
-        array_shift($scanDir);
+        $scanDir = (is_array($scanDir)) ? $scanDir : [];
+
         array_shift($scanDir);
 
         $zip = new ZipArchive();
