@@ -61,7 +61,9 @@ class Logger implements LoggerInterface{
         $filename = strtolower($this->replace($this->config['logger.filename'],$context));
         $path = SYSTEM['basepath'].str_replace(['\\','/'],DIRECTORY_SEPARATOR,$path);
 
-        @mkdir($path,0777,true);
+        if(@mkdir($path,0777,true) === false){
+            throw new \RuntimeException('The directory '.$path.' could not be created.');
+        }
 
         file_put_contents($path.$filename,'['.$level.']['.$_SERVER['REMOTE_ADDR'].']['.date('d/m/Y h:m:s').']['.SYSTEM['uri'].'] [Message] '.$message . ' [Context] '.json_encode($context) ."\n",FILE_APPEND);
     }

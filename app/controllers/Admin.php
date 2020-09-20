@@ -9,10 +9,9 @@ use App\Model\User as Model;
 use App\Engine\Util;
 use Exception;
 
-
 class Admin extends Controller{
 
-    private ?Model $entity;
+    private Model $entity;
 
     public function __construct()
     {

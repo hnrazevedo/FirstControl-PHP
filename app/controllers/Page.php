@@ -9,8 +9,8 @@ use Exception;
 
 class Page extends Controller{
 
-    private ?Model $entity;
-    private ?Authenticator $auth;
+    private Model $entity;
+    private Authenticator $auth;
 
     public function __construct()
     {

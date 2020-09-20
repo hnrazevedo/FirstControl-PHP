@@ -10,7 +10,6 @@ use App\Model\Visit as Visit;
 use App\Engine\Util;
 use Exception;
 
-
 class Car extends Controller{
 
     private Model $entity;
@@ -100,7 +99,7 @@ class Car extends Controller{
             ]);
 
         }catch(Exception $er){
-            @unlink($tmpPhoto);
+            Util::delete($tmpPhoto);
             throw $er;
         }
         

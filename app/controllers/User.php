@@ -7,9 +7,8 @@ use HnrAzevedo\Viewer\Viewer;
 use App\Model\User as Model;
 use Exception;
 
-
 class User extends Controller{
-    private ?Model $entity;
+    private Model $entity;
 
     public function __construct()
     {

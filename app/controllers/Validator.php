@@ -6,7 +6,6 @@ use App\Engine\Util;
 use Exception;
 use HnrAzevedo\Validator\Validator as Sys_Validator;
 
-
 class Validator{
 
     public function work()

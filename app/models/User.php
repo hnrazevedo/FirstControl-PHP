@@ -6,6 +6,8 @@ use HnrAzevedo\Datamanager\Model as Entity;
 
 Class User extends Entity{
 
+    private array $fields;
+
     public function __construct(){
         
         $this->fields = [

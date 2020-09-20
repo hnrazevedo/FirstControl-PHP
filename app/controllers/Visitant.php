@@ -13,7 +13,7 @@ use Exception;
 class Visitant extends Controller{
     use Mask, Validate;
 
-    private ?Model $entity;
+    private Model $entity;
 
     public function __construct()
     {
@@ -104,7 +104,7 @@ class Visitant extends Controller{
             ]);
    
         }catch(Exception $er){
-            @unlink($tmpPhoto);
+            Util::delete($tmpPhoto);
             throw $er;
         }
     }

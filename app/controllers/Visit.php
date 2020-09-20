@@ -17,7 +17,7 @@ use Exception;
 class Visit extends Controller{
     use Mask;
 
-    private ?Model $entity;
+    private Model $entity;
 
     public function __construct()
     {
@@ -106,8 +106,8 @@ class Visit extends Controller{
             
         }catch(Exception $er){
             
-            @unlink($tmpPhoto);
-            @unlink($tmpPhotoCar);
+            Util::delete($tmpPhoto);
+            Util::delete($tmpPhotoCar);
 
             throw $er;
           
