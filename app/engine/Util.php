@@ -13,25 +13,20 @@ Class Util{
 
     public static function delete($path): bool
     {
-		if(!file_exists($path)){
-            return false;
-        }   
-
         if(is_dir($path)){
 
             $dir = dir($path.'/');
 
             while($file = $dir->read()){
 
-                if($file !== '.' && $file !== '..'){
+                if(!in_array($file,['.','\\.','..'])){
 
                     if(is_dir($path.DIRECTORY_SEPARATOR.$file)){
                         self::delete($path.DIRECTORY_SEPARATOR.$file);
                     }
 
+                    self::realUnlink($path.DIRECTORY_SEPARATOR.$file);
                 }
-
-            	@unlink($path.DIRECTORY_SEPARATOR.$file);
             }
 
             $dir -> close();
@@ -40,10 +35,17 @@ Class Util{
 
         }
         
-        unlink($path);
+        self::realUnlink($path);
         return true;
 
-	}
+    }
+    
+    private static function realUnlink(string $path)
+    {
+        if (@unlink($path) === false) {
+            throw new \RuntimeException('The '.$path.' could not be remove.');
+        }
+    }
 
     public static function compressFolder(string $path, string $password)
     {
@@ -83,7 +85,9 @@ Class Util{
     public static function createTemp()
     {
         if(!file_exists(SYSTEM['temp'])){
-            @mkdir(SYSTEM['temp']);
+            if (@mkdir(SYSTEM['temp']) === false) {
+                throw new \RuntimeException('The directory '.SYSTEM['temp'].' could not be created.');
+            }
         }
     }
 
