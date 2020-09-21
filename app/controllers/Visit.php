@@ -5,9 +5,9 @@ namespace App\Controller;
 use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\Visit as Model;
-use App\Model\Visitant as Visitant;
-use App\Model\Car as Car;
-use App\Model\User as User;
+use App\Model\Visitant;
+use App\Model\Car;
+use App\Model\User;
 use App\Helpers\Mask;
 use App\Engine\Util;
 use App\Controller\Car as CarController;
@@ -35,7 +35,6 @@ class Visit extends Controller{
     public function visitRegister()
     {
         $data = json_decode(Util::getData()['POST']['data'],true);
-        $files = Util::getData()['FILES'];
 
         $visitantController = new VisitantController();
         $carController = new CarController();

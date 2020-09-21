@@ -11,9 +11,9 @@ use HnrAzevedo\Datamanager\Model as Entity;
   * @property string $email 
   * @property string $password 
   * @property string $code 
-  * @property date $birth 
-  * @property datetime $register 
-  * @property datetime $lastaccess
+  * @property string $birth 
+  * @property string $register 
+  * @property string $lastaccess
   * @property int $status
   * @property int $type
   */ 

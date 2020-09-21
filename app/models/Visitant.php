@@ -9,11 +9,11 @@ use HnrAzevedo\Datamanager\Model as Entity;
   * @property string $name 
   * @property string $cpf
   * @property string $rg
-  * @property date $birth
-  * @property datetime $lastvisit
-  * @property datetime $register
+  * @property string $birth
+  * @property string $lastvisit
+  * @property string $register
   * @property string $company
-  * @property string $phone
+  * @property string $photo
   * @property string $email
   * @property string $phone
   */ 

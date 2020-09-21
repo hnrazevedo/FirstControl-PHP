@@ -7,8 +7,8 @@ use HnrAzevedo\Datamanager\Model as Entity;
 /** 
   * @property int $id 
   * @property int $visitant 
-  * @property datetime $started
-  * @property datetime $finished
+  * @property string $started
+  * @property string $finished
   * @property string $reason
   * @property string $lastvisit
   * @property string $responsible

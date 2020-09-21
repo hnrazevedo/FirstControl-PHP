@@ -9,7 +9,7 @@ use HnrAzevedo\Datamanager\Model as Entity;
   * @property string $name 
   * @property string $tag 
   * @property string $path 
-  * @property datetime $register
+  * @property string $register
   */ 
 Class Page extends Entity{
 
