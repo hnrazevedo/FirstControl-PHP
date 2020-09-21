@@ -8,4 +8,5 @@
 <script src="{{ $system.uri }}/assets/js/JSmask.js"></script>
 <!--<script src="https://cdn.jsdelivr.net/gh/hnrazevedo/JSvalidator/JSvalidator.js" type="text/javascript"></script>-->
 <script src="{{ $system.uri }}/assets/js/JSvalidator.js"></script>
+<script src="{{ $system.uri }}/assets/js/Cam.js"></script>
 <script src="{{ $system.uri }}/assets/js/main.js"></script>
