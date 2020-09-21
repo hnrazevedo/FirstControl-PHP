@@ -44,45 +44,13 @@ class Visit extends Controller{
         $tmpPhotoCar = null;
         try{
 
-            $visitant = (new Visitant())->find()->where([
-                'cpf','=',str_replace(['.','-'],'',$data['new_cpf'])
-            ])->execute()->toEntity();
+            $visitantRegister = $visitantController->checkNewRegister($data,$_FILES);
+            $visitant = $visitantRegister['visitant'];
+            $tmpPhoto = $visitantRegister['tmpPhoto'];
 
-            if(is_null($visitant)){
-                $visitant = $visitantController->persistEntity($data);
-
-                $photo = 'default.svg';
-
-                if($files['new_photo']['error'] === 0){
-                    $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.str_replace(['.','-'],'',$data['new_cpf']).'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
-                    move_uploaded_file($files['new_photo']['tmp_name'],$tmpPhoto);
-                    $photo = str_replace(['.','-'],'',$data['new_cpf']).'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
-                }
-    
-                $visitant->photo = $photo;
-    
-                $visitant->save();
-            }
-
-            $car = (new Car())->find()->where([
-                'board','=',$data['new_board']
-            ])->execute()->toEntity();
-
-            if(is_null($car)){
-                $car = $carController->persistEntity(array_merge($data,[ 'new_visitant' => $visitant->id ]));
-
-                $photo = 'default.svg';
-
-                if($files['new_carphoto']['error'] === 0){
-                    $tmpPhotoCar = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'car'.DIRECTORY_SEPARATOR.$data['new_board'].'.'.pathinfo($files['new_carphoto']['name'], PATHINFO_EXTENSION);
-                    move_uploaded_file($files['new_carphoto']['tmp_name'],$tmpPhotoCar);
-                    $photo = $data['new_board'].'.'.pathinfo($files['new_carphoto']['name'], PATHINFO_EXTENSION);
-                }
-    
-                $car->photo = $photo;
-    
-                $car->save();
-            }
+            $carRegister = $carController->checkNewRegister($data,$_FILES,$visitant->id);
+            $car = $carRegister['car'];
+            $tmpPhotoCar = $carRegister['tmpPhoto'];
 
             $this->entity->user = (unserialize($_SESSION['user']))->id;
             $this->entity->visitant = $visitant->id;
@@ -129,7 +97,9 @@ class Visit extends Controller{
             $visitant = (new Visitant())->find($result->visitant)->only(['name','cpf'])->execute()->toEntity();
 
             $car = (empty($result->car)) ? (new Car())->find($result->car)->only('board')->execute()->toEntity()->board : '-';
+            
             $finished = ($result->status == 0) ? '-' : $result->finished; 
+            
             $status = ($result->status == 0) ? 'Em andamento' : 'Finalizada'; 
  
             $date = [

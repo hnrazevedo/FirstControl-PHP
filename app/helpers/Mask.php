@@ -4,6 +4,16 @@ namespace App\Helpers;
 
 trait Mask{
 
+    public function replace(string $field, string $value): string
+    {
+        switch($field){
+            case 'cpf': return $this->replaceCPF($value);
+            case 'rg': return $this->replaceRG($value);
+            case 'phone': return $this->replaceCellPhone($value);
+            default: return $value;
+        }
+    }
+
     public function replaceCPF(string $cpf): string
     {
         return 

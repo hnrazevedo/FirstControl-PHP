@@ -103,8 +103,32 @@ class Car extends Controller{
             throw $er;
         }
         
-        
-        
+    }
+
+    public function checkNewRegister(array $data, array $files, int $visitantID): array
+    {
+        $tmpPhoto = '';
+        $car = $this->entity->find()->where([
+            'board','=',$data['new_board']
+        ])->execute()->toEntity();
+
+        if(is_null($car)){
+            $car = $this->persistEntity(array_merge($data,[ 'new_visitant' => $visitantID ]));
+
+            $photo = 'default.svg';
+
+            if($files['new_carphoto']['error'] === 0){
+                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'car'.DIRECTORY_SEPARATOR.$data['new_board'].'.'.pathinfo($files['new_carphoto']['name'], PATHINFO_EXTENSION);
+                move_uploaded_file($files['new_carphoto']['tmp_name'],$tmpPhoto);
+                $photo = $data['new_board'].'.'.pathinfo($files['new_carphoto']['name'], PATHINFO_EXTENSION);
+            }
+
+            $car->photo = $photo;
+
+            $car->save();
+        }
+
+        return ['visitant' => $car, 'tmpPhoto' => $tmpPhoto];
     }
 
     public function persistEntity(array $data): Model

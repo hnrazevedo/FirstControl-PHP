@@ -152,16 +152,24 @@ class Admin extends Controller{
 
         $users = (is_array($result)) ? $result : [$result];
 
-        $method = ($role == 'block') ? 'bloqueados' : '';
-        $method = ($role == 'live') ? 'liberados' : $method;
-        $method = ($role == 'remove') ? 'removidos' : $method;
-
+        $method = '';
+        
         foreach($users as $user){
-            if($role != 'remove'){
-                $user->status = ($role== 'block') ? 0 : 1;
-                $user->save();
-            }else{
-                $user->remove(true);
+            switch($role){
+                case 'block':
+                    $user->status = 0;
+                    $user->save();
+                    $method = 'bloqueados';
+                break;
+                case 'live':
+                    $user->status = 1;
+                    $user->save();
+                    $method = 'liberados';
+                break;
+                default:
+                    $user->remove(true);
+                    $method = 'removidos';
+                break;
             }
         }
 

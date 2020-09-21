@@ -46,20 +46,7 @@ class Visitant extends Controller{
             foreach($result->getData() as $field => $data){
                 
                 if($result->$field != null){
-                    switch($field){
-                        case 'cpf':
-                            $date[] = $this->replaceCPF($result->$field);
-                        break;
-                        case 'rg':
-                            $date[] = $this->replaceRG($result->$field);
-                        break;
-                        case 'phone':
-                            $date[] = $this->replaceCellPhone($result->$field);
-                        break;
-                        default:
-                            $date[] = $result->$field;
-                        break;
-                    }
+                    $date[] = $this->replace($field,$result->$field);
                 }
 
             }
@@ -107,6 +94,32 @@ class Visitant extends Controller{
             Util::delete($tmpPhoto);
             throw $er;
         }
+    }
+
+    public function checkNewRegister(array $data, array $files): array
+    {
+        $tmpPhoto = '';
+        $visitant = $this->entity->find()->where([
+            'cpf','=',str_replace(['.','-'],'',$data['new_cpf'])
+        ])->execute()->toEntity();
+
+        if(is_null($visitant)){
+            $visitant = $this->persistEntity($data);
+
+            $photo = 'default.svg';
+
+            if($files['new_photo']['error'] === 0){
+                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.str_replace(['.','-'],'',$data['new_cpf']).'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
+                move_uploaded_file($files['new_photo']['tmp_name'],$tmpPhoto);
+                $photo = str_replace(['.','-'],'',$data['new_cpf']).'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
+            }
+
+            $visitant->photo = $photo;
+
+            $visitant->save();
+        }
+        
+        return ['visitant' => $visitant, 'tmpPhoto' => $tmpPhoto];
     }
 
     public function persistEntity(array $data): Model
