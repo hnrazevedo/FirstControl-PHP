@@ -5,8 +5,8 @@ namespace App\Controller;
 use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\Car as Model;
-use App\Model\Visitant;
-use App\Model\Visit;
+use App\Model\Visitant as VisitantModel;
+use App\Model\Visit as VisitModel;
 use App\Engine\Util;
 use Exception;
 
@@ -47,7 +47,7 @@ class Car extends Controller{
                 if($result->$field != null){
                     switch($field){
                         case 'driver':
-                            $date[] = (new Visitant())->find($result->$field)->only('name')->execute()->toEntity()->name;
+                            $date[] = (new VisitantModel())->find($result->$field)->only('name')->execute()->toEntity()->name;
                         break;
                         default:
                             $date[] = $result->$field;
@@ -69,7 +69,7 @@ class Car extends Controller{
 
         try{
 
-            $visitant = (new Visitant())->find()->only(['id','name'])->where([
+            $visitant = (new VisitantModel())->find()->only(['id','name'])->where([
                 'cpf','=',str_replace(['.','-'],'',$data['new_cpf'])
             ])->execute()->toEntity();
     
@@ -158,14 +158,14 @@ class Car extends Controller{
             throw new Exception('Car not found.', 404);
         }
 
-        $visit = new Visit();
+        $visit = new VisitModel();
 
         $lastvisit = $visit->find()->only(['started','finished'])->where([
             'visitant','=',$car->driver
         ])->orderBy(' started DESC ')
         ->limit(1)->execute()->toEntity();
 
-        $car->driver = (new Visitant())->find($car->driver)->only('name')->execute()->toEntity()->name;
+        $car->driver = (new VisitantModel())->find($car->driver)->only('name')->execute()->toEntity()->name;
 
         $data = [
             'title' => 'Registros de Veículos',
