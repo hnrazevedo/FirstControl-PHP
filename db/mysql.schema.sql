@@ -1,3 +1,10 @@
+CREATE TABLE IF NOT EXISTS config(
+    id BIGINT AUTO_INCREMENT NOT NULL,
+    resume VARCHAR(50) NOT NULL,
+    value VARCHAR(100) NOT NULL,
+    PRIMARY KEY(id)
+);
+
 CREATE TABLE IF NOT EXISTS user(
     id BIGINT AUTO_INCREMENT NOT NULL,
     name VARCHAR(50) NOT NULL,
@@ -86,6 +93,8 @@ ALTER TABLE authorization ADD FOREIGN KEY (user) REFERENCES user(id);
 ALTER TABLE authorization ADD FOREIGN KEY (page) REFERENCES page(id);
 ALTER TABLE authorization ADD FOREIGN KEY (form) REFERENCES form(id);
 
+
+INSERT INTO config(resume,value) VALUES('Tipo de impressora','LaserJet');
 
 INSERT INTO user(name, username, email, password, code, birth, register, lastaccess, status, type)
 VALUES('admin','admin','admin@admin.com','$2y$10$X2CBK8QAYMG1dleYp4dt8.gvSNpUVLmWSDsRAxjdfTUKrCjyNXih2', '1', '2000-00-00','2000-00-00','2000-00-00',1,1);

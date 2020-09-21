@@ -7,8 +7,8 @@ use Exception;
 
 class Mail{
     
-    private ?Phpmailer $phpmail = null;
-    private ?Exception $fail = null;
+    private Phpmailer $phpmail;
+    private Exception $fail;
 
     public function __construct($option)
     {
@@ -67,33 +67,19 @@ class Mail{
 
     public function addTo(string $option, string $address, ?string $name = null): Mail
     {
-        switch($option){
-            case 'from':
-                $this->phpmail->setFrom($address, $name);
-                break;
-
-            case 'address':
-                $this->phpmail->addAddress($address, $name);
-                break;
-
-            case 'replyto':
-                $this->phpmail->addReplyTo($address, $name);
-                break;
-
-            case 'cc':
-                $this->phpmail->addCC($address, $name);
-                break;
-
-            case 'bcc':
-                $this->phpmail->addBCC($address, $name);
-                break;
+        switch(strtolower($option)){
+            case 'from':$this->phpmail->setFrom($address, $name);break;
+            case 'address':$this->phpmail->addAddress($address, $name);break;
+            case 'replyto':$this->phpmail->addReplyTo($address, $name);break;
+            case 'cc':$this->phpmail->addCC($address, $name);break;
+            case 'bcc':$this->phpmail->addBCC($address, $name);break;
         }
         return $this;
     }
 
     public function fail(): bool
     {
-        return (!is_null($this->fail));
+        return (!isset($this->fail));
     }
 
     public function getError(): Exception

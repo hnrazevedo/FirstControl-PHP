@@ -8,7 +8,7 @@
             if(option.selected === true){
                 $sel++;
                 if($sel > 1){
-                    window.Dialog.popUp('Selecione apenas um visite.');
+                    window.Dialog.popUp('Selecione apenas um visita.');
                     $id = null;
                     return false;
                 }

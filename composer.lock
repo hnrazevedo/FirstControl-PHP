@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6ca1bac4f9d85089fe0045730d7cd45c",
+    "content-hash": "95308244f25892e5f7597ca574721f4f",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Datamanager.git",
-                "reference": "2c321e519433d3dd1cd9770ec542b19a27f18764"
+                "reference": "7315bb8cd72148fa66a52786249d408f43feebc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/2c321e519433d3dd1cd9770ec542b19a27f18764",
-                "reference": "2c321e519433d3dd1cd9770ec542b19a27f18764",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/7315bb8cd72148fa66a52786249d408f43feebc7",
+                "reference": "7315bb8cd72148fa66a52786249d408f43feebc7",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "Datamanager is a simple persistence abstraction component in the database.",
-            "time": "2020-09-17T14:52:30+00:00"
+            "time": "2020-09-21T17:00:08+00:00"
         },
         {
             "name": "hnrazevedo/filter",
@@ -87,12 +87,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "9ca13ff6f23422edda6226cfc1b5b60feec84683"
+                "reference": "93bd005671c826825253041a7d9f8fdab40649a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/9ca13ff6f23422edda6226cfc1b5b60feec84683",
-                "reference": "9ca13ff6f23422edda6226cfc1b5b60feec84683",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/93bd005671c826825253041a7d9f8fdab40649a3",
+                "reference": "93bd005671c826825253041a7d9f8fdab40649a3",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +120,7 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-09-21T02:07:11+00:00"
+            "time": "2020-09-21T12:03:14+00:00"
         },
         {
             "name": "hnrazevedo/validator",
@@ -166,12 +166,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "b1e4868237ee1276794e70edcd97b871920218c9"
+                "reference": "e0f856155989f0a810f1b0c4b18635c0cdf60e8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/b1e4868237ee1276794e70edcd97b871920218c9",
-                "reference": "b1e4868237ee1276794e70edcd97b871920218c9",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/e0f856155989f0a810f1b0c4b18635c0cdf60e8b",
+                "reference": "e0f856155989f0a810f1b0c4b18635c0cdf60e8b",
                 "shasum": ""
             },
             "require": {
@@ -195,116 +195,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-09-21T11:28:28+00:00"
-        },
-        {
-            "name": "matthiasmullie/minify",
-            "version": "1.3.63",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/matthiasmullie/minify.git",
-                "reference": "9ba1b459828adc13430f4dd6c49dae4950dc4117"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/9ba1b459828adc13430f4dd6c49dae4950dc4117",
-                "reference": "9ba1b459828adc13430f4dd6c49dae4950dc4117",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pcre": "*",
-                "matthiasmullie/path-converter": "~1.1",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "~2.0",
-                "matthiasmullie/scrapbook": "~1.0",
-                "phpunit/phpunit": "~4.8"
-            },
-            "suggest": {
-                "psr/cache-implementation": "Cache implementation to use with Minify::cache"
-            },
-            "bin": [
-                "bin/minifycss",
-                "bin/minifyjs"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MatthiasMullie\\Minify\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matthias Mullie",
-                    "email": "minify@mullie.eu",
-                    "homepage": "http://www.mullie.eu",
-                    "role": "Developer"
-                }
-            ],
-            "description": "CSS & JavaScript minifier, in PHP. Removes whitespace, strips comments, combines files (incl. @import statements and small assets in CSS files), and optimizes/shortens a few common programming patterns.",
-            "homepage": "http://www.minifier.org",
-            "keywords": [
-                "JS",
-                "css",
-                "javascript",
-                "minifier",
-                "minify"
-            ],
-            "time": "2020-01-21T20:21:08+00:00"
-        },
-        {
-            "name": "matthiasmullie/path-converter",
-            "version": "1.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/matthiasmullie/path-converter.git",
-                "reference": "e7d13b2c7e2f2268e1424aaed02085518afa02d9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/matthiasmullie/path-converter/zipball/e7d13b2c7e2f2268e1424aaed02085518afa02d9",
-                "reference": "e7d13b2c7e2f2268e1424aaed02085518afa02d9",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pcre": "*",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MatthiasMullie\\PathConverter\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matthias Mullie",
-                    "email": "pathconverter@mullie.eu",
-                    "homepage": "http://www.mullie.eu",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Relative path converter",
-            "homepage": "http://github.com/matthiasmullie/path-converter",
-            "keywords": [
-                "converter",
-                "path",
-                "paths",
-                "relative"
-            ],
-            "time": "2019-02-05T23:41:09+00:00"
+            "time": "2020-09-21T11:57:12+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
