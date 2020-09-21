@@ -1,5 +1,5 @@
 <!--<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>-->
-<script src="{{ $system.uri }}/assets/vendor/Simple-DataTables/simple-datatables.js"></script>
+<script src="{{ $system.uri }}/assets/addons/Simple-DataTables/simple-datatables.js"></script>
 <script src="{{ $system.uri }}/assets/js/Dialog.js"></script>
 <script src="{{ $system.uri }}/assets/js/Submitter.js"></script>
 <script src="{{ $system.uri }}/assets/js/Form.js"></script>
