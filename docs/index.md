@@ -1,37 +1,9 @@
-## Welcome to GitHub Pages
+# FirstControl-PHP @HnrAzevedo
 
-You can use the [editor on GitHub](https://github.com/hnrazevedo/FirstControl-PHP/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/hnrazevedo/FirstControl-PHP/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+[![Maintainer](https://img.shields.io/badge/maintainer-@hnrazevedo-blue?style=flat-square)](https://github.com/hnrazevedo)
+[![Latest Version](https://img.shields.io/github/v/tag/hnrazevedo/FirstControl-PHP?label=version&style=flat-square)](Release)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/hnrazevedo/FirstControl-PHP?style=flat-square)](https://scrutinizer-ci.com/g/hnrazevedo/FirstControl-PHP/?branch=master)
+[![Build Status](https://img.shields.io/scrutinizer/build/g/hnrazevedo/FirstControl-PHP?style=flat-square)](https://scrutinizer-ci.com/g/hnrazevedo/FirstControl-PHP/build-status/master)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/hnrazevedo/FirstControl-PHP?style=flat-square)](https://packagist.org/packages/hnrazevedo/FirstControl-PHP)
+[![Total Downloads](https://img.shields.io/packagist/dt/hnrazevedo/FirstControl-PHP?style=flat-square)](https://packagist.org/packages/hnrazevedo/FirstControl-PHP)

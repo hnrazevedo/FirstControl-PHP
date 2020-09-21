@@ -87,12 +87,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "f46f33de218313cacc946e32bd65fa02ff4167de"
+                "reference": "9ca13ff6f23422edda6226cfc1b5b60feec84683"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/f46f33de218313cacc946e32bd65fa02ff4167de",
-                "reference": "f46f33de218313cacc946e32bd65fa02ff4167de",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/9ca13ff6f23422edda6226cfc1b5b60feec84683",
+                "reference": "9ca13ff6f23422edda6226cfc1b5b60feec84683",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +120,7 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-09-17T14:49:23+00:00"
+            "time": "2020-09-21T02:07:11+00:00"
         },
         {
             "name": "hnrazevedo/validator",
@@ -166,12 +166,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "164285cf2caa272e159ed738186e4eec07431c67"
+                "reference": "b1e4868237ee1276794e70edcd97b871920218c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/164285cf2caa272e159ed738186e4eec07431c67",
-                "reference": "164285cf2caa272e159ed738186e4eec07431c67",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/b1e4868237ee1276794e70edcd97b871920218c9",
+                "reference": "b1e4868237ee1276794e70edcd97b871920218c9",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-09-17T18:29:28+00:00"
+            "time": "2020-09-21T11:28:28+00:00"
         },
         {
             "name": "matthiasmullie/minify",
