@@ -70,7 +70,8 @@ input::placeholder{
 }
 /*---------------------------------------------------- */
 /* Labels */
-form input + label{
+form input + label,
+form select + label{
     position: absolute;
     top:2.6em;
     left:1.65em;
@@ -83,7 +84,8 @@ form input + label{
 }
 form input[type="file"] + label,
 form input:focus + label,
-form input:not([value=""]) + label{
+form input:not([value=""]) + label,
+form select + label{
     color:rgb(66,133,244);
     transform: translate(-.9em,-2em) scale(.9);
     transition: all .5s ease;
@@ -113,6 +115,7 @@ form input[type="text"].length,
 form input[type="password"].length{
     padding-right: 5em !important;
 }
+form select,
 form input[type="text"],
 form input[type="password"],
 form textarea{

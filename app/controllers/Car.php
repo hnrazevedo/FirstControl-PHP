@@ -29,7 +29,9 @@ class Car extends Controller{
 
     public function listCars()
     {
-        $cars = $this->entity->find()->execute()->toEntity();
+        $cars = $this->entity->find()->where([
+            ['id','<>',1]
+        ])->execute()->toEntity();
 
         $cars = (is_array($cars)) ? $cars : [$cars];
 

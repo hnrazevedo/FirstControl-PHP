@@ -4,8 +4,7 @@ namespace App\Controller;
 
 use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
-use App\Model\Car as Model;
-use App\Engine\Util;
+use App\Model\Config as Model;
 use Exception;
 
 class Config extends Controller{
@@ -20,6 +19,7 @@ class Config extends Controller{
     public function viewPage()
     {
         $data = [
+            'configs' => $this->listConfig(),
             'title' => 'Configurações'
         ];
         Viewer::create(SYSTEM['basepath'].'app/views/config/')->render('index',array_merge($data, $_SESSION['view']['data']));
@@ -44,7 +44,21 @@ class Config extends Controller{
             $return[] = array_values($date);
         }
 
-        echo json_encode($return);
+        return $return;
+    }
+
+
+    public function update($id, $value)
+    {
+        $config = $this->entity->find($id)->execute()->toEntity();
+        $config->value = $value;
+        $config->save();
+        // Não é exibido para o usuário
+        echo json_encode([
+            'success' => [
+                'message' => 'Atualizado com sucesso!'
+            ]
+        ]);
     }
 
 }

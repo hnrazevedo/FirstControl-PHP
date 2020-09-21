@@ -51,11 +51,10 @@
             <a href="#" <?= ($router['name']==='report') ? 'class="act"' : null ?>>...</a>
         </li>  
 
-        <div class="sub-title <?= (in_array($router['name'],['config'])) ? 'act' : null ?>">
-            <h4>Configurações</h4>
-        </div>
+        <hr class="mb-0" />
+        
         <li>
-            <a href="/config" <?= ($router['name']==='config') ? 'class="act"' : null ?>>Geral</a>
+            <a href="/config" <?= ($router['name']==='config') ? 'class="act"' : null ?>>Configurações</a>
         </li>  
 
         <hr class="mb-0" />

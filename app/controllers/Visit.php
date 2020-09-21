@@ -84,7 +84,9 @@ class Visit extends Controller{
 
     public function listVisits()
     {
-        $visits = $this->entity->find()->execute()->toEntity();
+        $visits = $this->entity->find()->where([
+            ['id','<>',1]
+        ])->execute()->toEntity();
 
         $visits = (is_array($visits)) ? $visits : [$visits];
 

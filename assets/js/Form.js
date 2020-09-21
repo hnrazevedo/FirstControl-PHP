@@ -92,20 +92,7 @@ const Form = function(){
                     return true;
                 }
     
-                var div = document.createElement('div');
-                div.classList.add('select-data');
-                div.innerHTML = '<ul></ul>';
-                div.setAttribute('select-id',select.getAttribute('id'));
-    
-                select.nextSibling.after(div);
-                select.getAttribute('id', ((typeof select.getAttribute('id')) == 'undefined') ? select.getAttribute('name') : select.getAttribute('id'));
-                var ul = select.nextSibling.nextSibling.querySelector('ul');
-    
                 select.querySelector('[value="'+select.getAttribute('value')+'"]').setAttribute('selected',true);
-    
-                select.querySelectorAll('option').forEach((option, o) => {
-                    ul.innerHTML = ul.innerHTML + '<li><a class="select_data" select-value="'+option.getAttribute('value')+'" select-id="'+select.getAttribute('id')+'">'+option.innerHTML+'</a></li>';
-                });
             });
 
             Form.eventInputs();

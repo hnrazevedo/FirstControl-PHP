@@ -1,7 +1,9 @@
 @import "fonts.css";
 
 
-
+div{
+    position: relative;
+}
 
 body:not(.loaded)::after{
     content:url('/../assets/img/icon.loading.svg') !important;
