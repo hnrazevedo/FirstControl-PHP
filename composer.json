@@ -14,7 +14,8 @@
         "phpmailer/phpmailer": "~6.0",
         "hnrazevedo/datamanager": "dev-master",
         "hnrazevedo/router": "dev-master",
-        "hnrazevedo/viewer": "dev-master"
+        "hnrazevedo/viewer": "dev-master",
+        "psr/log": "^1.1@dev"
     },
     "autoload": {
         "psr-4": {

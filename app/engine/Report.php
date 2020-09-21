@@ -8,7 +8,7 @@ use App\Engine\Util as Util;
 
 Class Report{
     private static $instance;
-    private ?Exception $exception;
+    private Exception $exception;
 
     public function __construct(Exception $er)
     {

@@ -61,7 +61,7 @@ class Admin extends Controller{
 
         $user = $user->toEntity();
 
-        if($user->type === '1'){
+        if($user->type === 1){
             throw new Exception('User is admin.<br>Update not allowed.');
         }
 

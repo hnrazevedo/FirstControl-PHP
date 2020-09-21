@@ -5,9 +5,9 @@ namespace App\Controller;
 use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\Visit as Model;
-use App\Model\Visitant;
-use App\Model\Car;
-use App\Model\User;
+use App\Model\Visitant as VisitantModel;
+use App\Model\Car as CarModel;
+use App\Model\User as UserModel;
 use App\Helpers\Mask;
 use App\Engine\Util;
 use App\Controller\Car as CarController;
@@ -95,9 +95,9 @@ class Visit extends Controller{
 
         $return = [];
         foreach($visits as $visit => $result){
-            $visitant = (new Visitant())->find($result->visitant)->only(['name','cpf'])->execute()->toEntity();
+            $visitant = (new VisitantModel())->find($result->visitant)->only(['name','cpf'])->execute()->toEntity();
 
-            $car = (empty($result->car)) ? (new Car())->find($result->car)->only('board')->execute()->toEntity()->board : '-';
+            $car = (empty($result->car)) ? (new CarModel())->find($result->car)->only('board')->execute()->toEntity()->board : '-';
             
             $finished = ($result->status == 0) ? '-' : $result->finished; 
             
@@ -129,8 +129,8 @@ class Visit extends Controller{
             throw new Exception('Visit not found.', 404);
         }
 
-        $car = (new Car())->find($visit->car)->execute()->toEntity();
-        $visitant = (new Visitant())->find($visit->visitant)->execute()->toEntity();
+        $car = (new CarModel())->find($visit->car)->execute()->toEntity();
+        $visitant = (new VisitantModel())->find($visit->visitant)->execute()->toEntity();
 
         $day = (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $visit->started) , 'd/m/Y'));
         $dayFinal = (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $visit->finished) , 'd/m/Y'));
@@ -154,7 +154,7 @@ class Visit extends Controller{
             'car' => $car,
             'status' => ( $visit->status == 0 ) ? 'Em andamento' : 'Finalizada',
             'date' => $date,
-            'user' => (new User())->find($visit->user)->only('name')->execute()->toEntity()
+            'user' => (new UserModel())->find($visit->user)->only('name')->execute()->toEntity()
         ];
         
         Viewer::create(SYSTEM['basepath'].'app/views/visits/')->render('details',array_merge($data, $_SESSION['view']['data']));

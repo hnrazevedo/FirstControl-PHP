@@ -9,8 +9,8 @@ use App\Model\Page as Model_page;
 
 class Authenticator extends HnrFilter{
 
-    private ?Model_auth $entityAuth;
-    private ?Model_page $entityPage;
+    private Model_auth $entityAuth;
+    private Model_page $entityPage;
 
     public function __construct()
     {

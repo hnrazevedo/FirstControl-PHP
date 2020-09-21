@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "95308244f25892e5f7597ca574721f4f",
+    "content-hash": "5ed9f6c662287ac5a442f0cc498f93d0",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
@@ -46,16 +46,16 @@
         },
         {
             "name": "hnrazevedo/filter",
-            "version": "v1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Filter.git",
-                "reference": "c704edfde8e038c6d31076757530d85c0a38bbd5"
+                "reference": "f349d156e89e1fc7cee66c160b05f8b893be8f73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Filter/zipball/c704edfde8e038c6d31076757530d85c0a38bbd5",
-                "reference": "c704edfde8e038c6d31076757530d85c0a38bbd5",
+                "url": "https://api.github.com/repos/hnrazevedo/Filter/zipball/f349d156e89e1fc7cee66c160b05f8b893be8f73",
+                "reference": "f349d156e89e1fc7cee66c160b05f8b893be8f73",
                 "shasum": ""
             },
             "require": {
@@ -79,7 +79,7 @@
                 }
             ],
             "description": "Filter is a simple component to check information.",
-            "time": "2020-08-11T20:05:55+00:00"
+            "time": "2020-09-21T12:14:21+00:00"
         },
         {
             "name": "hnrazevedo/router",
@@ -87,17 +87,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "93bd005671c826825253041a7d9f8fdab40649a3"
+                "reference": "81da44062cd92c03ae307ca3a39c7f1da8ad097d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/93bd005671c826825253041a7d9f8fdab40649a3",
-                "reference": "93bd005671c826825253041a7d9f8fdab40649a3",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/81da44062cd92c03ae307ca3a39c7f1da8ad097d",
+                "reference": "81da44062cd92c03ae307ca3a39c7f1da8ad097d",
                 "shasum": ""
             },
             "require": {
-                "hnrazevedo/filter": "^1.0",
-                "hnrazevedo/validator": "^1.0",
+                "hnrazevedo/filter": "dev-master",
+                "hnrazevedo/validator": "dev-master",
                 "php": ">=7.4"
             },
             "type": "library",
@@ -120,20 +120,20 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-09-21T12:03:14+00:00"
+            "time": "2020-09-21T17:06:33+00:00"
         },
         {
             "name": "hnrazevedo/validator",
-            "version": "v1.1.8",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Validator.git",
-                "reference": "e1753f406ac8094180a0906405af88ca8d0a08fd"
+                "reference": "c44634ec5fa5b7d2723898ad8a29817d8773dd48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/e1753f406ac8094180a0906405af88ca8d0a08fd",
-                "reference": "e1753f406ac8094180a0906405af88ca8d0a08fd",
+                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/c44634ec5fa5b7d2723898ad8a29817d8773dd48",
+                "reference": "c44634ec5fa5b7d2723898ad8a29817d8773dd48",
                 "shasum": ""
             },
             "require": {
@@ -158,7 +158,7 @@
                 }
             ],
             "description": "Validator is a simple data validation component.",
-            "time": "2020-08-28T22:23:50+00:00"
+            "time": "2020-09-21T12:09:51+00:00"
         },
         {
             "name": "hnrazevedo/viewer",
@@ -264,6 +264,53 @@
                 }
             ],
             "time": "2020-07-14T18:50:27+00:00"
+        },
+        {
+            "name": "psr/log",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "dd738d0b4491f32725492cf345f6b501f5922fec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/dd738d0b4491f32725492cf345f6b501f5922fec",
+                "reference": "dd738d0b4491f32725492cf345f6b501f5922fec",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2020-09-18T06:44:51+00:00"
         }
     ],
     "packages-dev": [],
@@ -272,7 +319,8 @@
     "stability-flags": {
         "hnrazevedo/datamanager": 20,
         "hnrazevedo/router": 20,
-        "hnrazevedo/viewer": 20
+        "hnrazevedo/viewer": 20,
+        "psr/log": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
