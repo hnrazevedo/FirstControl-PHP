@@ -38,7 +38,7 @@
                     <div class="col-sm-6  col-md-6">
                         <input type="text" id="new_company" name="new_company" label="Empresa" maxlength="50" >
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 text-right">
                         <div class="buttons">
                             <button class="submit  btn btn-primary">Registrar</button>
                         </div>

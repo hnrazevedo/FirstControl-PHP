@@ -50,12 +50,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Filter.git",
-                "reference": "f349d156e89e1fc7cee66c160b05f8b893be8f73"
+                "reference": "e09df1b3f200a6c3ede1680e64ed838944daa441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Filter/zipball/f349d156e89e1fc7cee66c160b05f8b893be8f73",
-                "reference": "f349d156e89e1fc7cee66c160b05f8b893be8f73",
+                "url": "https://api.github.com/repos/hnrazevedo/Filter/zipball/e09df1b3f200a6c3ede1680e64ed838944daa441",
+                "reference": "e09df1b3f200a6c3ede1680e64ed838944daa441",
                 "shasum": ""
             },
             "require": {
@@ -79,7 +79,7 @@
                 }
             ],
             "description": "Filter is a simple component to check information.",
-            "time": "2020-09-21T12:14:21+00:00"
+            "time": "2020-09-22T20:25:21+00:00"
         },
         {
             "name": "hnrazevedo/router",
@@ -166,12 +166,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "e0f856155989f0a810f1b0c4b18635c0cdf60e8b"
+                "reference": "0cd5ac37629e78ce0b3651149dac83d4b3d94a8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/e0f856155989f0a810f1b0c4b18635c0cdf60e8b",
-                "reference": "e0f856155989f0a810f1b0c4b18635c0cdf60e8b",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/0cd5ac37629e78ce0b3651149dac83d4b3d94a8c",
+                "reference": "0cd5ac37629e78ce0b3651149dac83d4b3d94a8c",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-09-21T11:57:12+00:00"
+            "time": "2020-09-22T20:24:51+00:00"
         },
         {
             "name": "phpmailer/phpmailer",

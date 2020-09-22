@@ -35,7 +35,7 @@
                     <div class="col-sm-6  col-md-4">
                         <input type="text" id="new_axes" name="new_axes" label="Nº de eixos" data-mask="#">
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 text-right">
                         <div class="buttons">
                             <button class="submit  btn btn-primary">Registrar</button>
                         </div>

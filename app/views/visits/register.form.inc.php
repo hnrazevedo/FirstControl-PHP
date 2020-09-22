@@ -128,7 +128,7 @@
                 </div> -->
 
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col-sm text-right">
                         <div class="buttons">
                             <button class="submit  btn btn-primary">Registrar</button>
                         </div>

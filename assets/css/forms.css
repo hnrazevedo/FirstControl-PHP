@@ -190,13 +190,6 @@ form div.buttons button:hover{
     box-shadow: 1px 1px 5px rgba(66,133,244,.7);
     transition: box-shadow .3s ease;
 }
-form div.buttons{
-    margin:.5rem 0;
-    box-shadow: none;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-start;
-}
 
 form div.buttons button{
     margin-left: .5em;

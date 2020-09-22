@@ -6,7 +6,7 @@
 
         <?= $this->include('../global/styles') ?>
     </head>
-    <body class="d-flex">
+    <body>
 
         <div class="row">
             <?= $this->include('../global/header') ?>

@@ -73,6 +73,7 @@ div.table form div.buttons{
 }
 div.table form div.buttons button{
     margin-left:0;
+    margin-top:.5rem;
 }
 
 div.table .DataTables-buttons button{

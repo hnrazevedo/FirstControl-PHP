@@ -24,7 +24,7 @@
                     <div class="col-sm-6">
                         <input type="password" id="new_password2" name="new_password2" label="Confirmar senha" maxlength="20" >
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 text-right">
                         <div class="buttons">
                             <button class="submit btn btn-primary">Registrar</button>
                         </div>
