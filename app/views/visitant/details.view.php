@@ -13,7 +13,7 @@
                 <h4>{{ $visitant.name }}</h4>  
                 <br/>
                 <input type="hidden" value="{{ $visitant.id }}" id="edit_id" name="edit_id">
-                <div class="row container">
+                <div class="row m-3">
                     <div class="col-12">
                         <div class="photo">
                             <a href="{{ $system.uri }}/assets/img/visitant/{{ $visitant.photo }}">

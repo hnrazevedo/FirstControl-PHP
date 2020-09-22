@@ -12,7 +12,7 @@
             if(option.selected === true){
                 $sel++;
                 if($sel > 1){
-                    window.Dialog.popUp('Selecione apenas um usuário.');
+                    Dialog.popUp('Selecione apenas um usuário.');
                     $id = null;
                     return false;
                 }
@@ -29,7 +29,7 @@
             popup.moveTo(0, 0);
             popup.resizeTo(screen.width, screen.height);
         }else{
-            window.Dialog.popUp('Seleção de registros é obrigatório.');
+            Dialog.popUp('Seleção de registros é obrigatório.');
         }
         
     }

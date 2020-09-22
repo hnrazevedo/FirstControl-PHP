@@ -157,6 +157,9 @@
                         input.value = visitant[field];
                         input.setAttribute('value',visitant[field]);
                     }  
+                    if(field == 'photo'){
+                        document.getElementById('visitantphoto').src = '{{ $system.uri }}/assets/img/visitant/'+visitant[field];
+                    }
                 };
             }else{
                 form.querySelectorAll('input.visitant:not(#new_cpf)').forEach(input => {
@@ -179,6 +182,9 @@
                         input.value = car[field];
                         input.setAttribute('value',car[field]);
                     }  
+                    if(field == 'photo'){
+                        document.getElementById('carphoto').src = '{{ $system.uri }}/assets/img/car/'+car[field];
+                    }
                 };
             }else{
                 form.querySelectorAll('input.car:not(#new_board)').forEach(input => {

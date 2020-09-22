@@ -2,6 +2,7 @@
     <head>
         <title>{{ $system.appname }} - {{ $title }}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <?= $this->include('../global/styles') ?>
 
@@ -11,7 +12,7 @@
             <form style="max-width:1000px" class="pb-4 mt-4 m-auto">    
                 <h4>Detalhes de {{ $car.board }}</h4>
                 <input type="hidden" value="{{ $car.id }}" id="edit_id" name="edit_id">
-                <div class="row container">
+                <div class="row  m-3">
                     <div class="col-12">
                         <div class="photo">
                             <a href="{{ $system.uri }}/assets/img/car/{{ $car.photo }}">

@@ -10,7 +10,7 @@
             <form provider="admin" role="edit_user" access="/admin/controller/admin" style="max-width:1000px" class="pb-4 mt-4 m-auto">     
                 <h4>Detalhes de registro</h4>
                 <input type="hidden" value="{{ $user.id }}" id="edit_id" name="edit_id">   
-                <div class="row container">
+                <div class="row  m-3">
                     <div class="col-sm-6 col-md-4">
                         <input type="text" value="{{ $user.id }}" label="ID" disabled="disabled">
                     </div>
