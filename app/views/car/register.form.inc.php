@@ -48,6 +48,6 @@
 
 <script>
     function CamCar(){
-        Cam.inputVal('new_carphoto').previewImg('carphoto');
+        Cam.requerCam().inputVal('new_carphoto').previewImg('carphoto');
     }
 </script>
