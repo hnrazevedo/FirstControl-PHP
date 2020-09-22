@@ -226,6 +226,7 @@ form input[type="button"]{
 }
 
 form .photo img{
+    min-height: 10rem;
     max-width:100%;
     max-height: 20rem;
 }
