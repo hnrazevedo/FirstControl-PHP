@@ -13,8 +13,8 @@
                     </div>
                 </div>
                 <div class="row" style="max-width:700px">
-                <div class="col-sm-6  col-md-6 align-bottom d-flex align-items-end">
-                        <button dialog="#camera" onclick="CamVisitant()" class="btn btn-primary w-100">Tirar foto</button>
+                    <div class="col-sm-6  col-md-6 align-bottom d-flex align-items-end">
+                        <input type="button" dialog="#camera" onclick="CamVisitant()" class="btn btn-primary w-100" value="Tirar foto" />
                         <input type="hidden" id="new_photo" name="new_photo">
                     </div>
                     <div class="col-sm-6  col-md-6">

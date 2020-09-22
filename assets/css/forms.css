@@ -208,7 +208,8 @@ form div.buttons button:last-child{
 button,
 form input[type="submit"],
 form input[type="reset"],
-form button{
+form button,
+form input[type="button"]{
     padding:.6em 1em;
     border:solid 1px rgb(66,133,244);
     background: rgb(66,133,244);

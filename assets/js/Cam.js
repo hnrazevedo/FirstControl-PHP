@@ -25,7 +25,12 @@ const Cam =  function(){
         },
         requerCam(){
             if (navigator.mediaDevices.getUserMedia) {
-                navigator.mediaDevices.getUserMedia({audio: false, video: {facingMode: 'user'}})
+                navigator.mediaDevices.getUserMedia({
+                    audio: false, 
+                    video: {
+                        facingMode: 'environment'
+                    }
+                })
                 .then( function(stream) {
                     Cam.localstream = stream;
                     Cam.video.srcObject = Cam.localstream;

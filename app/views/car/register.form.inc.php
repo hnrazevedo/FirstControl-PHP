@@ -14,7 +14,7 @@
                 </div>
                 <div class="row" style="max-width:700px">
                     <div class="col-sm-6  col-md-4 align-bottom d-flex align-items-end">
-                        <button dialog="#camera" onclick="CamCar()" class="btn btn-primary w-100">Tirar foto</button>
+                        <input type="button" dialog="#camera" onclick="CamCar()" class="btn btn-primary w-100" value="Tirar foto" />
                         <input type="hidden" id="new_carphoto" name="new_carphoto">
                     </div>
                     <div class="col-sm-6  col-md-4">
