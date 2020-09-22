@@ -10,7 +10,7 @@
                         <div class="col-sm-4 col-md-3 preview">
                             <div class="col-12">
                                 <div class="photo  text-center center">
-                                    <img src="/assets/img/select.svg" id="visitantphoto"/>
+                                    <img src="/assets/img/icon.placeholder.svg" id="visitantphoto"/>
                                 </div>
                             </div>
                         </div>
@@ -18,6 +18,10 @@
                             <div class="row">
                             <div class="col-12">
                                 <h6>Visitante</h6>
+                            </div>
+                            <div class="col-sm-6  col-md-4 align-bottom d-flex align-items-end">
+                                <button dialog="#camera" onclick="CamVisitant()" class="btn btn-primary w-100">Tirar foto</button>
+                                <input type="hidden" id="new_photo" name="new_photo">
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <input type="text" id="new_cpf" name="new_cpf" label="CPF" data-mask="###.###.###-##" class="visitant">
@@ -39,10 +43,7 @@
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <input type="text" id="new_email" name="new_email" label="Email" maxlength="100" class="visitant">
-                            </div>
-                            <div class="col-sm-6 col-md-4">
-                                <input type="file" id="new_photo" name="new_photo" label="Foto" accept=".jpg,.png" text="Selecione uma foto" preview="visitantphoto">
-                            </div>
+                            </div>                            
                         </div>
                         </div>
                     </div>
@@ -54,7 +55,7 @@
                         <div class="col-sm-4 col-md-3 preview">
                             <div class="col-12">
                                 <div class="photo  text-center center">
-                                    <img src="/assets/img/select.svg" id="carphoto"/>
+                                    <img src="/assets/img/icon.placeholder.svg" id="carphoto"/>
                                 </div>
                             </div>
                         </div>
@@ -62,6 +63,10 @@
                             <div class="row">
                             <div class="col-12">
                                 <h6>Veiculo</h6>
+                            </div>
+                            <div class="col-sm-6  col-md-4 align-bottom d-flex align-items-end">
+                                <button dialog="#camera" onclick="CamCar()" class="btn btn-primary w-100">Tirar foto</button>
+                                <input type="hidden" id="new_carphoto" name="new_carphoto">
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <input type="text" id="new_board" name="new_board" label="Placa" maxlength="8" class="car">
@@ -77,9 +82,6 @@
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <input type="text" id="new_axes" name="new_axes" label="Nº eixos" data-mask="#" class="car">
-                            </div>
-                            <div class="col-sm-6 col-md-4">
-                                <input type="file" id="new_carphoto" name="new_carphoto" label="Foto" accept=".jpg,.png" text="Selecione uma foto" preview="carphoto">
                             </div>
                         </div>
                         </div>
@@ -146,7 +148,7 @@
                 return false;
             }
 
-            let visitant = await window.Submitter.setUrl('/visitant/json/'+evt.target.value).execute(true);
+            let visitant = await Submitter.setUrl('/visitant/json/'+evt.target.value).execute(true);
 
             if(visitant.error === undefined){
                 for(var field in visitant){
@@ -165,7 +167,10 @@
         });
 
         form.querySelector('input#new_board').addEventListener('blur', async evt => {
-            let car = await window.Submitter.setUrl('/car/json/'+evt.target.value).execute(true);
+            if(evt.target.value.length == 0){
+                return false;
+            }
+            let car = await Submitter.setUrl('/car/json/'+evt.target.value).execute(true);
 
             if(car.error === undefined){
                 for(var field in car){
@@ -183,4 +188,14 @@
             }
         });
     });    
+</script>
+
+
+<script>
+    function CamVisitant(){
+        Cam.requerCam().inputVal('new_photo').previewImg('visitantphoto');
+    }
+    function CamCar(){
+        Cam.requerCam().inputVal('new_carphoto').previewImg('carphoto');
+    }
 </script>

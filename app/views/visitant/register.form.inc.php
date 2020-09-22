@@ -8,13 +8,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="photo preview text-center">
-                            <img src="/assets/img/select.svg" id="visitantphoto"/>
+                            <img src="/assets/img/icon.placeholder.svg" id="visitantphoto"/>
                         </div>
                     </div>
                 </div>
                 <div class="row" style="max-width:700px">
-                    <div class="col-sm-6  col-md-6">
-                        <input type="file" id="new_photo" name="new_photo" label="Foto" accept=".jpg,.png" text="Selecione uma foto" preview="visitantphoto">
+                <div class="col-sm-6  col-md-6 align-bottom d-flex align-items-end">
+                        <button dialog="#camera" onclick="CamVisitant()" class="btn btn-primary w-100">Tirar foto</button>
+                        <input type="hidden" id="new_photo" name="new_photo">
                     </div>
                     <div class="col-sm-6  col-md-6">
                         <input type="text" id="new_name" name="new_name" label="Nome Completo" maxlength="50">
@@ -47,3 +48,9 @@
         </div>
     </div>
 </dialog>
+
+<script>
+    function CamVisitant(){
+        Cam.requerCam().inputVal('new_photo').previewImg('visitantphoto');
+    }
+</script>
