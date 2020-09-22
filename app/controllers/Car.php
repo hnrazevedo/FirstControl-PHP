@@ -8,9 +8,11 @@ use App\Model\Car as Model;
 use App\Model\Visitant as VisitantModel;
 use App\Model\Visit as VisitModel;
 use App\Engine\Util;
+use App\Helpers\Converter;
 use Exception;
 
 class Car extends Controller{
+    use Converter;
 
     private Model $entity;
 
@@ -64,7 +66,7 @@ class Car extends Controller{
     public function carRegister()
     {
         $data = json_decode(Util::getData()['POST']['data'],true);
-        $files = Util::getData()['FILES'];
+        
         $tmpPhoto = null;
 
         try{
@@ -79,25 +81,21 @@ class Car extends Controller{
     
             $this->persistEntity(array_merge($data,[ 'new_visitant' => $visitant->id ]));
 
-            $photo = 'default.svg';
-
-            if($files['new_carphoto']['error'] === 0){
-                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'car'.DIRECTORY_SEPARATOR.$data['new_board'].'.'.pathinfo($files['new_carphoto']['name'], PATHINFO_EXTENSION);
-                move_uploaded_file($files['new_carphoto']['tmp_name'],$tmpPhoto);
-                $photo = $data['new_board'].'.'.pathinfo($files['new_carphoto']['name'], PATHINFO_EXTENSION);
+            if(strlen($data['new_carphoto']) > 0){
+                $file = $this->replaceBase64($data['new_carphoto']);
+                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'car'.DIRECTORY_SEPARATOR.$data['new_board'].'.'.$file['ext'];
+                if(file_put_contents($tmpPhoto,$file['data'])){
+                    $this->entity->photo = $data['new_board'].'.'.$file['ext'];
+                    $this->entity->save();
+                }
             }
 
-            $this->entity->photo = $photo;
-
-            $this->entity->save();
-
-    
             echo json_encode([
                 'success' => [
                     'message' => 'Veículo registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => "window.DataTables.dataAdd('table_list_cars', ['{$this->entity->id}','{$this->entity->board}','{$this->entity->brand}','{$this->entity->model}','{$this->entity->color}','{$this->entity->axes}','{$visitant->name}']);"
+                'script' => "DataTables.dataAdd('table_list_cars', ['{$this->entity->id}','{$this->entity->board}','{$this->entity->brand}','{$this->entity->model}','{$this->entity->color}','{$this->entity->axes}','{$visitant->name}']);"
             ]);
 
         }catch(Exception $er){
@@ -117,17 +115,14 @@ class Car extends Controller{
         if(is_null($car)){
             $car = $this->persistEntity(array_merge($data,[ 'new_visitant' => $visitantID ]));
 
-            $photo = 'default.svg';
-
-            if($files['new_carphoto']['error'] === 0){
-                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'car'.DIRECTORY_SEPARATOR.$data['new_board'].'.'.pathinfo($files['new_carphoto']['name'], PATHINFO_EXTENSION);
-                move_uploaded_file($files['new_carphoto']['tmp_name'],$tmpPhoto);
-                $photo = $data['new_board'].'.'.pathinfo($files['new_carphoto']['name'], PATHINFO_EXTENSION);
+            if(strlen($data['new_carphoto']) > 0){
+                $file = $this->replaceBase64($data['new_carphoto']);
+                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'car'.DIRECTORY_SEPARATOR.$data['new_board'].'.'.$file['ext'];
+                if(file_put_contents($tmpPhoto,$file['data'])){
+                    $car->photo = $data['new_board'].'.'.$file['ext'];
+                    $car->save();
+                }
             }
-
-            $car->photo = $photo;
-
-            $car->save();
         }
 
         return ['visitant' => $car, 'tmpPhoto' => $tmpPhoto];

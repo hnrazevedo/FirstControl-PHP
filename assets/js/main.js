@@ -7,6 +7,7 @@ window.addEventListener('load',function(){
     Form.init();
     Dialog.init();
     DataTables.init();
+    Mask.init();
     Cam.init();
     
     requestValidateAll();

@@ -9,7 +9,7 @@ const Mask = function() {
             'S':'[a-zA-Z]',
             'X':'[0-9a-zA-Z]'
         },
-        start(){
+        init(){
             if(document.querySelector('[data-mask]') != null){
                 document.querySelectorAll('[data-mask]').forEach(function(input,i){
                     Mask.format('[data-mask="'+input.dataset.mask+'"]');

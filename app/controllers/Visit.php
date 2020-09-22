@@ -67,7 +67,7 @@ class Visit extends Controller{
                     'message' => 'Visita registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => "window.DataTables.dataAdd('table_list_visits', ['{$this->entity->id}','{$visitant->name}','{$this->replaceCPF($visitant->cpf)}','{$this->entity->started}','{$this->entity->finished}','{$this->entity->reason}','{$this->entity->responsible}','{$car->board}']);"
+                'script' => "DataTables.dataAdd('table_list_visits', ['{$this->entity->id}','{$visitant->name}','{$this->replaceCPF($visitant->cpf)}','{$this->entity->started}','{$this->entity->finished}','{$this->entity->reason}','{$this->entity->responsible}','{$car->board}']);"
             ]);
 
             

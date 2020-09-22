@@ -40,9 +40,9 @@ Class Util{
 
     }
     
-    private static function realUnlink(string $path)
+    private static function realUnlink(?string $path)
     {
-        if (@unlink($path) === false) {
+        if (@unlink($path) === false && isset($path)) {
             throw new \RuntimeException('The '.$path.' could not be remove.');
         }
     }

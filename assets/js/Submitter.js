@@ -124,8 +124,12 @@ const Submitter = function(){
                     method: 'POST',
                     headers: Submitter.hearders,
                     body: Submitter.data
-                }).then(res => {
-                    return res.json();
+                }).then(resp => {
+                    return resp.json().then(data => {
+                        return data;
+                    }).catch(err => {
+                        return err;
+                    });
                 })
                 .then(post => {
                     Submitter.setResponse(post);
@@ -133,7 +137,7 @@ const Submitter = function(){
                     Submitter.requestLoadEnd();
                 })
                 .catch(err => {
-                    //console.log(err);
+                    console.log(err);
                 });
         },
         XMLHttpRequest(){
@@ -177,7 +181,7 @@ const Submitter = function(){
                 switch(r){
                     case 'success':
                         if(typeof Submitter.response[r]['message'] != 'undefined'){
-                            window.Dialog.popUp(Submitter.response[r]['message'],'success');
+                            Dialog.popUp(Submitter.response[r]['message'],'success');
                         }
                     break;
                     case 'error':
@@ -194,13 +198,13 @@ const Submitter = function(){
                                     Submitter.form.querySelector('p[name="'+Submitter.response[r][er]['input']+'"]').style.display = 'block';
                                 }else{
                                     var inputText = (input != null) ? input.getAttribute('label')+':' : '';
-                                    window.Dialog.popUp(`${inputText} ${message}`,'error');
+                                    Dialog.popUp(`${inputText} ${message}`,'error');
                                 }
                             }
                         }
                         
                         if(typeof Submitter.response[r]['message'] != 'undefined') {
-                            window.Dialog.popUp(Submitter.response[r]['message'],'error');
+                            Dialog.popUp(Submitter.response[r]['message'],'error');
                         }
                     break;
                     case 'reset':
@@ -229,7 +233,7 @@ const Submitter = function(){
         },
         onError(e){
             console.log(e);
-            window.Dialog.popUp(e,'error');
+            Dialog.popUp(e,'error');
             return this;
         },
         isJson(json){
@@ -249,9 +253,10 @@ const Submitter = function(){
                     input.removeAttribute('disabled');
                 });
                 document.querySelector('form.submitting').classList.remove('submitting');
-                if(document.querySelector('dialog.loading') != null){
-                    document.querySelector('dialog.loading').classList.remove('open');
-                }
+                
+            }
+            if(document.querySelector('dialog.loading') != null){
+                document.querySelector('dialog.loading').classList.remove('open');
             }
             return this;
         }
