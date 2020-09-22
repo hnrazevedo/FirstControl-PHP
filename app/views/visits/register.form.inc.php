@@ -141,7 +141,7 @@
 <script>
     window.addEventListener('load',function(){
         var form = document.querySelector('form[provider="visit"][role="visitRegister"]');
-
+        
         form.querySelector('input#new_cpf').addEventListener('blur', async evt => {
 
             if(evt.target.value.length !== parseInt(evt.target.getAttribute('maxlength'))){

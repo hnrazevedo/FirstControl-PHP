@@ -7,9 +7,9 @@
         <?= $this->include('../global/styles') ?>
 
     </head>
-    <body class="text-center center">
-        <main style="max-width:1000px">            
-            <form>   
+    <body class="text-center">
+        <main>
+            <form style="max-width:1000px" class="pb-4 mt-4 m-auto">  
                 <h4>{{ $visitant.name }}</h4>  
                 <br/>
                 <input type="hidden" value="{{ $visitant.id }}" id="edit_id" name="edit_id">

@@ -24,6 +24,8 @@ trait Converter{
                 throw new Exception('base64_decode failed');
             }
         } else {
+            var_dump($data);
+            var_dump($type);
             throw new Exception('did not match data URI with image data');
         }
         

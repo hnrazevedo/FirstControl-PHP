@@ -5,9 +5,9 @@
 
         <<?= $this->include('../global/styles') ?>
     </head>
-    <body class="text-center center">
-        <main style="max-width:1000px">
-            <form provider="admin" role="edit_user" access="/admin/controller/admin">     
+    <body class="text-center">
+        <main>
+            <form provider="admin" role="edit_user" access="/admin/controller/admin" style="max-width:1000px" class="pb-4 mt-4 m-auto">     
                 <h4>Detalhes de registro</h4>
                 <input type="hidden" value="{{ $user.id }}" id="edit_id" name="edit_id">   
                 <div class="row container">

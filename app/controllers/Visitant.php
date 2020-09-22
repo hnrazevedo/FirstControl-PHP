@@ -6,12 +6,12 @@ use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\Visitant as Model;
 use App\Engine\Util;
-use App\Helpers\{Mask , Validate};
+use App\Helpers\{Converter, Mask , Validate};
 use Exception;
 
 
 class Visitant extends Controller{
-    use Mask, Validate;
+    use Mask, Validate, Converter;
 
     private Model $entity;
 
@@ -70,17 +70,14 @@ class Visitant extends Controller{
 
             $this->persistEntity($data);
 
-            $photo = 'default.svg';
-
-            if($files['new_photo']['error'] === 0){
-                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.str_replace(['.','-'],'',$data['new_cpf']).'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
-                move_uploaded_file($files['new_photo']['tmp_name'],$tmpPhoto);
-                $photo = str_replace(['.','-'],'',$data['new_cpf']).'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
+            if(strlen($data['new_photo']) > 0){
+                $file = $this->replaceBase64($data['new_photo']);
+                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.str_replace([',','.','-'],'',$data['new_cpf']).'.'.$file['ext'];
+                if(file_put_contents($tmpPhoto,$file['data'])){
+                    $this->entity->photo = str_replace([',','.','-'],'',$data['new_cpf']).'.'.$file['ext'];
+                    $this->entity->save();
+                }
             }
-
-            $this->entity->photo = $photo;
-
-            $this->entity->save();
 
             echo json_encode([
                 'success' => [
@@ -96,7 +93,7 @@ class Visitant extends Controller{
         }
     }
 
-    public function checkNewRegister(array $data, array $files): array
+    public function checkNewRegister(array $data): array
     {
         $tmpPhoto = '';
         $visitant = $this->entity->find()->where([
@@ -106,17 +103,14 @@ class Visitant extends Controller{
         if(is_null($visitant)){
             $visitant = $this->persistEntity($data);
 
-            $photo = 'default.svg';
-
-            if($files['new_photo']['error'] === 0){
-                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.str_replace(['.','-'],'',$data['new_cpf']).'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
-                move_uploaded_file($files['new_photo']['tmp_name'],$tmpPhoto);
-                $photo = str_replace(['.','-'],'',$data['new_cpf']).'.'.pathinfo($files['new_photo']['name'], PATHINFO_EXTENSION);
+            if(strlen($data['new_photo']) > 0){
+                $file = $this->replaceBase64($data['new_photo']);
+                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.str_replace([',','.','-'],'',$data['new_cpf']).'.'.$file['ext'];
+                if(file_put_contents($tmpPhoto,$file['data'])){
+                    $visitant->photo = str_replace([',','.','-'],'',$data['new_cpf']).'.'.$file['ext'];
+                    $visitant->save();
+                }
             }
-
-            $visitant->photo = $photo;
-
-            $visitant->save();
         }
         
         return ['visitant' => $visitant, 'tmpPhoto' => $tmpPhoto];

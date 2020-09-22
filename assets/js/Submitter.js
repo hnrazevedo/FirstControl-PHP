@@ -188,7 +188,12 @@ const Submitter = function(){
                         if(typeof Submitter.response[r] === "object"){
                             for(var er in Submitter.response[r]){
 
-                                var input = (Submitter.form.querySelector("[name='"+Submitter.response[r][er]['input']+"']") != null) ? Submitter.form.querySelector("[name='"+Submitter.response[r][er]['input']+"']") : null;
+                                var input = null;
+
+                                if(Submitter.form != null){
+                                    input = (Submitter.form.querySelector("[name='"+Submitter.response[r][er]['input']+"']") != null) ? Submitter.form.querySelector("[name='"+Submitter.response[r][er]['input']+"']") : null;
+                                }
+                                
                                 var message = Submitter.response[r][er]['message'];
     
                                 if(input != null && Submitter.form.querySelector('p[name="'+Submitter.response[r][er]['input']+'"]') != null){

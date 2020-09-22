@@ -7,21 +7,15 @@
         <?= $this->include('../global/styles') ?>
 
         <style>
-            main{
-                max-width:1500px
-            }
-            form{
-                width:100%
-            }
             main .row{
                 margin-left:0;
                 margin-right: 0;;
             }
         </style>
     </head>
-    <body class="center">
-        <main>            
-            <form>  
+    <body>
+        <main>
+            <form style="max-width:1500px" class="pb-4 mt-4 m-auto">  
                 <input type="hidden" value="{{ $visit.id }}" id="edit_id" name="edit_id">
                 <div class="row" style="width:inherit">
                     <div class="col-12">

@@ -43,11 +43,11 @@ class Visit extends Controller{
         $tmpPhotoCar = null;
         try{
 
-            $visitantRegister = $visitantController->checkNewRegister($data,$_FILES);
+            $visitantRegister = $visitantController->checkNewRegister($data);
             $visitant = $visitantRegister['visitant'];
             $tmpPhoto = $visitantRegister['tmpPhoto'];
 
-            $carRegister = $carController->checkNewRegister($data,$_FILES,$visitant->id);
+            $carRegister = $carController->checkNewRegister($data,$visitant->id);
             $car = $carRegister['car'];
             $tmpPhotoCar = $carRegister['tmpPhoto'];
 

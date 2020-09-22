@@ -105,7 +105,7 @@ class Car extends Controller{
         
     }
 
-    public function checkNewRegister(array $data, array $files, int $visitantID): array
+    public function checkNewRegister(array $data, int $visitantID): array
     {
         $tmpPhoto = '';
         $car = $this->entity->find()->where([
@@ -125,7 +125,7 @@ class Car extends Controller{
             }
         }
 
-        return ['visitant' => $car, 'tmpPhoto' => $tmpPhoto];
+        return ['car' => $car, 'tmpPhoto' => $tmpPhoto];
     }
 
     public function persistEntity(array $data): Model
@@ -160,13 +160,17 @@ class Car extends Controller{
         ])->orderBy(' started DESC ')
         ->limit(1)->execute()->toEntity();
 
+
+        $lastvisit = (is_null($lastvisit)) ? ['started' => '', 'finished' => ''] : ['started' => $lastvisit->started, 'finished' => $lastvisit->finished];
+
+
         $car->driver = (new VisitantModel())->find($car->driver)->only('name')->execute()->toEntity()->name;
 
         $data = [
             'title' => 'Registros de Veículos',
             'pageID' => 4,
             'car' => $car,
-            'lastvisit' => [ 'started' => $lastvisit->started, 'finished' => $lastvisit->finished ]
+            'lastvisit' => [ 'started' => $lastvisit['started'], 'finished' => $lastvisit['finished'] ]
         ];
         
         Viewer::create(SYSTEM['basepath'].'app/views/car/')->render('details',array_merge($data, $_SESSION['view']['data']));
