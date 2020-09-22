@@ -101,3 +101,7 @@ main .content h1{
         justify-content: start !important;
     }
 }
+
+ul li{
+    list-style: none;
+}

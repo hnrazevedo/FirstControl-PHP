@@ -5,16 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <?= $this->include('../global/styles') ?>
-        <?= $this->include('../global/scripts') ?>
     </head>
     <body class="d-flex">
 
         <div class="row">
             <?= $this->include('../global/header') ?>
+        
             <main class="col-sm-12 col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                 <div class="content">
                     <h1>{{ $title }}</h1>
                     <?= $this->include($page) ?>
+                    <?= $this->include('../global/scripts') ?>
                 </div>
             </main>
         </div>

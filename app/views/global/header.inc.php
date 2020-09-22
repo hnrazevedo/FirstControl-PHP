@@ -63,7 +63,7 @@
             <a href="/logout">Sair</a>
         </li>     
     </ul>
-    <div class="col-sm-12 col-md-10 footer text-center">Versão {{ $system.version }}</div>
+    <div class="col-sm-12 col-md-10 col-12 footer text-center">Versão {{ $system.version }}</div>
 </header>
 
 <script>
