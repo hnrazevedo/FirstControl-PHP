@@ -7,6 +7,7 @@ window.addEventListener('load',function(){
     Form.init();
     Dialog.init();
     DataTables.init();
+    Cam.init();
     
     requestValidateAll();
 
@@ -78,8 +79,8 @@ function requestValidateAll(){
                             break;
                         case 'error':
                             frm.classList.add('disabled');
-                            frm.querySelector('.panel-message').classList.add('error');
-                            frm.querySelector('.panel-message').innerHTML = response[r]['message'];
+                            frm.querySelector('.alert').classList.add('alert-danger');
+                            frm.querySelector('.alert').innerHTML = response[r]['message'];
                             break;
                     }
                 }

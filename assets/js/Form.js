@@ -9,7 +9,7 @@ const Form = function(){
                 form.setAttribute('method','POST');
                 //form.setAttribute('enctype','multipart/form-data');
                 var divM = document.createElement('div');
-                divM.classList.add('panel-message');
+                divM.classList.add('alert','p-2');
                 form.prepend(divM);
 
                 form.addEventListener('submit',function(e){
@@ -108,7 +108,7 @@ const Form = function(){
     
                 for (var i = 0; i < document.images.length; i++) {
                     if (!IsImageOk(document.images[i])) {
-                        document.images[i].setAttribute('src','/assets/img/placeholder_images.svg');
+                        document.images[i].setAttribute('src','/assets/img/icon.placeholder.svg');
                         document.images[i].classList.add('notfound');
                     }
                 }

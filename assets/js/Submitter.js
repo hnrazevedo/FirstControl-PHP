@@ -91,8 +91,8 @@ const Submitter = function(){
         },
         beforeRequest(){
             
-            if(Submitter.form.querySelector('.panel-message')!=null){
-                Submitter.form.querySelector('.panel-message').classList.remove(['error','success']);
+            if(Submitter.form.querySelector('.alert')!=null){
+                Submitter.form.querySelector('.alert').classList.remove(['alert-primary','alert-secondary','alert-success','alert-danger','alert-warning','alert-info','alert-light','alert-dark']);
             }
     
             Submitter.form.classList.add('submitting');

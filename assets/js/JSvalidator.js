@@ -168,8 +168,8 @@ const Validator = function(){
             Validator.$options.alert(t,'error');
             
             Validator.$forms[id]['form'].classList.add('disabled');
-            Validator.$forms[id]['form'].querySelector('.panel-message').classList.add('error');
-            Validator.$forms[id]['form'].querySelector('.panel-message').innerHTML = t;
+            Validator.$forms[id]['form'].querySelector('.alert').classList.add('alert-danger');
+            Validator.$forms[id]['form'].querySelector('.alert').innerHTML = t;
             
         }
     }

@@ -8,13 +8,13 @@
                 <div class="row">
                     <div class="col-12 mb-4">
                         <div class="photo preview text-center">
-                            <img src="/assets/img/select.svg" id="carphoto"/>
+                            <img src="/assets/img/icon.placeholder.svg" id="carphoto"/>
                         </div>
                     </div>
                 </div>
                 <div class="row" style="max-width:700px">
                     <div class="col-sm-6  col-md-4 align-bottom d-flex align-items-end">
-                        <button dialog="#camera" class="btn btn-primary w-100">Tirar foto</button>
+                        <button dialog="#camera" onclick="CamCar()" class="btn btn-primary w-100">Tirar foto</button>
                         <input type="hidden" id="new_carphoto" name="new_carphoto">
                     </div>
                     <div class="col-sm-6  col-md-4">
@@ -46,47 +46,8 @@
     </div>
 </dialog>
 
-
-
-<dialog id="camera">
-    <div class="p-2" style="min-width:50vw">
-        <form class="needCamera">
-            <div class="row">
-                <div class="col-sm-12 col-md-6 p-2">
-                    <div class="photo preview text-center">
-                        <video autoplay="true" id="webCamera" poster="/assets/img/select.svg"></video>
-                        <label>Camera</label>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 p-2">
-                    <div class="photo preview text-center">
-                        <img id="webCameraPreview" src="/assets/img/select.svg" />
-                        <label>Captura</label>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 pb-2 p-4">
-                    <button class="btn btn-primary w-100" onclick="capture()">Capturar</button>
-                </div>
-                <div class="col-sm-12 col-md-6 pb-2 p-4">
-                    <button class="btn btn-primary w-100" onclick="save()">Salvar</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</dialog>
 <script>
-    window.addEventListener('load',function(){
-        loadCamera('webCamera','camera');
-    });
-
-    function capture(){
-        var img = takeSnapShot('webCamera');
-        document.querySelector('#webCameraPreview').setAttribute('src',img);
-    }
-
-    function save(){
-        document.getElementById('new_carphoto').value = document.getElementById('webCameraPreview').getAttribute('src');
-        document.getElementById('carphoto').setAttribute('src',document.getElementById('webCameraPreview').getAttribute('src'));
-        document.querySelector('dialog#camera [close]').click();
+    function CamCar(){
+        Cam.inputVal('new_carphoto').previewImg('carphoto');
     }
 </script>
