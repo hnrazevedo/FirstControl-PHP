@@ -15,8 +15,6 @@ Router::group('/admin',function(){
 
     Router::ajax('/controller/{entity}','App\\Controller\\Admin:method');
 
-})->middleware(
-    ['App\\Filter\\User:user_in','App\\Filter\\Admin:is_admin']//,'Authenticator:authRoute']
-);
+})->middleware('auth');
 
 
