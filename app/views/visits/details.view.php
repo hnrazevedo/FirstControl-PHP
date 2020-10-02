@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <?= $this->include('../global/styles') ?>
+        <?= $this->import('../global/styles') ?>
 
         <style>
             main .row{
@@ -168,9 +168,9 @@
             </form>
         </main>
         
-        <?= $this->include('../global/dialog_loading') ?>
-        <?= $this->include('../global/dialog_message') ?>
+        <?= $this->import('../global/dialog_loading') ?>
+        <?= $this->import('../global/dialog_message') ?>
 
-        <?= $this->include('../global/scripts') ?>
+        <?= $this->import('../global/scripts') ?>
     </body>
 </html>

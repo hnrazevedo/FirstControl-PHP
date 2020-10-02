@@ -76,7 +76,7 @@
     </form>
 </div>
 
-<?= $this->include('../user/register.form') ?>
+<?= $this->import('../user/register.form') ?>
 
 <script>
 window.addEventListener('load',function(){

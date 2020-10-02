@@ -28,7 +28,7 @@ class Visit extends Controller{
         $data = [
             'title' => 'Visitas'
         ];
-        Viewer::create(SYSTEM['basepath'].'app/views/visits/')->render('index',array_merge($data, $_SESSION['view']['data']));
+        Viewer::path(SYSTEM['basepath'].'app/views/visits/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function visitRegister()
@@ -156,7 +156,7 @@ class Visit extends Controller{
             'user' => (new UserModel())->find($visit->user)->only('name')->execute()->toEntity()
         ];
         
-        Viewer::create(SYSTEM['basepath'].'app/views/visits/')->render('details',array_merge($data, $_SESSION['view']['data']));
+        Viewer::path(SYSTEM['basepath'].'app/views/visits/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
 
 }

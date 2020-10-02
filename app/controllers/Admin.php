@@ -29,7 +29,7 @@ class Admin extends Controller{
             'page' => '../user/list',
             'pageID' => 2
         ];
-        Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
+        Viewer::path(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
     private function viewUserById(int $id)
@@ -48,7 +48,7 @@ class Admin extends Controller{
             'userView' => $user
         ];
         
-        Viewer::create(SYSTEM['basepath'].'app/views/user/')->render('details',array_merge($data, $_SESSION['view']['data']));
+        Viewer::path(SYSTEM['basepath'].'app/views/user/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function edit_user()
@@ -85,7 +85,7 @@ class Admin extends Controller{
             'page' => '../admin/dashboard/dashboard',
             'pageID' => 3
         ];
-        Viewer::create(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
+        Viewer::path(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function result_list($entity)

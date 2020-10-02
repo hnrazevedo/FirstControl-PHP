@@ -13,8 +13,8 @@
         "php": ">=7.4",
         "phpmailer/phpmailer": "~6.0",
         "hnrazevedo/datamanager": "dev-master",
-        "hnrazevedo/router": "^2.1",
-        "hnrazevedo/viewer": "dev-master",
+        "hnrazevedo/router": "^2.2",
+        "hnrazevedo/viewer": "^2.0",
         "hnrazevedo/http": "dev-master",
         "hnrazevedo/validator": "dev-master",
         "psr/log": "^1.1@dev"

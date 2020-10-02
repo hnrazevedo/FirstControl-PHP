@@ -25,7 +25,7 @@ class Car extends Controller{
         $data = [
             'title' => 'Veículos'
         ];
-        Viewer::create(SYSTEM['basepath'].'app/views/car/')->render('index',array_merge($data, $_SESSION['view']['data']));
+        Viewer::path(SYSTEM['basepath'].'app/views/car/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function listCars()
@@ -170,7 +170,7 @@ class Car extends Controller{
             'lastvisit' => [ 'started' => $lastvisit['started'], 'finished' => $lastvisit['finished'] ]
         ];
         
-        Viewer::create(SYSTEM['basepath'].'app/views/car/')->render('details',array_merge($data, $_SESSION['view']['data']));
+        Viewer::path(SYSTEM['basepath'].'app/views/car/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function toJson($board)

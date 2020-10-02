@@ -63,7 +63,7 @@
     </form>
 </div>
 
-<?= $this->include('/register.form') ?>
+<?= $this->import('/register.form') ?>
 
 <script>
 

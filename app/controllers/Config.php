@@ -21,7 +21,7 @@ class Config extends Controller{
             'configs' => $this->listConfig(),
             'title' => 'Configurações'
         ];
-        Viewer::create(SYSTEM['basepath'].'app/views/config/')->render('index',array_merge($data, $_SESSION['view']['data']));
+        Viewer::path(SYSTEM['basepath'].'app/views/config/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function listConfig()

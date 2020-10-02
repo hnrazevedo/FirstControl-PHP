@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc784108127ce9fd922036ba343fd79c",
+    "content-hash": "bf3b5f94c0dd81b9f8d72c86aaafe051",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Datamanager.git",
-                "reference": "23b2a7e8e0765e825ff8e5cc3358a79287150607"
+                "reference": "3f2518aeed18edc26276786ebde76a219cc5103b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/23b2a7e8e0765e825ff8e5cc3358a79287150607",
-                "reference": "23b2a7e8e0765e825ff8e5cc3358a79287150607",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/3f2518aeed18edc26276786ebde76a219cc5103b",
+                "reference": "3f2518aeed18edc26276786ebde76a219cc5103b",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "Datamanager is a simple persistence abstraction component in the database.",
-            "time": "2020-09-21T19:56:11+00:00"
+            "time": "2020-10-02T14:47:22+00:00"
         },
         {
             "name": "hnrazevedo/http",
@@ -164,25 +164,27 @@
         },
         {
             "name": "hnrazevedo/viewer",
-            "version": "dev-master",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "9d2f0cb6153eab8db24751f9e9aae1bcd0402b83"
+                "reference": "4d60a5d552617e5d77103ef82d45f234a30b2d90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/9d2f0cb6153eab8db24751f9e9aae1bcd0402b83",
-                "reference": "9d2f0cb6153eab8db24751f9e9aae1bcd0402b83",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/4d60a5d552617e5d77103ef82d45f234a30b2d90",
+                "reference": "4d60a5d552617e5d77103ef82d45f234a30b2d90",
                 "shasum": ""
             },
             "require": {
+                "hnrazevedo/http": "dev-master",
                 "php": ">=7.4"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "HnrAzevedo\\Viewer\\": "src/"
+                    "HnrAzevedo\\Viewer\\": "src/",
+                    "HnrAzevedo\\Viewer\\Example\\Middleware\\": "examples/Middleware/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -197,7 +199,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-10-02T12:24:40+00:00"
+            "time": "2020-10-02T20:32:42+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -528,7 +530,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "hnrazevedo/datamanager": 20,
-        "hnrazevedo/viewer": 20,
         "hnrazevedo/http": 20,
         "hnrazevedo/validator": 20,
         "psr/log": 20

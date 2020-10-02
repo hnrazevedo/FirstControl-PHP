@@ -72,7 +72,7 @@ class User extends Controller{
             'pageID' => 1
         ];
 
-        Viewer::create(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function view_login()
@@ -82,7 +82,7 @@ class User extends Controller{
             return true;
         }
         
-        Viewer::create(SYSTEM['basepath'].'app/views/user/')->render('login',$_SESSION['view']['data']);
+        Viewer::path(SYSTEM['basepath'].'app/views/user/')->render('login',$_SESSION['view']['data']);
     }
 
     public function admin_register(array $data)
