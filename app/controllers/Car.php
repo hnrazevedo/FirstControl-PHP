@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\Car as Model;
 use App\Model\Visitant as VisitantModel;
@@ -145,7 +144,9 @@ class Car extends Controller{
 
     public function viewDetails($id)
     {
-        $car = $this->entity->find($id)->execute()->toEntity();
+        $car = $this->entity->find($id)->where([
+            'id','<>',1
+        ])->execute()->toEntity();
         
         if(is_null($car)){
             throw new Exception('Car not found.', 404);

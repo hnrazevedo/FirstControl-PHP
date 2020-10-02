@@ -3,7 +3,6 @@
 use HnrAzevedo\Router\Router;
 use HnrAzevedo\Viewer\Viewer;
 
-
 Router::get('/test',function(){
     Viewer::create(__DIR__.'/../app/views/test/')
           ->render('index',[

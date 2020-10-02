@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\Visit as Model;
 use App\Model\Visitant as VisitantModel;

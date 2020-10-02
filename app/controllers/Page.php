@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Router\Controller;
 use App\Model\Page as Model;
 use App\Model\Authenticator as Authenticator;
 use Exception;

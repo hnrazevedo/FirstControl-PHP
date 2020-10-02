@@ -13,18 +13,20 @@
         "php": ">=7.4",
         "phpmailer/phpmailer": "~6.0",
         "hnrazevedo/datamanager": "dev-master",
-        "hnrazevedo/router": "dev-master",
+        "hnrazevedo/router": "^2.1",
         "hnrazevedo/viewer": "dev-master",
+        "hnrazevedo/http": "dev-master",
+        "hnrazevedo/validator": "dev-master",
         "psr/log": "^1.1@dev"
     },
     "autoload": {
         "psr-4": {
             "App\\Controller\\": "app/controllers",
             "App\\Model\\": "app/models",
-            "App\\Filter\\":"app/filters",
             "App\\Rules\\":"app/rules",
             "App\\Engine\\":"app/engine",
-            "App\\Helpers\\":"app/helpers"
+            "App\\Helpers\\":"app/helpers",
+            "App\\Middleware\\":"app/middleware"
         },
         "files":[
             "app/bootstrap.php"

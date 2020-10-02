@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Controller\User as User_Controller;
 use App\Model\User as Model;
@@ -35,7 +34,9 @@ class Admin extends Controller{
 
     private function viewUserById(int $id)
     {
-        $user = $this->entity->find($id)->execute()->toEntity();
+        $user = $this->entity->find($id)->where([
+            'id','<>',1
+        ])->execute()->toEntity();
         
         if(is_null($user)){
             throw new Exception('User not found.',404);

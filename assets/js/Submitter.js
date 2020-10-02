@@ -10,7 +10,7 @@ const Submitter = function(){
         hearders:null,
 		work(e){
 			Submitter.hearders = {
-				'Requested-Method': 'ajax'
+				'Request-Method': 'ajax'
             };
             
             if(e.target.length != 0){
@@ -44,8 +44,10 @@ const Submitter = function(){
 			return (result) ? Submitter.getResponse() : Submitter;
 		},
 		setUrl(u){
-			Submitter.url = u;
-			Submitter.hearders = {'Requested-Method': 'ajax'};
+            Submitter.url = u;  
+            Submitter.data = new FormData();
+            Submitter.data.append('REQUEST_METHOD','AJAX');
+			Submitter.hearders = {'Request-Method': 'ajax'};
 			return Submitter;
         },
         setForm(f){
@@ -83,6 +85,7 @@ const Submitter = function(){
             var data = JSON.stringify(Object.fromEntries(Submitter.data));
     
             Submitter.data = new FormData(Submitter.form);
+            Submitter.data.append('REQUEST_METHOD','AJAX');
             Submitter.data.append('data',data);
             Submitter.data.append('provider',Submitter.form.getAttribute('provider'));
             Submitter.data.append('role',Submitter.form.getAttribute('role'));
