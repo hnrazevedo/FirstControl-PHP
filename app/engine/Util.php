@@ -42,7 +42,7 @@ Class Util{
     
     private static function realUnlink(?string $path)
     {
-        if (@unlink($path) === false && isset($path)) {
+        if (@unlink($path) === false && isset($path) && file_exists($path)) {
             throw new \RuntimeException('The '.$path.' could not be remove.');
         }
     }

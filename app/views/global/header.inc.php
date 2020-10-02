@@ -30,7 +30,7 @@
             <h4>Administração</h4>
         </div>
         <li>
-            <a href="/admin/users" <?= ($router['name']==='users') ? 'class="act"' : null ?>>Usuários</a>
+            <a href="/admin/users/" <?= ($router['name']==='users') ? 'class="act"' : null ?>>Usuários</a>
         </li>  
         <li>
             <a href="/visitants" <?= ($router['name']==='visitant') ? 'class="act"' : null ?>>Visitantes</a>

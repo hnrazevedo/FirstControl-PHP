@@ -32,6 +32,7 @@ function requestValidateAll(){
     
             var data = new FormData();
             data.processData = false;
+            data.append('REQUEST_METHOD','AJAX');
             data.append('provider',frm.getAttribute('provider'));
             data.append('role',frm.getAttribute('role'));
     
@@ -40,7 +41,7 @@ function requestValidateAll(){
                 fetch('/validator',
                     {
                         method: 'POST',
-                        headers: {'Requested-Method': 'ajax'},
+                        headers: {'Request_Method': 'ajaxx'},
                         body: data
                     })
                     .then(res => {

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Controller\User as User_Controller;
 use App\Model\User as Model;

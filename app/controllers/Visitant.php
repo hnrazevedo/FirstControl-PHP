@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Router\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\Visitant as Model;
 use App\Engine\Util;
@@ -11,7 +10,9 @@ use Exception;
 
 
 class Visitant extends Controller{
-    use Mask, Validate, Converter;
+    use Mask,
+        Validate,
+        Converter;
 
     private Model $entity;
 
