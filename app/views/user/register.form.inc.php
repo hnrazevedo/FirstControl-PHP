@@ -3,25 +3,25 @@
         <div class="heading">
             <span>Cadastro de novo usuário</span>
         </div>
-        <div class="content">
+        <div class="content" style="max-width:700px">
             <form provider="user" role="user_register" access="/admin/controller/user">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-6  col-md-4">
                         <input type="text" id="new_name" name="new_name" label="Nome Completo" maxlength="50">
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6  col-md-4">
                         <input type="text" id="new_username" name="new_username" label="Usuário" maxlength="20">
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6  col-md-4">
                         <input type="text" id="new_email" name="new_email" label="Email" maxlength="100">
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6  col-md-4">
                         <input type="text" id="new_birth" name="new_birth" label="Data de nascimento" data-mask="##/##/####" >
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6  col-md-4">
                         <input type="password" id="new_password" name="new_password" label="Senha" maxlength="20" >
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6  col-md-4">
                         <input type="password" id="new_password2" name="new_password2" label="Confirmar senha" maxlength="20" >
                     </div>
                     <div class="col-12 text-right">

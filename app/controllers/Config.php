@@ -47,12 +47,17 @@ class Config extends Controller{
     }
 
 
-    public function update($id, $value)
+    public function update($requestMethod, $id, $value)
     {
-        $config = $this->entity->find($id)->execute()->toEntity();
+        $config = $this->entity->find((int) $id)->execute()->toEntity();
+        
+        if(empty(($config))){
+            throw new Exception('Config not found');
+        }
+
         $config->value = $value;
         $config->save();
-        // Não é exibido para o usuário
+        
         echo json_encode([
             'success' => [
                 'message' => 'Atualizado com sucesso!'

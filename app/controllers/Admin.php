@@ -35,9 +35,9 @@ class Admin extends Controller{
     private function viewUserById(int $id)
     {
         $user = $this->entity->find($id)->where([
-            'id','<>',1
+            ['id','<>',1]
         ])->execute()->toEntity();
-        
+
         if(is_null($user)){
             throw new Exception('User not found.',404);
         }
@@ -45,7 +45,7 @@ class Admin extends Controller{
         $data = [
             'title' => 'Registros de usuários',
             'pageID' => 4,
-            'user' => $user
+            'userView' => $user
         ];
         
         Viewer::create(SYSTEM['basepath'].'app/views/user/')->render('details',array_merge($data, $_SESSION['view']['data']));

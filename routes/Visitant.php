@@ -13,7 +13,7 @@ Router::get('/visitant/details/{id}','App\\Controller\\Visitant@viewDetails')
 Router::ajax('/visitants/list','App\\Controller\\Visitant@listVisitants')
       ->middleware(['Auth']);
 
-Router::ajax('/controller/visitant','App\\Controller\\Visitant@method')
+Router::ajax('/controller/visitant','App\\Controller\\Visitant@executeData')
       ->middleware(['Auth']);
 
 Router::ajax('/visitant/json/{cpf}','App\\Controller\\Visitant@toJson')

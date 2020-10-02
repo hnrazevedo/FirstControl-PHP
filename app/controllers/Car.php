@@ -144,9 +144,7 @@ class Car extends Controller{
 
     public function viewDetails($id)
     {
-        $car = $this->entity->find($id)->where([
-            'id','<>',1
-        ])->execute()->toEntity();
+        $car = $this->entity->find($id)->execute()->toEntity();
         
         if(is_null($car)){
             throw new Exception('Car not found.', 404);

@@ -13,7 +13,7 @@ Router::get('/car/details/{id}','App\\Controller\\Car@viewDetails')
 Router::ajax('/car/list','App\\Controller\\Car@listCars')
       ->middleware(['Auth']);
 
-Router::ajax('/controller/car','App\\Controller\\Car@method')
+Router::ajax('/controller/car','App\\Controller\\Car@executeData')
       ->middleware(['Auth']);
 
       

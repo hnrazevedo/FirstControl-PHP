@@ -13,7 +13,7 @@ Router::group('/admin',function(){
 
     Router::ajax('/result/list/{entity}','App\\Controller\\Admin@result_list');
 
-    Router::ajax('/controller/{entity}','App\\Controller\\Admin@method');
+    Router::ajax('/controller/{entity}','App\\Controller\\Admin@executeData');
 
 })->groupMiddlewares([
     'Auth'

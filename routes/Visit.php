@@ -13,5 +13,5 @@ Router::get('/visit/details/{id}','App\\Controller\\Visit@viewDetails')
 Router::ajax('/visit/list','App\\Controller\\Visit@listVisits')
       ->middleware(['Auth']);
 
-Router::ajax('/controller/visit','App\\Controller\\Visit@method')
+Router::ajax('/controller/visit','App\\Controller\\Visit@executeData')
       ->middleware(['Auth']);
