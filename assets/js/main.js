@@ -33,8 +33,8 @@ function requestValidateAll(){
             var data = new FormData();
             data.processData = false;
             data.append('REQUEST_METHOD','AJAX');
-            data.append('provider',frm.getAttribute('provider'));
-            data.append('role',frm.getAttribute('role'));
+            data.append('PROVIDER',frm.getAttribute('provider'));
+            data.append('ROLE',frm.getAttribute('role'));
     
             if(self.fetch) {
                  

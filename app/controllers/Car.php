@@ -64,7 +64,7 @@ class Car extends Controller{
 
     public function carRegister()
     {
-        $data = json_decode(Util::getData()['POST']['data'],true);
+        $data = $_POST;
         
         $tmpPhoto = null;
 
@@ -173,7 +173,7 @@ class Car extends Controller{
         Viewer::path(SYSTEM['basepath'].'app/views/car/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function toJson($board)
+    public function toJson($req, $board)
     {
         $car = $this->entity->find()->where([
             'board','=',$board

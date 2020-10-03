@@ -25,7 +25,7 @@ class Controller
             return false;
         }
 
-        $method = $_POST['role'];
+        $method = $_POST['ROLE'];
 
         $this->checkMethod($method);
 
@@ -36,7 +36,7 @@ class Controller
 
     private function ValidateData(): void
     {
-        $valid = Validator::execute($_POST);
+        $valid = Validator::namespace('App\\Rules')->execute($_POST);
 
         if(!$valid){
             foreach(Validator::getErrors() as $err => $message){

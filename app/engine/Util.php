@@ -8,7 +8,7 @@ Class Util{
 
     public static function getProtocol(): string
     {
-        return (array_key_exists('HTTP_REQUESTED_METHOD',$_SERVER)) ? $_SERVER['HTTP_REQUESTED_METHOD'] : 'get';
+        return (isset($_REQUEST['REQUEST_METHOD'])) ? $_REQUEST['REQUEST_METHOD'] : $_SERVER['REQUEST_METHOD'];
     }
 
     public static function delete($path): bool

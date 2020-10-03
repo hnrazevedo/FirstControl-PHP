@@ -89,7 +89,7 @@ class User extends Controller{
     {
         try{
 
-            $data = json_decode($data['data'],true);
+            $data = $_POST;
 
             $this->entity->name = $data['new_name'];
             $this->entity->username = $data['new_username'];

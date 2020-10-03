@@ -59,8 +59,7 @@ class Visitant extends Controller{
 
     public function visitantRegister()
     {
-        $data = json_decode(Util::getData()['POST']['data'],true);
-        $files = Util::getData()['FILES'];
+        $data = $_POST;
         
         $tmpPhoto = null;
         try{
@@ -138,7 +137,7 @@ class Visitant extends Controller{
     public function viewDetails($id)
     {
         $visitant = $this->entity->find($id)->execute()->toEntity();
-        
+
         if(is_null($visitant)){
             throw new Exception('Visitant not found.',404);
         }
@@ -156,7 +155,7 @@ class Visitant extends Controller{
         Viewer::path(SYSTEM['basepath'].'app/views/visitant/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function toJson($cpf)
+    public function toJson($req, $cpf)
     {
         $visitant = $this->entity->find()->where([
             'cpf','=',str_replace(['.','-'],'',$cpf)

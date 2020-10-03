@@ -3,7 +3,7 @@
 define("SYSTEM", [
     "instaled" => true,
     "appname" => "FirstControl",
-    "uri" => "https://192.168.100.247",
+    "uri" => "https://localhost",
     "temp" => __DIR__.'/../temp/'.session_id(),
     "basepath" => __DIR__.'/../',
     "version" => '0.1.0',

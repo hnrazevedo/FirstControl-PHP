@@ -65,8 +65,11 @@ const Submitter = function(){
         },
         prepareData(){
             Submitter.data = new FormData(Submitter.form);
-
-            Submitter.form.childNodes.forEach((input,i) => {
+            Submitter.data.append('REQUEST_METHOD','AJAX');
+            Submitter.data.append('PROVIDER',Submitter.form.getAttribute('provider'));
+            Submitter.data.append('ROLE',Submitter.form.getAttribute('role'));
+    
+    /*        Submitter.form.childNodes.forEach((input,i) => {
                 if(input instanceof Element || input instanceof HTMLDocument){
                     if(input.getAttribute('multiple') != null){
                         var value = [];
@@ -85,11 +88,8 @@ const Submitter = function(){
             var data = JSON.stringify(Object.fromEntries(Submitter.data));
     
             Submitter.data = new FormData(Submitter.form);
-            Submitter.data.append('REQUEST_METHOD','AJAX');
             Submitter.data.append('data',data);
-            Submitter.data.append('provider',Submitter.form.getAttribute('provider'));
-            Submitter.data.append('role',Submitter.form.getAttribute('role'));
-    
+            */
             return this;
         },
         beforeRequest(){

@@ -53,7 +53,7 @@ class Admin extends Controller{
 
     public function edit_user()
     {
-        $data = json_decode(Util::getData()['POST']['data'],true);
+        $data = $_REQUEST;
         $user = $this->entity->find($data['edit_id'])->execute();
 
         if($user->getCount()===0){
@@ -88,7 +88,7 @@ class Admin extends Controller{
         Viewer::path(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function result_list($entity)
+    public function result_list($req, $entity)
     {
         switch($entity)
         {
@@ -135,7 +135,7 @@ class Admin extends Controller{
 
     public function status_user($role, $dataselect)
     {
-        $selects = json_decode($dataselect);
+        $selects = $_POST;
 
         $result = $this->entity->find()->where([
             ['id','in',$selects],

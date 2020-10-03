@@ -40,10 +40,10 @@ try{
         'error' => ['code' => $er->getCode(),'message' => $er->getMessage()]
     ];
 
-    if(Util::getProtocol() === 'ajax'){
+    if(Util::getProtocol() === 'AJAX'){
         echo json_encode($data);
     }else{
-        Viewer::create(SYSTEM['basepath'].'app/views/')->render('error', array_merge($data, $_SESSION['view']['data']));
+        Viewer::PATH(SYSTEM['basepath'].'app/views/')->render('error', array_merge($data, $_SESSION['view']['data']));
     }
 
 }finally{

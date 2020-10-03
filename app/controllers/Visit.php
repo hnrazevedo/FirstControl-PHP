@@ -33,7 +33,7 @@ class Visit extends Controller{
 
     public function visitRegister()
     {
-        $data = json_decode(Util::getData()['POST']['data'],true);
+        $data = $_POST;
 
         $visitantController = new VisitantController();
         $carController = new CarController();

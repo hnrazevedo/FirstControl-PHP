@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf3b5f94c0dd81b9f8d72c86aaafe051",
+    "content-hash": "8e9aef3e63ab8fe1762bef3735899ebf",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
@@ -50,12 +50,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Http.git",
-                "reference": "882919c0fa61c43731108275744fbf413a48348b"
+                "reference": "4818e831278ae39264ca018d5d8a1976c69de85a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Http/zipball/882919c0fa61c43731108275744fbf413a48348b",
-                "reference": "882919c0fa61c43731108275744fbf413a48348b",
+                "url": "https://api.github.com/repos/hnrazevedo/Http/zipball/4818e831278ae39264ca018d5d8a1976c69de85a",
+                "reference": "4818e831278ae39264ca018d5d8a1976c69de85a",
                 "shasum": ""
             },
             "require": {
@@ -82,7 +82,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2020-09-25T01:10:52+00:00"
+            "time": "2020-10-03T14:50:17+00:00"
         },
         {
             "name": "hnrazevedo/router",
@@ -126,26 +126,27 @@
         },
         {
             "name": "hnrazevedo/validator",
-            "version": "dev-master",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Validator.git",
-                "reference": "c44634ec5fa5b7d2723898ad8a29817d8773dd48"
+                "reference": "1b6422a46ab5b97f71474a8bc0e004d832c12888"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/c44634ec5fa5b7d2723898ad8a29817d8773dd48",
-                "reference": "c44634ec5fa5b7d2723898ad8a29817d8773dd48",
+                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/1b6422a46ab5b97f71474a8bc0e004d832c12888",
+                "reference": "1b6422a46ab5b97f71474a8bc0e004d832c12888",
                 "shasum": ""
             },
             "require": {
+                "hnrazevedo/http": "dev-master",
                 "php": ">=7.4"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "HnrAzevedo\\Validator\\": "src/",
-                    "Example\\Rules\\": "examples/Rules/"
+                    "HnrAzevedo\\Validator\\Example\\Rules\\": "examples/Rules/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -160,20 +161,20 @@
                 }
             ],
             "description": "Validator is a simple data validation component.",
-            "time": "2020-09-21T12:09:51+00:00"
+            "time": "2020-10-03T15:49:34+00:00"
         },
         {
             "name": "hnrazevedo/viewer",
-            "version": "v2.0.0",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "4d60a5d552617e5d77103ef82d45f234a30b2d90"
+                "reference": "c68fc94f2362a8a5a5949c23cd8b7ed653b5d289"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/4d60a5d552617e5d77103ef82d45f234a30b2d90",
-                "reference": "4d60a5d552617e5d77103ef82d45f234a30b2d90",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/c68fc94f2362a8a5a5949c23cd8b7ed653b5d289",
+                "reference": "c68fc94f2362a8a5a5949c23cd8b7ed653b5d289",
                 "shasum": ""
             },
             "require": {
@@ -199,7 +200,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-10-02T20:32:42+00:00"
+            "time": "2020-10-02T20:58:03+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -531,7 +532,6 @@
     "stability-flags": {
         "hnrazevedo/datamanager": 20,
         "hnrazevedo/http": 20,
-        "hnrazevedo/validator": 20,
         "psr/log": 20
     },
     "prefer-stable": false,
