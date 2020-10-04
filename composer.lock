@@ -126,16 +126,16 @@
         },
         {
             "name": "hnrazevedo/validator",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Validator.git",
-                "reference": "1b6422a46ab5b97f71474a8bc0e004d832c12888"
+                "reference": "b764ce95b9bcf353157934642711fe779604e871"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/1b6422a46ab5b97f71474a8bc0e004d832c12888",
-                "reference": "1b6422a46ab5b97f71474a8bc0e004d832c12888",
+                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/b764ce95b9bcf353157934642711fe779604e871",
+                "reference": "b764ce95b9bcf353157934642711fe779604e871",
                 "shasum": ""
             },
             "require": {
@@ -161,7 +161,7 @@
                 }
             ],
             "description": "Validator is a simple data validation component.",
-            "time": "2020-10-03T15:49:34+00:00"
+            "time": "2020-10-04T01:15:01+00:00"
         },
         {
             "name": "hnrazevedo/viewer",
@@ -262,12 +262,6 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "funding": [
-                {
-                    "url": "https://github.com/synchro",
-                    "type": "github"
-                }
-            ],
             "time": "2020-07-14T18:50:27+00:00"
         },
         {
@@ -539,6 +533,5 @@
     "platform": {
         "php": ">=7.4"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }
