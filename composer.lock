@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e9aef3e63ab8fe1762bef3735899ebf",
+    "content-hash": "19346116f4ee2a2934abcb38e1cb6400",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
@@ -86,20 +86,21 @@
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "03303d4dda4ec914a68eb628b17d5d2ed8d32d82"
+                "reference": "72124e27584c2017fb6f8e32832f18d29bc5838a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/03303d4dda4ec914a68eb628b17d5d2ed8d32d82",
-                "reference": "03303d4dda4ec914a68eb628b17d5d2ed8d32d82",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/72124e27584c2017fb6f8e32832f18d29bc5838a",
+                "reference": "72124e27584c2017fb6f8e32832f18d29bc5838a",
                 "shasum": ""
             },
             "require": {
                 "hnrazevedo/http": "dev-master",
+                "opis/closure": "^3.5@dev",
                 "php": ">=7.4"
             },
             "type": "library",
@@ -122,7 +123,7 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-10-02T13:25:01+00:00"
+            "time": "2020-10-05T02:09:34+00:00"
         },
         {
             "name": "hnrazevedo/validator",
@@ -130,12 +131,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Validator.git",
-                "reference": "b764ce95b9bcf353157934642711fe779604e871"
+                "reference": "2eee6e546300751cb08f4b53b9c3cad2e0ee0661"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/b764ce95b9bcf353157934642711fe779604e871",
-                "reference": "b764ce95b9bcf353157934642711fe779604e871",
+                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/2eee6e546300751cb08f4b53b9c3cad2e0ee0661",
+                "reference": "2eee6e546300751cb08f4b53b9c3cad2e0ee0661",
                 "shasum": ""
             },
             "require": {
@@ -201,6 +202,67 @@
             ],
             "description": "Tools for developing personal projects",
             "time": "2020-10-02T20:58:03+00:00"
+        },
+        {
+            "name": "opis/closure",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opis/closure.git",
+                "reference": "4531e53afe2fc660403e76fb7644e95998bff7bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opis/closure/zipball/4531e53afe2fc660403e76fb7644e95998bff7bf",
+                "reference": "4531e53afe2fc660403e76fb7644e95998bff7bf",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4 || ^7.0"
+            },
+            "require-dev": {
+                "jeremeamia/superclosure": "^2.0",
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Opis\\Closure\\": "src/"
+                },
+                "files": [
+                    "functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marius Sarca",
+                    "email": "marius.sarca@gmail.com"
+                },
+                {
+                    "name": "Sorin Sarca",
+                    "email": "sarca_sorin@hotmail.com"
+                }
+            ],
+            "description": "A library that can be used to serialize closures (anonymous functions) and arbitrary objects.",
+            "homepage": "https://opis.io/closure",
+            "keywords": [
+                "anonymous functions",
+                "closure",
+                "function",
+                "serializable",
+                "serialization",
+                "serialize"
+            ],
+            "time": "2020-09-06T17:02:15+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -526,7 +588,8 @@
     "stability-flags": {
         "hnrazevedo/datamanager": 20,
         "hnrazevedo/http": 20,
-        "psr/log": 20
+        "psr/log": 20,
+        "opis/closure": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
