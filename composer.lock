@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19346116f4ee2a2934abcb38e1cb6400",
+    "content-hash": "ea8b961a1261254ddf98b7eef3833f44",
     "packages": [
         {
             "name": "hnrazevedo/datamanager",
@@ -209,25 +209,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "4531e53afe2fc660403e76fb7644e95998bff7bf"
+                "reference": "66b428029cec9b7f52f47711253626982efe820b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/4531e53afe2fc660403e76fb7644e95998bff7bf",
-                "reference": "4531e53afe2fc660403e76fb7644e95998bff7bf",
+                "url": "https://api.github.com/repos/opis/closure/zipball/66b428029cec9b7f52f47711253626982efe820b",
+                "reference": "66b428029cec9b7f52f47711253626982efe820b",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.4 || ^7.0"
+                "php": "^5.4 || ^7.0 || ^8.0"
             },
             "require-dev": {
                 "jeremeamia/superclosure": "^2.0",
-                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.5.x-dev"
+                    "dev-master": "3.6.x-dev"
                 }
             },
             "autoload": {
@@ -262,7 +262,7 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2020-09-06T17:02:15+00:00"
+            "time": "2020-10-05T12:49:40+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -588,8 +588,7 @@
     "stability-flags": {
         "hnrazevedo/datamanager": 20,
         "hnrazevedo/http": 20,
-        "psr/log": 20,
-        "opis/closure": 20
+        "psr/log": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

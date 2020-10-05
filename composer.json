@@ -17,8 +17,7 @@
         "hnrazevedo/viewer": "^2.0",
         "hnrazevedo/validator": "^2.0",
         "hnrazevedo/http": "dev-master",
-        "psr/log": "^1.1@dev",
-        "opis/closure": "^3.5@dev"
+        "psr/log": "^1.1@dev"
     },
     "autoload": {
         "psr-4": {
