@@ -38,6 +38,7 @@ const Dialog =  function(){
         },
         popUp(m,c){
             if(document.querySelector("dialog#d_message p") == null){
+                console.log(m);
                 return false;
             }
             document.querySelector("dialog#d_message p").classList.remove(['sucess','error']);

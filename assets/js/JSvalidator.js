@@ -129,6 +129,9 @@ const Validator = function(){
                     case 'equals':
                         if(required || input.value.length>0){
                             let clone = Validator.$forms[id]['form'].querySelector('[name="'+rules[rule]+'"]');
+                            if(null === clone){
+                                throw new Error(rules[rule] + ' não foi encontrado para comparar as informações.');
+                            }
                             if(input.value!==clone.value){
                                 throw new Error(fieldText+' está diferente de '+clone.nextSibling.innerHTML+'.');
                             }

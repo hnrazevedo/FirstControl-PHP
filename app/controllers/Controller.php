@@ -40,6 +40,13 @@ class Controller
 
         if(!$valid){
             foreach(Validator::getErrors() as $err => $message){
+                if(!is_array($message)){
+                    $this->fail[] = [
+                        'input' => $err,
+                        'message' => $message
+                    ]; 
+                    continue;
+                }
                 $this->fail[] = [
                     'input' => array_keys($message)[0],
                     'message' => $message[array_keys($message)[0]]
