@@ -95,6 +95,7 @@ const Validator = function(){
             for(var rule in rules){
                 let fieldText = ( input.parentNode.querySelector(`label[for="${input.getAttribute('name')}"]`) != null ) ? input.parentNode.querySelector(`label[for="${input.getAttribute('name')}"]`).innerHTML : input.getAttribute('label');
                 let required = ((typeof rules['required']) === 'boolean') ? rules['required'] : false;
+
                 switch(rule){
                     case 'required':
                         if(required && input.value.length===0){
@@ -127,11 +128,12 @@ const Validator = function(){
                         break;
     
                     case 'equals':
-                        if(required || input.value.length>0){
-                            let clone = Validator.$forms[id]['form'].querySelector('[name="'+rules[rule]+'"]');
-                            if(null === clone){
-                                throw new Error(rules[rule] + ' não foi encontrado para comparar as informações.');
-                            }
+                        let clone = Validator.$forms[id]['form'].querySelector('[name="'+rules[rule]+'"]');
+                        if(null === clone){
+                            throw new Error(rules[rule] + ' não foi encontrado para comparar as informações.');
+                        }
+
+                        if(required || input.value.length>0 || clone.value.length >0){
                             if(input.value!==clone.value){
                                 throw new Error(fieldText+' está diferente de '+clone.nextSibling.innerHTML+'.');
                             }
