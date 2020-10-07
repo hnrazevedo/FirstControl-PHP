@@ -9,7 +9,7 @@ body:not(.loaded)::after{
     content:url('/../assets/img/icon.loading.svg') !important;
     left:calc(50% - 20px);
     top:calc(50% - 20px);
-    position: absolute;
+    position: fixed;
     z-index: 999;
 }
 body:not(.loaded)::before{
@@ -17,7 +17,7 @@ body:not(.loaded)::before{
     width: 100%;
     height: 100%;
     background:white;
-    position:absolute;
+    position:fixed;
     left:0;
     top:0;
     z-index:998;
@@ -42,20 +42,17 @@ body{
     font-family: 'Roboto';
     margin:0;
     position: relative;
-    display: flex;
-    position: relative;
-    display: -webkit-box;
-    display:box;
-    display: -ms-box;
+    font-size: .9rem;
 }
 main{
+    padding-bottom:2rem!important;
     display: block;
     overflow: auto;
     width: 100%;
     flex-grow: 1;
-    max-height: 100vh;
     height: auto;
 }
+
 
 .footer{
     position: absolute;

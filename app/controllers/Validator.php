@@ -7,7 +7,7 @@ class Validator
     public function work()
     {
         $json = \HnrAzevedo\Validator\Validator::namespace('App\\Rules')->toJson($_POST);
-        $script = "Validator.load(document.querySelector('form[provider=\"{$_POST['PROVIDER']}\"][role=\"{$_POST['ROLE']}\"]'),{$json});";
+        $script = "Validator.load(document.querySelector('form#{$_REQUEST['ID']}'),{$json});";
         echo json_encode(['success'=>$script]);
     }
 }

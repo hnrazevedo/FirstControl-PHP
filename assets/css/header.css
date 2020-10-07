@@ -1,16 +1,9 @@
 
 
 header{
-    display: inline-block;
-    background:white;
-    border-right: solid 1px rgba(0,0,0,.1);
-
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-    transition: left .3s ease;
+    align-items: center;
+    width: 100%;
+    border-bottom:solid 1px rgba(0,0,0,.05);
 }
 
 /*---------------------------------------------*/
@@ -21,39 +14,44 @@ input.header + label{
     width: 2em !important;
     height: 1.6em !important;
     position: fixed;
-    right: 1em;
+    right: 1.5em;
     top:1em;
-    padding:0!important;
+    padding:1.5rem!important;
     z-index: 3;
     visibility: hidden;
     cursor: pointer;
+    border:solid 1px rgba(0,0,0,.2);
+    background:white;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    border-radius: 100%;
+}
+input.header + label:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
 }
 input.header + label::before,
 input.header + label::after{
     content:"";
     position: absolute;
-    width: 100%;
+    width: 50%;
+    top:25%;
+    left:25%;
     height: 3px;
     background-color:#0d6efd;
-    
     transform:rotate(0deg);
     transition:transform .2s ease;
 }
 input.header + label::after{
-    bottom:0;
+    top:calc(75% - 3px);
 }
 input.header + label hr{
     position: absolute;
-    bottom: 45%;
-    width: 100%;
+    width: 50%;
+    left:25%;
+    top:calc(25% + 1.5px);
     height: 3px;
     background-color:#0d6efd !important;
     opacity: 1;
     transition:opacity .2s ease;
-}
-input.header:checked + label + header{
-    left:0;
-    transition:left .3s ease;
 }
 
 input.header:checked + label hr{
@@ -62,12 +60,14 @@ input.header:checked + label hr{
 }
 input.header:checked + label::before{
     transform:rotate(45deg);
-    bottom:.6em;
+    top:calc(50% - 1px);
+    left:calc(25% + 1px);
     transition:transform .2s ease;
 }
 input.header:checked + label::after{
     transform:rotate(-45deg);
-    bottom:.6em;
+    top:calc(50% - 1px);
+    left:calc(25% + 1px);
     transition:transform .2s ease;
 }
 /*---------------------------------------------*/
@@ -79,24 +79,33 @@ header ul{
     color:rgba(0,0,0,.8)
 }
 
-header ul div.logo{
-    padding:1em;
-    display:flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+header .logo{
+    display: inline-flex;
 }
-header ul div.logo .icon{
-    width: 1.5em;
-    height: 1.5em;
-    border-radius: 100%;
-    background:black;
-}
-header ul div.logo span{
-    margin-left:1em;
-    font-weight: bold;
+header ul{
+    display: inline-block;
 }
 
+header ul li{
+    display: inline-block;
+}
+
+header ul li a{
+    text-align: center;
+    font-size: .8em;
+    width: 100%;
+    cursor: pointer;
+}
+header ul li a i.bx{
+    display:block;
+    font-weight: bold;
+    font-size: 1.4em;
+    margin-bottom:.2rem;
+}
+
+header .logo img{
+    width: 3em;
+}
 
 header ul div.sub-title{
     padding:0 1em;
@@ -120,7 +129,13 @@ header ul li a.act{
 
 
 
+:fullscreen .bx-fullscreen{
+    display: none;
+}
 
+:fullscreen .bx-exit-fullscreen{
+    display:block !important;
+}
 
 
 header ul li.act a{
@@ -132,12 +147,12 @@ header ul li a{
     padding:1em;
     display: block;
     transition: color .2s ease;
-    color:rgba(0,0,0,.55);
+    color:rgba(0,0,0,.55) !important;
     text-decoration: none;
 }
 
 header ul li:hover a{
-    color:rgba(0,0,0,.9);
+    color:rgba(0,0,0,.9) !important;
     transition: color .2s ease;
 }
 
@@ -153,12 +168,53 @@ header ul hr.noMargin{
     margin:0 auto;
 }
 
+.breadcrumb img{
+    width:2rem;
+}
 
-@media (max-width: 768px){
+@media (max-width: 576px){
     input.header + label{
         visibility: visible;
     }
     header{
         left:-100%;
     }
+
+
+
+    header ul{
+        background-color: white;
+        z-index: 2;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: -100%;
+        transition: left .5s ease;
+    }
+
+    header ul li a i.bx{
+        margin-right: .3rem;
+        display: inline-block;
+        margin-bottom:0;
+    }
+
+    header ul li{
+        display: flex;
+    }
+
+    header ul li a{
+        display: flex;
+        align-items: center!important;
+        text-align: left !important;
+        border-bottom:solid 1px rgba(0,0,0,.1);
+    }
+
+    
+    input.header:checked + label + ul{
+        left:0;
+        transition: left .5s ease;
+    }
+
 }
+

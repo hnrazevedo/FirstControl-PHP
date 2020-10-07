@@ -47,7 +47,9 @@ const Submitter = function(){
             Submitter.url = u;  
             Submitter.data = new FormData();
             Submitter.data.append('REQUEST_METHOD','AJAX');
-			Submitter.hearders = {'Request-Method': 'ajax'};
+            Submitter.hearders = {
+				'Request-Method': 'ajax'
+            };
 			return Submitter;
         },
         setForm(f){
@@ -65,36 +67,12 @@ const Submitter = function(){
         },
         prepareData(){
             Submitter.data = new FormData(Submitter.form);
-            Submitter.data.append('REQUEST_METHOD','AJAX');
-            Submitter.data.append('PROVIDER',Submitter.form.getAttribute('provider'));
-            Submitter.data.append('ROLE',Submitter.form.getAttribute('role'));
-    
-    /*        Submitter.form.childNodes.forEach((input,i) => {
-                if(input instanceof Element || input instanceof HTMLDocument){
-                    if(input.getAttribute('multiple') != null){
-                        var value = [];
-                        input.childNodes.forEach((option, o) => {
-                            if(option.selected === true){
-                                value.push(option.value);
-                            }
-                        });
-    
-                        Submitter.data.append(input.getAttribute('name'),JSON.stringify(value));
-                        
-                    }
-                }               
-            });
-
-            var data = JSON.stringify(Object.fromEntries(Submitter.data));
-    
-            Submitter.data = new FormData(Submitter.form);
-            Submitter.data.append('data',data);
-            */
             return this;
         },
         beforeRequest(){
             
             if(Submitter.form.querySelector('.alert')!=null){
+                Submitter.form.querySelector('.alert').classList.add('d-none');
                 Submitter.form.querySelector('.alert').classList.remove(['alert-primary','alert-secondary','alert-success','alert-danger','alert-warning','alert-info','alert-light','alert-dark']);
             }
     

@@ -72,9 +72,9 @@ const DataTables = function(){
                 dataTable.table.closest('.table').querySelector('.dataTable-top').prepend(
                     DataTables.createButtons({
                         buttons:[
-                                {text:"Exportar",role:"export"},
-                                {text:"Imprimir",role:"print"},
-                                {text:"Marcar todos",role:"select_all"}
+                                {text:"<i class='bx bx-export' ></i>",role:"export"},
+                                {text:"<i class='bx bx-printer' ></i>",role:"print"},
+                                {text:"<i class='bx bx-checkbox' ></i>",role:"select_all"}
                         ]
                     })
                 );
@@ -88,6 +88,12 @@ const DataTables = function(){
             var select = dataTable.table.closest('.table').querySelector('select.dataTable');
     
             select.innerHTML = null;
+
+            var button = dataTable.table.closest('.table').querySelector('.DataTables-buttons [data-role="desmarc"]'); 
+            if(button != null){
+                button.innerHTML = "<i class='bx bx-checkbox' ></i>";
+                button.dataset.role = 'select_all';
+            }
     
             dataTable.activeRows.forEach(function(tr,i){
                 var option = document.createElement('option');
@@ -102,6 +108,7 @@ const DataTables = function(){
                 });
 
                 tr.addEventListener('click',DataTables.clickTr);
+                tr.addEventListener('dblclick',DataTables.dblclickTr);
             });
         },
         createButtons(buttons){
@@ -118,9 +125,9 @@ const DataTables = function(){
             });
             return div;
         },
-        dblclickTr(){
-            if(this.getAttribute('href') != null){ 
-                window.location.href = this.getAttribute('href');
+        dblclickTr(e){
+            if(e.target.closest('table').getAttribute('href') != null){ 
+                window.location.href = e.target.closest('table').getAttribute('href') + e.target.closest('tr').querySelector('td:first-child').innerHTML;
             }
         },
         clickTr(e){
@@ -140,7 +147,7 @@ const DataTables = function(){
     
             var button = tr.closest('.table').querySelector('.DataTables-buttons [data-role="desmarc"]'); 
             if(button != null){
-                button.innerHTML = 'Marcar todos';
+                button.innerHTML = "<i class='bx bx-checkbox' ></i>";
                 button.dataset.role = 'select_all';
             }
         },
@@ -193,7 +200,7 @@ const DataTables = function(){
                                     option.selected = 'selected';
                                 });
                             });
-                            this.innerHTML = 'Desmarcar';
+                            this.innerHTML = "<i class='bx bx-checkbox-checked' ></i>";
                             this.dataset.role = 'desmarc';
                             break;
                         case 'desmarc':
@@ -206,7 +213,7 @@ const DataTables = function(){
                                     option.selected = '';
                                 });
                             });
-                            this.innerHTML = 'Marcar todos';
+                            this.innerHTML = "<i class='bx bx-checkbox' ></i>";
                             this.dataset.role = 'select_all';
                             break;
                         

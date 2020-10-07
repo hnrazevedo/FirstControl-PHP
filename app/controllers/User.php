@@ -75,14 +75,22 @@ class User extends Controller{
         Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function view_login()
+    public function viewLogin()
     {
         if(!empty($_SESSION['user'])){
             header('Location: /dashboard');
             return true;
         }
+
+        $data = [
+            'page' => '/user/login.form',
+            'title' => 'Acessar',
+            'breadcrumb' => [
+                ['text' => 'Acessar', 'active' => true]
+            ]
+        ];
         
-        Viewer::path(SYSTEM['basepath'].'app/views/user/')->render('login',$_SESSION['view']['data']);
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
     }
 
     public function admin_register(array $data)

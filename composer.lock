@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Datamanager.git",
-                "reference": "3f2518aeed18edc26276786ebde76a219cc5103b"
+                "reference": "18481d61b816b42cd1090b953ed0d8823f208a53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/3f2518aeed18edc26276786ebde76a219cc5103b",
-                "reference": "3f2518aeed18edc26276786ebde76a219cc5103b",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/18481d61b816b42cd1090b953ed0d8823f208a53",
+                "reference": "18481d61b816b42cd1090b953ed0d8823f208a53",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "Datamanager is a simple persistence abstraction component in the database.",
-            "time": "2020-10-02T14:47:22+00:00"
+            "time": "2020-10-06T19:25:22+00:00"
         },
         {
             "name": "hnrazevedo/http",
@@ -123,20 +123,20 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-10-05T02:09:34+00:00"
+            "time": "2020-10-05T02:29:13+00:00"
         },
         {
             "name": "hnrazevedo/validator",
-            "version": "v2.0.1",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Validator.git",
-                "reference": "2eee6e546300751cb08f4b53b9c3cad2e0ee0661"
+                "reference": "b2d9fe28d1130cb01cf420f759f6d9bb79d16d1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/2eee6e546300751cb08f4b53b9c3cad2e0ee0661",
-                "reference": "2eee6e546300751cb08f4b53b9c3cad2e0ee0661",
+                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/b2d9fe28d1130cb01cf420f759f6d9bb79d16d1c",
+                "reference": "b2d9fe28d1130cb01cf420f759f6d9bb79d16d1c",
                 "shasum": ""
             },
             "require": {
@@ -162,7 +162,7 @@
                 }
             ],
             "description": "Validator is a simple data validation component.",
-            "time": "2020-10-04T01:15:01+00:00"
+            "time": "2020-10-06T22:57:31+00:00"
         },
         {
             "name": "hnrazevedo/viewer",
@@ -324,6 +324,12 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "funding": [
+                {
+                    "url": "https://github.com/synchro",
+                    "type": "github"
+                }
+            ],
             "time": "2020-07-14T18:50:27+00:00"
         },
         {
@@ -595,5 +601,6 @@
     "platform": {
         "php": ">=7.4"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

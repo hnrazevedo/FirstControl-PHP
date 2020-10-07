@@ -6,16 +6,21 @@
 
         <?= $this->import('global/styles') ?>
     </head>
-    <body class="d-flex">
-        <div class="row">
-            <?= $this->import('global/header') ?>
-            <main class="col-sm-12 col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                <div class="content">
-                    <h1>{{ $title }}</h1>
-                    <?= $this->import($page) ?>
-                </div>
-            </main>
-        </div>
+    <body>
+        <?= $this->import('global/header') ?>
+            
+        <main class="row pb-5">
+            <h3 class="m-4 w-auto">{{ $title }}</h2>   
+            <div class="col-12 px-4 content">    
+                <?= $this->import($page) ?>
+            </div>
+        </main>
+        
+        <?= $this->import('global/footer') ?>
+        
+        <?= $this->import('global/dialog_loading') ?>
+        <?= $this->import('global/dialog_message') ?>
+
         <?= $this->import('global/scripts') ?>
     </body>
 </html>

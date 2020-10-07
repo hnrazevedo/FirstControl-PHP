@@ -4,3 +4,45 @@
 
 
 
+p.icon{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.5s ease;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+}
+p.icon i{
+    line-height: 70px;
+    font-size: 30px;
+    color: #fff;
+    transition: all 0.5s ease;
+}
+a.dashboard:hover p.icon{
+    border: 1px solid #fff;
+    background-color: rgba(255,255,255,0.45);
+    transition: transform .5s ease;
+    transform: rotate(360deg);
+}
+
+a.dashboard{
+    text-decoration: none;
+    font-weight: 100;
+    height: 300px;
+}
+
+.breadcrumb-item+.breadcrumb-item::before{
+    font-family: 'boxicons'!important;
+    content: "\ecee";
+}
+.breadcrumb{
+    border-radius: 0;
+    font-size: .8em;
+}
+.breadcrumb a{
+    text-decoration: none;
+}
+.breadcrumb .breadcrumb-item a:hover{
+    text-decoration: underline;
+}

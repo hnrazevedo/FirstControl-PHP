@@ -5,11 +5,10 @@ const Form = function(){
         init(){
             Form.imageBurn();
 
-            document.querySelectorAll('form[provider]').forEach((form, i) => {
-                form.setAttribute('method','POST');
+            document.querySelectorAll('form.ajax').forEach((form, i) => {
                 //form.setAttribute('enctype','multipart/form-data');
                 var divM = document.createElement('div');
-                divM.classList.add('alert','p-2');
+                divM.classList.add('alert','p-2','d-none','ml-2','mr-2','col-12');
                 form.prepend(divM);
 
                 form.addEventListener('submit',function(e){
