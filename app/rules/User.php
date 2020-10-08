@@ -14,7 +14,7 @@ Class User{
                   ->addField('log_username',['minlength'=>1,'maxlength'=>20 ,'required'=>true])
                   ->addField('log_password',['minlength'=>1,'maxlength'=>20,'required'=>true]);
 
-            $rules->setAction('user_register')
+            $rules->setAction('registerUser')
                   ->addField('new_name',['minlength'=>1,'maxlength'=>50,'required'=>true])
                   ->addField('new_username',['minlength'=>1,'maxlength'=>20,'required'=>true])
                   ->addField('new_email',['minlength'=>1,'maxlength'=>100,'filter'=>FILTER_VALIDATE_EMAIL,'required'=>true])

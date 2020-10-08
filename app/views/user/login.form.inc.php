@@ -32,8 +32,8 @@
             </div>
         </div>
     </div>
-    <input type="hidden" name="REQUEST_METHOD" value="AJAX">
-    <input type="hidden" name="PROVIDER" value="user">
-    <input type="hidden" name="ROLE" value="login">
+    <input type="hidden" name="REQUEST_METHOD" value="AJAX" fixed="fixed">
+    <input type="hidden" name="PROVIDER" value="user" fixed="fixed">
+    <input type="hidden" name="ROLE" value="login" fixed="fixed">
 </form>
         

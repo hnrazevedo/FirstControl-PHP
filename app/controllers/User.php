@@ -14,6 +14,63 @@ class User extends Controller{
         $this->entity = new Model();
     }
 
+    public function viewDashboard()
+    {
+        $data = [
+            'page' => '/user/dashboard',
+            'title' => 'Dashboard',
+            'breadcrumb' => [
+                ['text' => 'Dashboard', 'active' => true]
+            ]
+        ];
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
+    }
+
+    public function viewList()
+    {
+        $data = [
+            'page' => '/admin/list',
+            'title' => 'Registros',
+            'breadcrumb' => [
+                ['text' => 'Administração', 'uri' => '/administracao/'],
+                ['text' => 'Usuários', 'uri' => '/administracao/usuarios'],
+                ['text' => 'Registros', 'active' => true]
+            ],
+            'tab' => [
+                'id' => 'registersUsers',
+                'title' => 'Registro de usuários',
+                'href' => '/administracao/usuarios/',
+                'uri' => '/administracao/usuario/listagem',
+                'thead' => '<th>ID</th><th>Nome</th><th>Usuário</th><th>Email</th><th>Nascimento</th><th>Registro</th><th>Últ. Acesso</th><th>Acesso</th><th>Tipo</th>'
+            ]
+        ];
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
+    }
+
+    public function viewDetails($id)
+    {
+        $user = $this->entity->find($id)->where([
+            ['id','<>',1]
+        ])->execute()->toEntity();
+
+        if(null === $user){
+            throw new Exception('Usuário não encontrado.', 404);
+        }
+
+        $data = [
+            'page' => '/user/details',
+            'title' => 'Detalhes de usuário',
+            'userView' => $user,
+            'breadcrumb' => [
+                ['text' => 'Administração', 'uri' => '/administracao/'],
+                ['text' => 'Usuários', 'uri' => '/administracao/usuarios'],
+                ['text' => 'Registros', 'uri' => '/administracao/usuarios/registros'],
+                ['text' => 'Detalhes', 'active' => true],
+            ]
+        ];
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
+    }
+
     public function logout()
     {
         unset($_SESSION['user']);
@@ -93,7 +150,8 @@ class User extends Controller{
         Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function admin_register(array $data)
+
+    public function adminRegister(array $data)
     {
         try{
 
@@ -117,7 +175,7 @@ class User extends Controller{
                     'message' => 'Usuário registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => "DataTables.dataAdd('table_list_user', ['{$this->entity->id}','{$this->entity->name}','{$this->entity->username}','{$this->entity->email}','{$this->entity->birth}','{$this->entity->register}','{$this->entity->lastaccess}','{$this->entity->status}','{$this->entity->type}']);"
+                'script' => "setTimeout(function(){ window.location.href='/administracao/usuarios'; },2000);"
             ]);
 
         }catch(Exception $er){

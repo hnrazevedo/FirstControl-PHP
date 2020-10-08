@@ -17,64 +17,70 @@ class Admin extends Controller{
         $this->entity = new Model();
     }
 
-    public function view_users($id)
+    public function viewDashboard()
     {
-        if((strlen($id) > 0)){
-            $this->viewUserById($id);
-            return true;
-        }
-
         $data = [
-            'title' => 'Registros de usuários',
-            'page' => '../user/list',
-            'pageID' => 2
+            'page' => '/admin/dashboard',
+            'title' => 'Administração',
+            'breadcrumb' => [
+                ['text' => 'Administração', 'active' => true]
+            ]
         ];
-        Viewer::path(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
     }
 
-    private function viewUserById(int $id)
+    public function viewRegisters()
     {
-        $user = $this->entity->find($id)->where([
-            ['id','<>',1]
-        ])->execute()->toEntity();
+        $data = [
+            'page' => '/admin/registers',
+            'title' => 'Registros',
+            'breadcrumb' => [
+                ['text' => 'Administração', 'uri' => '/administracao/'],
+                ['text' => 'Registros', 'active' => true]
+            ]
+        ];
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
+    }
 
-        if(is_null($user)){
-            throw new Exception('User not found.',404);
+    public function viewUserMenu()
+    {
+        $data = [
+            'page' => '/admin/user',
+            'title' => 'Usuários',
+            'breadcrumb' => [
+                ['text' => 'Administração', 'uri' => '/administracao/'],
+                ['text' => 'Usuários', 'active' => true]
+            ]
+        ];
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
+    }
+
+    public function updateUser()
+    {
+        $user = $this->entity->find($_POST['edit_id'])->execute()->toEntity();
+
+        if(null === $user){
+            throw new Exception('Usuário não encontrado');
         }
 
-        $data = [
-            'title' => 'Registros de usuários',
-            'pageID' => 4,
-            'userView' => $user
-        ];
+        if($user->type == 1 && (unserialize($_SESSION['user']))->id != 1){
+            throw new Exception('Usuário é um administrador<br>Atualização não permitida');
+        }
+
+        if(strlen($_POST['edit_password'] > 0)){
+            $user->password = password_hash($_POST['edit_password'], PASSWORD_DEFAULT);
+        }
         
-        Viewer::path(SYSTEM['basepath'].'app/views/user/')->render('details',array_merge($data, $_SESSION['view']['data']));
-    }
-
-    public function edit_user()
-    {
-        $data = $_REQUEST;
-        $user = $this->entity->find($data['edit_id'])->execute();
-
-        if($user->getCount()===0){
-            throw new Exception('User not found.');
-        }
-
-        $user = $user->toEntity();
-
-        if($user->type === 1){
-            throw new Exception('User is admin.<br>Update not allowed.');
-        }
-
-        $user->password = password_hash($data['edit_password'],PASSWORD_DEFAULT);
+        $user->status = $_POST['edit_status'];
+        $user->type = $_POST['edit_type'];
 
         $user->save();
 
         echo json_encode([
             'success' => [
-                'message' => 'User updated successfully.<br>This page will be closed in 3s.'
+                'message' => 'Usuário atualizado com sucesso'
             ],
-            'script' => 'setTimeout(function(){window.close();},3000);'
+            'script' => 'setTimeout(function(){ window.location.href="/administracao/usuarios/registros"; },2000);'
         ]);
     }
 
@@ -88,11 +94,11 @@ class Admin extends Controller{
         Viewer::path(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function result_list($req, $entity)
+    public function viewRecords($req, $entity)
     {
         switch($entity)
         {
-            case 'users':
+            case 'usuario':
                 echo json_encode($this->getListUser());
                 break;
             default:
@@ -101,10 +107,40 @@ class Admin extends Controller{
         }
     }
 
+    public function viewNewEntity($entity)
+    {
+        $data = [
+            'page' => '/admin/dashboard',
+            'title' => 'Novo registro',
+            'breadcrumb' => [
+                ['text' => 'Administração', 'uri' => '/administracao/']
+            ]
+        ];
+
+        switch($entity)
+        {
+            case 'usuario':
+                $data = [
+                    'page' => '/user/register.form',
+                    'title' => 'Novo usuário',
+                    'breadcrumb' => [
+                        ['text' => 'Administração', 'uri' => '/administracao/'],
+                        ['text' => 'Usuários', 'uri' => '/administracao/usuarios'],
+                        ['text' => 'Novo usuário', 'active' => true]
+                    ]
+                ];
+                break;
+            default:
+                throw new Exception('Registro para persistência inválido', 404);
+                break;
+        }
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
+    }
+
     public function getListUser()
     {
         $users = $this->entity->find()->except(['password','code'])->where([
-            ['type','=','0']
+            ['id','<>', 1]
         ])->execute()->toEntity();
 
         $users = (is_array($users)) ? $users : [$users];
@@ -117,20 +153,28 @@ class Admin extends Controller{
         foreach($users as $user => $result){
             $date = [];
             foreach($result->getData() as $field => $data){
-                
                 if($result->$field != null){
-                    $date[] = $result->$field;
+                    switch($field){
+                        case 'type':
+                            $date[] = ($result->$field) ? 'Administrador' : 'Comum';
+                        break;
+                        case 'status':
+                            $date[] = ($result->$field) ? 'Liberado' : 'Bloqueado';
+                        break;
+                        default:
+                            $date[] = $result->$field;
+                        break;
+                    }
                 }
-
             }
             $return[] = array_values($date);
         }
         return $return;
     }
 
-    public function user_register()
+    public function registerUser()
     {
-        (new User_Controller())->admin_register(Util::getData()['POST']); 
+        (new User_Controller())->adminRegister(Util::getData()['POST']); 
     }
 
     public function status_user($role, $dataselect)

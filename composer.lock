@@ -86,16 +86,16 @@
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "72124e27584c2017fb6f8e32832f18d29bc5838a"
+                "reference": "fb704f031858b488db9ad078e3f17f17275787df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/72124e27584c2017fb6f8e32832f18d29bc5838a",
-                "reference": "72124e27584c2017fb6f8e32832f18d29bc5838a",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/fb704f031858b488db9ad078e3f17f17275787df",
+                "reference": "fb704f031858b488db9ad078e3f17f17275787df",
                 "shasum": ""
             },
             "require": {
@@ -123,7 +123,7 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-10-05T02:29:13+00:00"
+            "time": "2020-10-08T14:46:09+00:00"
         },
         {
             "name": "hnrazevedo/validator",

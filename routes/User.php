@@ -2,15 +2,13 @@
 
 use HnrAzevedo\Router\Router;
 
-Router::get('/','App\\Controller\\User@viewLogin');
+Router::get('/sair','App\\Controller\\User@logout')
+      ->middleware(['Auth']);
 
+Router::get('/esqueci-a-senha','App\\Controller\\User@viewRecover')
+      ->middleware(['NoAuth']);
 
-Router::get('/sair','App\\Controller\\User@logout');
-
-
-
-Router::get('/dashboard','App\\Controller\\User@dashboard')
-      ->middleware(['Auth'])
-      ->name('dashboard');
+Router::get('/usuarios/minha-conta','App\\Controller\\User@viewRegister')
+      ->middleware(['Auth']);
 
 Router::ajax('/controller/user','App\\Controller\\User@executeData');

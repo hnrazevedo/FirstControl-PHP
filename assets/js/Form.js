@@ -90,7 +90,6 @@ const Form = function(){
                 if(select.nextSibling == null){
                     return true;
                 }
-    
                 select.querySelector('[value="'+select.getAttribute('value')+'"]').setAttribute('selected',true);
             });
 
