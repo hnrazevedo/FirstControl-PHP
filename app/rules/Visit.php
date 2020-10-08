@@ -14,7 +14,7 @@ Class Visit{
                   ->addField('dataselect',['mincount'=>1,'required'=>true])
                   ->addField('role',['minlength'=>1,'maxlength'=>20 ,'required'=>true]);
             
-            $rules->setAction('visitRegister')
+            $rules->setAction('register')
                   ->addField('new_reason',['minlength'=>1,'maxlength'=>100,'required'=>true])  
                   ->addField('new_responsible',['minlength'=>1,'maxlength'=>50,'required'=>true])      
                   ->addField('new_name',['minlength'=>1,'maxlength'=>50,'required'=>true])

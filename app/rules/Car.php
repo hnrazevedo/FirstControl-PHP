@@ -10,11 +10,7 @@ Class Car{
     public function __construct()
     {
         Validator::add($this,function(Rules $rules){
-            $rules->setAction('statusCar')
-                  ->addField('dataselect',['mincount'=>1,'required'=>true])
-                  ->addField('role',['minlength'=>1,'maxlength'=>20 ,'required'=>true]);
-            
-            $rules->setAction('carRegister')
+            $rules->setAction('register')
                   ->addField('new_carphoto',['required'=>false])
                   ->addField('new_cpf',['minlength'=>1,'maxlength'=>14,'regex'=>'/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/','required'=>true])  
                   ->addField('new_board',['minlength'=>1,'maxlength'=>8,'required'=>true])

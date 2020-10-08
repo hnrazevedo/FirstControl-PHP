@@ -43,7 +43,7 @@
     </div>
     <input type="hidden" name="REQUEST_METHOD" value="AJAX" fixed="fixed">
     <input type="hidden" name="PROVIDER" value="visitant" fixed="fixed">
-    <input type="hidden" name="ROLE" value="visitantRegister" fixed="fixed">
+    <input type="hidden" name="ROLE" value="register" fixed="fixed">
 </form>
 
 <script>

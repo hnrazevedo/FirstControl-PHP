@@ -110,7 +110,7 @@ class User extends Controller{
         header('Location: /');
     }
 
-    public function login($username, $password)
+    public function login($username, $password): bool
     {
         try{
             $user = $this->entity->find()->where([
@@ -137,31 +137,24 @@ class User extends Controller{
         
             $_SESSION['user'] = serialize($user);
 
+            if($user->type == 1){
+                echo json_encode([
+                    'script' => 'window.location.href="/administracao/";'
+                ]);
+                return true;
+            }
             echo json_encode([
                 'script' => 'window.location.href="/dashboard";'
             ]);
-
         }catch(Exception $er){
-
             echo json_encode([
                 'error' =>
                     [
                         'message' => $er->getMessage()
                     ]
             ]);
-
         }
-    }
-
-    public function dashboard()
-    {
-        $data = [
-            'page' => '/user/dashboard',
-            'title' => 'Dashboard',
-            'pageID' => 1
-        ];
-
-        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
+        return false;
     }
 
     public function viewLogin()
@@ -183,20 +176,17 @@ class User extends Controller{
     }
 
 
-    public function adminRegister(array $data)
+    public function register()
     {
         try{
-
-            $data = $_POST;
-
-            $this->entity->name = $data['new_name'];
-            $this->entity->username = $data['new_username'];
-            $this->entity->email = $data['new_email'];
-            $this->entity->birth = $data['new_birth'];
-            $this->entity->password = password_hash($data['new_password'], PASSWORD_DEFAULT);
+            $this->entity->name = $_POST['new_name'];
+            $this->entity->username = $_POST['new_username'];
+            $this->entity->email = $_POST['new_email'];
+            $this->entity->birth = $_POST['new_birth'];
+            $this->entity->password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
             $this->entity->type = 0;
             $this->entity->status = 1;
-            $this->entity->code = sha1($data['new_email']);
+            $this->entity->code = sha1($_POST['new_email']);
             $this->entity->register = date('Y-m-d H:i:s');
             $this->entity->lastaccess = date('Y-m-d H:i:s');
 

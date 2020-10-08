@@ -107,29 +107,27 @@ class Car extends Controller{
         return $return;
     }
 
-    public function carRegister()
+    public function register()
     {
-        $data = $_POST;
-        
         $tmpPhoto = null;
 
         try{
 
             $visitant = (new VisitantModel())->find()->only(['id','name'])->where([
-                'cpf','=',str_replace(['.','-'],'',$data['new_cpf'])
+                'cpf','=',str_replace(['.','-'],'', $_POST['new_cpf'])
             ])->execute()->toEntity();
     
             if(is_null($visitant)){
                 throw new Exception('Driver not found.');
             }
     
-            $this->persistEntity(array_merge($data,[ 'new_visitant' => $visitant->id ]));
+            $this->persistEntity(array_merge($_POST, [ 'new_visitant' => $visitant->id ]));
 
-            if(strlen($data['new_carphoto']) > 0){
-                $file = $this->replaceBase64($data['new_carphoto']);
-                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'car'.DIRECTORY_SEPARATOR.$data['new_board'].'.'.$file['ext'];
+            if(strlen($_POST['new_carphoto']) > 0){
+                $file = $this->replaceBase64($_POST['new_carphoto']);
+                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'car'.DIRECTORY_SEPARATOR.$_POST['new_board'].'.'.$file['ext'];
                 if(file_put_contents($tmpPhoto,$file['data'])){
-                    $this->entity->photo = $data['new_board'].'.'.$file['ext'];
+                    $this->entity->photo = $_POST['new_board'].'.'.$file['ext'];
                     $this->entity->save();
                 }
             }

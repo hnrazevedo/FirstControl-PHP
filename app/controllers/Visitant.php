@@ -34,7 +34,7 @@ class Visitant extends Controller{
             ],
             'tab' => [
                 'id' => 'registersVisitants',
-                'title' => 'Registro de usuários',
+                'title' => 'Registro de visitas',
                 'href' => '/administracao/visitantes/',
                 'uri' => '/administracao/visitantes/listagem',
                 'thead' => '<th>ID</th><th>Nome</th><th>CPF</th><th>RG</th><th>Últ. Visita</th><th>Empresa</th><th>Contato</th>'
@@ -94,24 +94,22 @@ class Visitant extends Controller{
         ];
     }
 
-    public function visitantRegister()
+    public function register()
     {
-        $data = $_POST;
-        
         $tmpPhoto = null;
         try{
 
-            if(!$this->isValidCPF($data['new_cpf'])){
+            if(!$this->isValidCPF($_POST['new_cpf'])){
                 throw new Exception('CPF invalid.');
             }
 
-            $this->persistEntity($data);
+            $this->persistEntity($_POST);
 
-            if(strlen($data['new_photo']) > 0){
-                $file = $this->replaceBase64($data['new_photo']);
-                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.str_replace([',','.','-'],'',$data['new_cpf']).'.'.$file['ext'];
-                if(file_put_contents($tmpPhoto,$file['data'])){
-                    $this->entity->photo = str_replace([',','.','-'],'',$data['new_cpf']).'.'.$file['ext'];
+            if(strlen($_POST['new_photo']) > 0){
+                $file = $this->replaceBase64($_POST['new_photo']);
+                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.str_replace([',','.','-'],'', $_POST['new_cpf']).'.'.$file['ext'];
+                if(file_put_contents($tmpPhoto, $file['data'])){
+                    $this->entity->photo = str_replace([',','.','-'],'', $_POST['new_cpf']).'.'.$file['ext'];
                     $this->entity->save();
                 }
             }
@@ -121,7 +119,7 @@ class Visitant extends Controller{
                     'message' => 'Visitante registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => "DataTables.dataAdd('table_list_visitants', ['{$this->entity->id}','{$this->entity->name}','{$this->replaceCPF($this->entity->cpf)}','{$this->replaceRG($this->entity->rg)}','{$this->entity->birth}','{$this->entity->lastvisit}','{$this->entity->register}','{$this->entity->company}','{$this->replaceCellPhone($this->entity->phone)}','{$this->entity->email}']);"
+                'script' => 'setTimeout(function(){ window.location.href="/administracao/registros/visitantes"; },2000);'
             ]);
    
         }catch(Exception $er){

@@ -144,6 +144,22 @@ class Admin extends Controller{
                     ]
                 ]);
                 break;
+            case 'visitas':
+                $this->view([
+                    'page' => '/admin/registersMenu',
+                    'title' => 'Visitas',
+                    'addable' => [
+                        'text' => 'Nova visita',
+                        'uri' => 'administracao/novo/visita'
+                    ],
+                    'entity' => 'visitas',
+                    'breadcrumb' => [
+                        ['text' => 'Administração', 'uri' => '/administracao/'],
+                        ['text' => 'Registros', 'uri' => '/administracao/registros'],
+                        ['text' => 'Visitas', 'active' => true]
+                    ]
+                ]);
+                break;
             case 'visitantes':
                 $this->view([
                     'page' => '/admin/registersMenu',
@@ -222,6 +238,18 @@ class Admin extends Controller{
                     ]
                 ]);
                 break;
+            case 'visita':
+                $this->view([
+                    'page' => '/visits/register.form',
+                    'title' => 'Nova visita',
+                    'breadcrumb' => [
+                        ['text' => 'Administração', 'uri' => '/administracao/'],
+                        ['text' => 'Registros', 'uri' => '/administracao/registros'],
+                        ['text' => 'Visitas', 'uri' => '/administracao/registros/visitas'],
+                        ['text' => 'Novo visita', 'active' => true]
+                    ]
+                ]);
+                break;
             case 'visitante':
                 $this->view([
                     'page' => '/visitant/register.form',
@@ -229,7 +257,7 @@ class Admin extends Controller{
                     'breadcrumb' => [
                         ['text' => 'Administração', 'uri' => '/administracao/'],
                         ['text' => 'Registros', 'uri' => '/administracao/registros'],
-                        ['text' => 'Visitantes', 'uri' => '/administracao/registros/Visitantes'],
+                        ['text' => 'Visitantes', 'uri' => '/administracao/registros/visitantes'],
                         ['text' => 'Novo visitante', 'active' => true]
                     ]
                 ]);

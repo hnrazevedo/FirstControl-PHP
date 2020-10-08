@@ -28,6 +28,6 @@
     </div>  
     <input type="hidden" name="REQUEST_METHOD" value="AJAX" fixed="fixed">
     <input type="hidden" name="PROVIDER" value="user" fixed="fixed">
-    <input type="hidden" name="ROLE" value="registerUser" fixed="fixed">
+    <input type="hidden" name="ROLE" value="register" fixed="fixed">
 </form>
         

@@ -196,7 +196,7 @@ const Submitter = function(){
                     case 'reset':
                         if(document.querySelector('form.submitting') != null){
                             document.querySelector('form.submitting').querySelectorAll('input').forEach(function(e,i){
-                                if(e.getAttribute('fixed') == null || e.getAttribute('type') != 'submit'){
+                                if(e.getAttribute('fixed') == null || e.getAttribute('type') != 'submit' || e.getAttribute('type') != 'button'){
                                     e.value = '';
                                     e.setAttribute('value','');
                                 }

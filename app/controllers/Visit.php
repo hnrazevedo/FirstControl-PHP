@@ -23,18 +23,30 @@ class Visit extends Controller{
         $this->entity = new Model();
     }
 
-    public function viewPage()
+    public function grid()
     {
-        $data = [
-            'title' => 'Visitas'
+        return [
+            'page' => '/admin/list',
+            'title' => 'Registros de visitas',
+            'breadcrumb' => [
+                ['text' => 'Administração', 'uri' => '/administracao/'],
+                ['text' => 'Registros', 'uri' => '/administracao/registros'],
+                ['text' => 'Visitas', 'uri' => '/administracao/registros/visitas'],
+                ['text' => 'Listagem', 'active' => true]
+            ],
+            'tab' => [
+                'id' => 'registersVisits',
+                'title' => 'Registro de visitas',
+                'href' => '/administracao/visitas/',
+                'uri' => '/administracao/visitas/listagem',
+                'thead' => '<th>ID</th><th>Visitante</th><th>CPF</th><th>Entrada</th><th>Saída</th><th>Status</th><th>Razão/Motivo</th><th>Responsável</th><th>Veículo</th>'
+            ]
         ];
-        Viewer::path(SYSTEM['basepath'].'app/views/visits/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function visitRegister()
-    {
-        $data = $_POST;
 
+    public function register()
+    {
         $visitantController = new VisitantController();
         $carController = new CarController();
         
@@ -42,11 +54,11 @@ class Visit extends Controller{
         $tmpPhotoCar = null;
         try{
 
-            $visitantRegister = $visitantController->checkNewRegister($data);
+            $visitantRegister = $visitantController->checkNewRegister($_POST);
             $visitant = $visitantRegister['visitant'];
             $tmpPhoto = $visitantRegister['tmpPhoto'];
 
-            $carRegister = $carController->checkNewRegister($data,$visitant->id);
+            $carRegister = $carController->checkNewRegister($_POST,$visitant->id);
             $car = $carRegister['car'];
             $tmpPhotoCar = $carRegister['tmpPhoto'];
 
@@ -54,8 +66,8 @@ class Visit extends Controller{
             $this->entity->visitant = $visitant->id;
             $this->entity->started = date('Y-m-d H:i:s');
             $this->entity->finished = '0000-00-00 00:00:00';
-            $this->entity->reason = $data['new_reason'];
-            $this->entity->responsible = $data['new_responsible'];
+            $this->entity->reason = $_POST['new_reason'];
+            $this->entity->responsible = $_POST['new_responsible'];
             $this->entity->status = 0;
             $this->entity->car = $car->id;
 
@@ -66,7 +78,7 @@ class Visit extends Controller{
                     'message' => 'Visita registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => "DataTables.dataAdd('table_list_visits', ['{$this->entity->id}','{$visitant->name}','{$this->replaceCPF($visitant->cpf)}','{$this->entity->started}','{$this->entity->finished}','{$this->entity->reason}','{$this->entity->responsible}','{$car->board}']);"
+                'script' => 'setTimeout(function(){ window.location.href="/administracao/registros/visitas"; },2000);'
             ]);
 
             
@@ -80,7 +92,7 @@ class Visit extends Controller{
         }
     }
 
-    public function listVisits()
+    public function list()
     {
         $visits = $this->entity->find()->where([
             ['id','<>',1]
@@ -117,10 +129,10 @@ class Visit extends Controller{
             $return[] = array_values($date);
         }
 
-        echo json_encode($return);
+        return $return;
     }
 
-    public function viewDetails($id)
+    public function details($id)
     {
         $visit = $this->entity->find($id)->execute()->toEntity();
         
