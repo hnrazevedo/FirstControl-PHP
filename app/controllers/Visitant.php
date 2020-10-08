@@ -21,17 +21,30 @@ class Visitant extends Controller{
         $this->entity = new Model();
     }
 
-    public function viewVisitants()
+    public function grid()
     {
-        $data = [
-            'title' => 'Visitantes'
+        return [
+            'page' => '/admin/list',
+            'title' => 'Registros de visitantes',
+            'breadcrumb' => [
+                ['text' => 'Administração', 'uri' => '/administracao/'],
+                ['text' => 'Registros', 'uri' => '/administracao/registros'],
+                ['text' => 'Visitantes', 'uri' => '/administracao/registros/visitantes'],
+                ['text' => 'Listagem', 'active' => true]
+            ],
+            'tab' => [
+                'id' => 'registersVisitants',
+                'title' => 'Registro de usuários',
+                'href' => '/administracao/visitantes/',
+                'uri' => '/administracao/visitantes/listagem',
+                'thead' => '<th>ID</th><th>Nome</th><th>CPF</th><th>RG</th><th>Últ. Visita</th><th>Empresa</th><th>Contato</th>'
+            ]
         ];
-        Viewer::path(SYSTEM['basepath'].'app/views/visitant/')->render('index' ,array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function listVisitants()
+    public function list()
     {
-        $visitants = $this->entity->find()->where([
+        $visitants = $this->entity->find()->only(['id','name','cpf','rg','company','phone','lastvisit'])->where([
             ['id','<>',1]
         ])->except('photo')->execute()->toEntity();
 
@@ -45,16 +58,40 @@ class Visitant extends Controller{
         foreach($visitants as $visitant => $result){
             $date = [];
             foreach($result->getData() as $field => $data){
-                
                 if($result->$field != null){
                     $date[] = $this->replace($field,$result->$field);
                 }
-
             }
             $return[] = array_values($date);
         }
 
-        echo json_encode($return);
+        return $return;
+    }
+
+    public function details($id)
+    {
+        $visitant = $this->entity->find($id)->execute()->toEntity();
+
+        if(is_null($visitant)){
+            throw new Exception('Visitante não encontrado', 404);
+        }
+
+        $visitant->cpf = $this->replaceCPF($visitant->cpf);
+        $visitant->rg = $this->replaceRG($visitant->rg);
+        $visitant->phone = $this->replaceCellPhone($visitant->phone);
+
+        return [
+            'page' => '/visitant/details',
+            'title' => 'Detalhes de visitante',
+            'visitantView' => $visitant,
+            'breadcrumb' => [
+                ['text' => 'Administração', 'uri' => '/administracao/'],
+                ['text' => 'Registros', 'uri' => '/administracao/registros'],
+                ['text' => 'Visitantes', 'uri' => '/administracao/registros/visitantes'],
+                ['text' => 'Listagem', 'uri' => '/administracao/registros/visitantes/listagem'],
+                ['text' => 'Detalhes', 'active' => true],
+            ]
+        ];
     }
 
     public function visitantRegister()
@@ -132,27 +169,6 @@ class Visitant extends Controller{
         $this->entity->persist();
 
         return $this->entity;
-    }
-
-    public function viewDetails($id)
-    {
-        $visitant = $this->entity->find($id)->execute()->toEntity();
-
-        if(is_null($visitant)){
-            throw new Exception('Visitant not found.',404);
-        }
-
-        $visitant->cpf = $this->replaceCPF($visitant->cpf);
-        $visitant->rg = $this->replaceRG($visitant->rg);
-        $visitant->phone = $this->replaceCellPhone($visitant->phone);
-
-        $data = [
-            'title' => 'Registros de visitantes',
-            'pageID' => 4,
-            'visitant' => $visitant
-        ];
-        
-        Viewer::path(SYSTEM['basepath'].'app/views/visitant/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function toJson($req, $cpf)

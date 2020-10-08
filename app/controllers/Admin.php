@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use HnrAzevedo\Viewer\Viewer;
-use App\Controller\User as User_Controller;
+use App\Controller\User as UserController;
+use App\Controller\Car as CarController;
+use App\Controller\Visitant as VisitantController;
+use App\Controller\Visit as VisitController;
 use App\Model\User as Model;
-use App\Engine\Util;
 use Exception;
 
 class Admin extends Controller{
@@ -16,43 +18,152 @@ class Admin extends Controller{
     {
         $this->entity = new Model();
     }
+    private function view($data): void
+    {
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
+    }
 
     public function viewDashboard()
     {
-        $data = [
+        $this->view([
             'page' => '/admin/dashboard',
             'title' => 'Administração',
             'breadcrumb' => [
                 ['text' => 'Administração', 'active' => true]
             ]
-        ];
-        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
+        ]);
     }
 
     public function viewRegisters()
     {
-        $data = [
+        $this->view([
             'page' => '/admin/registers',
             'title' => 'Registros',
             'breadcrumb' => [
                 ['text' => 'Administração', 'uri' => '/administracao/'],
                 ['text' => 'Registros', 'active' => true]
             ]
-        ];
-        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
+        ]);
     }
 
     public function viewUserMenu()
     {
-        $data = [
+        $this->view([
             'page' => '/admin/user',
             'title' => 'Usuários',
             'breadcrumb' => [
                 ['text' => 'Administração', 'uri' => '/administracao/'],
                 ['text' => 'Usuários', 'active' => true]
             ]
-        ];
-        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
+        ]);
+    }
+
+    public function viewRegisterList($entity)
+    {
+        switch($entity)
+        {
+            case 'usuarios':
+                $this->view((new UserController())->grid());
+            break;
+            case 'veiculos':
+                $this->view((new CarController())->grid());
+            break;
+            case 'visitantes':
+                $this->view((new VisitantController())->grid());
+            break;
+            case 'visitas':
+                $this->view((new VisitController())->grid());
+            break;
+            default:
+                throw new \Exception('Página não encontrada', 404);
+            break;
+        }
+    }
+
+    public function viewRecords($req, $entity)
+    {
+        switch($entity)
+        {
+            case 'usuario':
+                echo json_encode((new UserController())->list());
+                break;
+            case 'veiculos':
+                echo json_encode((new CarController())->list());
+                break;
+            case 'visitantes':
+                echo json_encode((new VisitantController())->list());
+                break;
+            case 'visitas':
+                echo json_encode((new VisitController())->list());
+                break;
+            default:
+                throw new Exception('Consulta de listagem incorreta.');
+                break;
+        }
+    }
+
+    public function viewDetailsEntity( $entity, $id)
+    {
+        switch($entity)
+        {
+            case 'usuarios':
+                $this->view((new UserController())->details($id));
+                break;
+            case 'veiculos':
+                $this->view((new CarController())->details($id));
+                break;
+            case 'visitantes':
+                $this->view((new VisitantController())->details($id));
+                break;
+            case 'visitas':
+                $this->view((new VisitController())->details($id));
+                break;
+            default:
+                throw new Exception('Consulta de listagem incorreta.');
+                break;
+        }
+    } 
+
+    public function viewRegisterEntity($entity)
+    {
+        switch($entity)
+        {
+            case 'veiculos':
+                $this->view([
+                    'page' => '/admin/registersMenu',
+                    'title' => 'Veículos',
+                    'addable' => [
+                        'text' => 'Novo veículo',
+                        'uri' => 'administracao/novo/veiculo'
+                    ],
+                    'entity' => 'veiculos',
+                    'breadcrumb' => [
+                        ['text' => 'Administração', 'uri' => '/administracao/'],
+                        ['text' => 'Registros', 'uri' => '/administracao/registros'],
+                        ['text' => 'Veículos', 'active' => true]
+                    ]
+                ]);
+                break;
+            case 'visitantes':
+                $this->view([
+                    'page' => '/admin/registersMenu',
+                    'title' => 'Visitantes',
+                    'addable' => [
+                        'text' => 'Novo visitante',
+                        'uri' => 'administracao/novo/visitante'
+                    ],
+                    'entity' => 'visitantes',
+                    'breadcrumb' => [
+                        ['text' => 'Administração', 'uri' => '/administracao/'],
+                        ['text' => 'Registros', 'uri' => '/administracao/registros'],
+                        ['text' => 'Visitantes', 'active' => true]
+                    ]
+                ]);
+                break;
+            default:
+                throw new Exception('Registro para persistência inválido', 404);
+                break;
+        }
     }
 
     public function updateUser()
@@ -84,43 +195,12 @@ class Admin extends Controller{
         ]);
     }
 
-    public function view_dashboard()
-    {
-        $data = [
-            'title' => 'Painel de controle',
-            'page' => '../admin/dashboard/dashboard',
-            'pageID' => 3
-        ];
-        Viewer::path(SYSTEM['basepath'].'app/views/admin/')->render('index',array_merge($data, $_SESSION['view']['data']));
-    }
-
-    public function viewRecords($req, $entity)
-    {
-        switch($entity)
-        {
-            case 'usuario':
-                echo json_encode($this->getListUser());
-                break;
-            default:
-                throw new Exception('Consulta de listagem incorreta.');
-                break;
-        }
-    }
-
     public function viewNewEntity($entity)
     {
-        $data = [
-            'page' => '/admin/dashboard',
-            'title' => 'Novo registro',
-            'breadcrumb' => [
-                ['text' => 'Administração', 'uri' => '/administracao/']
-            ]
-        ];
-
         switch($entity)
         {
             case 'usuario':
-                $data = [
+                $this->view([
                     'page' => '/user/register.form',
                     'title' => 'Novo usuário',
                     'breadcrumb' => [
@@ -128,103 +208,41 @@ class Admin extends Controller{
                         ['text' => 'Usuários', 'uri' => '/administracao/usuarios'],
                         ['text' => 'Novo usuário', 'active' => true]
                     ]
-                ];
+                ]);
+                break;
+            case 'veiculo':
+                $this->view([
+                    'page' => '/car/register.form',
+                    'title' => 'Novo veículo',
+                    'breadcrumb' => [
+                        ['text' => 'Administração', 'uri' => '/administracao/'],
+                        ['text' => 'Registros', 'uri' => '/administracao/registros'],
+                        ['text' => 'Veículos', 'uri' => '/administracao/registros/veiculos'],
+                        ['text' => 'Novo veículo', 'active' => true]
+                    ]
+                ]);
+                break;
+            case 'visitante':
+                $this->view([
+                    'page' => '/visitant/register.form',
+                    'title' => 'Novo visitante',
+                    'breadcrumb' => [
+                        ['text' => 'Administração', 'uri' => '/administracao/'],
+                        ['text' => 'Registros', 'uri' => '/administracao/registros'],
+                        ['text' => 'Visitantes', 'uri' => '/administracao/registros/Visitantes'],
+                        ['text' => 'Novo visitante', 'active' => true]
+                    ]
+                ]);
                 break;
             default:
-                throw new Exception('Registro para persistência inválido', 404);
+                throw new Exception('Registro para persistência inválido', 405);
                 break;
         }
-        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
-    }
-
-    public function getListUser()
-    {
-        $users = $this->entity->find()->except(['password','code'])->where([
-            ['id','<>', 1]
-        ])->execute()->toEntity();
-
-        $users = (is_array($users)) ? $users : [$users];
-
-        if(is_null($users[0])){
-            return false;
-        }
-
-        $return = [];
-        foreach($users as $user => $result){
-            $date = [];
-            foreach($result->getData() as $field => $data){
-                if($result->$field != null){
-                    switch($field){
-                        case 'type':
-                            $date[] = ($result->$field) ? 'Administrador' : 'Comum';
-                        break;
-                        case 'status':
-                            $date[] = ($result->$field) ? 'Liberado' : 'Bloqueado';
-                        break;
-                        default:
-                            $date[] = $result->$field;
-                        break;
-                    }
-                }
-            }
-            $return[] = array_values($date);
-        }
-        return $return;
     }
 
     public function registerUser()
     {
-        (new User_Controller())->adminRegister(Util::getData()['POST']); 
-    }
-
-    public function status_user($role, $dataselect)
-    {
-        $selects = $_POST;
-
-        $result = $this->entity->find()->where([
-            ['id','in',$selects],
-            'AND' => ['type','<>',1]
-        ])->execute()->toEntity();
-
-        if(is_null($result)){
-            echo json_encode([
-                'success' => [
-                    'message' => "Os usuários selecionados não atendem os critérios para tal ação." 
-                ]
-            ]);
-            return true;
-        }
-
-        $users = (is_array($result)) ? $result : [$result];
-
-        $method = '';
-        
-        foreach($users as $user){
-            switch($role){
-                case 'block':
-                    $user->status = 0;
-                    $user->save();
-                    $method = 'bloqueados';
-                break;
-                case 'live':
-                    $user->status = 1;
-                    $user->save();
-                    $method = 'liberados';
-                break;
-                default:
-                    $user->remove(true);
-                    $method = 'removidos';
-                break;
-            }
-        }
-
-        echo json_encode([
-            'success' => [
-                'message' => "Usuários selecionados ${method} com sucesso!" 
-            ],
-            'script' => 'setTimeout(function(){window.location.href="/users"},2000)'
-        ]);
-       
+        (new UserController())->adminRegister($_POST); 
     }
 
 }

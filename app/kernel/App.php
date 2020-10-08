@@ -38,8 +38,10 @@ class App
             return true;
         }
 
+
         Viewer::path(SYSTEM['basepath'].'app/views/')->render('error', array_merge($data, $_SESSION['view']['data']));
-        
+
+
         return true;
     }
 

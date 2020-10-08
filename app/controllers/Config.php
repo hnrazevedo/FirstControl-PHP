@@ -15,13 +15,18 @@ class Config extends Controller{
         $this->entity = new Model();
     }
 
-    public function viewPage()
+    public function viewList()
     {
         $data = [
             'configs' => $this->listConfig(),
-            'title' => 'Configurações'
+            'page' => '/config/list',
+            'title' => 'Configurações',
+            'breadcrumb' => [
+                ['text' => 'Administração', 'uri' => '/administracao/'],
+                ['text' => 'Configurações', 'active' => true]
+            ]
         ];
-        Viewer::path(SYSTEM['basepath'].'app/views/config/')->render('index',array_merge($data, $_SESSION['view']['data']));
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function listConfig()

@@ -26,11 +26,11 @@ class User extends Controller{
         Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function viewList()
+    public function grid()
     {
-        $data = [
+        return [
             'page' => '/admin/list',
-            'title' => 'Registros',
+            'title' => 'Registros de usuários',
             'breadcrumb' => [
                 ['text' => 'Administração', 'uri' => '/administracao/'],
                 ['text' => 'Usuários', 'uri' => '/administracao/usuarios'],
@@ -44,10 +44,44 @@ class User extends Controller{
                 'thead' => '<th>ID</th><th>Nome</th><th>Usuário</th><th>Email</th><th>Nascimento</th><th>Registro</th><th>Últ. Acesso</th><th>Acesso</th><th>Tipo</th>'
             ]
         ];
-        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function viewDetails($id)
+    public function list()
+    {
+        $users = $this->entity->find()->except(['password','code'])->where([
+            ['id','<>', 1]
+        ])->execute()->toEntity();
+
+        $users = (is_array($users)) ? $users : [$users];
+
+        if(is_null($users[0])){
+            return false;
+        }
+
+        $return = [];
+        foreach($users as $user => $result){
+            $date = [];
+            foreach($result->getData() as $field => $data){
+                if($result->$field != null){
+                    switch($field){
+                        case 'type':
+                            $date[] = ($result->$field) ? 'Administrador' : 'Comum';
+                        break;
+                        case 'status':
+                            $date[] = ($result->$field) ? 'Liberado' : 'Bloqueado';
+                        break;
+                        default:
+                            $date[] = $result->$field;
+                        break;
+                    }
+                }
+            }
+            $return[] = array_values($date);
+        }
+        return $return;
+    }
+
+    public function details($id)
     {
         $user = $this->entity->find($id)->where([
             ['id','<>',1]
@@ -57,18 +91,16 @@ class User extends Controller{
             throw new Exception('Usuário não encontrado.', 404);
         }
 
-        $data = [
+        return [
             'page' => '/user/details',
             'title' => 'Detalhes de usuário',
             'userView' => $user,
             'breadcrumb' => [
                 ['text' => 'Administração', 'uri' => '/administracao/'],
                 ['text' => 'Usuários', 'uri' => '/administracao/usuarios'],
-                ['text' => 'Registros', 'uri' => '/administracao/usuarios/registros'],
                 ['text' => 'Detalhes', 'active' => true],
             ]
         ];
-        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
     }
 
     public function logout()

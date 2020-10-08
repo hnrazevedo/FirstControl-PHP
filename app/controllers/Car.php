@@ -20,15 +20,61 @@ class Car extends Controller{
         $this->entity = new Model();
     }
 
-    public function viewPage()
+    public function grid()
     {
-        $data = [
-            'title' => 'Veículos'
+        return [
+            'page' => '/admin/list',
+            'title' => 'Registros de veículos',
+            'breadcrumb' => [
+                ['text' => 'Administração', 'uri' => '/administracao/'],
+                ['text' => 'Registros', 'uri' => '/administracao/registros'],
+                ['text' => 'Veículos', 'uri' => '/administracao/registros/veiculos'],
+                ['text' => 'Listagem', 'active' => true]
+            ],
+            'tab' => [
+                'id' => 'registersCars',
+                'title' => 'Registro de veículos',
+                'href' => '/administracao/veiculos/',
+                'uri' => '/administracao/veiculos/listagem',
+                'thead' => '<th>ID</th><th>Placa</th><th>Marca</th><th>Model</th><th>Cor</th><th>Eixos</th><th>Motorista</th>'
+            ]
         ];
-        Viewer::path(SYSTEM['basepath'].'app/views/car/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function listCars()
+    public function details($id)
+    {
+        $car = $this->entity->find($id)->where([
+            ['id','<>',1]
+        ])->execute()->toEntity();
+
+        if(null === $car){
+            throw new Exception('Veículo não encontrado.', 404);
+        }
+
+        $lastvisit = (new VisitModel())->find()->only(['started','finished'])->where([
+            'visitant','=',$car->driver
+        ])->orderBy(' started DESC ')->limit(1)->execute()->toEntity();
+
+        $lastvisit = (is_null($lastvisit)) ? ['started' => '', 'finished' => ''] : ['started' => $lastvisit->started, 'finished' => $lastvisit->finished];
+
+        $car->driver = (new VisitantModel())->find($car->driver)->only('name')->execute()->toEntity()->name;
+
+        return [
+            'page' => '/car/details',
+            'title' => 'Detalhes de veículo',
+            'carView' => $car,
+            'lastvisit' => [ 'started' => $lastvisit['started'], 'finished' => $lastvisit['finished'] ],
+            'breadcrumb' => [
+                ['text' => 'Administração', 'uri' => '/administracao/'],
+                ['text' => 'Registros', 'uri' => '/administracao/registros'],
+                ['text' => 'Veículos', 'uri' => '/administracao/registros/veiculos'],
+                ['text' => 'Listagem', 'uri' => '/administracao/registros/veiculos/listagem'],
+                ['text' => 'Detalhes', 'active' => true],
+            ]
+        ];
+    }
+
+    public function list()
     {
         $cars = $this->entity->find()->where([
             ['id','<>',1]
@@ -44,12 +90,12 @@ class Car extends Controller{
         foreach($cars as $car => $result){
             $date = [];
             foreach($result->getData() as $field => $data){
-                
                 if($result->$field != null){
                     switch($field){
                         case 'driver':
                             $date[] = (new VisitantModel())->find($result->$field)->only('name')->execute()->toEntity()->name;
                         break;
+                        case 'photo':break;
                         default:
                             $date[] = $result->$field;
                         break;
@@ -58,8 +104,7 @@ class Car extends Controller{
             }
             $return[] = array_values($date);
         }
-
-        echo json_encode($return);
+        return $return;
     }
 
     public function carRegister()
@@ -94,7 +139,7 @@ class Car extends Controller{
                     'message' => 'Veículo registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => "DataTables.dataAdd('table_list_cars', ['{$this->entity->id}','{$this->entity->board}','{$this->entity->brand}','{$this->entity->model}','{$this->entity->color}','{$this->entity->axes}','{$visitant->name}']);"
+                'script' => "setTimeout(function(){ window.location.href='/administracao/registros/veiculos'; },2000);"
             ]);
 
         }catch(Exception $er){
@@ -140,37 +185,6 @@ class Car extends Controller{
         $this->entity->persist();
 
         return $this->entity;
-    }
-
-    public function viewDetails($id)
-    {
-        $car = $this->entity->find($id)->execute()->toEntity();
-        
-        if(is_null($car)){
-            throw new Exception('Car not found.', 404);
-        }
-
-        $visit = new VisitModel();
-
-        $lastvisit = $visit->find()->only(['started','finished'])->where([
-            'visitant','=',$car->driver
-        ])->orderBy(' started DESC ')
-        ->limit(1)->execute()->toEntity();
-
-
-        $lastvisit = (is_null($lastvisit)) ? ['started' => '', 'finished' => ''] : ['started' => $lastvisit->started, 'finished' => $lastvisit->finished];
-
-
-        $car->driver = (new VisitantModel())->find($car->driver)->only('name')->execute()->toEntity()->name;
-
-        $data = [
-            'title' => 'Registros de Veículos',
-            'pageID' => 4,
-            'car' => $car,
-            'lastvisit' => [ 'started' => $lastvisit['started'], 'finished' => $lastvisit['finished'] ]
-        ];
-        
-        Viewer::path(SYSTEM['basepath'].'app/views/car/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
 
     public function toJson($req, $board)

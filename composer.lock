@@ -86,16 +86,16 @@
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v2.3.1",
+            "version": "v2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "fb704f031858b488db9ad078e3f17f17275787df"
+                "reference": "f5e9710d7cf13d307427dbcb198da4de1ba0fd6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/fb704f031858b488db9ad078e3f17f17275787df",
-                "reference": "fb704f031858b488db9ad078e3f17f17275787df",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/f5e9710d7cf13d307427dbcb198da4de1ba0fd6d",
+                "reference": "f5e9710d7cf13d307427dbcb198da4de1ba0fd6d",
                 "shasum": ""
             },
             "require": {
@@ -123,7 +123,7 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-10-08T14:46:09+00:00"
+            "time": "2020-10-08T17:08:04+00:00"
         },
         {
             "name": "hnrazevedo/validator",
@@ -166,16 +166,16 @@
         },
         {
             "name": "hnrazevedo/viewer",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "c68fc94f2362a8a5a5949c23cd8b7ed653b5d289"
+                "reference": "317e1014a197cfd1f56ffad98f9b930287438915"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/c68fc94f2362a8a5a5949c23cd8b7ed653b5d289",
-                "reference": "c68fc94f2362a8a5a5949c23cd8b7ed653b5d289",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/317e1014a197cfd1f56ffad98f9b930287438915",
+                "reference": "317e1014a197cfd1f56ffad98f9b930287438915",
                 "shasum": ""
             },
             "require": {
@@ -201,7 +201,7 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-10-02T20:58:03+00:00"
+            "time": "2020-10-08T17:27:52+00:00"
         },
         {
             "name": "opis/closure",
