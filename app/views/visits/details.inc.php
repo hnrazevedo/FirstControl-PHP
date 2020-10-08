@@ -1,25 +1,9 @@
-<html>
-    <head>
-        <title>{{ $system.appname }} - {{ $title }}</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <?= $this->import('../global/styles') ?>
-
-        <style>
-            main .row{
-                margin-left:0;
-                margin-right: 0;;
-            }
-        </style>
-    </head>
-    <body>
-        <main>
             <form style="max-width:1500px" class="pb-4 mt-4 m-auto">  
-                <input type="hidden" value="{{ $visit.id }}" id="edit_id" name="edit_id">
+                <input type="hidden" value="{{ $visitView.id }}" id="edit_id" name="edit_id">
                 <div class="row" style="width:inherit">
                     <div class="col-12">
-                        <h4 class="text-center">Visita ID {{ $visit.id }}</h4>
+                        <h4 class="text-center">Visita ID {{ $visitView.id }}</h4>
                     </div>
 
                     <br />
@@ -111,10 +95,10 @@
                                     <h6>Detalhes</h6>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-3">
-                                    <input type="text" label="Razão/Motivo" value="{{ $visit.reason }}" disabled="disabled">
+                                    <input type="text" label="Razão/Motivo" value="{{ $visitView.reason }}" disabled="disabled">
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-3">
-                                    <input type="text" label="Responsável" value="{{ $visit.responsible }}" disabled="disabled">
+                                    <input type="text" label="Responsável" value="{{ $visitView.responsible }}" disabled="disabled">
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-3">
                                     <input type="text" label="Status" value="{{ $status }}" disabled="disabled">
@@ -166,11 +150,4 @@
                 <br/>
 
             </form>
-        </main>
         
-        <?= $this->import('../global/dialog_loading') ?>
-        <?= $this->import('../global/dialog_message') ?>
-
-        <?= $this->import('../global/scripts') ?>
-    </body>
-</html>

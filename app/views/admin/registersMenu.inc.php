@@ -7,7 +7,7 @@
                 <a href="{{ $system.uri }}/{{ $addable.uri }}" class="text-white text-center dashboard d-flex align-items-center">
                     <div class="card-body">
                         <p class="icon text-center">
-                            <i class='bx bx-log-in-circle' ></i>
+                            <i class='bx bx-plus' ></i>
                         </p>
                         <p class="card-text">{{ $addable.text }}</p>
                     </div>
@@ -22,7 +22,7 @@
             <a href="{{ $system.uri }}/administracao/registros/{{ $entity }}/listagem" class="text-white text-center dashboard d-flex align-items-center">
                 <div class="card-body">
                     <p class="icon text-center">
-                        <i class="bx bx-id-card"></i>
+                        <i class="bx bx-file"></i>
                     </p>
                     <p class="card-text">Registros</p>
                 </div>

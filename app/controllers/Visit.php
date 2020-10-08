@@ -94,9 +94,7 @@ class Visit extends Controller{
 
     public function list()
     {
-        $visits = $this->entity->find()->where([
-            ['id','<>',1]
-        ])->execute()->toEntity();
+        $visits = $this->entity->find()->execute()->toEntity();
 
         $visits = (is_array($visits)) ? $visits : [$visits];
 
@@ -150,25 +148,28 @@ class Visit extends Controller{
             $day .= ' até '.$dayFinal;
         }
 
-
-        $date = [
-            'day' =>  $day,
-            'started' => (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $visit->started) , 'H:i:s')),
-            'finished'=> (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $visit->finished) , 'H:i:s'))
-        ];
-
-        $data = [
-            'title' => 'Registros de visita',
-            'pageID' => 4,
-            'visit' => $visit,
+        return [
+            'title' => 'Detalhes de visita',
+            'page' => '/visits/details',
+            'visitView' => $visit,
             'visitant' => $visitant,
             'car' => $car,
             'status' => ( $visit->status == 0 ) ? 'Em andamento' : 'Finalizada',
-            'date' => $date,
-            'user' => (new UserModel())->find($visit->user)->only('name')->execute()->toEntity()
+            'date' => [
+                'day' =>  $day,
+                'started' => (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $visit->started) , 'H:i:s')),
+                'finished'=> (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $visit->finished) , 'H:i:s'))
+            ],
+            'user' => (new UserModel())->find($visit->user)->only('name')->execute()->toEntity(),
+            'breadcrumb' => [
+                ['text' => 'Administração', 'uri' => '/administracao/'],
+                ['text' => 'Registros', 'uri' => '/administracao/registros'],
+                ['text' => 'Visitas', 'uri' => '/administracao/registros/visitas'],
+                ['text' => 'Listagem', 'uri' => '/administracao/registros/visitas/listagem'],
+                ['text' => 'Detalhes', 'active' => true],
+            ]
         ];
         
-        Viewer::path(SYSTEM['basepath'].'app/views/visits/')->render('details',array_merge($data, $_SESSION['view']['data']));
     }
 
 }
