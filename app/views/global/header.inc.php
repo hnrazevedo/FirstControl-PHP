@@ -25,7 +25,7 @@
             </a> 
         </li>
         <li>
-            <a href="{{ $system.uri }}/administracao/usuarios">
+            <a href="{{ $system.uri }}/administracao/registros/usuarios">
                 <i class='bx bx-user  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>Usuários
             </a>
         </li>

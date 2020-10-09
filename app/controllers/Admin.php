@@ -47,18 +47,6 @@ class Admin extends Controller{
         ]);
     }
 
-    public function viewUserMenu()
-    {
-        $this->view([
-            'page' => '/admin/user',
-            'title' => 'Usuários',
-            'breadcrumb' => [
-                ['text' => 'Administração', 'uri' => '/administracao/'],
-                ['text' => 'Usuários', 'active' => true]
-            ]
-        ]);
-    }
-
     public function viewRegisterList($entity)
     {
         switch($entity)
@@ -137,6 +125,21 @@ class Admin extends Controller{
                     'breadcrumb' => [
                         ['text' => 'Administração', 'uri' => '/administracao/'],
                         ['text' => 'Configurações', 'active' => true]
+                    ]
+                ]);
+                break;
+            case 'usuarios':
+                $this->view([
+                    'page' => '/admin/registersMenu',
+                    'title' => 'Usuários',
+                    'addable' => [
+                        'text' => 'Novo usuário',
+                        'uri' => 'administracao/novo/usuario'
+                    ],
+                    'entity' => 'usuarios',
+                    'breadcrumb' => [
+                        ['text' => 'Administração', 'uri' => '/administracao/'],
+                        ['text' => 'Usuários', 'active' => true]
                     ]
                 ]);
                 break;
@@ -219,7 +222,7 @@ class Admin extends Controller{
             'success' => [
                 'message' => 'Usuário atualizado com sucesso'
             ],
-            'script' => 'setTimeout(function(){ window.location.href="/administracao/usuarios/registros"; },2000);'
+            'script' => 'setTimeout(function(){ window.location.href="/administracao/registros/usuarios/listagem"; },2000);'
         ]);
     }
 
@@ -233,7 +236,7 @@ class Admin extends Controller{
                     'title' => 'Novo usuário',
                     'breadcrumb' => [
                         ['text' => 'Administração', 'uri' => '/administracao/'],
-                        ['text' => 'Usuários', 'uri' => '/administracao/usuarios'],
+                        ['text' => 'Usuários', 'uri' => '/administracao/registros/usuarios'],
                         ['text' => 'Novo usuário', 'active' => true]
                     ]
                 ]);
@@ -280,9 +283,9 @@ class Admin extends Controller{
         }
     }
 
-    public function registerUser()
+    public function register()
     {
-        (new UserController())->adminRegister($_POST); 
+        (new UserController())->register(); 
     }
 
 }

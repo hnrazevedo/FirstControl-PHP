@@ -33,7 +33,7 @@ class User extends Controller{
             'title' => 'Registros de usuários',
             'breadcrumb' => [
                 ['text' => 'Administração', 'uri' => '/administracao/'],
-                ['text' => 'Usuários', 'uri' => '/administracao/usuarios'],
+                ['text' => 'Usuários', 'uri' => '/administracao/registros/usuarios'],
                 ['text' => 'Registros', 'active' => true]
             ],
             'tab' => [
@@ -196,7 +196,7 @@ class User extends Controller{
                     'message' => 'Usuário registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => "setTimeout(function(){ window.location.href='/administracao/usuarios'; },2000);"
+                'script' => "setTimeout(function(){ window.location.href='/administracao/registros/usuarios'; },2000);"
             ]);
 
         }catch(Exception $er){
