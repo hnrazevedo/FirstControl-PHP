@@ -2,8 +2,8 @@
 
 namespace App\Helpers;
 
-trait Mask{
-
+trait Mask
+{
     public function replace(string $field, string $value): string
     {
         switch($field){

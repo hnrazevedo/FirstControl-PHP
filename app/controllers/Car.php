@@ -2,15 +2,14 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Viewer\Viewer;
 use App\Model\Car as Model;
 use App\Model\Visitant as VisitantModel;
 use App\Model\Visit as VisitModel;
 use App\Engine\Util;
 use App\Helpers\Converter;
-use Exception;
 
-class Car extends Controller{
+class Car extends Controller
+{
     use Converter;
 
     private Model $entity;
@@ -48,7 +47,7 @@ class Car extends Controller{
         ])->execute()->toEntity();
 
         if(null === $car){
-            throw new Exception('Veículo não encontrado.', 404);
+            throw new \Exception('Veículo não encontrado.', 404);
         }
 
         $lastvisit = (new VisitModel())->find()->only(['started','finished'])->where([
@@ -118,7 +117,7 @@ class Car extends Controller{
             ])->execute()->toEntity();
     
             if(is_null($visitant)){
-                throw new Exception('Driver not found.');
+                throw new \Exception('Driver not found.');
             }
     
             $this->persistEntity(array_merge($_POST, [ 'new_visitant' => $visitant->id ]));
@@ -140,7 +139,7 @@ class Car extends Controller{
                 'script' => "setTimeout(function(){ window.location.href='/administracao/registros/veiculos'; },2000);"
             ]);
 
-        }catch(Exception $er){
+        }catch(\Exception $er){
             Util::delete($tmpPhoto);
             throw $er;
         }
@@ -192,7 +191,7 @@ class Car extends Controller{
         ])->execute()->toEntity();
         
         if(is_null($car)){
-            throw new Exception('Car not found.',404);
+            throw new \Exception('Car not found.',404);
         }
 
         echo $car->toJson();

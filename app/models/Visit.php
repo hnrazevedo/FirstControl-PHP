@@ -16,10 +16,9 @@ use HnrAzevedo\Datamanager\Model as Entity;
   * @property int $car
   * @property int $user
   */ 
-Class Visit extends Entity{
-
+Class Visit extends Entity
+{
     public function __construct(){
         return parent::create('visit','id');
     }
-
 }

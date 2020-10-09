@@ -2,9 +2,8 @@
 
 namespace App\Helpers;
 
-use Exception;
-
-trait Converter{
+trait Converter
+{
     public function replaceBase64(string $data): array
     {
         $type = null;
@@ -14,19 +13,17 @@ trait Converter{
             $type = strtolower($type[1]);
         
             if (!in_array($type, ['jpg','jpeg','png'])) {
-                throw new Exception('invalid image type');
+                throw new \RuntimeException('invalid image type');
             }
 
             $data = str_replace(' ', '+', $data );
             $data = base64_decode($data);
         
             if ($data === false) {
-                throw new Exception('base64_decode failed');
+                throw new \RuntimeException('base64_decode failed');
             }
         } else {
-            var_dump($data);
-            var_dump($type);
-            throw new Exception('did not match data URI with image data');
+            throw new \RuntimeException('did not match data URI with image data');
         }
         
         return ['data' => $data, 'ext' => $type];

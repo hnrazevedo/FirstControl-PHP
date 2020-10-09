@@ -4,8 +4,8 @@ namespace App\Engine;
 use ZipArchive;
 use Exception;
 
-Class Util{
-
+class Util
+{
     public static function getProtocol(): string
     {
         return (isset($_REQUEST['REQUEST_METHOD'])) ? $_REQUEST['REQUEST_METHOD'] : $_SERVER['REQUEST_METHOD'];
@@ -40,14 +40,14 @@ Class Util{
 
     }
     
-    private static function realUnlink(?string $path)
+    private static function realUnlink(?string $path): void
     {
         if (@unlink($path) === false && isset($path) && file_exists($path)) {
             throw new \RuntimeException('The '.$path.' could not be remove.');
         }
     }
 
-    public static function compressFolder(string $path, string $password)
+    public static function compressFolder(string $path, string $password): void
     {
         $pathString = implode('-',(explode('/',$path)));
 
@@ -83,7 +83,7 @@ Class Util{
         }
     }
 
-    public static function createTemp()
+    public static function createTemp(): void
     {
         if(!file_exists(SYSTEM['temp'])){
             if (@mkdir(SYSTEM['temp']) === false) {

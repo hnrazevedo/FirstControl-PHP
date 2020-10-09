@@ -11,8 +11,8 @@ use HnrAzevedo\Datamanager\Model as Entity;
   * @property string $path 
   * @property string $register
   */ 
-Class Page extends Entity{
-
+Class Page extends Entity
+{
     public function __construct(){
         return parent::create('page','id');
     }

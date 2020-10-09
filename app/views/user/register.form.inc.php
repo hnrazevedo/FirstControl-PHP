@@ -1,4 +1,4 @@
-<form access="/administracao/controller/user" class="ajax" id="newRegisterUser">
+<form access="/controller/user" class="ajax" id="newRegisterUser">
     <div class="col-12 row m-0">
         <div class="col-sm-6 col-md-4 col-lg-3">
             <input type="text" id="new_name" name="new_name" label="Nome Completo" maxlength="50">

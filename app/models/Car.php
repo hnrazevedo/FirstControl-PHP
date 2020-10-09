@@ -14,10 +14,9 @@ use HnrAzevedo\Datamanager\Model as Entity;
   * @property string $driver 
   * @property string $photo
   */ 
-Class Car extends Entity{
-
+Class Car extends Entity
+{
     public function __construct(){
         return parent::create('car','id');
     }
-
 }

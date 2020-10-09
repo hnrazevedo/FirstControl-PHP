@@ -17,10 +17,9 @@ use HnrAzevedo\Datamanager\Model as Entity;
   * @property string $email
   * @property string $phone
   */ 
-Class Visitant extends Entity{
-
+Class Visitant extends Entity
+{
     public function __construct(){
         return parent::create('visitant','id');
     }
-
 }

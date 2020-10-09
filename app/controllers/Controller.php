@@ -3,17 +3,15 @@
 namespace App\Controller;
 
 use HnrAzevedo\Validator\Validator;
-use Exception;
 
 class Controller
 {
-
     protected array $fail = [];
 
     private function checkMethod(string $method): void
     {
         if(!method_exists($this, $method)){
-            throw new Exception("{$method} not found in ".get_class($this).".");
+            throw new \Exception("{$method} not found in ".get_class($this).".");
         }
     }
 

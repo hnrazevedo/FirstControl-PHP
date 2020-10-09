@@ -6,8 +6,8 @@ use App\Model\Page as Model;
 use App\Model\Authenticator as Authenticator;
 use Exception;
 
-class Page extends Controller{
-
+class Page extends Controller
+{
     private Model $entity;
     private Authenticator $auth;
 

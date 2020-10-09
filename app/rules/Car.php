@@ -5,8 +5,8 @@ namespace App\Rules;
 use HnrAzevedo\Validator\Validator;
 use HnrAzevedo\Validator\Rules;
 
-Class Car{
-
+Class Car
+{
     public function __construct()
     {
         Validator::add($this,function(Rules $rules){

@@ -2,12 +2,10 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Viewer\Viewer;
 use App\Model\Config as Model;
-use Exception;
 
-class Config extends Controller{
-
+class Config extends Controller
+{
     private Model $entity;
 
     public function __construct()
@@ -43,7 +41,7 @@ class Config extends Controller{
         $config = $this->entity->find((int) $id)->execute()->toEntity();
         
         if(empty(($config))){
-            throw new Exception('Parâmetro incorreto');
+            throw new \Exception('Parâmetro incorreto');
         }
 
         $config->value = $value;

@@ -6,7 +6,8 @@ use HnrAzevedo\Viewer\Viewer;
 use Exception;
 use App\Engine\Util as Util;
 
-Class Report{
+class Report
+{
     private static $instance;
     private Exception $exception;
 
@@ -23,7 +24,7 @@ Class Report{
         return self::$instance;
     }
 
-    public function dispatch(): bool
+    public function dispatch(): void
     {
         if(Util::getProtocol() === 'ajax'){
             echo json_encode(
@@ -34,7 +35,7 @@ Class Report{
                     )
                 )
             );
-            return true;
+            return;
         }
 
         $_SESSION['data'] = array(
@@ -42,8 +43,7 @@ Class Report{
             'code'=>$this->exception->getCode()
         );
 
-        Viewer::create(SYSTEM['basepath'].'app/views/')->render('error');
-        return true;
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('error');
     }
 
 }

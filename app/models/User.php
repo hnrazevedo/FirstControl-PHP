@@ -17,8 +17,8 @@ use HnrAzevedo\Datamanager\Model as Entity;
   * @property int $status
   * @property int $type
   */ 
-Class User extends Entity{
-
+Class User extends Entity
+{
     public function __construct(){
         
         $this->fields = [
@@ -33,5 +33,4 @@ Class User extends Entity{
     {
         return ($this->type == 1);
     }
-
 }

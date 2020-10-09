@@ -2,7 +2,8 @@
 
 namespace App\Helpers;
 
-trait Validate{
+trait Validate
+{
     
     public function isValidCPF(string $cpf): bool 
     {
@@ -24,6 +25,4 @@ trait Validate{
 
         return true;
     }
-
-    
 }

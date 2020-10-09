@@ -9,8 +9,8 @@ use HnrAzevedo\Datamanager\Model as Entity;
   * @property string $resume
   * @property string $value
   */ 
-Class Config extends Entity{
-
+Class Config extends Entity
+{
     public function __construct(){
         return parent::create('config','id');
     }

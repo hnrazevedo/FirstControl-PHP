@@ -5,8 +5,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as MailException;
 use Exception;
 
-class Mail{
-    
+class Mail
+{
     private Phpmailer $phpmail;
     private Exception $fail;
 

@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Engine;
 
 use Psr\Log\LoggerInterface as LoggerInterface;
-use Exception;
 
-class Logger implements LoggerInterface{
+class Logger implements LoggerInterface
+{
     private ?string $level = null;
     private array $config = [];
 
@@ -12,10 +13,10 @@ class Logger implements LoggerInterface{
     {
         try{
             if(!defined($config)){
-                throw new Exception("Configuration file {$config} not found.");
+                throw new \Exception("Configuration file {$config} not found.");
             }
             $this->config = constant($config);
-        }catch(Exception $er){
+        }catch(\Exception $er){
             throw $er;
         }
     }

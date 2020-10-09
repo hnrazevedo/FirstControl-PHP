@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Viewer\Viewer;
 use App\Model\Visit as Model;
 use App\Model\Visitant as VisitantModel;
 use App\Model\Car as CarModel;
@@ -11,9 +10,9 @@ use App\Helpers\Mask;
 use App\Engine\Util;
 use App\Controller\Car as CarController;
 use App\Controller\Visitant as VisitantController;
-use Exception;
 
-class Visit extends Controller{
+class Visit extends Controller
+{
     use Mask;
 
     private Model $entity;
@@ -82,7 +81,7 @@ class Visit extends Controller{
             ]);
 
             
-        }catch(Exception $er){
+        }catch(\Exception $er){
             
             Util::delete($tmpPhoto);
             Util::delete($tmpPhotoCar);
@@ -135,7 +134,7 @@ class Visit extends Controller{
         $visit = $this->entity->find($id)->execute()->toEntity();
         
         if(is_null($visit)){
-            throw new Exception('Visit not found.', 404);
+            throw new \Exception('Visit not found.', 404);
         }
 
         $car = (new CarModel())->find($visit->car)->execute()->toEntity();

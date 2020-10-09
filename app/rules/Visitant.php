@@ -5,8 +5,8 @@ namespace App\Rules;
 use HnrAzevedo\Validator\Validator;
 use HnrAzevedo\Validator\Rules;
 
-Class Visitant{
-
+Class Visitant
+{
     public function __construct()
     {
         Validator::add($this,function(Rules $rules){

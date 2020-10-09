@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\User as Model;
-use Exception;
 
-class User extends Controller{
+class User extends Controller
+{
     private Model $entity;
 
     public function __construct()
@@ -88,7 +88,7 @@ class User extends Controller{
         ])->execute()->toEntity();
 
         if(null === $user){
-            throw new Exception('Usuário não encontrado.', 404);
+            throw new \Exception('Usuário não encontrado.', 404);
         }
 
         return [
@@ -118,17 +118,17 @@ class User extends Controller{
             ])->execute();
     
             if($user->getCount() === 0){
-                throw new Exception('User not found.');
+                throw new \Exception('User not found.');
             }
 
             $user = $user->toEntity();
 
             if($user->status == 0){
-                throw new Exception('User is blocked.');
+                throw new \Exception('User is blocked.');
             }         
 
             if(!password_verify($password, $user->password)){
-                throw new Exception('Invalid password.');
+                throw new \Exception('Invalid password.');
             }
 
             $user->lastaccess = date('Y-m-d H:i:s');
@@ -137,16 +137,11 @@ class User extends Controller{
         
             $_SESSION['user'] = serialize($user);
 
-            if($user->type == 1){
-                echo json_encode([
-                    'script' => 'window.location.href="/administracao/";'
-                ]);
-                return;
-            }
             echo json_encode([
-                'script' => 'window.location.href="/dashboard";'
+                'script' => 'window.location.href="'.( ($user->isAdmin()) ? '/administracao/' : '/dashboard' ).'";'
             ]);
-        }catch(Exception $er){
+
+        }catch(\Exception $er){
             echo json_encode([
                 'error' =>
                     [
@@ -199,15 +194,13 @@ class User extends Controller{
                 'script' => "setTimeout(function(){ window.location.href='/administracao/registros/usuarios'; },2000);"
             ]);
 
-        }catch(Exception $er){
-
+        }catch(\Exception $er){
             echo json_encode([
                 'error' =>
                     [
                         'message' => $er->getMessage()
                     ]
             ]);
-
         }
     }
 

@@ -9,16 +9,16 @@ use App\Controller\Visitant as VisitantController;
 use App\Controller\Visit as VisitController;
 use App\Controller\Config as ConfigController;
 use App\Model\User as Model;
-use Exception;
 
-class Admin extends Controller{
-
+class Admin extends Controller
+{
     private Model $entity;
 
     public function __construct()
     {
         $this->entity = new Model();
     }
+
     private function view($data): void
     {
         Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
@@ -86,7 +86,7 @@ class Admin extends Controller{
                 echo json_encode((new VisitController())->list());
                 break;
             default:
-                throw new Exception('Consulta de listagem incorreta.');
+                throw new \Exception('Consulta de listagem incorreta.');
                 break;
         }
     }
@@ -108,7 +108,7 @@ class Admin extends Controller{
                 $this->view((new VisitController())->details($id));
                 break;
             default:
-                throw new Exception('Consulta de listagem incorreta.');
+                throw new \Exception('Consulta de listagem incorreta.');
                 break;
         }
     } 
@@ -192,7 +192,7 @@ class Admin extends Controller{
                 ]);
                 break;
             default:
-                throw new Exception('Registro para persistência inválido', 404);
+                throw new \Exception('Registro para persistência inválido', 404);
                 break;
         }
     }
@@ -202,11 +202,11 @@ class Admin extends Controller{
         $user = $this->entity->find($_POST['edit_id'])->execute()->toEntity();
 
         if(null === $user){
-            throw new Exception('Usuário não encontrado');
+            throw new \Exception('Usuário não encontrado');
         }
 
         if($user->type == 1 && (unserialize($_SESSION['user']))->id != 1){
-            throw new Exception('Usuário é um administrador<br>Atualização não permitida');
+            throw new \Exception('Usuário é um administrador<br>Atualização não permitida');
         }
 
         if(strlen($_POST['edit_password'] > 0)){
@@ -278,14 +278,9 @@ class Admin extends Controller{
                 ]);
                 break;
             default:
-                throw new Exception('Registro para persistência inválido', 405);
+                throw new \Exception('Registro para persistência inválido', 405);
                 break;
         }
-    }
-
-    public function register()
-    {
-        (new UserController())->register(); 
     }
 
 }

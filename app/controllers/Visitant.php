@@ -2,14 +2,12 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Viewer\Viewer;
 use App\Model\Visitant as Model;
 use App\Engine\Util;
 use App\Helpers\{Converter, Mask , Validate};
-use Exception;
 
-
-class Visitant extends Controller{
+class Visitant extends Controller
+{
     use Mask,
         Validate,
         Converter;
@@ -73,7 +71,7 @@ class Visitant extends Controller{
         $visitant = $this->entity->find($id)->execute()->toEntity();
 
         if(is_null($visitant)){
-            throw new Exception('Visitante não encontrado', 404);
+            throw new \Exception('Visitante não encontrado', 404);
         }
 
         $visitant->cpf = $this->replaceCPF($visitant->cpf);
@@ -100,7 +98,7 @@ class Visitant extends Controller{
         try{
 
             if(!$this->isValidCPF($_POST['new_cpf'])){
-                throw new Exception('CPF invalid.');
+                throw new \Exception('CPF invalid.');
             }
 
             $this->persistEntity($_POST);
@@ -122,7 +120,7 @@ class Visitant extends Controller{
                 'script' => 'setTimeout(function(){ window.location.href="/administracao/registros/visitantes"; },2000);'
             ]);
    
-        }catch(Exception $er){
+        }catch(\Exception $er){
             Util::delete($tmpPhoto);
             throw $er;
         }
@@ -177,7 +175,7 @@ class Visitant extends Controller{
 
         
         if(is_null($visitant)){
-            throw new Exception('Visitant not found.',404);
+            throw new \Exception('Visitant not found.',404);
         }
 
         $visitant->cpf = $this->replaceCPF($visitant->cpf);
