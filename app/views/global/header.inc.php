@@ -18,40 +18,46 @@
         </li>
 
         <?php if(isset($_SESSION['user'])) : ?>
-        <li class="d-block d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none">
-            <a href="{{ $system.uri }}/usuarios/minha-conta">
-                <img src="#!" class="mr-3 ml-2" /> 
-                {{ $user.name }}
-            </a> 
-        </li>
-        <li>
-            <a href="{{ $system.uri }}/administracao/registros/usuarios">
-                <i class='bx bx-user  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>Usuários
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-cube-alt  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>Módulos
-            </a>
-        </li>
-        <li>
-            <a href="{{ $system.uri }}/administracao/registros/configuracoes">
-                <i class='bx bx-cog  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>Configurações
-            </a>
-        </li>
-        <li>
-            <a onclick="toggleFullScreen()">
-                <i class='bx bx-exit-fullscreen d-none  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>
-                <i class='bx bx-fullscreen  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>
-                Fullscreen
-            </a>
-        </li>
-        <li>
-            <a href="{{ $system.uri }}/sair">
-                <i class="bx bx-exit mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0"></i>Sair
-            </a>
-        </li>
-
+            <li class="d-block d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none">
+                <a href="{{ $system.uri }}/usuarios/minha-conta">
+                    <img src="#!" class="mr-3 ml-2" /> 
+                    {{ $user.name }}
+                </a> 
+            </li>
+            <?php if($user->isAdmin()) : ?>
+                <li>
+                    <a href="{{ $system.uri }}/administracao/registros/usuarios">
+                        <i class='bx bx-user  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>Usuários
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-cube-alt  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>Módulos
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ $system.uri }}/administracao/registros/configuracoes">
+                        <i class='bx bx-cog  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>Configurações
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ $system.uri }}/administracao/">
+                        <i class='bx bx-wrench  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>Administrar
+                    </a>
+                </li>
+            <?php endif; ?>  
+            <li>
+                <a onclick="toggleFullScreen()">
+                    <i class='bx bx-exit-fullscreen d-none  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>
+                    <i class='bx bx-fullscreen  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>
+                    Fullscreen
+                </a>
+            </li>
+            <li>
+                <a href="{{ $system.uri }}/sair">
+                    <i class="bx bx-exit mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0"></i>Sair
+                </a>
+            </li>
         <?php else: ?>  
             <li>
             <a href="{{ $system.uri }}/">

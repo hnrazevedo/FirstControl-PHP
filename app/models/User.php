@@ -29,4 +29,9 @@ Class User extends Entity{
         return parent::create('user','id');
     }
 
+    public function isAdmin(): bool
+    {
+        return ($this->type == 1);
+    }
+
 }
