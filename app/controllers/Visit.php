@@ -23,7 +23,7 @@ class Visit extends Controller{
         $this->entity = new Model();
     }
 
-    public function grid()
+    public function grid(): array
     {
         return [
             'page' => '/admin/list',
@@ -45,7 +45,7 @@ class Visit extends Controller{
     }
 
 
-    public function register()
+    public function register(): void
     {
         $visitantController = new VisitantController();
         $carController = new CarController();
@@ -92,7 +92,7 @@ class Visit extends Controller{
         }
     }
 
-    public function list()
+    public function list(): array
     {
         $visits = $this->entity->find()->execute()->toEntity();
 
@@ -130,7 +130,7 @@ class Visit extends Controller{
         return $return;
     }
 
-    public function details($id)
+    public function details($id): array
     {
         $visit = $this->entity->find($id)->execute()->toEntity();
         

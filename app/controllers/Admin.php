@@ -7,6 +7,7 @@ use App\Controller\User as UserController;
 use App\Controller\Car as CarController;
 use App\Controller\Visitant as VisitantController;
 use App\Controller\Visit as VisitController;
+use App\Controller\Config as ConfigController;
 use App\Model\User as Model;
 use Exception;
 
@@ -128,6 +129,17 @@ class Admin extends Controller{
     {
         switch($entity)
         {
+            case 'configuracoes':
+                $this->view([
+                    'page' => '/config/list',
+                    'title' => 'Configurações',
+                    'configs' => (new ConfigController())->list(),
+                    'breadcrumb' => [
+                        ['text' => 'Administração', 'uri' => '/administracao/'],
+                        ['text' => 'Configurações', 'active' => true]
+                    ]
+                ]);
+                break;
             case 'veiculos':
                 $this->view([
                     'page' => '/admin/registersMenu',

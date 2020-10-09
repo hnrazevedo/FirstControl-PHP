@@ -17,12 +17,12 @@ class Controller
         }
     }
 
-    public function executeData(): bool
+    public function executeData(): void
     {        
         $this->ValidateData();
 
         if($this->checkFailData()){
-            return false;
+            return;
         }
 
         $method = $_POST['ROLE'];
@@ -30,8 +30,6 @@ class Controller
         $this->checkMethod($method);
 
         call_user_func_array([$this,$method],  func_get_args());
-
-        return true;
     }
 
     private function ValidateData(): void

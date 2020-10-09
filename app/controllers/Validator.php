@@ -4,7 +4,7 @@ namespace App\Controller;
 
 class Validator
 {
-    public function work()
+    public function work(): void
     {
         $json = \HnrAzevedo\Validator\Validator::namespace('App\\Rules')->toJson($_POST);
         $script = "Validator.load(document.querySelector('form#{$_REQUEST['ID']}'),{$json});";

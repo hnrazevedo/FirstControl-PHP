@@ -21,7 +21,7 @@ class Visitant extends Controller{
         $this->entity = new Model();
     }
 
-    public function grid()
+    public function grid(): array
     {
         return [
             'page' => '/admin/list',
@@ -42,7 +42,7 @@ class Visitant extends Controller{
         ];
     }
 
-    public function list()
+    public function list(): array
     {
         $visitants = $this->entity->find()->only(['id','name','cpf','rg','company','phone','lastvisit'])->where([
             ['id','<>',1]
@@ -68,7 +68,7 @@ class Visitant extends Controller{
         return $return;
     }
 
-    public function details($id)
+    public function details($id): array
     {
         $visitant = $this->entity->find($id)->execute()->toEntity();
 
@@ -94,7 +94,7 @@ class Visitant extends Controller{
         ];
     }
 
-    public function register()
+    public function register(): void
     {
         $tmpPhoto = null;
         try{
@@ -169,7 +169,7 @@ class Visitant extends Controller{
         return $this->entity;
     }
 
-    public function toJson($req, $cpf)
+    public function toJson($req, $cpf): void
     {
         $visitant = $this->entity->find()->where([
             'cpf','=',str_replace(['.','-'],'',$cpf)

@@ -15,28 +15,14 @@ class Config extends Controller{
         $this->entity = new Model();
     }
 
-    public function viewList()
-    {
-        $data = [
-            'configs' => $this->listConfig(),
-            'page' => '/config/list',
-            'title' => 'Configurações',
-            'breadcrumb' => [
-                ['text' => 'Administração', 'uri' => '/administracao/'],
-                ['text' => 'Configurações', 'active' => true]
-            ]
-        ];
-        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
-    }
-
-    public function listConfig()
+    public function list(): array
     {
         $configs = $this->entity->find()->execute()->toEntity();
 
         $configs = (is_array($configs)) ? $configs : [$configs];
 
         if(is_null($configs[0])){
-            return false;
+            return [];
         }
 
         $return = [];
@@ -52,12 +38,12 @@ class Config extends Controller{
     }
 
 
-    public function update($requestMethod, $id, $value)
+    public function update($req, $id, $value): void
     {
         $config = $this->entity->find((int) $id)->execute()->toEntity();
         
         if(empty(($config))){
-            throw new Exception('Config not found');
+            throw new Exception('Parâmetro incorreto');
         }
 
         $config->value = $value;

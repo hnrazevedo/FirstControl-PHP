@@ -25,12 +25,6 @@ Router::group('/administracao',function(){
     Router::ajax('/{entity}/listagem','App\\Controller\\Admin@viewRecords');
     Router::get('/novo/{entity}','App\\Controller\\Admin@viewNewEntity');
 
-
-
-    
-
-    Router::get('/configuracoes','App\\Controller\\Config@viewList');
-
     Router::get('/{entity}/{id}','App\\Controller\\Admin@viewDetailsEntity')
           ->where([
                 'id' => '[0-9]{1,11}'

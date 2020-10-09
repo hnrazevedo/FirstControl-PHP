@@ -26,7 +26,7 @@ class User extends Controller{
         Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function grid()
+    public function grid(): array
     {
         return [
             'page' => '/admin/list',
@@ -46,7 +46,7 @@ class User extends Controller{
         ];
     }
 
-    public function list()
+    public function list(): array
     {
         $users = $this->entity->find()->except(['password','code'])->where([
             ['id','<>', 1]
@@ -81,7 +81,7 @@ class User extends Controller{
         return $return;
     }
 
-    public function details($id)
+    public function details($id): array
     {
         $user = $this->entity->find($id)->where([
             ['id','<>',1]
@@ -103,14 +103,14 @@ class User extends Controller{
         ];
     }
 
-    public function logout()
+    public function logout(): void
     {
         unset($_SESSION['user']);
         setcookie('user',null,-1,'/');
         header('Location: /');
     }
 
-    public function login($username, $password): bool
+    public function login($username, $password): void
     {
         try{
             $user = $this->entity->find()->where([
@@ -141,7 +141,7 @@ class User extends Controller{
                 echo json_encode([
                     'script' => 'window.location.href="/administracao/";'
                 ]);
-                return true;
+                return;
             }
             echo json_encode([
                 'script' => 'window.location.href="/dashboard";'
@@ -154,14 +154,13 @@ class User extends Controller{
                     ]
             ]);
         }
-        return false;
     }
 
-    public function viewLogin()
+    public function viewLogin(): void
     {
         if(!empty($_SESSION['user'])){
             header('Location: /dashboard');
-            return true;
+            return;
         }
 
         $data = [
@@ -176,7 +175,7 @@ class User extends Controller{
     }
 
 
-    public function register()
+    public function register(): void
     {
         try{
             $this->entity->name = $_POST['new_name'];

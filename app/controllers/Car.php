@@ -20,7 +20,7 @@ class Car extends Controller{
         $this->entity = new Model();
     }
 
-    public function grid()
+    public function grid(): array
     {
         return [
             'page' => '/admin/list',
@@ -41,7 +41,7 @@ class Car extends Controller{
         ];
     }
 
-    public function details($id)
+    public function details($id): array
     {
         $car = $this->entity->find($id)->where([
             ['id','<>',1]
@@ -74,7 +74,7 @@ class Car extends Controller{
         ];
     }
 
-    public function list()
+    public function list(): array
     {
         $cars = $this->entity->find()->where([
             ['id','<>',1]
@@ -107,7 +107,7 @@ class Car extends Controller{
         return $return;
     }
 
-    public function register()
+    public function register(): void
     {
         $tmpPhoto = null;
 
@@ -185,7 +185,7 @@ class Car extends Controller{
         return $this->entity;
     }
 
-    public function toJson($req, $board)
+    public function toJson($req, $board): void
     {
         $car = $this->entity->find()->where([
             'board','=',$board
