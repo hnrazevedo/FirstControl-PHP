@@ -120,6 +120,16 @@ INSERT INTO permission VALUES(23, 'Visualização de permissões', 'Detalhamento
 INSERT INTO permission VALUES(24, 'Visualização de configurações', 'Detalhamento', 'configDetails', 'config|details');
 INSERT INTO permission VALUES(25, 'Atualizar usuário (Admin)', 'Atualizar', 'updateUser', 'user|updateUser');
 
+INSERT INTO permission VALUES(26, 'Acesso ao menu de usuário', 'Menu', 'userMenu', 'user|menu');
+INSERT INTO permission VALUES(27, 'Acesso ao menu de veículo', 'Menu', 'carMenu', 'car|menu');
+INSERT INTO permission VALUES(28, 'Acesso ao menu de visita', 'Menu', 'visitMenu', 'visit|menu');
+INSERT INTO permission VALUES(29, 'Acesso ao menu de visitante', 'Menu', 'visitantMenu', 'visitant|menu');
+
+INSERT INTO permission VALUES(30, 'Listagem de usuário', 'Listagem', 'userResultList', 'user|resultList');
+INSERT INTO permission VALUES(31, 'Listagem de veículo', 'Listagem', 'carResultList', 'car|resultList');
+INSERT INTO permission VALUES(32, 'Listagem de visita', 'Listagem', 'visitResultList', 'visit|resultList');
+INSERT INTO permission VALUES(33, 'Listagem de visitante', 'Listagem', 'visitantResultList', 'visitant|resultList');
+
 
 
 INSERT INTO authorization VALUES(1, 1 , 1);
@@ -147,3 +157,11 @@ INSERT INTO authorization VALUES(22, 1 , 22);
 INSERT INTO authorization VALUES(23, 1 , 23);
 INSERT INTO authorization VALUES(24, 1 , 24);
 INSERT INTO authorization VALUES(25, 1 , 25);
+INSERT INTO authorization VALUES(26, 1 , 26);
+INSERT INTO authorization VALUES(27, 1 , 27);
+INSERT INTO authorization VALUES(28, 1 , 28);
+INSERT INTO authorization VALUES(29, 1 , 29);
+INSERT INTO authorization VALUES(30, 1 , 30);
+INSERT INTO authorization VALUES(31, 1 , 31);
+INSERT INTO authorization VALUES(32, 1 , 32);
+INSERT INTO authorization VALUES(33, 1 , 33);

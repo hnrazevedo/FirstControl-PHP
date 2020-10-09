@@ -44,7 +44,7 @@ class User extends Controller
     {
         $data = [
             'page' => '/user/dashboard',
-            'title' => 'Dashboard',
+            'title' => 'Painel principal',
             'breadcrumb' => [
                 ['text' => 'Painel principal', 'active' => true]
             ]
@@ -152,6 +152,13 @@ class User extends Controller
     public function login($username, $password): void
     {
         try{
+
+            $this->ValidateData();
+
+            if($this->checkFailData()){
+                return;
+            }
+
             $user = $this->entity->find()->where([
                 ['username','=',$username]
             ])->execute();
@@ -177,7 +184,7 @@ class User extends Controller
             $_SESSION['user'] = serialize($user);
 
             echo json_encode([
-                'script' => 'window.location.href="'.( ($user->isAdmin()) ? '/administracao/' : '/dashboard' ).'";'
+                'script' => 'window.location.href="/dashboard";'
             ]);
 
         }catch(\Exception $er){

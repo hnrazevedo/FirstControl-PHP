@@ -14,7 +14,7 @@
     -webkit-box-pack: center;
     justify-content: center;}
 </style>
-<form access="/controller/user" method="post" class="ajax" id="userLogin">
+<form access="/login" method="post" class="ajax" id="userLogin">
     <div class="row">
         <div class="col-sm">
             <input type="text" name="log_username" id="log_username" placeholder="Usuário" label="Usuário" maxlength="20">

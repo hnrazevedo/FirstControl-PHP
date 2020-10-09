@@ -33,7 +33,7 @@ class Authorization implements MiddlewareInterface
         ])->execute()->toEntity();
 
         if(null === $permission){
-            throw new \RuntimeException('Você não tem permissão para tal ação', 401);
+            throw new \RuntimeException('Você não tem permissão para tal ação ('.Router::currentName().')', 401);
         }
 
         $auth = (new Model())->find()->where([
@@ -43,7 +43,7 @@ class Authorization implements MiddlewareInterface
 
 
         if(null === $auth){
-            throw new \RuntimeException('Você não tem permissão para tal ação', 401);
+            throw new \RuntimeException('Você não tem permissão para tal ação ('.Router::currentName().')', 401);
         }
     }
 
@@ -58,7 +58,7 @@ class Authorization implements MiddlewareInterface
         ])->execute()->toEntity();
 
         if(null === $permission){
-            throw new \RuntimeException('Você não tem permissão para tal ação', 401);
+            throw new \RuntimeException('Você não tem permissão para tal ação ('.$form.')', 401);
         }
 
         $auth = (new Model())->find()->where([
@@ -67,7 +67,7 @@ class Authorization implements MiddlewareInterface
         ])->execute()->toEntity();
 
         if(null === $auth){
-            throw new \RuntimeException('Você não tem permissão para tal ação', 401);
+            throw new \RuntimeException('Você não tem permissão para tal ação ('.$form.')', 401);
         }
     }
 }

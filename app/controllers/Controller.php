@@ -31,7 +31,7 @@ class Controller
         call_user_func_array([$this,$method],  func_get_args());
     }
 
-    private function ValidateData(): void
+    protected function ValidateData(): void
     {
         $valid = Validator::namespace('App\\Rules')->execute($_POST);
 
@@ -52,7 +52,7 @@ class Controller
         }
     }
 
-    private function checkFailData(): bool
+    protected function checkFailData(): bool
     {
         if(count($this->fail) > 0 ){
             echo json_encode([

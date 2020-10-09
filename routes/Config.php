@@ -2,7 +2,9 @@
 
 use HnrAzevedo\Router\Router;
 
-Router::get('/configuracoes','App\\Controller\\Config@viewMenu')->name('configDetails')->middleware(['Authenticate','Authorization']);
+Router::get('/configuracoes','App\\Controller\\Config@viewMenu')
+      ->name('configDetails')
+      ->middleware(['Authenticate','Authorization']);
 
 Router::ajax('/config/update/{id}/{value}','App\\Controller\\Config@update')
       ->name('configUpdate')

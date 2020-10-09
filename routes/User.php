@@ -4,24 +4,24 @@ use HnrAzevedo\Router\Router;
 
 Router::get('/usuario','App\\Controller\\User@viewMenu')
       ->name('userMenu')
-      ->middleware(['Authenticate']);
+      ->middleware(['Authenticate','Authorization']);
 
 Router::get('/usuario/listagem','App\\Controller\\User@viewList')
       ->name('userList')
-      ->middleware(['Authenticate']);
+      ->middleware(['Authenticate','Authorization']);
 
 Router::get('/usuario/inscrever','App\\Controller\\User@viewRegister')
       ->name('userRegister')
-      ->middleware(['Authenticate']);
+      ->middleware(['Authenticate','Authorization']);
 
 Router::get('/usuario/{id}','App\\Controller\\User@viewDetails')
       ->name('userDetails')
-      ->middleware(['Authenticate'])
+      ->middleware(['Authenticate','Authorization'])
       ->where(['id' => '[0-9]{1,11}']);
 
 Router::ajax('/usuario/listagem','App\\Controller\\User@jsonList')
       ->name('userResultList')
-      ->middleware(['Authenticate']);
+      ->middleware(['Authenticate','Authorization']);
 
 Router::get('/sair','App\\Controller\\User@logout')
       ->middleware(['Authenticate']);
@@ -39,3 +39,6 @@ Router::get('/usuarios/{id}/permissoes','App\\Controller\\Authorization@details'
       ->middleware(['Authenticate','Authorization'])
       ->name('authorizationDetails')
       ->where(['id' => '[0-9]{1,11}']);
+
+Router::ajax('/login','App\\Controller\\User@login')
+      ->middleware(['NoAuthenticate']);
