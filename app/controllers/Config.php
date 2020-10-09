@@ -13,6 +13,19 @@ class Config extends Controller
         $this->entity = new Model();
     }
 
+    public function viewMenu(): void
+    {
+        $this->view([
+            'page' => '/config/list',
+            'title' => 'Configurações',
+            'configs' => $this->list(),
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Configurações', 'active' => true]
+            ]
+        ]);
+    }
+
     public function list(): array
     {
         $configs = $this->entity->find()->execute()->toEntity();

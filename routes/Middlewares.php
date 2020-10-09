@@ -3,6 +3,7 @@
 use HnrAzevedo\Router\Router;
 
 Router::globalMiddlewares([
-    'Auth' => App\Middleware\Authenticate::class,
-    'Admin' => App\Middleware\Administrator::class
+    'Authenticate' => App\Middleware\Authenticate::class,
+    'NoAuthenticate' => App\Middleware\NoAuthenticate::class,
+    'Authorization' => App\Middleware\Authorization::class
 ]);

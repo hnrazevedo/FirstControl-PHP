@@ -22,25 +22,49 @@ class Visit extends Controller
         $this->entity = new Model();
     }
 
-    public function grid(): array
+    public function viewRegister()
     {
-        return [
+        $this->view([
+            'page' => '/visits/register.form',
+            'title' => 'Nova visita',
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Visita', 'uri' => '/visita'],
+                ['text' => 'Novo visita', 'active' => true]
+            ]
+        ]);
+    }
+
+    public function viewList(): void
+    {
+        $this->view([
             'page' => '/admin/list',
             'title' => 'Registros de visitas',
             'breadcrumb' => [
-                ['text' => 'Administração', 'uri' => '/administracao/'],
-                ['text' => 'Registros', 'uri' => '/administracao/registros'],
-                ['text' => 'Visitas', 'uri' => '/administracao/registros/visitas'],
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Visita', 'uri' => '/visita'],
                 ['text' => 'Listagem', 'active' => true]
             ],
             'tab' => [
                 'id' => 'registersVisits',
-                'title' => 'Registro de visitas',
-                'href' => '/administracao/visitas/',
-                'uri' => '/administracao/visitas/listagem',
+                'title' => 'Registro de visita',
+                'href' => '/visita/',
+                'uri' => '/visita/listagem',
                 'thead' => '<th>ID</th><th>Visitante</th><th>CPF</th><th>Entrada</th><th>Saída</th><th>Status</th><th>Razão/Motivo</th><th>Responsável</th><th>Veículo</th>'
             ]
-        ];
+        ]);
+    }
+
+    public function viewMenu(): void
+    {
+        $this->view([
+            'page' => '/visits/menu',
+            'title' => 'Visitas',
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Visita', 'active' => true]
+            ]
+        ]);
     }
 
 
@@ -77,7 +101,7 @@ class Visit extends Controller
                     'message' => 'Visita registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => 'setTimeout(function(){ window.location.href="/administracao/registros/visitas"; },2000);'
+                'script' => 'setTimeout(function(){ window.location.href="/visita"; },2000);'
             ]);
 
             
@@ -91,14 +115,14 @@ class Visit extends Controller
         }
     }
 
-    public function list(): array
+    public function jsonList(): void
     {
         $visits = $this->entity->find()->execute()->toEntity();
 
         $visits = (is_array($visits)) ? $visits : [$visits];
 
         if(is_null($visits[0])){
-            return false;
+            return;
         }
 
         $return = [];
@@ -126,10 +150,10 @@ class Visit extends Controller
             $return[] = array_values($date);
         }
 
-        return $return;
+        echo json_encode($return);
     }
 
-    public function details($id): array
+    public function viewDetails($id): void
     {
         $visit = $this->entity->find($id)->execute()->toEntity();
         
@@ -147,7 +171,7 @@ class Visit extends Controller
             $day .= ' até '.$dayFinal;
         }
 
-        return [
+        $this->view([
             'title' => 'Detalhes de visita',
             'page' => '/visits/details',
             'visitView' => $visit,
@@ -161,13 +185,12 @@ class Visit extends Controller
             ],
             'user' => (new UserModel())->find($visit->user)->only('name')->execute()->toEntity(),
             'breadcrumb' => [
-                ['text' => 'Administração', 'uri' => '/administracao/'],
-                ['text' => 'Registros', 'uri' => '/administracao/registros'],
-                ['text' => 'Visitas', 'uri' => '/administracao/registros/visitas'],
-                ['text' => 'Listagem', 'uri' => '/administracao/registros/visitas/listagem'],
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Visita', 'uri' => '/visita'],
+                ['text' => 'Listagem', 'uri' => '/visita/listagem'],
                 ['text' => 'Detalhes', 'active' => true],
             ]
-        ];
+        ]);
         
     }
 

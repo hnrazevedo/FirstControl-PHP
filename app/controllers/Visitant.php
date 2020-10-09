@@ -19,28 +19,52 @@ class Visitant extends Controller
         $this->entity = new Model();
     }
 
-    public function grid(): array
+    public function viewRegister()
     {
-        return [
+        $this->view([
+            'page' => '/visitant/register.form',
+            'title' => 'Novo visitante',
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Visitante', 'uri' => '/visitante'],
+                ['text' => 'Novo visitante', 'active' => true]
+            ]
+        ]);
+    }
+
+    public function viewList(): void
+    {
+        $this->view([
             'page' => '/admin/list',
             'title' => 'Registros de visitantes',
             'breadcrumb' => [
-                ['text' => 'Administração', 'uri' => '/administracao/'],
-                ['text' => 'Registros', 'uri' => '/administracao/registros'],
-                ['text' => 'Visitantes', 'uri' => '/administracao/registros/visitantes'],
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Visitante', 'uri' => '/visitante'],
                 ['text' => 'Listagem', 'active' => true]
             ],
             'tab' => [
                 'id' => 'registersVisitants',
-                'title' => 'Registro de visitas',
-                'href' => '/administracao/visitantes/',
-                'uri' => '/administracao/visitantes/listagem',
+                'title' => 'Registro de visitantes',
+                'href' => '/visitante/',
+                'uri' => '/visitante/listagem',
                 'thead' => '<th>ID</th><th>Nome</th><th>CPF</th><th>RG</th><th>Últ. Visita</th><th>Empresa</th><th>Contato</th>'
             ]
-        ];
+        ]);
     }
 
-    public function list(): array
+    public function viewMenu(): void
+    {
+        $this->view([
+            'page' => '/visitant/menu',
+            'title' => 'Visitantes',
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Visitante', 'active' => true]
+            ]
+        ]);
+    }
+
+    public function jsonList(): void
     {
         $visitants = $this->entity->find()->only(['id','name','cpf','rg','company','phone','lastvisit'])->where([
             ['id','<>',1]
@@ -49,7 +73,7 @@ class Visitant extends Controller
         $visitants = (is_array($visitants)) ? $visitants : [$visitants];
 
         if(is_null($visitants[0])){
-            return false;
+            return;
         }
 
         $return = [];
@@ -63,10 +87,10 @@ class Visitant extends Controller
             $return[] = array_values($date);
         }
 
-        return $return;
+        echo json_encode($return);
     }
 
-    public function details($id): array
+    public function viewDetails($id): void
     {
         $visitant = $this->entity->find($id)->execute()->toEntity();
 
@@ -78,18 +102,17 @@ class Visitant extends Controller
         $visitant->rg = $this->replaceRG($visitant->rg);
         $visitant->phone = $this->replaceCellPhone($visitant->phone);
 
-        return [
+        $this->view([
             'page' => '/visitant/details',
             'title' => 'Detalhes de visitante',
             'visitantView' => $visitant,
             'breadcrumb' => [
-                ['text' => 'Administração', 'uri' => '/administracao/'],
-                ['text' => 'Registros', 'uri' => '/administracao/registros'],
-                ['text' => 'Visitantes', 'uri' => '/administracao/registros/visitantes'],
-                ['text' => 'Listagem', 'uri' => '/administracao/registros/visitantes/listagem'],
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Visitante', 'uri' => '/visitante'],
+                ['text' => 'Listagem', 'uri' => '/visitante/listagem'],
                 ['text' => 'Detalhes', 'active' => true],
             ]
-        ];
+        ]);
     }
 
     public function register(): void
@@ -117,7 +140,7 @@ class Visitant extends Controller
                     'message' => 'Visitante registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => 'setTimeout(function(){ window.location.href="/administracao/registros/visitantes"; },2000);'
+                'script' => 'setTimeout(function(){ window.location.href="/visitante"; },2000);'
             ]);
    
         }catch(\Exception $er){

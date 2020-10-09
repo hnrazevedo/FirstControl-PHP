@@ -21,6 +21,19 @@ Class User
                   ->addField('new_password',['minlength'=>1,'maxlength'=>20,'required'=>true])
                   ->addField('new_password2',['equals'=>'new_password','minlength'=>1,'maxlength'=>20,'required'=>true])
                   ->addField('new_birth',['minlength'=>1,'maxlength'=>10,'regex'=>'/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/','required'=>true]);
+
+            $rules->setAction('update')
+                  ->addField('edit_email',['minlength'=>1,'maxlength'=>100,'filter'=>FILTER_VALIDATE_EMAIL,'required'=>true])
+                  ->addField('edit_oldpassword',['minlength'=>1,'maxlength'=>20,'required'=>true])
+                  ->addField('edit_password',['minlength'=>1,'maxlength'=>20,'required'=>false])
+                  ->addField('edit_password2',['equals'=>'edit_password','minlength'=>1,'maxlength'=>20,'required'=>false]);
+
+            $rules->setAction('updateUser')
+                  ->addField('edit_id',['minlength'=>1,'maxlength'=>11,'regex'=>'/^[0-9]{1,11}$/','required'=>true])
+                  ->addField('edit_status',['minlength'=>1,'maxlength'=>1,'regex'=>'/^[0-1]{1}$/','required'=>true])
+                  ->addField('edit_type',['minlength'=>1,'maxlength'=>1,'regex'=>'/^[0-1]{1}$/','required'=>true])
+                  ->addField('edit_password',['minlength'=>1,'maxlength'=>20,'required'=>false])
+                  ->addField('edit_password2',['equals'=>'edit_password','required'=>false]);
             return $rules;
         });
     }

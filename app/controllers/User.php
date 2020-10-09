@@ -14,39 +14,77 @@ class User extends Controller
         $this->entity = new Model();
     }
 
+    public function viewRegister()
+    {
+        $this->view([
+            'page' => '/user/register.form',
+            'title' => 'Novo usuário',
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Usuário', 'uri' => '/usuario'],
+                ['text' => 'Novo usuário', 'active' => true]
+            ]
+        ]);
+    }
+
+    public function viewData()
+    {
+        $data = [
+            'page' => '/user/update.form',
+            'title' => 'Minha conta',
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Minha conta', 'active' => true]
+            ]
+        ];
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
+    }
+
     public function viewDashboard()
     {
         $data = [
             'page' => '/user/dashboard',
             'title' => 'Dashboard',
             'breadcrumb' => [
-                ['text' => 'Dashboard', 'active' => true]
+                ['text' => 'Painel principal', 'active' => true]
             ]
         ];
         Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
     }
 
-    public function grid(): array
+    public function viewList(): void
     {
-        return [
+        $this->view([
             'page' => '/admin/list',
             'title' => 'Registros de usuários',
             'breadcrumb' => [
-                ['text' => 'Administração', 'uri' => '/administracao/'],
-                ['text' => 'Usuários', 'uri' => '/administracao/registros/usuarios'],
-                ['text' => 'Registros', 'active' => true]
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Usuário', 'uri' => '/usuario'],
+                ['text' => 'Listagem', 'active' => true]
             ],
             'tab' => [
                 'id' => 'registersUsers',
                 'title' => 'Registro de usuários',
-                'href' => '/administracao/usuarios/',
-                'uri' => '/administracao/usuario/listagem',
+                'href' => '/usuario/',
+                'uri' => '/usuario/listagem',
                 'thead' => '<th>ID</th><th>Nome</th><th>Usuário</th><th>Email</th><th>Nascimento</th><th>Registro</th><th>Últ. Acesso</th><th>Acesso</th><th>Tipo</th>'
             ]
-        ];
+        ]);
     }
 
-    public function list(): array
+    public function viewMenu(): void
+    {
+        $this->view([
+            'page' => '/user/menu',
+            'title' => 'Usuários',
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Usuário', 'active' => true]
+            ]
+        ]);
+    }
+
+    public function jsonList(): void
     {
         $users = $this->entity->find()->except(['password','code'])->where([
             ['id','<>', 1]
@@ -55,7 +93,7 @@ class User extends Controller
         $users = (is_array($users)) ? $users : [$users];
 
         if(is_null($users[0])){
-            return false;
+            return;
         }
 
         $return = [];
@@ -78,10 +116,10 @@ class User extends Controller
             }
             $return[] = array_values($date);
         }
-        return $return;
+        echo json_encode($return);
     }
 
-    public function details($id): array
+    public function viewDetails($id): void
     {
         $user = $this->entity->find($id)->where([
             ['id','<>',1]
@@ -91,16 +129,17 @@ class User extends Controller
             throw new \Exception('Usuário não encontrado.', 404);
         }
 
-        return [
+        $this->view([
             'page' => '/user/details',
             'title' => 'Detalhes de usuário',
             'userView' => $user,
             'breadcrumb' => [
-                ['text' => 'Administração', 'uri' => '/administracao/'],
-                ['text' => 'Usuários', 'uri' => '/administracao/usuarios'],
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Usuário', 'uri' => '/usuario'],
+                ['text' => 'Listagem', 'uri' => '/usuario/listagem'],
                 ['text' => 'Detalhes', 'active' => true],
             ]
-        ];
+        ]);
     }
 
     public function logout(): void
@@ -153,7 +192,7 @@ class User extends Controller
 
     public function viewLogin(): void
     {
-        if(!empty($_SESSION['user'])){
+        if(isset($_SESSION['user'])){
             header('Location: /dashboard');
             return;
         }
@@ -191,7 +230,7 @@ class User extends Controller
                     'message' => 'Usuário registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => "setTimeout(function(){ window.location.href='/administracao/registros/usuarios'; },2000);"
+                'script' => "setTimeout(function(){ window.location.href='/usuario'; },2000);"
             ]);
 
         }catch(\Exception $er){
@@ -202,6 +241,76 @@ class User extends Controller
                     ]
             ]);
         }
+    }
+
+    public function update(): void
+    {
+        try{
+            if(!isset($_SESSION['user'])){
+                throw new \Exception('Usuário deve estar logado');
+            }
+
+            $user = unserialize($_SESSION['user']);
+
+            if(!password_verify($_POST['edit_oldpassword'], $user->password)){
+                throw new \Exception('Senha atual inválida');
+            }
+
+            $user->email = $_POST['edit_email'];
+
+            if(strlen($_POST['edit_password']) > 0){
+                $user->password = password_hash($_POST['edit_password'], PASSWORD_DEFAULT);
+            }
+
+            $user->save();
+
+            $_SESSION['user'] = serialize($user);
+
+            echo json_encode([
+                'success' => [
+                    'message' => 'Informações atualizadas com sucesso!'
+                ],
+                'reset' => true,
+                'script' => "setTimeout(function(){ window.location.href='/usuario/minha-conta'; },2000);"
+            ]);
+
+        }catch(\Exception $er){
+            echo json_encode([
+                'error' =>
+                    [
+                        'message' => $er->getMessage()
+                    ]
+            ]);
+        }
+    }
+
+    public function updateUser()
+    {
+        $user = $this->entity->find($_POST['edit_id'])->execute()->toEntity();
+
+        if(null === $user){
+            throw new \Exception('Usuário não encontrado');
+        }
+
+        if($user->type == 1 && (unserialize($_SESSION['user']))->id != 1){
+            throw new \Exception('Usuário é um administrador<br>Atualização não permitida');
+        }
+
+        if(strlen($_POST['edit_password'] > 0)){
+            $user->password = password_hash($_POST['edit_password'], PASSWORD_DEFAULT);
+        }
+        
+        $user->status = $_POST['edit_status'];
+        $user->type = $_POST['edit_type'];
+
+        $user->save();
+
+        echo json_encode([
+            'success' => [
+                'message' => 'Usuário atualizado com sucesso'
+            ],
+            'script' => 'setTimeout(function(){ window.location.href="/usuario/listagem"; },2000);'
+        ]);
     }
 
 }

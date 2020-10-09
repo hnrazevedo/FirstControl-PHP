@@ -6,13 +6,13 @@ use HnrAzevedo\Datamanager\Model as Entity;
 
 /** 
   * @property int $id 
-  * @property string $resume
-  * @property string $value
+  * @property int $user 
+  * @property int $permission
   */ 
-Class Config extends Entity
+Class Authorization extends Entity
 {
     public function __construct()
     {
-        return parent::create('config', 'id');
+        return parent::create('authorization', 'id');
     }
 }

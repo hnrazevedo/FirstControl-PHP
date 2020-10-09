@@ -19,28 +19,52 @@ class Car extends Controller
         $this->entity = new Model();
     }
 
-    public function grid(): array
+    public function viewRegister()
     {
-        return [
+        $this->view([
+            'page' => '/car/register.form',
+            'title' => 'Novo veículo',
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Veículo', 'uri' => '/veiculo'],
+                ['text' => 'Novo veículo', 'active' => true]
+            ]
+        ]);
+    }
+
+    public function viewList(): void
+    {
+        $this->view([
             'page' => '/admin/list',
             'title' => 'Registros de veículos',
             'breadcrumb' => [
-                ['text' => 'Administração', 'uri' => '/administracao/'],
-                ['text' => 'Registros', 'uri' => '/administracao/registros'],
-                ['text' => 'Veículos', 'uri' => '/administracao/registros/veiculos'],
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Veículo', 'uri' => '/veiculo'],
                 ['text' => 'Listagem', 'active' => true]
             ],
             'tab' => [
                 'id' => 'registersCars',
                 'title' => 'Registro de veículos',
-                'href' => '/administracao/veiculos/',
-                'uri' => '/administracao/veiculos/listagem',
+                'href' => '/veiculo/',
+                'uri' => '/veiculo/listagem',
                 'thead' => '<th>ID</th><th>Placa</th><th>Marca</th><th>Model</th><th>Cor</th><th>Eixos</th><th>Motorista</th>'
             ]
-        ];
+        ]);
     }
 
-    public function details($id): array
+    public function viewMenu(): void
+    {
+        $this->view([
+            'page' => '/car/menu',
+            'title' => 'Veículos',
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Veículo', 'active' => true]
+            ]
+        ]);
+    }
+
+    public function viewDetails($id): void
     {
         $car = $this->entity->find($id)->where([
             ['id','<>',1]
@@ -58,22 +82,21 @@ class Car extends Controller
 
         $car->driver = (new VisitantModel())->find($car->driver)->only('name')->execute()->toEntity()->name;
 
-        return [
+        $this->view([
             'page' => '/car/details',
             'title' => 'Detalhes de veículo',
             'carView' => $car,
             'lastvisit' => [ 'started' => $lastvisit['started'], 'finished' => $lastvisit['finished'] ],
             'breadcrumb' => [
-                ['text' => 'Administração', 'uri' => '/administracao/'],
-                ['text' => 'Registros', 'uri' => '/administracao/registros'],
-                ['text' => 'Veículos', 'uri' => '/administracao/registros/veiculos'],
-                ['text' => 'Listagem', 'uri' => '/administracao/registros/veiculos/listagem'],
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Veículo', 'uri' => '/veiculo'],
+                ['text' => 'Listagem', 'uri' => '/veiculo/listagem'],
                 ['text' => 'Detalhes', 'active' => true],
             ]
-        ];
+        ]);
     }
 
-    public function list(): array
+    public function jsonList(): void
     {
         $cars = $this->entity->find()->where([
             ['id','<>',1]
@@ -82,7 +105,7 @@ class Car extends Controller
         $cars = (is_array($cars)) ? $cars : [$cars];
 
         if(is_null($cars[0])){
-            return false;
+            return;
         }
 
         $return = [];
@@ -103,7 +126,7 @@ class Car extends Controller
             }
             $return[] = array_values($date);
         }
-        return $return;
+        echo json_encode($return);
     }
 
     public function register(): void
@@ -136,7 +159,7 @@ class Car extends Controller
                     'message' => 'Veículo registrado com sucesso!'
                 ],
                 'reset' => true,
-                'script' => "setTimeout(function(){ window.location.href='/administracao/registros/veiculos'; },2000);"
+                'script' => "setTimeout(function(){ window.location.href='/veiculo'; },2000);"
             ]);
 
         }catch(\Exception $er){

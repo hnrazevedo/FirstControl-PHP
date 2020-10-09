@@ -3,12 +3,12 @@
 
     <div class="col col-12 col-xl-2 col-md-3 col-sm-4 mb-2">
         <div class="card bg-dark h-100">
-            <a href="{{ $system.uri }}/usuario" class="text-white text-center dashboard d-flex align-items-center">
+            <a href="{{ $system.uri }}/usuario/inscrever" class="text-white text-center dashboard d-flex align-items-center">
                 <div class="card-body">
                     <p class="icon text-center">
-                        <i class="bx bx-user"></i>
+                        <i class='bx bx-plus' ></i>
                     </p>
-                    <p class="card-text">Usuários</p>
+                    <p class="card-text">Novo usuário</p>
                 </div>
             </a>
         </div>
@@ -16,12 +16,12 @@
 
     <div class="col col-12 col-xl-2 col-md-3 col-sm-4 mb-2">
         <div class="card bg-dark h-100">
-            <a href="{{ $system.uri }}/configuracoes" class="text-white text-center dashboard d-flex align-items-center">
+            <a href="{{ $system.uri }}/usuarios/listagem" class="text-white text-center dashboard d-flex align-items-center">
                 <div class="card-body">
                     <p class="icon text-center">
-                        <i class="bx bx-cog"></i>
+                        <i class="bx bx-file"></i>
                     </p>
-                    <p class="card-text">Configurações</p>
+                    <p class="card-text">Registros</p>
                 </div>
             </a>
         </div>

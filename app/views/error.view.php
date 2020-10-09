@@ -29,9 +29,9 @@
         <main>
             <dialog class="fixed open">
                 <div>
-                    <p><b>{{ $error.code }}</b>. That’s an error.</p>
+                    <p><b>{{ $error.code }}</b> - Isto é um erro.</p>
                     <hr />
-                    <p>{{ $error.message }}</p>
+                    <p>{{!! $error.message !!}}</p>
                 </div>
             </dialog>
         </main>

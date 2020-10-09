@@ -1,5 +1,20 @@
 
-<form access="/administracao/controller/admin" class="pb-4 mt-4 m-auto ajax" id="adminUpdateUser">   
+<div class="row justify-content-center">
+    <div class="col col-12 col-xl-2 col-md-3 col-sm-4 mb-2">
+        <div class="card bg-dark h-100">
+            <a href="{{ $system.uri }}/usuarios/{{ $userView.id }}/permissoes" class="text-white text-center dashboard d-flex align-items-center">
+                <div class="card-body">
+                    <p class="icon text-center">
+                        <i class="bx bx-key"></i>
+                    </p>
+                    <p class="card-text">Permissões</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<form access="/controller/user" class="pb-4 mt-4 m-auto ajax" id="adminUpdateUser">   
     <input type="hidden" value="{{ $userView.id }}" id="edit_id" name="edit_id">   
     <div class="row  m-3">
         <div class="col-sm-6 col-md-4">
@@ -46,7 +61,7 @@
     </div>    
 
     <input type="hidden" name="REQUEST_METHOD" value="AJAX">
-    <input type="hidden" name="PROVIDER" value="admin">
+    <input type="hidden" name="PROVIDER" value="user">
     <input type="hidden" name="ROLE" value="updateUser">
 </form>
         

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use HnrAzevedo\Validator\Validator;
+use HnrAzevedo\Viewer\Viewer;
 
 class Controller
 {
@@ -59,6 +60,11 @@ class Controller
             ]);
         }
         return (count($this->fail) > 0 );
+    }
+
+    protected function view($data): void
+    {
+        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
     }
 
 }
