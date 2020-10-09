@@ -144,7 +144,7 @@ class User extends Controller
 
     public function logout(): void
     {
-        unset($_SESSION['user']);
+        $_SESSION = [];
         setcookie('user',null,-1,'/');
         header('Location: /');
     }
