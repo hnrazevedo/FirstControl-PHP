@@ -95,8 +95,8 @@ INSERT INTO permission VALUES(3, 'Visualização de página de menu de usuário'
 INSERT INTO permission VALUES(4, 'Formulário de atualização de usuário', 1, 'user|update');
 INSERT INTO permission VALUES(5, 'Visualização de página de cadastro de usuário', 0, 'userViewRegister');
 INSERT INTO permission VALUES(6, 'Formulário de cadastro de usuário', 1, 'user|register');
-INSERT INTO permission VALUES(7, 'Visualização de página de atualização de usuário', 0, 'userViewUpdate');
-INSERT INTO permission VALUES(8, 'Formulário de atualização de usuário (admin)', 1, 'user|edtion');
+INSERT INTO permission VALUES(7, 'Visualização de página de atualização de usuário', 0, 'userViewEdition');
+INSERT INTO permission VALUES(8, 'Formulário de atualização de usuário (admin)', 1, 'user|edition');
 INSERT INTO permission VALUES(9, 'Visualização de página de listagem de usuário', 0, 'userViewList');
 INSERT INTO permission VALUES(10, 'Retorno de solicitação de listagem de usuário', 0, 'userResultList');
 INSERT INTO permission VALUES(11, 'Visualização de página de detalhes de usuário', 0, 'userViewDetails');
