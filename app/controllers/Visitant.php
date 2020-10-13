@@ -47,7 +47,7 @@ class Visitant extends Controller
                 'title' => 'Registro de visitantes',
                 'href' => '/visitante/',
                 'uri' => '/visitante/listagem',
-                'thead' => '<th>ID</th><th>Nome</th><th>CPF</th><th>RG</th><th>Últ. Visita</th><th>Empresa</th><th>Contato</th>'
+                'thead' => '<th>ID</th><th>Nome</th><th>CPF</th><th>RG</th><th>Últ. Visita</th><th>Empresa</th><th>Contato</th><th>Ações</th>'
             ]
         ]);
     }
@@ -81,10 +81,12 @@ class Visitant extends Controller
             $date = [];
             foreach($result->getData() as $field => $data){
                 if($result->$field != null){
-                    $date[] = $this->replace($field,$result->$field);
+                    $date[] = $this->replace($field, $result->$field);
                 }
             }
-            $return[] = array_values($date);
+            $item = array_values($date);
+            $item[] = "<a href='{$item[0]}/edicao'>Editar</a>";
+            $return[] = $item;
         }
 
         echo json_encode($return);
@@ -115,13 +117,38 @@ class Visitant extends Controller
         ]);
     }
 
+    public function viewEdition($id): void
+    {
+        $visitant = $this->entity->find($id)->execute()->toEntity();
+
+        if(is_null($visitant)){
+            throw new \Exception('Visitante não encontrado', 404);
+        }
+
+        $visitant->cpf = $this->replaceCPF($visitant->cpf);
+        $visitant->rg = $this->replaceRG($visitant->rg);
+        $visitant->phone = $this->replaceCellPhone($visitant->phone);
+
+        $this->view([
+            'page' => '/visitant/edition.form',
+            'title' => 'Edição de visitante',
+            'visitantView' => $visitant,
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Visitante', 'uri' => '/visitante'],
+                ['text' => 'Listagem', 'uri' => '/visitante/listagem'],
+                ['text' => 'Edição', 'active' => true],
+            ]
+        ]);
+    }
+
     public function register(): void
     {
         $tmpPhoto = null;
         try{
 
             if(!$this->isValidCPF($_POST['new_cpf'])){
-                throw new \Exception('CPF invalid.');
+                throw new \Exception('CPF inválido');
             }
 
             $this->persistEntity($_POST);
@@ -147,6 +174,50 @@ class Visitant extends Controller
             Util::delete($tmpPhoto);
             throw $er;
         }
+    }
+
+    public function edition(): void
+    {
+        if(!$this->isValidCPF($_POST['edit_cpf'])){
+            throw new \Exception('CPF inválido');
+        }
+
+        $visitant = $this->entity->find($_POST['edit_id'])->execute()->toEntity();
+
+        if(null === $visitant){
+            throw new \Exception('Visitante não encontrado');
+        }
+
+        $oldPhoto = $visitant->photo;
+        $visitant->name = $_POST['edit_name'];
+        $visitant->email = $_POST['edit_email'];
+        $visitant->cpf = str_replace(['.','-'], '', $_POST['edit_cpf']);
+        $visitant->rg = str_replace(['.','-'], '', $_POST['edit_rg']);
+        $visitant->birth = $_POST['edit_birth'];
+        $visitant->phone = str_replace(['(',')',' ','-'],'',$_POST['edit_phone']);
+        $visitant->company = $_POST['edit_company'];
+
+        if(strlen($_POST['edit_photo']) > 0){
+            $file = $this->replaceBase64($_POST['edit_photo']);
+            $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.str_replace([',','.','-'],'', $_POST['edit_cpf']).'.'.$file['ext'];
+            if(file_put_contents($tmpPhoto, $file['data'])){
+                $visitant->photo = str_replace([',','.','-'],'', $_POST['edit_cpf']).'.'.$file['ext'];
+            }
+        }
+
+        $visitant->save();
+
+        if($oldPhoto !== $visitant->photo){
+            Util::delete(SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'visitant'.DIRECTORY_SEPARATOR.$oldPhoto);
+        }
+
+        echo json_encode([
+            'success' => [
+                'message' => 'Visitante editado com sucesso!'
+            ],
+            'reset' => true,
+            'script' => 'setTimeout(function(){ window.location.href="/visitante"; },2000);'
+        ]);
     }
 
     public function checkNewRegister(array $data): array

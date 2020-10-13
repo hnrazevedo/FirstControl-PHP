@@ -1,20 +1,29 @@
-
 <form access="/controller/user" class="pb-4 mt-4 m-auto ajax" id="updateUser">   
+    <div class="col-12 row m-0">
+        <div class="col-12 mb-4">
+            <div class="photo preview ">
+                <img src="{{ $system.uri }}/assets/img/user/{{ $user.photo }}" style="height:15rem" />
+            </div>
+        </div>
+    </div>
     <div class="row  m-3">
         <div class="col-sm-6 col-md-4 col-lg-3">
-            <input type="text" value="{{ $user.id }}" label="ID" disabled="disabled">
+            <input type="text" value="{{ $user.id }}" label="ID" disabled="disabled" fixed="fixed">
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
-            <input type="text" value="{{ $user.lastaccess }}" label="Último acesso" disabled="disabled">
+            <input type="text" value="{{ $user.lastaccess }}" label="Último acesso" disabled="disabled" fixed="fixed">
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
-            <input type="text" value="{{ $user.name }}" label="Nome Completo" disabled="disabled">
+            <input type="text" value="{{ $user.register }}" label="Data de cadastro" disabled="disabled" fixed="fixed">
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
-            <input type="text" value="{{ $user.username }}" label="Usuário" disabled="disabled">
+            <input type="text" value="{{ $user.name }}" label="Nome Completo" disabled="disabled" fixed="fixed">
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
-            <input type="text" value="{{ $user.birth }}" label="Data de nascimento" disabled="disabled">
+            <input type="text" value="{{ $user.username }}" label="Usuário" disabled="disabled" fixed="fixed">
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <input type="text" value="{{ $user.birth }}" label="Data de nascimento" disabled="disabled" fixed="fixed">
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
             <input type="text" value="{{ $user.email }}" label="Email" id="edit_email" name="edit_email" maxlength="100">
@@ -36,9 +45,7 @@
             </div>
         </div>
     </div>    
-
-    <input type="hidden" name="REQUEST_METHOD" value="AJAX">
-    <input type="hidden" name="PROVIDER" value="user">
-    <input type="hidden" name="ROLE" value="update">
-</form>
-        
+    <input type="hidden" name="REQUEST_METHOD" value="AJAX" fixed="fixed">
+    <input type="hidden" name="PROVIDER" value="user" fixed="fixed">
+    <input type="hidden" name="ROLE" value="update" fixed="fixed">
+</form>  

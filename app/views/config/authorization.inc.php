@@ -1,5 +1,5 @@
 <br />
-<div class="row d-flex align-items-start">
+<div class="row d-flex align-items-start" id="authorizations">
     <div class="col-12 mb-2">
         <h5>Visualização de páginas</h5>
     </div>
@@ -11,36 +11,36 @@
             <h5>Cadastro</h5>
         </div>
         <div class="btn-group btn-group-vertical mb-4" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="userRegister">
-            <label class="btn btn-outline-primary" for="userRegister">Usuário</label>
+            <input type="checkbox" class="btn-check" id="userViewRegister" <?= (isset($permissions['userViewRegister'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="userViewRegister">Usuário</label>
 
-            <input type="checkbox" class="btn-check" id="carRegister">
-            <label class="btn btn-outline-primary" for="carRegister">Veículo</label>
+            <input type="checkbox" class="btn-check" id="carViewRegister" <?= (isset($permissions['carViewRegister'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="carViewRegister">Veículo</label>
 
-            <input type="checkbox" class="btn-check" id="visitantRegister">
-            <label class="btn btn-outline-primary" for="visitantRegister">Visitante</label>
+            <input type="checkbox" class="btn-check" id="visitantViewRegister" <?= (isset($permissions['visitantViewRegister'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitantViewRegister">Visitante</label>
 
-            <input type="checkbox" class="btn-check" id="visitRegister">
-            <label class="btn btn-outline-primary" for="visitRegister">Visita</label>
+            <input type="checkbox" class="btn-check" id="visitViewRegister" <?= (isset($permissions['visitViewRegister'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitViewRegister">Visita</label>
         </div>
     </div>
 
     <div class="col-12 col-lg-2 col-md-3 col-sm-4 row m-0 p-0">
         <div class="col-12 mb-2">
-            <h5>Atualização</h5>
+            <h5>Edição</h5>
         </div>
         <div class="btn-group btn-group-vertical mb-4" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="userUpdate">
-            <label class="btn btn-outline-primary" for="userUpdate">Usuário</label>
+            <input type="checkbox" class="btn-check" id="userViewEdition" <?= (isset($permissions['userViewEdition'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="userViewEdition">Usuário</label>
 
-            <input type="checkbox" class="btn-check" id="carUpdate">
-            <label class="btn btn-outline-primary" for="carUpdate">Veículo</label>
+            <input type="checkbox" class="btn-check" id="carViewEdition" <?= (isset($permissions['carViewEdition'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="carViewEdition">Veículo</label>
 
-            <input type="checkbox" class="btn-check" id="visitantUpdate">
-            <label class="btn btn-outline-primary" for="visitantUpdate">Visitante</label>
+            <input type="checkbox" class="btn-check" id="visitantViewEdition" <?= (isset($permissions['visitantViewEdition'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitantViewEdition">Visitante</label>
 
-            <input type="checkbox" class="btn-check" id="visitUpdate">
-            <label class="btn btn-outline-primary" for="visitUpdate">Visita</label>
+            <input type="checkbox" class="btn-check" id="visitViewEdition" <?= (isset($permissions['visitViewEdition'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitViewEdition">Visita</label>
         </div>
     </div>
 
@@ -49,17 +49,17 @@
             <h5>Menu</h5>
         </div>
         <div class="btn-group btn-group-vertical mb-4" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="userMenu">
-            <label class="btn btn-outline-primary" for="userMenu">Usuário</label>
+            <input type="checkbox" class="btn-check" id="userViewMenu" <?= (isset($permissions['userViewMenu'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="userViewMenu">Usuário</label>
 
-            <input type="checkbox" class="btn-check" id="carMenu">
-            <label class="btn btn-outline-primary" for="carMenu">Veículo</label>
+            <input type="checkbox" class="btn-check" id="carViewMenu" <?= (isset($permissions['carViewMenu'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="carViewMenu">Veículo</label>
 
-            <input type="checkbox" class="btn-check" id="visitantMenu">
-            <label class="btn btn-outline-primary" for="visitantMenu">Visitante</label>
+            <input type="checkbox" class="btn-check" id="visitantViewMenu" <?= (isset($permissions['visitantViewMenu'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitantViewMenu">Visitante</label>
 
-            <input type="checkbox" class="btn-check" id="visitMenu">
-            <label class="btn btn-outline-primary" for="visitMenu">Visita</label>
+            <input type="checkbox" class="btn-check" id="visitViewMenu" <?= (isset($permissions['visitViewMenu'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitViewMenu">Visita</label>
         </div>
     </div>
 
@@ -68,17 +68,17 @@
             <h5>Listagem</h5>
         </div>
         <div class="btn-group btn-group-vertical mb-4" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="userList">
-            <label class="btn btn-outline-primary" for="userList">Usuário</label>
+            <input type="checkbox" class="btn-check" id="userViewList" <?= (isset($permissions['userViewList'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="userViewList">Usuário</label>
 
-            <input type="checkbox" class="btn-check" id="carList">
-            <label class="btn btn-outline-primary" for="carList">Veículo</label>
+            <input type="checkbox" class="btn-check" id="carViewList" <?= (isset($permissions['carViewList'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="carViewList">Veículo</label>
 
-            <input type="checkbox" class="btn-check" id="visitantList">
-            <label class="btn btn-outline-primary" for="visitantList">Visitante</label>
+            <input type="checkbox" class="btn-check" id="visitantViewList" <?= (isset($permissions['visitantViewList'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitantViewList">Visitante</label>
 
-            <input type="checkbox" class="btn-check" id="visitList">
-            <label class="btn btn-outline-primary" for="visitList">Visita</label>
+            <input type="checkbox" class="btn-check" id="visitViewList" <?= (isset($permissions['visitViewList'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitViewList">Visita</label>
         </div>
     </div>
 
@@ -87,17 +87,17 @@
             <h5>Detalhes</h5>
         </div>
         <div class="btn-group btn-group-vertical mb-4" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="userDetails">
-            <label class="btn btn-outline-primary" for="userDetails">Usuário</label>
+            <input type="checkbox" class="btn-check" id="userViewDetails" <?= (isset($permissions['userViewDetails'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="userViewDetails">Usuário</label>
 
-            <input type="checkbox" class="btn-check" id="carDetails">
-            <label class="btn btn-outline-primary" for="carDetails">Veículo</label>
+            <input type="checkbox" class="btn-check" id="carViewDetails" <?= (isset($permissions['carViewDetails'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="carViewDetails">Veículo</label>
 
-            <input type="checkbox" class="btn-check" id="visitantDetails">
-            <label class="btn btn-outline-primary" for="visitantDetails">Visitante</label>
+            <input type="checkbox" class="btn-check" id="visitantViewDetails" <?= (isset($permissions['visitantViewDetails'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitantViewDetails">Visitante</label>
 
-            <input type="checkbox" class="btn-check" id="visitDetails">
-            <label class="btn btn-outline-primary" for="visitDetails">Visita</label>
+            <input type="checkbox" class="btn-check" id="visitViewDetails" <?= (isset($permissions['visitViewDetails'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitViewDetails">Visita</label>
         </div>
     </div>
 
@@ -106,11 +106,11 @@
             <h5>Administração</h5>
         </div>
         <div class="btn-group btn-group-vertical mb-4" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="configDetails">
-            <label class="btn btn-outline-primary" for="configDetails">Configurações</label>
+            <input type="checkbox" class="btn-check" id="configViewDetails" <?= (isset($permissions['configViewDetails'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="configViewDetails">Configurações</label>
 
-            <input type="checkbox" class="btn-check" id="authorizationDetails">
-            <label class="btn btn-outline-primary" for="authorizationDetails">Permissões</label>
+            <input type="checkbox" class="btn-check" id="userViewAuthorizations" <?= (isset($permissions['userViewAuthorizations'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="userViewAuthorizations">Permissões</label>
         </div>
     </div>
 
@@ -125,36 +125,36 @@
             <h5>Cadastro</h5>
         </div>
         <div class="btn-group btn-group-vertical mb-4" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="user|register">
+            <input type="checkbox" class="btn-check" id="user|register" <?= (isset($permissions['user|register'])) ? 'checked' : '' ?>>
             <label class="btn btn-outline-primary" for="user|register">Usuário</label>
 
-            <input type="checkbox" class="btn-check" id="car|register">
+            <input type="checkbox" class="btn-check" id="car|register" <?= (isset($permissions['car|register'])) ? 'checked' : '' ?>>
             <label class="btn btn-outline-primary" for="car|register">Veículo</label>
 
-            <input type="checkbox" class="btn-check" id="visitant|register">
+            <input type="checkbox" class="btn-check" id="visitant|register" <?= (isset($permissions['visitant|register'])) ? 'checked' : '' ?>>
             <label class="btn btn-outline-primary" for="visitant|register">Visitante</label>
 
-            <input type="checkbox" class="btn-check" id="visit|register">
+            <input type="checkbox" class="btn-check" id="visit|register" <?= (isset($permissions['visit|register'])) ? 'checked' : '' ?>>
             <label class="btn btn-outline-primary" for="visit|register">Visita</label>
         </div>
     </div>
 
     <div class="col-12 col-lg-2 col-md-3 col-sm-4 row m-0 p-0">
         <div class="col-12 mb-2">
-            <h5>Atualização</h5>
+            <h5>Edição</h5>
         </div>
         <div class="btn-group btn-group-vertical mb-4" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="user|update">
-            <label class="btn btn-outline-primary" for="user|update">Usuário</label>
+            <input type="checkbox" class="btn-check" id="user|edition" <?= (isset($permissions['user|edition'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="user|edition">Usuário</label>
 
-            <input type="checkbox" class="btn-check" id="car|update">
-            <label class="btn btn-outline-primary" for="car|update">Veículo</label>
+            <input type="checkbox" class="btn-check" id="car|edition" <?= (isset($permissions['car|edition'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="car|edition">Veículo</label>
 
-            <input type="checkbox" class="btn-check" id="visitant|update">
-            <label class="btn btn-outline-primary" for="visitant|update">Visitante</label>
+            <input type="checkbox" class="btn-check" id="visitant|edition" <?= (isset($permissions['visitant|edition'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitant|edition">Visitante</label>
 
-            <input type="checkbox" class="btn-check" id="visit|update">
-            <label class="btn btn-outline-primary" for="visit|update">Visita</label>
+            <input type="checkbox" class="btn-check" id="visit|edition" <?= (isset($permissions['visit|edition'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visit|edition">Visita</label>
         </div>
     </div>
 
@@ -163,12 +163,21 @@
             <h5>Administração</h5>
         </div>
         <div class="btn-group btn-group-vertical mb-4" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="config|update">
+            <input type="checkbox" class="btn-check" id="config|update" <?= (isset($permissions['config|update'])) ? 'checked' : '' ?>>
             <label class="btn btn-outline-primary" for="config|update">Configurações</label>
 
-            <input type="checkbox" class="btn-check" id="authorization|update">
-            <label class="btn btn-outline-primary" for="authorization|update">Permissões</label>
+            <input type="checkbox" class="btn-check" id="userAuthorizationUpdate" <?= (isset($permissions['userAuthorizationUpdate'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="userAuthorizationUpdate">Permissões</label>
         </div>
     </div>
-
 </div>
+
+<script>
+    window.addEventListener('load', function(){
+        document.querySelectorAll('div#authorizations input[type="checkbox"]').forEach(function(e,i){
+            e.addEventListener('click', async function(){
+                await Submitter.setUrl('{{ $system.uri }}/usuario/{{ $id }}/permissoes/'+e.getAttribute('id')).execute();
+            });
+        });
+    });
+</script>

@@ -132,6 +132,9 @@ const DataTables = function(){
         },
         clickTr(e){
             var tr = e.target.parentNode;
+            if(null === tr.querySelector('td:nth-child(1)')){
+                return;
+            }
             var id = tr.querySelector('td:nth-child(1)').innerHTML;
             var select = tr.closest('.table').querySelector('select.datatable');
     

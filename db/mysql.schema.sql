@@ -1,3 +1,4 @@
+/*drop database fcontrol;create database fcontrol;use fcontrol;*/
 CREATE TABLE IF NOT EXISTS config(
     id BIGINT AUTO_INCREMENT NOT NULL,
     resume VARCHAR(50) NOT NULL,
@@ -13,10 +14,10 @@ CREATE TABLE IF NOT EXISTS user(
     password VARCHAR(80)  NOT NULL,
     code VARCHAR(50)  NOT NULL,
     birth DATE NOT NULL,
+    photo VARCHAR(20) NOT NULL,
     register DATETIME NOT NULL,
     lastaccess DATETIME NOT NULL,
     status SMALLINT(1) NOT NULL,
-    type SMALLINT(1) NOT NULL ,
     PRIMARY KEY(id)
 );
 
@@ -85,9 +86,9 @@ ALTER TABLE authorization ADD FOREIGN KEY (permission) REFERENCES permission(id)
 INSERT INTO config VALUES(1, 'Tipo de impressora','LaserJet');
 INSERT INTO visitant VALUES(1,' ','00000000000','000000000','2000-00-00','2000-00-00','2000-00-00',' ','00000000000',' ','default.svg');
 INSERT INTO car VALUES(1,'00000000',' ',' ',' ',1,1,'default.svg');
-INSERT INTO user VALUES(1, 'admin','admin','admin@admin.com','$2y$10$X2CBK8QAYMG1dleYp4dt8.gvSNpUVLmWSDsRAxjdfTUKrCjyNXih2', '1', '2000-00-00','2000-00-00','2000-00-00',1,1);
+INSERT INTO user VALUES(1, 'admin','admin','admin@admin.com','$2y$10$X2CBK8QAYMG1dleYp4dt8.gvSNpUVLmWSDsRAxjdfTUKrCjyNXih2', '1', '2000-00-00', 'default.svg', '2000-00-00','2000-00-00',1);
 
-INSERT INTO permission VALUES(1, 'Visualização de página de configurações', 0, 'configViewRegister');
+INSERT INTO permission VALUES(1, 'Visualização de página de configurações', 0, 'configViewDetails');
 INSERT INTO permission VALUES(2, 'Formulário de atualização de configurações', 1, 'config|update');
 
 INSERT INTO permission VALUES(3, 'Visualização de página de menu de usuário', 0, 'userViewMenu');
@@ -95,18 +96,18 @@ INSERT INTO permission VALUES(4, 'Formulário de atualização de usuário', 1, 
 INSERT INTO permission VALUES(5, 'Visualização de página de cadastro de usuário', 0, 'userViewRegister');
 INSERT INTO permission VALUES(6, 'Formulário de cadastro de usuário', 1, 'user|register');
 INSERT INTO permission VALUES(7, 'Visualização de página de atualização de usuário', 0, 'userViewUpdate');
-INSERT INTO permission VALUES(8, 'Formulário de atualização de usuário (admin)', 1, 'user|adminUpdate');
+INSERT INTO permission VALUES(8, 'Formulário de atualização de usuário (admin)', 1, 'user|edtion');
 INSERT INTO permission VALUES(9, 'Visualização de página de listagem de usuário', 0, 'userViewList');
 INSERT INTO permission VALUES(10, 'Retorno de solicitação de listagem de usuário', 0, 'userResultList');
 INSERT INTO permission VALUES(11, 'Visualização de página de detalhes de usuário', 0, 'userViewDetails');
 INSERT INTO permission VALUES(12, 'Visualização de página de autorizações de usuário', 0, 'userViewAuthorizations');
-INSERT INTO permission VALUES(13, 'Formulário de atualização de autorizações de usuário', 1, 'user|authorization');
+INSERT INTO permission VALUES(13, 'Atualização de autorizações de usuário', 0, 'userAuthorizationUpdate');
 
 INSERT INTO permission VALUES(14, 'Visualização de página de menu de visitante', 0, 'visitantViewMenu');
 INSERT INTO permission VALUES(15, 'Visualização de página de cadastro de visitante', 0, 'visitantViewRegister');
 INSERT INTO permission VALUES(16, 'Formulário de cadastro de visitante', 1, 'visitant|register');
-INSERT INTO permission VALUES(17, 'Visualização de página de atualização de visitante', 0, 'visitantViewUpdate');
-INSERT INTO permission VALUES(18, 'Formulário de atualização de visitante', 1, 'visitant|update');
+INSERT INTO permission VALUES(17, 'Visualização de página de atualização de visitante', 0, 'visitantViewEdition');
+INSERT INTO permission VALUES(18, 'Formulário de atualização de visitante', 1, 'visitant|edition');
 INSERT INTO permission VALUES(19, 'Visualização de página de listagem de visitante', 0, 'visitantViewList');
 INSERT INTO permission VALUES(20, 'Retorno de solicitação de listagem de visitante', 0, 'visitantResultList');
 INSERT INTO permission VALUES(21, 'Visualização de página de detalhes de visitante', 0, 'visitantViewDetails');
@@ -115,8 +116,8 @@ INSERT INTO permission VALUES(22, 'Preenchimento automático de cadastro de visi
 INSERT INTO permission VALUES(23, 'Visualização de página de menu de veiculo', 0, 'carViewMenu');
 INSERT INTO permission VALUES(24, 'Visualização de página de cadastro de veículo', 0, 'carViewRegister');
 INSERT INTO permission VALUES(25, 'Formulário de cadastro de veículo', 1, 'car|register');
-INSERT INTO permission VALUES(26, 'Visualização de página de atualização de veículo', 0, 'carViewUpdate');
-INSERT INTO permission VALUES(27, 'Formulário de atualização de veículo', 1, 'car|update');
+INSERT INTO permission VALUES(26, 'Visualização de página de atualização de veículo', 0, 'carViewEdition');
+INSERT INTO permission VALUES(27, 'Formulário de atualização de veículo', 1, 'car|edition');
 INSERT INTO permission VALUES(28, 'Visualização de página de listagem de veículo', 0, 'carViewList');
 INSERT INTO permission VALUES(29, 'Retorno de solicitação de listagem de veículo', 0, 'carResultList');
 INSERT INTO permission VALUES(30, 'Visualização de página de detalhes de veículo', 0, 'carViewDetails');
@@ -125,8 +126,8 @@ INSERT INTO permission VALUES(31, 'Preenchimento automático de cadastro de visi
 INSERT INTO permission VALUES(32, 'Visualização de página de menu de visita', 0, 'visitViewMenu');
 INSERT INTO permission VALUES(33, 'Visualização de página de cadastro de visita', 0, 'visitViewRegister');
 INSERT INTO permission VALUES(34, 'Formulário de cadastro de visita', 1, 'visit|register');
-INSERT INTO permission VALUES(35, 'Visualização de página de atualização de visita', 0, 'visitViewUpdate');
-INSERT INTO permission VALUES(36, 'Formulário de atualização de visita', 1, 'visit|update');
+INSERT INTO permission VALUES(35, 'Visualização de página de atualização de visita', 0, 'visitViewEdition');
+INSERT INTO permission VALUES(36, 'Formulário de atualização de visita', 1, 'visit|edition');
 INSERT INTO permission VALUES(37, 'Visualização de página de listagem de visita', 0, 'visitViewList');
 INSERT INTO permission VALUES(38, 'Retorno de solicitação de listagem de visita', 0, 'visitResultList');
 INSERT INTO permission VALUES(39, 'Visualização de página de detalhes de visita', 0, 'visitViewDetails');

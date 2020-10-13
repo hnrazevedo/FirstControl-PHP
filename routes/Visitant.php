@@ -23,6 +23,11 @@ Router::ajax('/visitante/listagem','App\\Controller\\Visitant@jsonList')
       ->name('visitantResultList')
       ->middleware(['Authenticate','Authorization']);
 
+Router::get('/visitante/{id}/edicao','App\\Controller\\Visitant@viewEdition')
+      ->middleware(['Authenticate','Authorization'])
+      ->name('visitantViewEdition')
+      ->where(['id' => '[0-9]{1,11}']);
+
 Router::ajax('/controller/visitant','App\\Controller\\Visitant@executeData')
       ->middleware(['Authenticate','Authorization']);
 

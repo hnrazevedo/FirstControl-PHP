@@ -29,15 +29,25 @@ Router::get('/sair','App\\Controller\\User@logout')
 Router::get('/esqueci-a-senha','App\\Controller\\User@viewRecover')
       ->middleware(['NoAuthenticate']);
 
-Router::get('/usuarios/minha-conta','App\\Controller\\User@viewRegister')
+Router::get('/usuario/minha-conta','App\\Controller\\User@viewAccount')
       ->middleware(['Authenticate']);
 
 Router::ajax('/controller/user','App\\Controller\\User@executeData')
       ->middleware(['Authenticate','Authorization']);
 
-Router::get('/usuarios/{id}/permissoes','App\\Controller\\Authorization@details')
+Router::get('/usuario/{id}/permissoes','App\\Controller\\Authorization@details')
       ->middleware(['Authenticate','Authorization'])
       ->name('userViewAuthorizations')
+      ->where(['id' => '[0-9]{1,11}']);
+
+Router::ajax('/usuario/{id}/permissoes/{permission}','App\\Controller\\Authorization@update')
+      ->middleware(['Authenticate','Authorization'])
+      ->name('userAuthorizationUpdate')
+      ->where(['id' => '[0-9]{1,11}']);
+
+Router::get('/usuario/{id}/edicao','App\\Controller\\User@viewEdition')
+      ->middleware(['Authenticate','Authorization'])
+      ->name('userViewEdition')
       ->where(['id' => '[0-9]{1,11}']);
 
 Router::ajax('/login','App\\Controller\\User@login')

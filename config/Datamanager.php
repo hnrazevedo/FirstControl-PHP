@@ -17,5 +17,5 @@ define("DATAMANAGER_CONFIG", [
         PDO::ATTR_ORACLE_NULLS => PDO::NULL_EMPTY_STRING
     ],
     "dateformat" => "d/m/Y",
-    "datetimeformat" => "d/m/Y H:i:s"
+    "datetimeformat" => "d/m/Y \á\s H:i:s"
 ]);

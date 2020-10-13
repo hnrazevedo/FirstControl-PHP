@@ -9,7 +9,7 @@
     </div>
     <div class="col-12 row m-0" >
         <div class="col-sm-6 col-md-4 col-lg-3">
-            <input type="button" dialog="#camera" onclick="CamVisitant()" class="btn btn-primary w-100" style="margin-top:2em" value="Tirar foto" />
+            <input type="button" dialog="#camera" class="btn btn-primary w-100" style="margin-top:2em" value="Tirar foto" onclick="Cam.requerCam().inputVal('new_photo').previewImg('visitantphoto')" />
             <input type="hidden" id="new_photo" name="new_photo">
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
@@ -45,11 +45,5 @@
     <input type="hidden" name="PROVIDER" value="visitant" fixed="fixed">
     <input type="hidden" name="ROLE" value="register" fixed="fixed">
 </form>
-
-<script>
-    function CamVisitant(){
-        Cam.requerCam().inputVal('new_photo').previewImg('visitantphoto');
-    }
-</script>
 
 <?= $this->import('global/cam') ?>

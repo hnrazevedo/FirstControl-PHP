@@ -74,7 +74,7 @@
         <?php if(isset($_SESSION['user'])) : ?>
             <li class="bd-highlight mr-auto">
                 <a href="{{ $system.uri }}/usuario/minha-conta">
-                    <img src="{{ $system.uri }}/assets/img/users/{{ $user.photo }}" class="mr-3" /> 
+                    <img src="{{ $system.uri }}/assets/img/user/{{ $user.photo }}" class="mr-3" /> 
                 </a> 
                 {{ $user.name }}
             </li>

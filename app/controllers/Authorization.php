@@ -22,8 +22,12 @@ class Authorization extends Controller
         $this->view([
             'page' => '/config/authorization',
             'title' => 'Permissões',
-            'permissionsView' => $this->list($id),
+            'permissions' => $this->list($id),
+            'id' => $id,
             'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Usuário', 'uri' => '/usuario'],
+                ['text' => 'Listagem', 'uri' => '/usuario/listagem'],
                 ['text' => 'Permissões', 'active' => true]
             ]
         ]);
@@ -38,14 +42,14 @@ class Authorization extends Controller
         }
 
         $authozations = $this->entity->find()->where([
-            ['user','=',$id]
+            ['user', '=', $id]
         ])->execute()->toEntity();
 
         if(null === $authozations){
             return [];
         }
 
-        echo '<pre>';
+        $authozations = (is_array($authozations)) ? $authozations : [$authozations];
 
         $permissions = [];
         foreach($authozations as $auth){
@@ -56,15 +60,43 @@ class Authorization extends Controller
             ['id', 'IN' , $permissions]
         ])->execute()->toEntity();
 
+        $permissions = (is_array($permissions)) ? $permissions : [$permissions];
+
+        $active = [];
+
         foreach($permissions as $permission){
-            var_dump($permission->route);
-            var_dump($permission->form);
+            $active[$permission->reference] = true;
         }
 
-        die();
-        
-        return [
+        return $active;
+    }
 
-        ];
+    public function update($req, $user, $permission): void
+    {
+        if($user == 1){
+            return;
+        }
+
+        $permission = (new Permission())->find()->where([
+            ['reference', '=', $permission]
+        ])->execute()->toEntity();
+
+        if(null === $permission){
+            throw new \Exception('Permissão não encontrada');
+        }
+
+        $authorization = $this->entity->find()->where([
+            ['permission', '=', $permission->id],
+            ['user', '=', $user]
+        ])->execute()->toEntity();
+
+        if(null === $authorization){
+            $this->entity->user = $user;
+            $this->entity->permission = $permission->id;
+            $this->entity->persist();
+            return;
+        }
+
+        $authorization->remove(true);
     }
 }

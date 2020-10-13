@@ -28,7 +28,7 @@ class Authorization implements MiddlewareInterface
     {
         if(isset($_SESSION['cache']['authorizations'])){
             if(!in_array(str_replace('\'', '', Router::currentName()), $_SESSION['cache']['authorizations']['routes'])){
-                throw new \RuntimeException('Você não tem permissão para tal ação ('.Router::currentName().')[CACHE]', 401);
+                throw new \RuntimeException('Você não tem permissão para tal ação ['.Router::currentName().'][CACHE]', 401);
             }
             return;
         }
@@ -41,7 +41,7 @@ class Authorization implements MiddlewareInterface
         ])->execute()->toEntity();
 
         if(null === $permission){
-            throw new \RuntimeException('Você não tem permissão para tal ação ('.Router::currentName().')', 401);
+            throw new \RuntimeException('Permissão não cadastrada corretamente, contacte o administrador:<br>Route name: '.Router::currentName(), 401);
         }
 
         $auth = (new Model())->find()->where([
@@ -51,7 +51,7 @@ class Authorization implements MiddlewareInterface
 
 
         if(null === $auth){
-            throw new \RuntimeException('Você não tem permissão para tal ação ('.Router::currentName().')', 401);
+            throw new \RuntimeException('Você não tem permissão para tal ação ['.$permission->id.']', 401);
         }
     }
 

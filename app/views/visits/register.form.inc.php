@@ -14,7 +14,7 @@
                     <h6>Visitante</h6>
                 </div>
                 <div class="col-sm-6  col-md-4">
-                    <input type="button" dialog="#camera" onclick="CamVisitant()" class="btn btn-primary w-100" style="margin-top:2em" value="Tirar foto" />
+                    <input type="button" dialog="#camera" class="btn btn-primary w-100" style="margin-top:2em" value="Tirar foto" onclick="Cam.requerCam().inputVal('new_photo').previewImg('visitantphoto')" />
                     <input type="hidden" id="new_photo" name="new_photo">
                 </div>
                 <div class="col-sm-6 col-md-4">
@@ -56,7 +56,7 @@
                     <h6>Veiculo</h6>
                 </div>
                 <div class="col-sm-6  col-md-4">
-                    <input type="button" dialog="#camera" onclick="CamCar()" class="btn btn-primary w-100" style="margin-top:2em" value="Tirar foto" />
+                    <input type="button" dialog="#camera" class="btn btn-primary w-100" style="margin-top:2em" value="Tirar foto" onclick="Cam.requerCam().inputVal('new_carphoto').previewImg('carphoto')" />
                     <input type="hidden" id="new_carphoto" name="new_carphoto">
                 </div>
                 <div class="col-sm-6 col-md-4">
@@ -106,15 +106,6 @@
     <input type="hidden" name="ROLE" value="register" fixed="fixed">
 </form>
         
-<script>
-    function CamVisitant(){
-        Cam.requerCam().inputVal('new_photo').previewImg('visitantphoto');
-    }
-    function CamCar(){
-        Cam.requerCam().inputVal('new_carphoto').previewImg('carphoto');
-    }
-</script>
-
 <?= $this->import('global/cam') ?>
 
 <script>

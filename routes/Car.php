@@ -23,6 +23,11 @@ Router::ajax('/veiculo/listagem','App\\Controller\\Car@jsonList')
       ->name('carResultList')
       ->middleware(['Authenticate','Authorization']);
 
+Router::get('/veiculo/{id}/edicao','App\\Controller\\car@viewEdition')
+      ->middleware(['Authenticate','Authorization'])
+      ->name('carViewEdition')
+      ->where(['id' => '[0-9]{1,11}']);
+
 Router::ajax('/controller/car','App\\Controller\\Car@executeData')
       ->middleware(['Authenticate','Authorization']);
       

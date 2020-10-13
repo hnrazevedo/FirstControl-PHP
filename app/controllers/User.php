@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\User as Model;
+use App\Helpers\Converter;
 
 class User extends Controller
 {
+    use Converter;
+
     private Model $entity;
 
     public function __construct()
@@ -23,6 +26,19 @@ class User extends Controller
                 ['text' => 'Painel principal', 'uri' => '/dashboard'],
                 ['text' => 'Usuário', 'uri' => '/usuario'],
                 ['text' => 'Novo usuário', 'active' => true]
+            ]
+        ]);
+    }
+
+    public function viewAccount()
+    {
+        $this->view([
+            'page' => '/user/update.form',
+            'title' => 'Minha conta',
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Usuário', 'uri' => '/usuario'],
+                ['text' => 'Minha conta', 'active' => true]
             ]
         ]);
     }
@@ -67,7 +83,7 @@ class User extends Controller
                 'title' => 'Registro de usuários',
                 'href' => '/usuario/',
                 'uri' => '/usuario/listagem',
-                'thead' => '<th>ID</th><th>Nome</th><th>Usuário</th><th>Email</th><th>Nascimento</th><th>Registro</th><th>Últ. Acesso</th><th>Acesso</th><th>Tipo</th>'
+                'thead' => '<th>ID</th><th>Nome</th><th>Usuário</th><th>Email</th><th>Nascimento</th><th>Registro</th><th>Últ. Acesso</th><th>Acesso</th><th>Ações</th>'
             ]
         ]);
     }
@@ -86,7 +102,7 @@ class User extends Controller
 
     public function jsonList(): void
     {
-        $users = $this->entity->find()->except(['password','code'])->where([
+        $users = $this->entity->find()->except(['password','code','photo'])->where([
             ['id','<>', 1]
         ])->execute()->toEntity();
 
@@ -102,9 +118,6 @@ class User extends Controller
             foreach($result->getData() as $field => $data){
                 if($result->$field != null){
                     switch($field){
-                        case 'type':
-                            $date[] = ($result->$field) ? 'Administrador' : 'Comum';
-                        break;
                         case 'status':
                             $date[] = ($result->$field) ? 'Liberado' : 'Bloqueado';
                         break;
@@ -114,7 +127,9 @@ class User extends Controller
                     }
                 }
             }
-            $return[] = array_values($date);
+            $item = array_values($date);
+            $item[] = "<a href='{$item[0]}/permissoes'>Permissões</a> - <a href='{$item[0]}/edicao'>Editar</a>";
+            $return[] = $item;
         }
         echo json_encode($return);
     }
@@ -138,6 +153,29 @@ class User extends Controller
                 ['text' => 'Usuário', 'uri' => '/usuario'],
                 ['text' => 'Listagem', 'uri' => '/usuario/listagem'],
                 ['text' => 'Detalhes', 'active' => true],
+            ]
+        ]);
+    }
+
+    public function viewEdition($id): void
+    {
+        $user = $this->entity->find($id)->where([
+            ['id','<>',1]
+        ])->execute()->toEntity();
+
+        if(null === $user){
+            throw new \Exception('Usuário não encontrado.', 404);
+        }
+
+        $this->view([
+            'page' => '/user/edition.form',
+            'title' => 'Edição de usuário',
+            'userView' => $user,
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Usuário', 'uri' => '/usuario'],
+                ['text' => 'Listagem', 'uri' => '/usuario/listagem'],
+                ['text' => 'Edição', 'active' => true],
             ]
         ]);
     }
@@ -223,11 +261,19 @@ class User extends Controller
             $this->entity->email = $_POST['new_email'];
             $this->entity->birth = $_POST['new_birth'];
             $this->entity->password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
-            $this->entity->type = 0;
             $this->entity->status = 1;
             $this->entity->code = sha1($_POST['new_email']);
             $this->entity->register = date('Y-m-d H:i:s');
             $this->entity->lastaccess = date('Y-m-d H:i:s');
+            $this->entity->photo = 'default.svg';
+
+            if(strlen($_POST['new_userphoto']) > 0){
+                $file = $this->replaceBase64($_POST['new_userphoto']);
+                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'user'.DIRECTORY_SEPARATOR.$_POST['new_username'].'.'.$file['ext'];
+                if(file_put_contents($tmpPhoto, $file['data'])){
+                    $this->entity->photo = $_POST['new_username'].'.'.$file['ext'];
+                }
+            }
 
             $this->entity->persist();
 
@@ -290,7 +336,7 @@ class User extends Controller
         }
     }
 
-    public function adminUpdate()
+    public function edition()
     {
         $user = $this->entity->find($_POST['edit_id'])->execute()->toEntity();
 
@@ -298,23 +344,34 @@ class User extends Controller
             throw new \Exception('Usuário não encontrado');
         }
 
-        if($user->type == 1 && (unserialize($_SESSION['user']))->id != 1){
+        if((unserialize($_SESSION['user']))->id != 1){
             throw new \Exception('Usuário é um administrador<br>Atualização não permitida');
         }
 
-        if(strlen($_POST['edit_password'] > 0)){
-            $user->password = password_hash($_POST['edit_password'], PASSWORD_DEFAULT);
-        }
-        
+        $user->password = (strlen($_POST['edit_password'] > 0)) ? password_hash($_POST['edit_password'], PASSWORD_DEFAULT) : $user->password;
+        $user->name = $_POST['edit_name'];
+        $user->username = $_POST['edit_username'];
+        $user->email = $_POST['edit_email'];
+        $user->birth = $_POST['edit_birth'];
         $user->status = $_POST['edit_status'];
-        $user->type = $_POST['edit_type'];
+
+        if(strlen($_POST['edit_userphoto']) > 0){
+            $file = $this->replaceBase64($_POST['edit_userphoto']);
+            $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'user'.DIRECTORY_SEPARATOR.$_POST['edit_username'].'.'.$file['ext'];
+            if(file_put_contents($tmpPhoto, $file['data'])){
+                $user->photo = $_POST['edit_username'].'.'.$file['ext'];
+            }
+        }
 
         $user->save();
 
+        
+
         echo json_encode([
             'success' => [
-                'message' => 'Usuário atualizado com sucesso'
+                'message' => 'Usuário editado com sucesso'
             ],
+            'reset'=>true,
             'script' => 'setTimeout(function(){ window.location.href="/usuario/listagem"; },2000);'
         ]);
     }

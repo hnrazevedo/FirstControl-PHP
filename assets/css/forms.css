@@ -82,8 +82,8 @@ form select + label{
     left:0;
     padding-left:10px;
 }
-form input[disabled] + label{
-    color:rgb(100,100,100);
+form input[disabled] + label,
+form select[disabled] + label{
     font-weight: bold;
 }
 form input.error + label{
@@ -130,8 +130,14 @@ form textarea:not([disabled]):hover{
 
 form input[type="text"][disabled],
 form input[type="text"][disabled],
-form textarea[disabled]{
-    background:rgba(0,0,0,.1);
+form textarea[disabled],
+form select[disabled]{
+    background:white;
+    border:none;
+    font-weight: bold;
+    padding-left:0;
+    padding-right:1.2rem;
+    opacity:1
 }
 
 form input[type="text"].error,
