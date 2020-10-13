@@ -164,22 +164,21 @@ class User extends Controller
             ])->execute();
     
             if($user->getCount() === 0){
-                throw new \Exception('User not found.');
+                throw new \Exception('Usuário não encontrado');
             }
 
             $user = $user->toEntity();
 
             if($user->status == 0){
-                throw new \Exception('User is blocked.');
+                throw new \Exception('Usuário bloqueado');
             }         
 
             if(!password_verify($password, $user->password)){
-                throw new \Exception('Invalid password.');
+                throw new \Exception('Senha inválida');
             }
 
             $user->lastaccess = date('Y-m-d H:i:s');
             $user->save();
-
         
             $_SESSION['user'] = serialize($user);
 
@@ -291,7 +290,7 @@ class User extends Controller
         }
     }
 
-    public function updateUser()
+    public function adminUpdate()
     {
         $user = $this->entity->find($_POST['edit_id'])->execute()->toEntity();
 

@@ -62,6 +62,6 @@
 
     <input type="hidden" name="REQUEST_METHOD" value="AJAX">
     <input type="hidden" name="PROVIDER" value="user">
-    <input type="hidden" name="ROLE" value="updateUser">
+    <input type="hidden" name="ROLE" value="adminUpdate">
 </form>
         

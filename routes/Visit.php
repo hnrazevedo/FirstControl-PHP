@@ -3,19 +3,19 @@
 use HnrAzevedo\Router\Router;
 
 Router::get('/visita','App\\Controller\\Visit@viewMenu')
-      ->name('visitMenu')
+      ->name('visitViewMenu')
       ->middleware(['Authenticate','Authorization']);
 
 Router::get('/visita/listagem','App\\Controller\\Visit@viewList')
-      ->name('visitList')
+      ->name('visitViewList')
       ->middleware(['Authenticate','Authorization']);
 
 Router::get('/visita/inscrever','App\\Controller\\Visit@viewRegister')
-      ->name('visitRegister')
+      ->name('visitViewRegister')
       ->middleware(['Authenticate','Authorization']);
 
 Router::get('/visita/{id}','App\\Controller\\Visit@viewDetails')
-      ->name('visitDetails')
+      ->name('visitViewDetails')
       ->middleware(['Authenticate','Authorization'])
       ->where(['id' => '[0-9]{1,11}']);
 

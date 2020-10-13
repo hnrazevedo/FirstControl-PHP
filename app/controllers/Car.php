@@ -136,11 +136,11 @@ class Car extends Controller
         try{
 
             $visitant = (new VisitantModel())->find()->only(['id','name'])->where([
-                'cpf','=',str_replace(['.','-'],'', $_POST['new_cpf'])
+                ['cpf','=',str_replace(['.','-'],'', $_POST['new_cpf'])]
             ])->execute()->toEntity();
     
             if(is_null($visitant)){
-                throw new \Exception('Driver not found.');
+                throw new \Exception('Motorista não cadastrado');
             }
     
             $this->persistEntity(array_merge($_POST, [ 'new_visitant' => $visitant->id ]));

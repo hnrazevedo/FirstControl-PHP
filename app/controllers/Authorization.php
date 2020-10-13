@@ -5,7 +5,7 @@ namespace App\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Model\Authorization as Model;
 use App\Model\User as UserModel;
-use App\Model\Permission as PermissionModel;
+use App\Model\Permission as Permission;
 use Exception;
 
 class Authorization extends Controller
@@ -41,9 +41,25 @@ class Authorization extends Controller
             ['user','=',$id]
         ])->execute()->toEntity();
 
-        echo '<pre>';
-        var_dump($authozations);
+        if(null === $authozations){
+            return [];
+        }
 
+        echo '<pre>';
+
+        $permissions = [];
+        foreach($authozations as $auth){
+            $permissions[] = $auth->permission;
+        }
+
+        $permissions = (new Permission())->find()->where([
+            ['id', 'IN' , $permissions]
+        ])->execute()->toEntity();
+
+        foreach($permissions as $permission){
+            var_dump($permission->route);
+            var_dump($permission->form);
+        }
 
         die();
         

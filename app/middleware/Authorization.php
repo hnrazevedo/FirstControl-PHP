@@ -36,7 +36,8 @@ class Authorization implements MiddlewareInterface
         $user = $request->getAttribute('user');
      
         $permission = (new Permission())->find()->where([
-            ['route', '=', str_replace('\'', '', Router::currentName())]
+            ['reference', '=', str_replace('\'', '', Router::currentName())],
+            ['type','=',0]
         ])->execute()->toEntity();
 
         if(null === $permission){
@@ -68,7 +69,8 @@ class Authorization implements MiddlewareInterface
         $user = $request->getAttribute('user');
      
         $permission = (new Permission())->find()->where([
-            ['form', '=', $form]
+            ['reference', '=', $form],
+            ['type','=',1]
         ])->execute()->toEntity();
 
         if(null === $permission){

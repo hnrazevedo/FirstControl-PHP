@@ -3,19 +3,19 @@
 use HnrAzevedo\Router\Router;
 
 Router::get('/usuario','App\\Controller\\User@viewMenu')
-      ->name('userMenu')
+      ->name('userViewMenu')
       ->middleware(['Authenticate','Authorization']);
 
 Router::get('/usuario/listagem','App\\Controller\\User@viewList')
-      ->name('userList')
+      ->name('userViewList')
       ->middleware(['Authenticate','Authorization']);
 
 Router::get('/usuario/inscrever','App\\Controller\\User@viewRegister')
-      ->name('userRegister')
+      ->name('userViewRegister')
       ->middleware(['Authenticate','Authorization']);
 
 Router::get('/usuario/{id}','App\\Controller\\User@viewDetails')
-      ->name('userDetails')
+      ->name('userViewDetails')
       ->middleware(['Authenticate','Authorization'])
       ->where(['id' => '[0-9]{1,11}']);
 
@@ -37,7 +37,7 @@ Router::ajax('/controller/user','App\\Controller\\User@executeData')
 
 Router::get('/usuarios/{id}/permissoes','App\\Controller\\Authorization@details')
       ->middleware(['Authenticate','Authorization'])
-      ->name('authorizationDetails')
+      ->name('userViewAuthorizations')
       ->where(['id' => '[0-9]{1,11}']);
 
 Router::ajax('/login','App\\Controller\\User@login')

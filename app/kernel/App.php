@@ -104,6 +104,10 @@ class App
             ['user', '=', (unserialize($_SESSION['user']))->id]
         ])->execute()->toEntity();
 
+        if(null === $auths){
+            return $this;
+        }
+
         $permissions = [];
         foreach($auths as $auth){
             $permissions[] = $auth->permission;
@@ -114,8 +118,7 @@ class App
         ])->execute()->toEntity();
 
         foreach($perm as $p){
-            $_SESSION['cache']['authorizations']['routes'][] = $p->route;
-            $_SESSION['cache']['authorizations']['forms'][] = $p->form;
+            $_SESSION['cache']['authorizations'][($p->type == 1) ? 'forms' : 'routes'][] = $p->reference;
         }
         return $this;
     }
