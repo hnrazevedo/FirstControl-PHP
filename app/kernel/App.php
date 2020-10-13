@@ -108,14 +108,20 @@ class App
             return $this;
         }
 
+        $auths = (is_array($auths)) ?  $auths : [$auths];
+
         $permissions = [];
         foreach($auths as $auth){
             $permissions[] = $auth->permission;
         }
 
+        $permissions = (is_array($permissions)) ? $permissions : [$permissions];
+
         $perm = (new Permission())->find()->where([
             ['id','IN',$permissions]
         ])->execute()->toEntity();
+
+        $perm = (is_array($perm)) ? $perm : [$perm];
 
         foreach($perm as $p){
             $_SESSION['cache']['authorizations'][($p->type == 1) ? 'forms' : 'routes'][] = $p->reference;

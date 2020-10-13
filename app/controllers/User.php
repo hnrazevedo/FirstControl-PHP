@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use HnrAzevedo\Viewer\Viewer;
+use App\Controller\Authorization as AuthorizationController;
 use App\Model\User as Model;
 use App\Helpers\Converter;
 
@@ -276,6 +277,8 @@ class User extends Controller
             }
 
             $this->entity->persist();
+
+            (new AuthorizationController())->update('Ajax', $this->entity->id, 'user|update');
 
             echo json_encode([
                 'success' => [

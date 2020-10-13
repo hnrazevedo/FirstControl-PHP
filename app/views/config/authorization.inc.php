@@ -170,6 +170,33 @@
             <label class="btn btn-outline-primary" for="userAuthorizationUpdate">Permissões</label>
         </div>
     </div>
+
+    <div class="col-12 mb-2">
+        <h5>Consultas Ajax</h5>
+    </div>
+
+    <hr class="mb-4 mt-2" />
+
+    <div class="col-12 col-lg-2 col-md-3 col-sm-4 row m-0 p-0">
+        <div class="col-12 mb-2">
+            <h5>Retorno para listagem</h5>
+        </div>
+        <div class="btn-group btn-group-vertical mb-4" role="group" aria-label="Basic checkbox toggle button group">
+            <input type="checkbox" class="btn-check" id="userResultList" <?= (isset($permissions['userResultList'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="userResultList">Usuário</label>
+
+            <input type="checkbox" class="btn-check" id="carResultList" <?= (isset($permissions['carResultList'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="carResultList">Veículo</label>
+
+            <input type="checkbox" class="btn-check" id="visitantResultList" <?= (isset($permissions['visitantResultList'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitantResultList">Visitante</label>
+
+            <input type="checkbox" class="btn-check" id="visitResultList" <?= (isset($permissions['visitResultList'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitResultList">Visita</label>
+        </div>
+    </div>
+
+    <hr class="mb-4 mt-2" />
 </div>
 
 <script>
