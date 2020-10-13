@@ -43,6 +43,7 @@ body{
     margin:0;
     position: relative;
     font-size: .9rem;
+    min-height: 100vh;
 }
 main{
     padding-bottom:2rem!important;
