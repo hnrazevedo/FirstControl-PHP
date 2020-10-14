@@ -1,4 +1,9 @@
-/*drop database fcontrol;create database fcontrol;use fcontrol;*/
+DROP DATABASE fcontrol;
+
+CREATE DATABASE fcontrol;
+
+USE fcontrol;
+
 CREATE TABLE IF NOT EXISTS config(
     id BIGINT AUTO_INCREMENT NOT NULL,
     resume VARCHAR(50) NOT NULL,
@@ -12,7 +17,7 @@ CREATE TABLE IF NOT EXISTS user(
     username VARCHAR(20) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(80)  NOT NULL,
-    code VARCHAR(50)  NOT NULL,
+    code VARCHAR(51) NOT NULL UNIQUE,
     birth DATE NOT NULL,
     photo VARCHAR(20) NOT NULL,
     register DATETIME NOT NULL,
@@ -89,7 +94,7 @@ INSERT INTO car VALUES(1,'00000000',' ',' ',' ',1,1,'default.svg');
 INSERT INTO user VALUES(1, 'admin','admin','admin@admin.com','$2y$10$X2CBK8QAYMG1dleYp4dt8.gvSNpUVLmWSDsRAxjdfTUKrCjyNXih2', '1', '2000-00-00', 'default.svg', '2000-00-00','2000-00-00',1);
 
 INSERT INTO permission VALUES(1, 'Visualização de página de configurações', 0, 'configViewDetails');
-INSERT INTO permission VALUES(2, 'Formulário de atualização de configurações', 1, 'config|update');
+INSERT INTO permission VALUES(2, 'Atualização de configurações', 0, 'configUpdate');
 
 INSERT INTO permission VALUES(3, 'Visualização de página de menu de usuário', 0, 'userViewMenu');
 INSERT INTO permission VALUES(4, 'Formulário de atualização de usuário', 1, 'user|update');

@@ -163,8 +163,8 @@
             <h5>Administração</h5>
         </div>
         <div class="btn-group btn-group-vertical mb-4" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="config|update" <?= (isset($permissions['config|update'])) ? 'checked' : '' ?>>
-            <label class="btn btn-outline-primary" for="config|update">Configurações</label>
+            <input type="checkbox" class="btn-check" id="configUpdate" <?= (isset($permissions['configUpdate'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="configUpdate">Configurações</label>
 
             <input type="checkbox" class="btn-check" id="userAuthorizationUpdate" <?= (isset($permissions['userAuthorizationUpdate'])) ? 'checked' : '' ?>>
             <label class="btn btn-outline-primary" for="userAuthorizationUpdate">Permissões</label>

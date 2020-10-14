@@ -25,13 +25,8 @@
                 </a> 
             </li>
             <li>
-                <a href="{{ $system.uri }}/usuario">
-                    <i class='bx bx-user  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>Usuários
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-cube-alt  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>Módulos
+                <a href="{{ $system.uri }}/">
+                    <i class='bx bxs-dashboard  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>Painel principal
                 </a>
             </li>
             <li>

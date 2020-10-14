@@ -290,7 +290,7 @@ class Car extends Controller
         ])->execute()->toEntity();
         
         if(is_null($car)){
-            throw new \Exception('Car not found.',404);
+            return;
         }
 
         echo $car->toJson();

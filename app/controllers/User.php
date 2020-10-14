@@ -5,6 +5,7 @@ namespace App\Controller;
 use HnrAzevedo\Viewer\Viewer;
 use App\Controller\Authorization as AuthorizationController;
 use App\Model\User as Model;
+use App\Engine\Mail;
 use App\Helpers\Converter;
 
 class User extends Controller
@@ -200,13 +201,11 @@ class User extends Controller
 
             $user = $this->entity->find()->where([
                 ['username','=',$username]
-            ])->execute();
+            ])->execute()->toEntity();
     
-            if($user->getCount() === 0){
+            if(null === $user){
                 throw new \Exception('Usuário não encontrado');
             }
-
-            $user = $user->toEntity();
 
             if($user->status == 0){
                 throw new \Exception('Usuário bloqueado');
@@ -216,6 +215,7 @@ class User extends Controller
                 throw new \Exception('Senha inválida');
             }
 
+            $user->code = sha1($user->email).'|'.date('Y-m-d');
             $user->lastaccess = date('Y-m-d H:i:s');
             $user->save();
         
@@ -242,17 +242,67 @@ class User extends Controller
             return;
         }
 
-        $data = [
+        $this->view([
             'page' => '/user/login.form',
             'title' => 'Acessar',
             'breadcrumb' => [
                 ['text' => 'Acessar', 'active' => true]
             ]
-        ];
-        
-        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
+        ]);
     }
 
+    public function viewRecover(): void
+    {
+   //     echo file_get_contents(SYSTEM['basepath'].'app/views/user/recover.mail.php');
+        //return;
+        $this->view([
+            'page' => '/user/recover.form',
+            'title' => 'Recuperar senha',
+            'breadcrumb' => [
+                ['text' => 'Recuperar senha', 'active' => true]
+            ]
+        ]);
+    }
+
+    public function recover($email): void
+    {
+        $user = $this->entity->find()->where([
+            ['email','=',$email]
+        ])->execute()->toEntity();
+   
+        if(null === $user){
+            throw new \Exception('Usuário não encontrado');
+        }
+
+        $code = sha1(date('d/m/Y H:i:s').$user->email).'|'.date('Y-m-d');
+
+        $user->code = $code;
+        $user->save();
+
+        $html = file_get_contents(SYSTEM['basepath'].'/app/views/user/recover.mail.php');
+        $html = str_replace('{{ $code }}', $code, $html);
+        $html = str_replace('{{ $system.uri }}', SYSTEM['uri'], $html);
+
+        $mail = new Mail('suporte');
+        $mail->addTo('address', $email, $user->name)
+             ->addTo('from', $email, $user->name)
+             ->addSubject('Recuperação de senha')
+             ->addContent($html, htmlspecialchars($html))
+             ->send();
+        
+        if($mail->fail()){
+            throw $mail->getError();
+        }
+
+        echo json_encode([
+            'success' => [
+                'message' => 'Uma mensagem contendo instruções para recuperação de senha foi enviada para seu email'
+            ],
+            'reset'=>true,
+            'script' => "setTimeout(function(){ window.location.href='/' },5000);"
+        ]);          
+            
+    }
 
     public function register(): void
     {
@@ -263,7 +313,7 @@ class User extends Controller
             $this->entity->birth = $_POST['new_birth'];
             $this->entity->password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
             $this->entity->status = 1;
-            $this->entity->code = sha1($_POST['new_email']);
+            $this->entity->code = sha1($_POST['new_email']).'|'.date('Y-m-d');
             $this->entity->register = date('Y-m-d H:i:s');
             $this->entity->lastaccess = date('Y-m-d H:i:s');
             $this->entity->photo = 'default.svg';

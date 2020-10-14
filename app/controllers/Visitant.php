@@ -269,7 +269,7 @@ class Visitant extends Controller
 
         
         if(is_null($visitant)){
-            throw new \Exception('Visitant not found.',404);
+            return;
         }
 
         $visitant->cpf = $this->replaceCPF($visitant->cpf);

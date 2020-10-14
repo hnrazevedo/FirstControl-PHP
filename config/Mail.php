@@ -12,6 +12,17 @@ define("MAIL", [
     "smtpsecure" => "tls",
     "port" => 587,
 
+    "suporte.language" => "pt_br",
+    "suporte.enconding" => "base64",
+    "suporte.charset" => "UTF-8",
+    "suporte.smtpdebug" => 0,
+    "suporte.host" => "smtp.gmail.com",
+    "suporte.smtpauth" => true,
+    "suporte.username" => "hennry.vb@gmail.com",
+    "suporte.password" => "xlvbatdaqbdbybsb",
+    "suporte.smtpsecure" => "tls",
+    "suporte.port" => 587,
+
     "logger.path" => "/logs/mail/%year%/%mounth%/",
     "logger.filename" => "%level%.%day%.log",
     "logger.maxsize" => "5MB",

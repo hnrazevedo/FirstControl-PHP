@@ -148,6 +148,9 @@ dialog#d_message p{
 
 
 /* Loading */
+
+
+i.bx-loading,
 dialog.loading::after{
     content: "";
     width: 3em;

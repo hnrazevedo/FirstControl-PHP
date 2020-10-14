@@ -52,3 +52,6 @@ Router::get('/usuario/{id}/edicao','App\\Controller\\User@viewEdition')
 
 Router::ajax('/login','App\\Controller\\User@login')
       ->middleware(['NoAuthenticate']);
+
+Router::ajax('/recover','App\\Controller\\User@recover')
+      ->middleware(['NoAuthenticate']);

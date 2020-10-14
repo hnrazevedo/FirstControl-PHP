@@ -65,8 +65,7 @@ form select + label{
     pointer-events: none;
     transition: all .5s ease;
     color:rgba(0,0,0,.5);
-    width:20rem;
-    max-width: 100%;
+    width:100%;
     text-align:left;
 }
 form video + label,
@@ -76,11 +75,11 @@ form input:focus + label,
 form input:not([value=""]) + label,
 form select + label{
     color:rgb(66,133,244);
-    transform: translate(-.9em,-2em) scale(.9);
+    transform: translate(-1.65em,-2em);
+    font-size: .9em;
     transition: all .5s ease;
-    text-align: left;
-    left:0;
-    padding-left:10px;
+    padding-left: calc(var(--bs-gutter-x)/ 2);
+    padding-right: calc(var(--bs-gutter-x)/ 2);
 }
 form input[disabled] + label,
 form select[disabled] + label{
@@ -100,9 +99,43 @@ form length{
 }
 /*---------------------------------------------------- */
 /* Inputs */
+form i.bx-loading{
+    width: 1.5rem;
+    height: 1.5rem;
+    left: calc(100% - 2.3rem);
+    top: calc(100% - 2rem);
+    opacity: 0;
+}
+form i.bx-loading.act{
+    opacity: 1;
+}
+form i.select{
+    position: absolute;
+    right: 1.2rem;
+    bottom: .5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.5rem;
+    color: green;
+}
+form i.select.bx-error-circle{
+    color:brown;
+}
+form select.success{
+    border-color: green;
+    color: darkgreen;
+}
+form select.error{
+    border-color: brown;
+    color: brown;
+}
 form input[type="text"].length,
 form input[type="password"].length{
     padding-right: 5em !important;
+}
+form select.form-select{
+    margin-right: 2.5rem;
+    width: calc(100% - 2.5rem);
 }
 form select,
 form input[type="text"],
@@ -131,13 +164,21 @@ form textarea:not([disabled]):hover{
 form input[type="text"][disabled],
 form input[type="text"][disabled],
 form textarea[disabled],
-form select[disabled]{
+form select[disabled]:not(.unique){
     background:white;
     border:none;
-    font-weight: bold;
     padding-left:0;
-    padding-right:1.2rem;
+    padding-right: 1.2em;
+    font-weight: bold;
     opacity:1
+}
+form select.form-select.success:focus{
+    border-color: darkgreen;
+    box-shadow: 0 0 0 0.2rem rgba(100,100,0,.25);
+}
+form select.form-select.error:focus{
+    border-color: darkred;
+    box-shadow: 0 0 0 0.2rem rgba(100,0,0,.25);
 }
 
 form input[type="text"].error,
