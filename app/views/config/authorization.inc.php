@@ -203,7 +203,10 @@
     window.addEventListener('load', function(){
         document.querySelectorAll('div#authorizations input[type="checkbox"]').forEach(function(e,i){
             e.addEventListener('click', async function(){
-                await Submitter.setUrl('{{ $system.uri }}/usuario/{{ $id }}/permissoes/'+e.getAttribute('id')).execute();
+                $status = await Submitter.setUrl('{{ $system.uri }}/usuario/{{ $id }}/permissoes/'+e.getAttribute('id')).execute(true);
+                if($status.error !== undefined){
+                    e.checked = !e.checked;
+                }
             });
         });
     });

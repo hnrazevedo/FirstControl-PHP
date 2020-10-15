@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use HnrAzevedo\Validator\Validator;
-use HnrAzevedo\Viewer\Viewer;
+use App\Controller\Helper\Viewer;
 
 class Controller
 {
+    use Viewer;
+    
     protected array $fail = [];
 
     private function checkMethod(string $method): void
@@ -60,11 +62,6 @@ class Controller
             ]);
         }
         return (count($this->fail) > 0 );
-    }
-
-    protected function view($data): void
-    {
-        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index', array_merge($data, $_SESSION['view']['data']));
     }
 
 }

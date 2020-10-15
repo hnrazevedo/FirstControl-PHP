@@ -14,6 +14,7 @@ use HnrAzevedo\Datamanager\Model as Entity;
   * @property string $birth 
   * @property string $register 
   * @property string $lastaccess
+  * @property string $photo
   * @property int $status
   * @property int $type
   */ 

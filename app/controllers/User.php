@@ -2,104 +2,22 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Viewer\Viewer;
 use App\Controller\Authorization as AuthorizationController;
 use App\Model\User as Model;
 use App\Engine\Mail;
 use App\Helpers\Converter;
+use App\Controller\Helper\UserViewer;
+use App\Controller\Helper\UserChecker;
 
 class User extends Controller
 {
-    use Converter;
-
-    private Model $entity;
+    use Converter,
+        UserViewer,
+        UserChecker;
 
     public function __construct()
     {
         $this->entity = new Model();
-    }
-
-    public function viewRegister()
-    {
-        $this->view([
-            'page' => '/user/register.form',
-            'title' => 'Novo usuário',
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Usuário', 'uri' => '/usuario'],
-                ['text' => 'Novo usuário', 'active' => true]
-            ]
-        ]);
-    }
-
-    public function viewAccount()
-    {
-        $this->view([
-            'page' => '/user/update.form',
-            'title' => 'Minha conta',
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Usuário', 'uri' => '/usuario'],
-                ['text' => 'Minha conta', 'active' => true]
-            ]
-        ]);
-    }
-
-    public function viewData()
-    {
-        $data = [
-            'page' => '/user/update.form',
-            'title' => 'Minha conta',
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Minha conta', 'active' => true]
-            ]
-        ];
-        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
-    }
-
-    public function viewDashboard()
-    {
-        $data = [
-            'page' => '/user/dashboard',
-            'title' => 'Painel principal',
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'active' => true]
-            ]
-        ];
-        Viewer::path(SYSTEM['basepath'].'app/views/')->render('index',array_merge($data, $_SESSION['view']['data']));
-    }
-
-    public function viewList(): void
-    {
-        $this->view([
-            'page' => '/admin/list',
-            'title' => 'Registros de usuários',
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Usuário', 'uri' => '/usuario'],
-                ['text' => 'Listagem', 'active' => true]
-            ],
-            'tab' => [
-                'id' => 'registersUsers',
-                'title' => 'Registro de usuários',
-                'href' => '/usuario/',
-                'uri' => '/usuario/listagem',
-                'thead' => '<th>ID</th><th>Nome</th><th>Usuário</th><th>Email</th><th>Nascimento</th><th>Registro</th><th>Últ. Acesso</th><th>Acesso</th><th>Ações</th>'
-            ]
-        ]);
-    }
-
-    public function viewMenu(): void
-    {
-        $this->view([
-            'page' => '/user/menu',
-            'title' => 'Usuários',
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Usuário', 'active' => true]
-            ]
-        ]);
     }
 
     public function jsonList(): void
@@ -136,52 +54,6 @@ class User extends Controller
         echo json_encode($return);
     }
 
-    public function viewDetails($id): void
-    {
-        $user = $this->entity->find($id)->where([
-            ['id','<>',1]
-        ])->execute()->toEntity();
-
-        if(null === $user){
-            throw new \Exception('Usuário não encontrado.', 404);
-        }
-
-        $this->view([
-            'page' => '/user/details',
-            'title' => 'Detalhes de usuário',
-            'userView' => $user,
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Usuário', 'uri' => '/usuario'],
-                ['text' => 'Listagem', 'uri' => '/usuario/listagem'],
-                ['text' => 'Detalhes', 'active' => true],
-            ]
-        ]);
-    }
-
-    public function viewEdition($id): void
-    {
-        $user = $this->entity->find($id)->where([
-            ['id','<>',1]
-        ])->execute()->toEntity();
-
-        if(null === $user){
-            throw new \Exception('Usuário não encontrado.', 404);
-        }
-
-        $this->view([
-            'page' => '/user/edition.form',
-            'title' => 'Edição de usuário',
-            'userView' => $user,
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Usuário', 'uri' => '/usuario'],
-                ['text' => 'Listagem', 'uri' => '/usuario/listagem'],
-                ['text' => 'Edição', 'active' => true],
-            ]
-        ]);
-    }
-
     public function logout(): void
     {
         $_SESSION = [];
@@ -192,7 +64,6 @@ class User extends Controller
     public function login($username, $password): void
     {
         try{
-
             $this->ValidateData();
 
             if($this->checkFailData()){
@@ -203,17 +74,9 @@ class User extends Controller
                 ['username','=',$username]
             ])->execute()->toEntity();
     
-            if(null === $user){
-                throw new \Exception('Usuário não encontrado');
-            }
-
-            if($user->status == 0){
-                throw new \Exception('Usuário bloqueado');
-            }         
-
-            if(!password_verify($password, $user->password)){
-                throw new \Exception('Senha inválida');
-            }
+            $this->checkUser($user)
+                 ->checkStatus($user->status)
+                 ->checkPassword($password, $user->password);
 
             $user->code = sha1($user->email).'|'.date('Y-m-d H:i:s');
             $user->lastaccess = date('Y-m-d H:i:s');
@@ -221,17 +84,9 @@ class User extends Controller
         
             $_SESSION['user'] = serialize($user);
 
-            echo json_encode([
-                'script' => 'window.location.href="/dashboard";'
-            ]);
-
+            echo json_encode(['script' => 'window.location.href="/dashboard";']);
         }catch(\Exception $er){
-            echo json_encode([
-                'error' =>
-                    [
-                        'message' => $er->getMessage()
-                    ]
-            ]);
+            echo json_encode(['error' =>['message' => $er->getMessage()]]);
         }
     }
 
@@ -251,55 +106,13 @@ class User extends Controller
         ]);
     }
 
-    public function viewReset($code): void
-    {
-        $user = $this->entity->find()->only('code')->where([
-            ['code', 'like', $code.'%']
-        ])->execute()->toEntity();
-
-        if(null === $user){
-            throw new \Exception('Código inválido');
-        }
-        
-        $diff = (new \DateTime(explode('|',$user->code)[1]))->diff(new \DateTime(date('Y-m-d H:i:s')));
-        $hours = $diff->h + ($diff->days * 24);
-        
-        if($hours >= 24){
-            throw new \Exception('Link de redefinição de senha expirado', 403);
-        }
-
-        $this->view([
-            'page' => '/user/reset.form',
-            'title' => 'Redefinir senha',
-            'code' => $code,
-            'breadcrumb' => [
-                ['text' => 'Redefinir senha', 'active' => true]
-            ]
-        ]);
-    }
-
-    public function viewRecover(): void
-    {
-        //echo file_get_contents(SYSTEM['basepath'].'app/views/mail/recover/recover.mail.html');
-        //return;
-        $this->view([
-            'page' => '/user/recover.form',
-            'title' => 'Recuperar senha',
-            'breadcrumb' => [
-                ['text' => 'Recuperar senha', 'active' => true]
-            ]
-        ]);
-    }
-
     public function recover($email): void
     {
         $user = $this->entity->find()->where([
             ['email','=',$email]
         ])->execute()->toEntity();
    
-        if(null === $user){
-            throw new \Exception('Usuário não encontrado');
-        }
+        $this->checkUser($user);
 
         $code = sha1(date('d/m/Y H:i:s').$user->email);
 
@@ -321,9 +134,7 @@ class User extends Controller
              ->addContent($html, $nohtml)
              ->send();
         
-        if($mail->fail()){
-            throw $mail->getError();
-        }
+        $this->checkMail($mail);
 
         echo json_encode([
             'success' => [
@@ -341,9 +152,7 @@ class User extends Controller
             ['code', 'like', $code.'%']
         ])->execute()->toEntity();
    
-        if(null === $user){
-            throw new \Exception('Usuário não encontrado');
-        }
+        $this->checkUser($user);
 
         $user->password = password_hash($password, PASSWORD_DEFAULT);
         $user->code = sha1(date('d/m/Y H:i:s').$user->email).'|'.date('Y-m-d H:i:s');
@@ -366,9 +175,7 @@ class User extends Controller
              ->addContent($html, $nohtml)
              ->send();
 
-        if($mail->fail()){
-            throw $mail->getError();
-        }
+        $this->checkMail($mail);
 
         echo json_encode([
             'success' => [
@@ -427,22 +234,12 @@ class User extends Controller
     public function update(): void
     {
         try{
-            if(!isset($_SESSION['user'])){
-                throw new \Exception('Usuário deve estar logado');
-            }
-
             $user = unserialize($_SESSION['user']);
 
-            if(!password_verify($_POST['edit_oldpassword'], $user->password)){
-                throw new \Exception('Senha atual inválida');
-            }
+            $this->checkPassword($_POST['edit_oldpassword'], $user->password);
 
             $user->email = $_POST['edit_email'];
-
-            if(strlen($_POST['edit_password']) > 0){
-                $user->password = password_hash($_POST['edit_password'], PASSWORD_DEFAULT);
-            }
-
+            $user->password = (strlen($_POST['edit_password']) > 0) ? password_hash($_POST['edit_password'], PASSWORD_DEFAULT) : $user->password;
             $user->save();
 
             $_SESSION['user'] = serialize($user);
@@ -469,13 +266,7 @@ class User extends Controller
     {
         $user = $this->entity->find($_POST['edit_id'])->execute()->toEntity();
 
-        if(null === $user){
-            throw new \Exception('Usuário não encontrado');
-        }
-
-        if((unserialize($_SESSION['user']))->id != 1){
-            throw new \Exception('Usuário é um administrador<br>Atualização não permitida');
-        }
+        $this->checkUser($user)->checkAdmin();
 
         $user->password = (strlen($_POST['edit_password'] > 0)) ? password_hash($_POST['edit_password'], PASSWORD_DEFAULT) : $user->password;
         $user->name = $_POST['edit_name'];
@@ -493,8 +284,6 @@ class User extends Controller
         }
 
         $user->save();
-
-        
 
         echo json_encode([
             'success' => [

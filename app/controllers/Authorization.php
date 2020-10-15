@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Viewer\Viewer;
 use App\Model\Authorization as Model;
 use App\Model\User as UserModel;
 use App\Model\Permission as Permission;
@@ -75,6 +74,10 @@ class Authorization extends Controller
     {
         if($user == 1){
             return;
+        }
+
+        if($user == (unserialize($_SESSION['user']))->id){
+            throw new \Exception('Alteração não permitida');
         }
 
         $permission = (new Permission())->find()->where([
