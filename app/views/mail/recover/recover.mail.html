@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body style="background-color:rgb(234,234,234);padding:0;font-family:'Roboto', calibri;margin:0;">
+        <table width="600px" cellspacing="0" cellpadding="0" style=" background-color:white;margin:0 auto;padding:2rem;line-height: 2rem;color:rgb(100,100,100)">
+            <tr>
+                <td align="center" style="padding:0 0 20px 0 ">
+                    <a href="{{ $system.uri }}/" style="height:5rem;width:5rem;display:block;">
+                        <img style="width:5rem;height:5rem" src="https://i.ibb.co/tqFqD3g/logo.png">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Você solicitou recentemente uma redefinição de senha para conta do <b>FirstControl</b>, clique no botão abaixo para redefini-la:</p>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <a href="{{ $system.uri }}/redefinir-senha/{{ $code }}" class="btn" style="border: solid 1px rgb(66,133,244) !important;background: rgb(66,133,244) !important;color: #fff !important;text-decoration: none;line-height: 1.5;padding: .5rem 1rem;text-transform: uppercase;font-size: .9em;font-weight: bold;box-shadow: 0 1px 5px rgba(66,133,244,0);display:block;margin:2em 0;width: max-content;border-radius:3px;transition: box-shadow .3s ease;">Redefinir senha</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Se você tem dúvidas sobre este e-mail e não solicitou essa redefinição de senha, ignore este e-mail ou entre em contato respondendo esta mensagem. Esta redefinição de senha é válida por um período de <b>24 hora(s)</b>.</p>
+                    <p>Este aplicativo segue a política de privacidade da <b>FirstControl</b>.</p>
+                    <p>Obrigado,</p>
+                    <p>Equipe FirstControl</p>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

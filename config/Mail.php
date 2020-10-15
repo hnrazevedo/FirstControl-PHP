@@ -19,7 +19,7 @@ define("MAIL", [
     "suporte.host" => "smtp.gmail.com",
     "suporte.smtpauth" => true,
     "suporte.username" => "hennry.vb@gmail.com",
-    "suporte.password" => "xlvbatdaqbdbybsb",
+    "suporte.password" => "fzstlpewrccrqye",
     "suporte.smtpsecure" => "tls",
     "suporte.port" => 587,
 
@@ -28,3 +28,19 @@ define("MAIL", [
     "logger.maxsize" => "5MB",
     "logger.active" => true
 ]);
+/**
+ * smtpdebug
+ * 
+ * DEBUG_OFF (`0`) No debug output, default
+ * DEBUG_CLIENT (`1`) Client commands
+ * DEBUG_SERVER (`2`) Client commands and server responses
+ * DEBUG_CONNECTION (`3`) As DEBUG_SERVER plus connection status
+ * DEBUG_LOWLEVEL (`4`) Low-level data output, all messages.
+ */
+
+/**
+ * smtpsecure
+ *
+ * ENCRYPTION_STARTTLS (tls) - 587
+ * ENCRYPTION_SMTPS  (ssl) - 465
+ */

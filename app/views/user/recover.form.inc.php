@@ -27,6 +27,11 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm mt-4 text-center">
+            <a href="{{ $system.uri }}/">Voltar ao login</a>
+        </div>
+    </div>
     <input type="hidden" name="REQUEST_METHOD" value="AJAX" fixed="fixed">
     <input type="hidden" name="PROVIDER" value="user" fixed="fixed">
     <input type="hidden" name="ROLE" value="recover" fixed="fixed">

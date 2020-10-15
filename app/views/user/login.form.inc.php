@@ -32,6 +32,11 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm mt-4 text-center">
+            <a href="{{ $system.uri }}/esqueci-a-senha">Esqueceu a senha?</a>
+        </div>
+    </div>
     <input type="hidden" name="REQUEST_METHOD" value="AJAX" fixed="fixed">
     <input type="hidden" name="PROVIDER" value="user" fixed="fixed">
     <input type="hidden" name="ROLE" value="login" fixed="fixed">

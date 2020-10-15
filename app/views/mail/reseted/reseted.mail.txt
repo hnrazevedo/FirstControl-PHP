@@ -1,0 +1,7 @@
+Sua senha foi redefinida!
+
+Prezado(a) {{ $user.name }},
+Informamos que sua senha em nosso sistema foi redefinida
+Caso você não tenha feito esta alteração, entre em contato com o administrador do sistema
+
+Equipe FirstControl

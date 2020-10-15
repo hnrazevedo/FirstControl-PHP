@@ -12,12 +12,12 @@ class Mail
 
     public function __construct($option)
     {
-        $this->phpmail = new Phpmailer(true);
+        $this->phpmail = new Phpmailer();
         $this->phpmail->isSMTP();
         $this->phpmail->setLanguage(MAIL["{$option}.language"], SYSTEM['basepath']."/vendor/phpmailer/phpmailer/language/");
+        $this->phpmail->SMTPDebug = MAIL["{$option}.smtpdebug"];
         $this->phpmail->CharSet   = MAIL["{$option}.charset"];
         $this->phpmail->Encoding  = MAIL["{$option}.enconding"];
-        $this->phpmail->SMTPDebug = MAIL["{$option}.smtpdebug"];
         $this->phpmail->Host       = MAIL["{$option}.host"];
         $this->phpmail->SMTPAuth   = MAIL["{$option}.smtpauth"];
         $this->phpmail->Username   = MAIL["{$option}.username"];
@@ -29,10 +29,12 @@ class Mail
     public function send(): bool
     {
         try{
-            $this->phpmail->send();
+            if(!$this->phpmail->send()){
+                throw new MailException($this->phpmail->ErrorInfo);
+            }
             return true;
         }catch(MailException $er){
-            $this->fail = new Exception("Infelizmente não foi possível enviar o email automatico:<br><br>{$this->phpmail->ErrorInfo}.",0, $er);
+            $this->fail = new Exception("Infelizmente não foi possível enviar o email automatico:<br><br>{$er->getMessage()}");
         }catch(Exception $er){
             $this->fail = $er;
         }
@@ -79,7 +81,7 @@ class Mail
 
     public function fail(): bool
     {
-        return (!isset($this->fail));
+        return isset($this->fail);
     }
 
     public function getError(): Exception

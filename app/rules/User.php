@@ -17,6 +17,11 @@ Class User
             $rules->setAction('recover')
                   ->addField('rec_email',['minlength'=>1,'maxlength'=>100,'filter'=>FILTER_VALIDATE_EMAIL,'required'=>true]);
 
+            $rules->setAction('reset')
+                  ->addField('res_code',['minlength'=>40, 'maxlength'=> 40, 'required'=>true])
+                  ->addField('res_password',['minlength'=>1, 'maxlength' => 20,'required'=>true])
+                  ->addField('res_password2',['equals'=>'res_password','minlength'=>1,'maxlength'=>20,'required'=>true]);
+
             $rules->setAction('register')
                   ->addField('new_userphoto',['regex'=>'/^data:image\/[^;]+;base64[^"]+$/','required'=>false])
                   ->addField('new_name',['minlength'=>1,'maxlength'=>50,'required'=>true])

@@ -1,0 +1,10 @@
+Você solicitou recentemente uma redefinição de senha para conta do FirstControl, acesse o link abaixo para redefini-la:
+
+{{ $system.uri }}/redefinir-senha/{{ $code }}
+
+Se você tem dúvidas sobre este e-mail e não solicitou essa redefinição de senha, ignore este e-mail ou entre em contato respondendo esta mensagem. Esta redefinição de senha é válida por um período de 24 hora(s).
+Este aplicativo segue a política de privacidade da FirstControl.
+
+Obrigado,
+
+Equipe FirstControl

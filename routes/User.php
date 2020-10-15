@@ -55,3 +55,9 @@ Router::ajax('/login','App\\Controller\\User@login')
 
 Router::ajax('/recover','App\\Controller\\User@recover')
       ->middleware(['NoAuthenticate']);
+
+Router::get('/redefinir-senha/{code}','App\\Controller\\User@viewReset')
+      ->middleware(['NoAuthenticate']);
+
+Router::ajax('/reset','App\\Controller\\User@reset')
+      ->middleware(['NoAuthenticate']);

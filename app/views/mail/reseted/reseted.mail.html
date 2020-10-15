@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body style="background-color:rgb(234,234,234);padding:0;font-family:'Roboto', calibri;margin:0;">
+        <table width="600px" cellspacing="0" cellpadding="0" style=" background-color:white;margin:0 auto;padding:2rem;line-height: 2rem;color:rgb(100,100,100)">
+            <tr>
+                <td align="center" style="padding:0 0 20px 0 ">
+                    <a href="{{ $system.uri }}/" style="height:5rem;width:5rem;display:block;">
+                        <img style="width:5rem;height:5rem" src="https://i.ibb.co/tqFqD3g/logo.png">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p><h4><b>Sua senha foi redefinida!</b></h4></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Prezado(a) {{ $user.name }},</p>
+                    <p>Informamos que sua senha em nosso sistema foi redefinida.</p>
+                    <p>Caso você não tenha feito esta alteração, entre em contato com o administrador do sistema.</p>
+                    <p>Equipe FirstControl</p>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

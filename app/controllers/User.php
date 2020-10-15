@@ -215,7 +215,7 @@ class User extends Controller
                 throw new \Exception('Senha inválida');
             }
 
-            $user->code = sha1($user->email).'|'.date('Y-m-d');
+            $user->code = sha1($user->email).'|'.date('Y-m-d H:i:s');
             $user->lastaccess = date('Y-m-d H:i:s');
             $user->save();
         
@@ -251,9 +251,36 @@ class User extends Controller
         ]);
     }
 
+    public function viewReset($code): void
+    {
+        $user = $this->entity->find()->only('code')->where([
+            ['code', 'like', $code.'%']
+        ])->execute()->toEntity();
+
+        if(null === $user){
+            throw new \Exception('Código inválido');
+        }
+        
+        $diff = (new \DateTime(explode('|',$user->code)[1]))->diff(new \DateTime(date('Y-m-d H:i:s')));
+        $hours = $diff->h + ($diff->days * 24);
+        
+        if($hours >= 24){
+            throw new \Exception('Link de redefinição de senha expirado', 403);
+        }
+
+        $this->view([
+            'page' => '/user/reset.form',
+            'title' => 'Redefinir senha',
+            'code' => $code,
+            'breadcrumb' => [
+                ['text' => 'Redefinir senha', 'active' => true]
+            ]
+        ]);
+    }
+
     public function viewRecover(): void
     {
-   //     echo file_get_contents(SYSTEM['basepath'].'app/views/user/recover.mail.php');
+        //echo file_get_contents(SYSTEM['basepath'].'app/views/mail/recover/recover.mail.html');
         //return;
         $this->view([
             'page' => '/user/recover.form',
@@ -274,20 +301,24 @@ class User extends Controller
             throw new \Exception('Usuário não encontrado');
         }
 
-        $code = sha1(date('d/m/Y H:i:s').$user->email).'|'.date('Y-m-d');
+        $code = sha1(date('d/m/Y H:i:s').$user->email);
 
-        $user->code = $code;
+        $user->code = $code.'|'.date('Y-m-d H:i:s');
         $user->save();
 
-        $html = file_get_contents(SYSTEM['basepath'].'/app/views/user/recover.mail.php');
+        $html = file_get_contents( SYSTEM['basepath'] . '/app/views/mail/recover/recover.mail.html');
         $html = str_replace('{{ $code }}', $code, $html);
         $html = str_replace('{{ $system.uri }}', SYSTEM['uri'], $html);
+
+        $nohtml = file_get_contents( SYSTEM['basepath'] . '/app/views/mail/recover/recover.mail.txt');
+        $nohtml = str_replace('{{ $code }}', $code, $nohtml);
+        $nohtml = str_replace('{{ $system.uri }}', SYSTEM['uri'], $nohtml);
 
         $mail = new Mail('suporte');
         $mail->addTo('address', $email, $user->name)
              ->addTo('from', $email, $user->name)
              ->addSubject('Recuperação de senha')
-             ->addContent($html, htmlspecialchars($html))
+             ->addContent($html, $nohtml)
              ->send();
         
         if($mail->fail()){
@@ -300,6 +331,51 @@ class User extends Controller
             ],
             'reset'=>true,
             'script' => "setTimeout(function(){ window.location.href='/' },5000);"
+        ]);          
+            
+    }
+
+    public function reset($code, $password): void
+    {
+        $user = $this->entity->find()->where([
+            ['code', 'like', $code.'%']
+        ])->execute()->toEntity();
+   
+        if(null === $user){
+            throw new \Exception('Usuário não encontrado');
+        }
+
+        $user->password = password_hash($password, PASSWORD_DEFAULT);
+        $user->code = sha1(date('d/m/Y H:i:s').$user->email).'|'.date('Y-m-d H:i:s');
+        $user->save();
+
+        $html = file_get_contents( SYSTEM['basepath'] . '/app/views/mail/reseted/reseted.mail.html');
+        $html = str_replace('{{ $code }}', $code, $html);
+        $html = str_replace('{{ $user.name }}', $user->name, $html);
+        $html = str_replace('{{ $system.uri }}', SYSTEM['uri'], $html);
+
+        $nohtml = file_get_contents( SYSTEM['basepath'] . '/app/views/mail/reseted/reseted.mail.txt');
+        $nohtml = str_replace('{{ $code }}', $code, $nohtml);
+        $nohtml = str_replace('{{ $user.name }}', $user->name, $nohtml);
+        $nohtml = str_replace('{{ $system.uri }}', SYSTEM['uri'], $nohtml);
+
+        $mail = new Mail('suporte');
+        $mail->addTo('address', $user->email, $user->name)
+             ->addTo('from', $user->email, $user->name)
+             ->addSubject('Redefinição de senha')
+             ->addContent($html, $nohtml)
+             ->send();
+
+        if($mail->fail()){
+            throw $mail->getError();
+        }
+
+        echo json_encode([
+            'success' => [
+                'message' => 'Senha redefinida com sucesso'
+            ],
+            'reset'=>true,
+            'script' => "setTimeout(function(){ window.location.href='/' }, 2000);"
         ]);          
             
     }
