@@ -6,8 +6,7 @@ use App\Controller\Authorization as AuthorizationController;
 use App\Model\User as Model;
 use App\Engine\Mail;
 use App\Helpers\Converter;
-use App\Controller\Helper\UserViewer;
-use App\Controller\Helper\UserChecker;
+use App\Controller\Helper\{UserViewer, UserChecker};
 
 class User extends Controller
 {

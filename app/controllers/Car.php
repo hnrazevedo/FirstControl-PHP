@@ -4,123 +4,20 @@ namespace App\Controller;
 
 use App\Model\Car as Model;
 use App\Model\Visitant as VisitantModel;
-use App\Model\Visit as VisitModel;
 use App\Engine\Util;
+use App\Controller\Helper\{CarChecker, CarViewer};
 use App\Helpers\{Converter, Mask};
 
 class Car extends Controller
 {
     use Converter, 
-        Mask;
-
-    private Model $entity;
+        Mask,
+        CarChecker,
+        CarViewer;
 
     public function __construct()
     {
         $this->entity = new Model();
-    }
-
-    public function viewRegister()
-    {
-        $this->view([
-            'page' => '/car/register.form',
-            'title' => 'Novo veículo',
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Veículo', 'uri' => '/veiculo'],
-                ['text' => 'Novo veículo', 'active' => true]
-            ]
-        ]);
-    }
-
-    public function viewList(): void
-    {
-        $this->view([
-            'page' => '/admin/list',
-            'title' => 'Registros de veículos',
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Veículo', 'uri' => '/veiculo'],
-                ['text' => 'Listagem', 'active' => true]
-            ],
-            'tab' => [
-                'id' => 'registersCars',
-                'title' => 'Registro de veículos',
-                'href' => '/veiculo/',
-                'uri' => '/veiculo/listagem',
-                'thead' => '<th>ID</th><th>Placa</th><th>Marca</th><th>Model</th><th>Cor</th><th>Eixos</th><th>Motorista</th><th>Ações</th>'
-            ]
-        ]);
-    }
-
-    public function viewMenu(): void
-    {
-        $this->view([
-            'page' => '/car/menu',
-            'title' => 'Veículos',
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Veículo', 'active' => true]
-            ]
-        ]);
-    }
-
-    public function viewDetails($id): void
-    {
-        $car = $this->entity->find($id)->where([
-            ['id','<>',1]
-        ])->execute()->toEntity();
-
-        if(null === $car){
-            throw new \Exception('Veículo não encontrado.', 404);
-        }
-
-        $lastvisit = (new VisitModel())->find()->only(['started','finished'])->where([
-            'visitant','=',$car->driver
-        ])->orderBy(' started DESC ')->limit(1)->execute()->toEntity();
-
-        $lastvisit = (is_null($lastvisit)) ? ['started' => '', 'finished' => ''] : ['started' => $lastvisit->started, 'finished' => $lastvisit->finished];
-
-        $car->driver = (new VisitantModel())->find($car->driver)->only('name')->execute()->toEntity()->name;
-
-        $this->view([
-            'page' => '/car/details',
-            'title' => 'Detalhes de veículo',
-            'carView' => $car,
-            'lastvisit' => [ 'started' => $lastvisit['started'], 'finished' => $lastvisit['finished'] ],
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Veículo', 'uri' => '/veiculo'],
-                ['text' => 'Listagem', 'uri' => '/veiculo/listagem'],
-                ['text' => 'Detalhes', 'active' => true],
-            ]
-        ]);
-    }
-
-    public function viewEdition($id): void
-    {
-        $car = $this->entity->find($id)->where([
-            ['id','<>',1]
-        ])->execute()->toEntity();
-
-        if(null === $car){
-            throw new \Exception('Veículo não encontrado.', 404);
-        }
-
-        $cpf = (new VisitantModel())->find($car->driver)->only('cpf')->execute()->toEntity()->cpf;
-
-        $this->view([
-            'page' => '/car/edition.form',
-            'title' => 'Edição de veículo',
-            'carView' => $car,
-            'cpf' => $this->replace('cpf', $cpf),
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Veículo', 'uri' => '/veiculo'],
-                ['text' => 'Listagem', 'uri' => '/veiculo/listagem'],
-                ['text' => 'Edição', 'active' => true],
-            ]
-        ]);
     }
 
     public function jsonList(): void
@@ -131,9 +28,7 @@ class Car extends Controller
 
         $cars = (is_array($cars)) ? $cars : [$cars];
 
-        if(is_null($cars[0])){
-            return;
-        }
+        $this->checkCar($cars[0]);
 
         $return = [];
         foreach($cars as $car => $result){
@@ -168,9 +63,7 @@ class Car extends Controller
                 ['cpf','=',str_replace(['.','-'],'', $_POST['new_cpf'])]
             ])->execute()->toEntity();
     
-            if(is_null($visitant)){
-                throw new \Exception('Motorista não cadastrado');
-            }
+            $this->checkDriver($visitant);
     
             $this->persistEntity(array_merge($_POST, [ 'new_visitant' => $visitant->id ]));
 
@@ -202,16 +95,13 @@ class Car extends Controller
     {
         $car = $this->entity->find($_POST['edit_id'])->execute()->toEntity();
 
-        if(null === $car){
-            throw new \Exception('Veículo não encontrado');
-        }
+        $this->checkCar($car);
+
         $visitant = (new VisitantModel())->find()->only(['id','name'])->where([
             ['cpf','=',str_replace(['.','-'],'', $_POST['edit_cpf'])]
         ])->execute()->toEntity();
     
-        if(is_null($visitant)){
-            throw new \Exception('Motorista não cadastrado');
-        }
+        $this->checkDriver($visitant);
     
         $oldPhoto = $car->photo;
 
@@ -277,9 +167,7 @@ class Car extends Controller
         $this->entity->axes = $data['new_axes'];
         $this->entity->driver = $data['new_visitant'];
         $this->entity->photo = 'default.svg';
-
         $this->entity->persist();
-
         return $this->entity;
     }
 
