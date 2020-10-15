@@ -22,7 +22,7 @@ class Car extends Controller
 
     public function jsonList(): void
     {
-        $cars = $this->entity->find()->where([
+        $cars = $this->entity->find()->except(['photo'])->where([
             ['id','<>',1]
         ])->execute()->toEntity();
 
@@ -32,25 +32,29 @@ class Car extends Controller
 
         $return = [];
         foreach($cars as $car => $result){
-            $date = [];
-            foreach($result->getData() as $field => $data){
-                if($result->$field != null){
-                    switch($field){
-                        case 'driver':
-                            $date[] = (new VisitantModel())->find($result->$field)->only('name')->execute()->toEntity()->name;
-                        break;
-                        case 'photo':break;
-                        default:
-                            $date[] = $result->$field;
-                        break;
-                    }
-                }
-            }
-            $item = array_values($date);
+            $item = array_values($this->mountItem($result));
             $item[] = "<a href='{$item[0]}/edicao'>Editar</a>";
             $return[] = $item;
         }
         echo json_encode($return);
+    }
+
+    private function mountItem($result): array
+    {
+        $date = [];
+        foreach($result->getData() as $field => $data){
+            if($result->$field != null){
+                switch($field){
+                    case 'driver':
+                        $date[] = (new VisitantModel())->find($result->$field)->only('name')->execute()->toEntity()->name;
+                        break;
+                    default:
+                        $date[] = $result->$field;
+                        break;
+                }
+            }
+        }
+        return $date;
     }
 
     public function register(): void
