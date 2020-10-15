@@ -34,7 +34,7 @@ class Mail
             }
             return true;
         }catch(MailException $er){
-            $this->fail = new Exception("Infelizmente não foi possível enviar o email automatico:<br><br>{$er->getMessage()}");
+            $this->fail = new Exception("Infelizmente não foi possível enviar o email automático");
         }catch(Exception $er){
             $this->fail = $er;
         }

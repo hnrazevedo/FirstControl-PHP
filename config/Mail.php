@@ -8,7 +8,7 @@ define("MAIL", [
     "host" => "smtp.gmail.com",
     "smtpauth" => true,
     "username" => "hennry.vb@gmail.com",
-    "password" => "ydzrfhtwuubpfga",
+    "password" => "",
     "smtpsecure" => "tls",
     "port" => 587,
 
@@ -19,14 +19,9 @@ define("MAIL", [
     "suporte.host" => "smtp.gmail.com",
     "suporte.smtpauth" => true,
     "suporte.username" => "hennry.vb@gmail.com",
-    "suporte.password" => "fzstlpewrccrqye",
+    "suporte.password" => "",
     "suporte.smtpsecure" => "tls",
-    "suporte.port" => 587,
-
-    "logger.path" => "/logs/mail/%year%/%mounth%/",
-    "logger.filename" => "%level%.%day%.log",
-    "logger.maxsize" => "5MB",
-    "logger.active" => true
+    "suporte.port" => 587
 ]);
 /**
  * smtpdebug
