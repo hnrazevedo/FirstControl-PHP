@@ -89,9 +89,15 @@ class App
         return $this;
     }
 
+    private function cached(): bool
+    {
+        return (!isset($_SESSION['user']) || isset($_SESSION['cache']['authorizations']));
+            
+    }
+
     private function authorizationInCache(): App
     {
-        if(!isset($_SESSION['user']) || isset($_SESSION['cache']['authorizations'])){
+        if($this->cached()){
             return $this;
         }
 
@@ -108,25 +114,31 @@ class App
             return $this;
         }
 
-        $auths = (is_array($auths)) ?  $auths : [$auths];
+        $auths = $this->getArray($auths);
 
         $permissions = [];
         foreach($auths as $auth){
             $permissions[] = $auth->permission;
         }
 
-        $permissions = (is_array($permissions)) ? $permissions : [$permissions];
+        $permissions = $this->getArray($permissions);
 
         $perm = (new Permission())->find()->where([
             ['id','IN',$permissions]
         ])->execute()->toEntity();
 
-        $perm = (is_array($perm)) ? $perm : [$perm];
+        $perm = $this->getArray($perm);
 
         foreach($perm as $p){
             $_SESSION['cache']['authorizations'][($p->type == 1) ? 'forms' : 'routes'][] = $p->reference;
         }
+        
         return $this;
+    }
+
+    private function getArray($item): array
+    {
+        return (is_array($item)) ?  $item : [$item];
     }
 
 }

@@ -27,30 +27,33 @@ class User extends Controller
 
         $users = (is_array($users)) ? $users : [$users];
 
-        if(is_null($users[0])){
-            return;
-        }
+        $this->checkUser($users[0]);
 
         $return = [];
         foreach($users as $user => $result){
-            $date = [];
-            foreach($result->getData() as $field => $data){
-                if($result->$field != null){
-                    switch($field){
-                        case 'status':
-                            $date[] = ($result->$field) ? 'Liberado' : 'Bloqueado';
-                        break;
-                        default:
-                            $date[] = $result->$field;
-                        break;
-                    }
-                }
-            }
-            $item = array_values($date);
+            $item = array_values($this->mountItem($result));
             $item[] = "<a href='{$item[0]}/permissoes'>Permissões</a> - <a href='{$item[0]}/edicao'>Editar</a>";
             $return[] = $item;
         }
         echo json_encode($return);
+    }
+
+    private function mountItem($result): array
+    {
+        $date = [];
+        foreach($result->getData() as $field => $data){
+            if($result->$field != null){
+                switch($field){
+                    case 'status':
+                        $date[] = ($result->$field) ? 'Liberado' : 'Bloqueado';
+                    break;
+                    default:
+                        $date[] = $result->$field;
+                    break;
+                }
+            }
+        }
+        return $date;
     }
 
     public function logout(): void

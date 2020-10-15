@@ -127,30 +127,33 @@ class Visit extends Controller
 
         $return = [];
         foreach($visits as $visit => $result){
-            $visitant = (new VisitantModel())->find($result->visitant)->only(['name','cpf'])->execute()->toEntity();
-
-            $car = (empty($result->car)) ? (new CarModel())->find($result->car)->only('board')->execute()->toEntity()->board : '-';
-            
-            $finished = ($result->status == 0) ? '-' : $result->finished; 
-            
-            $status = ($result->status == 0) ? 'Em andamento' : 'Finalizada'; 
- 
-            $date = [
-                $result->id,
-                $visitant->name,
-                $this->replaceCPF($visitant->cpf),
-                $result->started,
-                $finished,
-                $status,
-                $result->reason,
-                $result->responsible,
-                $car
-            ];
-            
-            $return[] = array_values($date);
+            $return[] = array_values($this->mountItem($result));
         }
 
         echo json_encode($return);
+    }
+
+    private function mountItem($result): array
+    {
+        $visitant = (new VisitantModel())->find($result->visitant)->only(['name','cpf'])->execute()->toEntity();
+
+        $car = (empty($result->car)) ? (new CarModel())->find($result->car)->only('board')->execute()->toEntity()->board : '-';
+            
+        $finished = ($result->status == 0) ? '-' : $result->finished; 
+            
+        $status = ($result->status == 0) ? 'Em andamento' : 'Finalizada'; 
+ 
+        return [
+            $result->id,
+            $visitant->name,
+            $this->replaceCPF($visitant->cpf),
+            $result->started,
+            $finished,
+            $status,
+            $result->reason,
+            $result->responsible,
+            $car
+        ];
     }
 
     public function viewDetails($id): void
