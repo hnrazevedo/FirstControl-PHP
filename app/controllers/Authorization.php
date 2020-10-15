@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Model\Authorization as Model;
 use App\Model\User as UserModel;
 use App\Model\Permission as Permission;
-use Exception;
+use App\Controller\Helper\UserChecker;
 
 class Authorization extends Controller
 {
+    use UserChecker;
+
     private Model $entity;
 
     public function __construct()
@@ -36,9 +38,7 @@ class Authorization extends Controller
     {
         $user = (new UserModel())->find($id)->execute()->toEntity();
 
-        if(null === $user){
-            throw new Exception('Usuário não encontrado', 404);
-        }
+        $this->checkUser($user);
 
         $authozations = $this->entity->find()->where([
             ['user', '=', $id]
@@ -48,9 +48,10 @@ class Authorization extends Controller
             return [];
         }
 
-        $authozations = (is_array($authozations)) ? $authozations : [$authozations];
+        $authozations = $this->getArray($authozations);
 
         $permissions = [];
+        
         foreach($authozations as $auth){
             $permissions[] = $auth->permission;
         }
@@ -59,7 +60,7 @@ class Authorization extends Controller
             ['id', 'IN' , $permissions]
         ])->execute()->toEntity();
 
-        $permissions = (is_array($permissions)) ? $permissions : [$permissions];
+        $permissions = $this->getArray($permissions);
 
         $active = [];
 

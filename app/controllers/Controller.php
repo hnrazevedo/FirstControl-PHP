@@ -17,6 +17,11 @@ class Controller
             throw new \Exception("{$method} not found in ".get_class($this).".");
         }
     }
+    
+    protected function getArray($item): array
+    {
+        return (is_array($item)) ? $item : [$item];
+    }
 
     public function executeData(): void
     {        

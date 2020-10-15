@@ -106,34 +106,44 @@ class App
             'forms' => []
         ];
 
-        $auths = (new Authorization())->find()->only('permission')->where([
-            ['user', '=', (unserialize($_SESSION['user']))->id]
-        ])->execute()->toEntity();
+        $auths = $this->getAuthorizations((unserialize($_SESSION['user']))->id);
 
-        if(null === $auths){
+        if(null === $auths[0]){
             return $this;
         }
 
-        $auths = $this->getArray($auths);
-
-        $permissions = [];
-        foreach($auths as $auth){
-            $permissions[] = $auth->permission;
-        }
-
-        $permissions = $this->getArray($permissions);
-
-        $perm = (new Permission())->find()->where([
-            ['id','IN',$permissions]
-        ])->execute()->toEntity();
-
-        $perm = $this->getArray($perm);
-
-        foreach($perm as $p){
+        foreach($this->getPermissionsUser(
+                    $this->getPermissions($auths)
+                ) as $p){
             $_SESSION['cache']['authorizations'][($p->type == 1) ? 'forms' : 'routes'][] = $p->reference;
         }
         
         return $this;
+    }
+
+    private function getPermissionsUser(array $permissions): array
+    {
+        $perm = (new Permission())->find()->where([
+            ['id','IN',$permissions]
+        ])->execute()->toEntity();
+
+        return $this->getArray($perm);
+    }
+
+    private function getAuthorizations(string $id): array
+    {
+        return $this->getArray((new Authorization())->find($id)->only('permission')->execute()->toEntity());
+    }
+
+    private function getPermissions(array $auths): array
+    {
+        $permissions = [];
+
+        foreach($auths as $auth){
+            $permissions[] = $auth->permission;
+        }
+
+        return $this->getArray($permissions);
     }
 
     private function getArray($item): array
