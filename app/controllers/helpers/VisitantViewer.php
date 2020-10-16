@@ -58,9 +58,9 @@ trait VisitantViewer
         ]);
     }
 
-    public function viewDetails($id): void
+    public function viewDetails(string $id): void
     {
-        $visitant = $this->entity->find($id)->execute()->toEntity();
+        $visitant = $this->entity->find(intval($id))->execute()->toEntity();
 
         $this->throwVisitant($visitant);
 
@@ -81,9 +81,9 @@ trait VisitantViewer
         ]);
     }
 
-    public function viewEdition($id): void
+    public function viewEdition(string $id): void
     {
-        $visitant = $this->entity->find($id)->execute()->toEntity();
+        $visitant = $this->entity->find(intval($id))->execute()->toEntity();
 
         $this->throwVisitant($visitant);
 

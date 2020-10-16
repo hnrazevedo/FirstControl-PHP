@@ -15,7 +15,7 @@ trait CarViewer
         CarChecker,
         Mask;
 
-    public function viewRegister()
+    public function viewRegister(): void
     {
         $this->view([
             'page' => '/car/register.form',
@@ -60,9 +60,9 @@ trait CarViewer
         ]);
     }
 
-    public function viewEdition($id): void
+    public function viewEdition(string $id): void
     {
-        $car = $this->entity->find($id)->where([
+        $car = $this->entity->find(intval($id))->where([
             ['id','<>',1]
         ])->execute()->toEntity();
 
@@ -84,9 +84,9 @@ trait CarViewer
         ]);
     }
 
-    public function viewDetails($id): void
+    public function viewDetails(string $id): void
     {
-        $car = $this->entity->find($id)->where([
+        $car = $this->entity->find(intval($id))->where([
             ['id','<>',1]
         ])->execute()->toEntity();
 

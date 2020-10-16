@@ -10,7 +10,7 @@ trait UserViewer
 
     protected Model $entity;
 
-    public function viewRegister()
+    public function viewRegister(): void
     {
         $this->view([
             'page' => '/user/register.form',
@@ -23,7 +23,7 @@ trait UserViewer
         ]);
     }
 
-    public function viewAccount()
+    public function viewAccount(): void
     {
         $this->view([
             'page' => '/user/update.form',
@@ -36,7 +36,7 @@ trait UserViewer
         ]);
     }
 
-    public function viewData()
+    public function viewData(): void
     {
         $this->view([
             'page' => '/user/update.form',
@@ -48,7 +48,7 @@ trait UserViewer
         ]);
     }
 
-    public function viewDashboard()
+    public function viewDashboard(): void
     {
         $this->view([
             'page' => '/user/dashboard',
@@ -102,9 +102,9 @@ trait UserViewer
         ]);
     }
 
-    public function viewDetails($id): void
+    public function viewDetails(string $id): void
     {
-        $user = $this->entity->find($id)->where([
+        $user = $this->entity->find(intval($id))->where([
             ['id','<>',1]
         ])->execute()->toEntity();
 
@@ -123,9 +123,9 @@ trait UserViewer
         ]);
     }
 
-    public function viewEdition($id): void
+    public function viewEdition(string $id): void
     {
-        $user = $this->entity->find($id)->where([
+        $user = $this->entity->find(intval($id))->where([
             ['id','<>',1]
         ])->execute()->toEntity();
 
