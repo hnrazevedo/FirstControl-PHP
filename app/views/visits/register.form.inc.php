@@ -94,10 +94,15 @@
             </div>
         </div>
     </div>
-    <div class="col-12 row m-0 mt-4 p-0">
-        <div class="col-sm-6 col-md-4 col-lg-3 ml-auto">
-            <div class="buttons">
-                <button class="submit btn btn-lg btn-primary btn-block">Registrar</button>
+    <div class="row">
+        <div class="col-sm-4 col-md-3"></div>
+        <div class="col-sm-8 col-md-9">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 mt-4 ml-auto">
+                    <div class="buttons">
+                        <button class="submit btn btn-lg btn-primary btn-block">Registrar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

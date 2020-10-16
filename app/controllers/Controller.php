@@ -14,7 +14,7 @@ class Controller
     private function checkMethod(string $method): void
     {
         if(!method_exists($this, $method)){
-            throw new \Exception("{$method} not found in ".get_class($this).".");
+            throw new \Exception("{$method} não existe ou não está acessível em ".get_class($this));
         }
     }
     

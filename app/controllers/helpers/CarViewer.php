@@ -93,7 +93,7 @@ trait CarViewer
         $this->throwCar($car);
 
         $lastvisit = (new VisitModel())->find()->only(['started','finished'])->where([
-            'visitant','=',$car->driver
+            'visitant', '=', $car->driver
         ])->orderBy(' started DESC ')->limit(1)->execute()->toEntity();
 
         $lastvisit = (is_null($lastvisit)) ? ['started' => '', 'finished' => ''] : ['started' => $lastvisit->started, 'finished' => $lastvisit->finished];
