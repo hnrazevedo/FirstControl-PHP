@@ -2,7 +2,6 @@
 
 namespace App\Kernel;
 
-
 use App\Model\Authorization;
 use App\Model\Permission;
 use HnrAzevedo\Router\Router;
