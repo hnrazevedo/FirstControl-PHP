@@ -13,6 +13,6 @@ Class Config extends Entity
 {
     public function __construct()
     {
-        return parent::create('config', 'id');
+        parent::create('config', 'id');
     }
 }

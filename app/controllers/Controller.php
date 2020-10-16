@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use HnrAzevedo\Validator\Validator;
+use HnrAzevedo\Validator\Validator as ValidatorAPI;
 use App\Controller\Helper\Viewer;
 
 class Controller
@@ -40,10 +40,10 @@ class Controller
 
     protected function ValidateData(): void
     {
-        $valid = Validator::namespace('App\\Rules')->execute($_POST);
+        $valid = ValidatorAPI::namespace('App\\Rules')->execute($_POST);
 
         if(!$valid){
-            foreach(Validator::getErrors() as $err => $message){
+            foreach(ValidatorAPI::getErrors() as $err => $message){
                 if(!is_array($message)){
                     $this->fail[] = [
                         'input' => $err,

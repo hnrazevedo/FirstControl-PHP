@@ -49,7 +49,7 @@ class Config extends Controller
     }
 
 
-    public function update($req, $id, $value): void
+    public function update(/** @scrutinizer ignore-unused */ $req, $id, $value): void
     {
         $config = $this->entity->find((int) $id)->execute()->toEntity();
         

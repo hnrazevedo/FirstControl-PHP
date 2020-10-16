@@ -175,7 +175,7 @@ class Car extends Controller
         return $this->entity;
     }
 
-    public function toJson($req, $board): void
+    public function toJson(/** @scrutinizer ignore-unused */ $req, $board): void
     {
         $car = $this->entity->find()->where([
             'board','=',$board

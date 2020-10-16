@@ -2,6 +2,7 @@
 
 namespace App\Controller\Helper;
 
+use App\Helpers\Mask;
 use App\Model\Visit as VisitModel;
 use App\Model\Visitant as VisitantModel;
 use App\Model\Car as Model;
@@ -10,7 +11,9 @@ trait CarViewer
 {
     protected Model $entity;
 
-    use Viewer;
+    use Viewer,
+        CarChecker,
+        Mask;
 
     public function viewRegister()
     {
@@ -65,7 +68,7 @@ trait CarViewer
 
         $this->throwCar($car);
 
-        $cpf = (new VisitantModel())->find($car->driver)->only('cpf')->execute()->toEntity()->cpf;
+        $cpf = (new VisitantModel())->find(intval($car->driver))->only('cpf')->execute()->toEntity()->cpf;
 
         $this->view([
             'page' => '/car/edition.form',
@@ -95,7 +98,7 @@ trait CarViewer
 
         $lastvisit = (is_null($lastvisit)) ? ['started' => '', 'finished' => ''] : ['started' => $lastvisit->started, 'finished' => $lastvisit->finished];
 
-        $car->driver = (new VisitantModel())->find($car->driver)->only('name')->execute()->toEntity()->name;
+        $car->driver = (new VisitantModel())->find(intval($car->driver))->only('name')->execute()->toEntity()->name;
 
         $this->view([
             'page' => '/car/details',

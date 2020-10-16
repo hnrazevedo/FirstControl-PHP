@@ -15,6 +15,6 @@ Class Permission extends Entity
 {
     public function __construct()
     {
-        return parent::create('permission', 'id');
+        parent::create('permission', 'id');
     }
 }

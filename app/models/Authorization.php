@@ -13,6 +13,6 @@ Class Authorization extends Entity
 {
     public function __construct()
     {
-        return parent::create('authorization', 'id');
+        parent::create('authorization', 'id');
     }
 }

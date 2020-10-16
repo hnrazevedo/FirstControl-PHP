@@ -18,6 +18,6 @@ Class Car extends Entity
 {
     public function __construct()
     {
-        return parent::create('car', 'id');
+        parent::create('car', 'id');
     }
 }

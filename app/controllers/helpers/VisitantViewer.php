@@ -10,7 +10,8 @@ trait VisitantViewer
     protected Model $entity;
 
     use Viewer,
-        Mask;
+        Mask,
+        VisitantChecker;
 
     public function viewRegister(): void
     {

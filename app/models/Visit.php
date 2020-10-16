@@ -20,6 +20,6 @@ Class Visit extends Entity
 {
     public function __construct()
     {
-        return parent::create('visit', 'id');
+        parent::create('visit', 'id');
     }
 }

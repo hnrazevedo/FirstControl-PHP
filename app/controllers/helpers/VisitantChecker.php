@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Controller\Helper;
+use App\Helpers\Validate;
 
 trait VisitantChecker
 {
-    use Viewer;
+    use Viewer,
+        Validate;
 
     protected function throwVisitant($visitant): self
     {

@@ -158,13 +158,12 @@ class Visitant extends Controller
         return $this->entity;
     }
 
-    public function toJson($req, $cpf): void
+    public function toJson(/** @scrutinizer ignore-unused */ $req, $cpf): void
     {
         $visitant = $this->entity->find()->where([
             'cpf','=',str_replace(['.','-'],'',$cpf)
         ])->execute()->toEntity();
 
-        
         $this->throwVisitant($visitant);
 
         $visitant->cpf = $this->replaceCPF($visitant->cpf);

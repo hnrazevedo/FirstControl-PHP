@@ -27,7 +27,7 @@ Class User extends Entity
             'username'=>'Nome de usuário'
         ];
 
-        return parent::create('user', 'id');
+        parent::create('user', 'id');
     }
 
     public function isAdmin(): bool

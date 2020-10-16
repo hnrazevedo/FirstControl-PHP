@@ -38,7 +38,7 @@ class Authorization extends Controller
     {
         $user = (new UserModel())->find($id)->execute()->toEntity();
 
-        $this->checkUser($user);
+        $this->throwUser($user);
 
         $authozations = $this->entity->find()->where([
             ['user', '=', $id]
@@ -71,7 +71,7 @@ class Authorization extends Controller
         return $active;
     }
 
-    public function update($req, $user, $permission): void
+    public function update(/** @scrutinizer ignore-unused */ $req, $user, $permission): void
     {
         if($user == 1){
             return;
