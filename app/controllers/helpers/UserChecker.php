@@ -8,7 +8,7 @@ trait UserChecker
 {
     use Viewer;
 
-    protected function checkUser($user): self
+    protected function throwUser($user): self
     {
         if(null === $user){
             throw new \Exception('Usuário não encontrado.', 404);
@@ -16,7 +16,7 @@ trait UserChecker
         return $this;
     }
 
-    protected function checkStatus(string $status): self
+    protected function throwStatus(string $status): self
     {
         if($status === '0'){
             throw new \Exception('Usuário bloqueado');
@@ -24,7 +24,7 @@ trait UserChecker
         return $this;
     }
 
-    protected function checkPassword(string $password, string $value): self
+    protected function throwPassword(string $password, string $value): self
     {
         if(!password_verify($password, $value)){
             throw new \Exception('Senha inválida');
@@ -32,7 +32,7 @@ trait UserChecker
         return $this;
     }
 
-    protected function checkAdmin(): self
+    protected function throwAdmin(): self
     {
         if((unserialize($_SESSION['user']))->id != 1){
             throw new \Exception('Usuário é um administrador<br>Atualização não permitida');
@@ -40,7 +40,7 @@ trait UserChecker
         return $this;
     }
 
-    protected function checkMail(Mail $mail): self
+    protected function throwMail(Mail $mail): self
     {
         if($mail->fail()){
             throw $mail->getError();

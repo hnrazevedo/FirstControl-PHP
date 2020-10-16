@@ -27,7 +27,7 @@ class User extends Controller
 
         $users = (is_array($users)) ? $users : [$users];
 
-        $this->checkUser($users[0]);
+        $this->throwUser($users[0]);
 
         $return = [];
         foreach($users as $user => $result){
@@ -76,9 +76,9 @@ class User extends Controller
                 ['username','=',$username]
             ])->execute()->toEntity();
     
-            $this->checkUser($user)
-                 ->checkStatus($user->status)
-                 ->checkPassword($password, $user->password);
+            $this->throwUser($user)
+                 ->throwStatus($user->status)
+                 ->throwPassword($password, $user->password);
 
             $user->code = sha1($user->email).'|'.date('Y-m-d H:i:s');
             $user->lastaccess = date('Y-m-d H:i:s');
@@ -114,7 +114,7 @@ class User extends Controller
             ['email','=',$email]
         ])->execute()->toEntity();
    
-        $this->checkUser($user);
+        $this->throwUser($user);
 
         $code = sha1(date('d/m/Y H:i:s').$user->email);
 
@@ -136,7 +136,7 @@ class User extends Controller
              ->addContent($html, $nohtml)
              ->send();
         
-        $this->checkMail($mail);
+        $this->throwMail($mail);
 
         echo json_encode([
             'success' => [
@@ -154,7 +154,7 @@ class User extends Controller
             ['code', 'like', $code.'%']
         ])->execute()->toEntity();
    
-        $this->checkUser($user);
+        $this->throwUser($user);
 
         $user->password = password_hash($password, PASSWORD_DEFAULT);
         $user->code = sha1(date('d/m/Y H:i:s').$user->email).'|'.date('Y-m-d H:i:s');
@@ -177,7 +177,7 @@ class User extends Controller
              ->addContent($html, $nohtml)
              ->send();
 
-        $this->checkMail($mail);
+        $this->throwMail($mail);
 
         echo json_encode([
             'success' => [
@@ -238,7 +238,7 @@ class User extends Controller
         try{
             $user = unserialize($_SESSION['user']);
 
-            $this->checkPassword($_POST['edit_oldpassword'], $user->password);
+            $this->throwPassword($_POST['edit_oldpassword'], $user->password);
 
             $user->email = $_POST['edit_email'];
             $user->password = (strlen($_POST['edit_password']) > 0) ? password_hash($_POST['edit_password'], PASSWORD_DEFAULT) : $user->password;
@@ -268,7 +268,7 @@ class User extends Controller
     {
         $user = $this->entity->find($_POST['edit_id'])->execute()->toEntity();
 
-        $this->checkUser($user)->checkAdmin();
+        $this->throwUser($user)->throwAdmin();
 
         $user->password = (strlen($_POST['edit_password'] > 0)) ? password_hash($_POST['edit_password'], PASSWORD_DEFAULT) : $user->password;
         $user->name = $_POST['edit_name'];

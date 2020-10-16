@@ -6,7 +6,7 @@ trait CarChecker
 {
     use Viewer;
 
-    protected function checkCar($car): self
+    protected function throwCar($car): self
     {
         if(null === $car){
             throw new \Exception('Veículo não encontrado', 404);
@@ -14,7 +14,7 @@ trait CarChecker
         return $this;
     }
 
-    protected function checkDriver($visitant): self
+    protected function throwDriver($visitant): self
     {
         if(is_null($visitant)){
             throw new \Exception('Motorista não cadastrado');

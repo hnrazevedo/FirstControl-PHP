@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Controller\Helper\VisitantChecker;
+use App\Controller\Helper\VisitantViewer;
 use App\Model\Visitant as Model;
 use App\Engine\Util;
 use App\Helpers\{Converter, Mask , Validate};
@@ -10,58 +12,13 @@ class Visitant extends Controller
 {
     use Mask,
         Validate,
-        Converter;
-
-    private Model $entity;
+        Converter,
+        VisitantChecker,
+        VisitantViewer;
 
     public function __construct()
     {
         $this->entity = new Model();
-    }
-
-    public function viewRegister()
-    {
-        $this->view([
-            'page' => '/visitant/register.form',
-            'title' => 'Novo visitante',
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Visitante', 'uri' => '/visitante'],
-                ['text' => 'Novo visitante', 'active' => true]
-            ]
-        ]);
-    }
-
-    public function viewList(): void
-    {
-        $this->view([
-            'page' => '/admin/list',
-            'title' => 'Registros de visitantes',
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Visitante', 'uri' => '/visitante'],
-                ['text' => 'Listagem', 'active' => true]
-            ],
-            'tab' => [
-                'id' => 'registersVisitants',
-                'title' => 'Registro de visitantes',
-                'href' => '/visitante/',
-                'uri' => '/visitante/listagem',
-                'thead' => '<th>ID</th><th>Nome</th><th>CPF</th><th>RG</th><th>Últ. Visita</th><th>Empresa</th><th>Contato</th><th>Ações</th>'
-            ]
-        ]);
-    }
-
-    public function viewMenu(): void
-    {
-        $this->view([
-            'page' => '/visitant/menu',
-            'title' => 'Visitantes',
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Visitante', 'active' => true]
-            ]
-        ]);
     }
 
     public function jsonList(): void
@@ -70,11 +27,9 @@ class Visitant extends Controller
             ['id','<>',1]
         ])->except('photo')->execute()->toEntity();
 
-        $visitants = (is_array($visitants)) ? $visitants : [$visitants];
+        $visitants = $this->getArray($visitants);
 
-        if(is_null($visitants[0])){
-            return;
-        }
+        $this->throwVisitant($visitants[0]);
 
         $return = [];
         foreach($visitants as $visitant => $result){
@@ -92,64 +47,12 @@ class Visitant extends Controller
         echo json_encode($return);
     }
 
-    public function viewDetails($id): void
-    {
-        $visitant = $this->entity->find($id)->execute()->toEntity();
-
-        if(is_null($visitant)){
-            throw new \Exception('Visitante não encontrado', 404);
-        }
-
-        $visitant->cpf = $this->replaceCPF($visitant->cpf);
-        $visitant->rg = $this->replaceRG($visitant->rg);
-        $visitant->phone = $this->replaceCellPhone($visitant->phone);
-
-        $this->view([
-            'page' => '/visitant/details',
-            'title' => 'Detalhes de visitante',
-            'visitantView' => $visitant,
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Visitante', 'uri' => '/visitante'],
-                ['text' => 'Listagem', 'uri' => '/visitante/listagem'],
-                ['text' => 'Detalhes', 'active' => true],
-            ]
-        ]);
-    }
-
-    public function viewEdition($id): void
-    {
-        $visitant = $this->entity->find($id)->execute()->toEntity();
-
-        if(is_null($visitant)){
-            throw new \Exception('Visitante não encontrado', 404);
-        }
-
-        $visitant->cpf = $this->replaceCPF($visitant->cpf);
-        $visitant->rg = $this->replaceRG($visitant->rg);
-        $visitant->phone = $this->replaceCellPhone($visitant->phone);
-
-        $this->view([
-            'page' => '/visitant/edition.form',
-            'title' => 'Edição de visitante',
-            'visitantView' => $visitant,
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Visitante', 'uri' => '/visitante'],
-                ['text' => 'Listagem', 'uri' => '/visitante/listagem'],
-                ['text' => 'Edição', 'active' => true],
-            ]
-        ]);
-    }
-
     public function register(): void
     {
         $tmpPhoto = null;
         try{
 
-            if(!$this->isValidCPF($_POST['new_cpf'])){
-                throw new \Exception('CPF inválido');
-            }
+            $this->throwCPF($_POST['new_cpf']);
 
             $this->persistEntity($_POST);
 
@@ -178,15 +81,11 @@ class Visitant extends Controller
 
     public function edition(): void
     {
-        if(!$this->isValidCPF($_POST['edit_cpf'])){
-            throw new \Exception('CPF inválido');
-        }
+        $this->throwCpf($_POST['edit_cpf']);
 
         $visitant = $this->entity->find($_POST['edit_id'])->execute()->toEntity();
 
-        if(null === $visitant){
-            throw new \Exception('Visitante não encontrado');
-        }
+        $this->throwVisitant($visitant);
 
         $oldPhoto = $visitant->photo;
         $visitant->name = $_POST['edit_name'];
@@ -255,9 +154,7 @@ class Visitant extends Controller
         $this->entity->register = date('Y-m-d H:i:s');
         $this->entity->lastvisit = date('Y-m-d H:i:s');
         $this->entity->photo = 'default.svg';
-
         $this->entity->persist();
-
         return $this->entity;
     }
 
@@ -268,9 +165,7 @@ class Visitant extends Controller
         ])->execute()->toEntity();
 
         
-        if(is_null($visitant)){
-            return;
-        }
+        $this->throwVisitant($visitant);
 
         $visitant->cpf = $this->replaceCPF($visitant->cpf);
         $visitant->rg = $this->replaceRG($visitant->rg);

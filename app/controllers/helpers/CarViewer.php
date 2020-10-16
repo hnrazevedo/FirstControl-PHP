@@ -63,7 +63,7 @@ trait CarViewer
             ['id','<>',1]
         ])->execute()->toEntity();
 
-        $this->checkCar($car);
+        $this->throwCar($car);
 
         $cpf = (new VisitantModel())->find($car->driver)->only('cpf')->execute()->toEntity()->cpf;
 
@@ -87,7 +87,7 @@ trait CarViewer
             ['id','<>',1]
         ])->execute()->toEntity();
 
-        $this->checkCar($car);
+        $this->throwCar($car);
 
         $lastvisit = (new VisitModel())->find()->only(['started','finished'])->where([
             'visitant','=',$car->driver

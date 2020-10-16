@@ -28,7 +28,7 @@ class Car extends Controller
 
         $cars = (is_array($cars)) ? $cars : [$cars];
 
-        $this->checkCar($cars[0]);
+        $this->throwCar($cars[0]);
 
         $return = [];
         foreach($cars as $car => $result){
@@ -67,7 +67,7 @@ class Car extends Controller
                 ['cpf','=',str_replace(['.','-'],'', $_POST['new_cpf'])]
             ])->execute()->toEntity();
     
-            $this->checkDriver($visitant);
+            $this->throwDriver($visitant);
     
             $this->persistEntity(array_merge($_POST, [ 'new_visitant' => $visitant->id ]));
 
@@ -99,13 +99,13 @@ class Car extends Controller
     {
         $car = $this->entity->find($_POST['edit_id'])->execute()->toEntity();
 
-        $this->checkCar($car);
+        $this->throwCar($car);
 
         $visitant = (new VisitantModel())->find()->only(['id','name'])->where([
             ['cpf','=',str_replace(['.','-'],'', $_POST['edit_cpf'])]
         ])->execute()->toEntity();
     
-        $this->checkDriver($visitant);
+        $this->throwDriver($visitant);
     
         $oldPhoto = $car->photo;
 

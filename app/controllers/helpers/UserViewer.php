@@ -108,7 +108,7 @@ trait UserViewer
             ['id','<>',1]
         ])->execute()->toEntity();
 
-        $this->checkUser($user);
+        $this->throwUser($user);
 
         $this->view([
             'page' => '/user/details',
@@ -129,7 +129,7 @@ trait UserViewer
             ['id','<>',1]
         ])->execute()->toEntity();
 
-        $this->checkUser($user);
+        $this->throwUser($user);
 
         $this->view([
             'page' => '/user/edition.form',
@@ -150,7 +150,7 @@ trait UserViewer
             ['code', 'like', $code.'%']
         ])->execute()->toEntity();
 
-        $this->checkUser($user);
+        $this->throwUser($user);
         
         $diff = (new \DateTime(explode('|',$user->code)[1]))->diff(new \DateTime(date('Y-m-d H:i:s')));
         $hours = $diff->h + ($diff->days * 24);

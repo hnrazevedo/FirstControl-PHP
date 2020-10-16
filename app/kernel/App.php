@@ -132,7 +132,9 @@ class App
 
     private function getAuthorizations(string $id): array
     {
-        return $this->getArray((new Authorization())->find($id)->only('permission')->execute()->toEntity());
+        return $this->getArray((new Authorization())->find()->where([
+            ['user', '=', $id]
+        ])->only('permission')->execute()->toEntity());
     }
 
     private function getPermissions(array $auths): array
