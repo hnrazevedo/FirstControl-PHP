@@ -9,4 +9,6 @@
 <!--<script src="https://cdn.jsdelivr.net/gh/hnrazevedo/JSvalidator/JSvalidator.js" type="text/javascript"></script>-->
 <script src="{{ $system.uri }}/assets/js/JSvalidator.js"></script>
 <script src="{{ $system.uri }}/assets/js/Cam.js"></script>
+<script src="{{ $system.uri }}/assets/vendor/bootstrap/popper.min.js"></script>
+<script src="{{ $system.uri }}/assets/vendor/bootstrap/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD"></script>
 <script src="{{ $system.uri }}/assets/js/main.js"></script>

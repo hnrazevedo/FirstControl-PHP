@@ -20,6 +20,11 @@ div.table .dataTable-container{
     padding:0 !important;
 }
 
+div.table table a.list{
+    padding: .375rem .5rem;
+    display: inline-block;
+}
+
 div.table .dataTable-input{
     margin-top: 0;
     width: auto;
@@ -30,6 +35,10 @@ div.table .dataTable-input{
 
 div.table .dataTables_scroll table{
     border:none;
+}
+
+div.table table thead{
+    border-bottom:solid 2px rgb(220,220,220)
 }
 
 div.table .dataTables_scroll table thead th{
@@ -43,7 +52,6 @@ div.table table,div.table table.datatable{
 }
 
 div.table table.datatable thead th{
-    border-bottom:solid 2px rgb(220,220,220);
     padding: 10px 18px;
     position: relative;
 }
@@ -76,7 +84,6 @@ div.table form div.buttons button{
 }
 
 div.table .DataTables-buttons button{
-    border-radius:1px;
     font-size: 1.5rem!important;
     padding: .5rem;
 }
@@ -422,7 +429,6 @@ div.table .dataTable-info{
 }
 
 div.table.min table thead th{
-    width: 50% !important;
     display: inline-block;
 }
 div.table.min table tbody td {

@@ -72,9 +72,9 @@ const DataTables = function(){
                 dataTable.table.closest('.table').querySelector('.dataTable-top').prepend(
                     DataTables.createButtons({
                         buttons:[
-                                {text:"<i class='bx bx-export' ></i>",role:"export"},
-                                {text:"<i class='bx bx-printer' ></i>",role:"print"},
-                                {text:"<i class='bx bx-checkbox' ></i>",role:"select_all"}
+                                {text:"<i class='bx bx-export' ></i>",role:"export", tooltip:'Exportar'},
+                                {text:"<i class='bx bx-printer' ></i>",role:"print", tooltip:'Imprimir'},
+                                {text:"<i class='bx bx-checkbox' ></i>",role:"select_all", tooltip:'Seleção'}
                         ]
                     })
                 );
@@ -119,6 +119,8 @@ const DataTables = function(){
                 var b = document.createElement('button');
                 b.classList.add('btn','btn-primary');
                 b.setAttribute('data-role',button.role);
+                b.setAttribute('data-toggle','tooltip');
+                b.setAttribute('title',button.tooltip);
                 b.setAttribute('value',button.text);
                 b.innerHTML = button.text;
                 div.prepend(b);
@@ -165,6 +167,7 @@ const DataTables = function(){
         },
         async importFromURL(id,url){
             DataTables.dataAdd(id, await Submitter.setUrl(url).execute(true));
+            loadToolTips();
         },
         getSelecteds(DataTables){
             var value = [];

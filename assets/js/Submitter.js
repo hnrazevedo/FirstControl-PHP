@@ -41,6 +41,8 @@ const Submitter = function(){
 				Submitter.XMLHttpRequest();
             }
             
+            loadToolTips();
+            
 			return (result) ? Submitter.getResponse() : Submitter;
 		},
 		setUrl(u){

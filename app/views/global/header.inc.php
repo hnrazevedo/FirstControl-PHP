@@ -20,12 +20,12 @@
         <?php if(isset($_SESSION['user'])) : ?>
             <li class="d-block d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none">
                 <a href="{{ $system.uri }}/usuario/minha-conta">
-                    <img src="#!" class="mr-3 ml-2" /> 
+                    <img src="#!" class="mr-3 ml-2"  data-toggle='tooltip' title='Minha conta' /> 
                     {{ $user.name }}
                 </a> 
             </li>
             <li>
-                <a href="{{ $system.uri }}/">
+                <a href="{{ $system.uri }}/" >
                     <i class='bx bxs-dashboard  mr-3 ml-2 mr-sm-0 mr-md-0 mr-sm-0 mr-lg-0 mr-xl-0 mr-xxl-0 ml-sm-0 ml-md-0 ml-sm-0 ml-lg-0 ml-xl-0 ml-xxl-0'></i>Painel principal
                 </a>
             </li>

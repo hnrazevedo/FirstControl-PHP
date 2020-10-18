@@ -13,10 +13,20 @@ window.addEventListener('load',function(){
     setTimeout(function(){
         document.querySelector('body').classList.add('loaded');
     },500);
+    
+    loadToolTips();
 
-    
-    
 });
+
+function loadToolTips(){
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl, {
+            container:'body',
+            boundary: 'window'
+        });
+    });
+}
 
 function toggleFullScreen() {
     if (!document.fullscreenElement) {

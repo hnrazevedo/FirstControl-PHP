@@ -5,6 +5,14 @@ div{
     position: relative;
 }
 
+body div[role="tooltip"].tooltip{
+    pointer-events: none;
+    border:none!important
+}
+body div[role="tooltip"].tooltip *{
+    border:none!important
+}
+
 body:not(.loaded)::after{
     content:url('/../assets/img/icon.loading.svg') !important;
     left:calc(50% - 20px);

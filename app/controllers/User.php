@@ -32,7 +32,10 @@ class User extends Controller
         $return = [];
         foreach($users as $user => $result){
             $item = array_values($this->mountItem($result));
-            $item[] = "<a href='{$item[0]}/permissoes'>Permissões</a> - <a href='{$item[0]}/edicao'>Editar</a>";
+            $item[] = "<a href='{$item[0]}' class='btn btn-primary list' data-toggle='tooltip' title='Detalhes'><i class='bx bx-show'></i></a>
+                       <a href='{$item[0]}/edicao' class='btn btn-primary list' data-toggle='tooltip' title='Editar'><i class='bx bxs-pencil'></i></a>
+                       <a href='{$item[0]}/remover' class='btn btn-primary list' data-toggle='tooltip' title='Remover'><i class='bx bx-trash'></i></a>
+                       <a href='{$item[0]}/permissoes' class='btn btn-primary list' data-toggle='tooltip' title='Permissões'><i class='bx bx-key'></i></a>";
             $return[] = $item;
         }
         echo json_encode($return);
