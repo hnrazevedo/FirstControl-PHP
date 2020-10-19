@@ -15,8 +15,25 @@ window.addEventListener('load',function(){
     },500);
     
     loadToolTips();
+    loadAlerts();
 
 });
+
+function loadAlerts(){
+    if(document.querySelectorAll('.alert .alert-close') != null){
+        document.querySelectorAll('.alert .alert-close').forEach(function(e, i){
+            e.addEventListener('click', function(){
+                var alert = e.closest('div.alert');
+                alert.style.opacity = 0;
+                setTimeout(function(){
+                    alert.style.height = 0;
+                    alert.style.padding = 0;
+                    alert.style.marginBottom = 0;
+                },400);
+            })
+        });
+    }
+}
 
 function loadToolTips(){
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))

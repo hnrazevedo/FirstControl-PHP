@@ -13,6 +13,20 @@ body div[role="tooltip"].tooltip *{
     border:none!important
 }
 
+a.alert-close{
+    float: right;
+    font-size: 1.5rem;
+    color:rgba(0,0,0,.4);
+    cursor: pointer;
+}
+
+.alert-success a.alert-close{color:#155724}
+.alert-danger a.alert-close{color:#721c24}
+
+.alert{
+    transition: all .3s ease;
+}
+
 body:not(.loaded)::after{
     content:url('/../assets/img/icon.loading.svg') !important;
     left:calc(50% - 20px);

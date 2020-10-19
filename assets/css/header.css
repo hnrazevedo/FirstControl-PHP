@@ -196,6 +196,10 @@ header ul hr.noMargin{
         transition: left .5s ease;
     }
 
+    header ul li a img{
+        width:1rem;
+    }
+
     header ul li a i.bx{
         margin-right: .3rem;
         display: inline-block;

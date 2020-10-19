@@ -103,4 +103,15 @@ class Authorization extends Controller
 
         $authorization->remove(true);
     }
+
+    public function removeByUser(int $id): void
+    {
+        $authorizations = $this->entity->find()->where([
+            ['user', '=', $id]
+        ])->execute()->toEntity();
+
+        foreach($authorizations as $auth){
+            $auth->remove(true);
+        }
+    }
 }

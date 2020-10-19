@@ -20,7 +20,7 @@
         <?php if(isset($_SESSION['user'])) : ?>
             <li class="d-block d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none">
                 <a href="{{ $system.uri }}/usuario/minha-conta">
-                    <img src="#!" class="mr-3 ml-2"  data-toggle='tooltip' title='Minha conta' /> 
+                    <img src="{{ $system.uri }}/assets/img/user/{{ $user.photo }}" class="mr-3 ml-2"  data-toggle='tooltip' title='Minha conta' /> 
                     {{ $user.name }}
                 </a> 
             </li>
@@ -68,8 +68,8 @@
 
         <?php if(isset($_SESSION['user'])) : ?>
             <li class="bd-highlight mr-auto">
-                <a href="{{ $system.uri }}/usuario/minha-conta">
-                    <img src="{{ $system.uri }}/assets/img/user/{{ $user.photo }}" class="mr-3" /> 
+                <a href="{{ $system.uri }}/usuario/minha-conta" >
+                    <img src="{{ $system.uri }}/assets/img/user/{{ $user.photo }}" class="mr-3" data-toggle='tooltip' title='Minha conta' /> 
                 </a> 
                 {{ $user.name }}
             </li>
@@ -89,3 +89,13 @@
     </ol>
 
 </nav>
+
+<?php if(isset($_SESSION['alert'])) : ?>
+    <div class="alert alert-<?= $_SESSION['alert']['class'] ?>" role="alert">
+        <?= $_SESSION['alert']['message'] ?>
+        <a class="alert-close">
+            <i class='bx bx-x'></i>
+        </a>
+    </div>
+    <?php unset($_SESSION['alert']); ?>
+<?php endif; ?>

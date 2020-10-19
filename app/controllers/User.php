@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Controller\Authorization as AuthorizationController;
 use App\Model\User as Model;
 use App\Engine\Mail;
+use App\Engine\Util;
 use App\Helpers\Converter;
 use App\Controller\Helper\{UserViewer, UserChecker};
 
@@ -21,11 +22,11 @@ class User extends Controller
 
     public function jsonList(): void
     {
-        $users = $this->entity->find()->except(['password','code','photo'])->where([
-            ['id','<>', 1]
+        $users = $this->entity->find()->except(['password', 'code', 'photo'])->where([
+            ['id', '<>', 1]
         ])->execute()->toEntity();
 
-        $users = (is_array($users)) ? $users : [$users];
+        $users = $this->getArray($users);
 
         $this->throwUser($users[0]);
 
@@ -49,10 +50,10 @@ class User extends Controller
                 switch($field){
                     case 'status':
                         $date[] = ($result->$field) ? 'Liberado' : 'Bloqueado';
-                    break;
+                        break;
                     default:
                         $date[] = $result->$field;
-                    break;
+                        break;
                 }
             }
         }
@@ -62,37 +63,31 @@ class User extends Controller
     public function logout(): void
     {
         $_SESSION = [];
+        $_SESSION['alert'] = [
+            'message' => 'Sessão finalizada com sucesso',
+            'class' => 'success'
+        ];
         setcookie('user',null,-1,'/');
         header('Location: /');
     }
 
     public function login($username, $password): void
     {
-        try{
-            $this->ValidateData();
-
-            if($this->checkFailData()){
-                return;
-            }
-
-            $user = $this->entity->find()->where([
-                ['username','=',$username]
-            ])->execute()->toEntity();
+        $user = $this->entity->find()->where([
+            ['username', '=', $username]
+        ])->execute()->toEntity();
     
-            $this->throwUser($user)
-                 ->throwStatus($user->status)
-                 ->throwPassword($password, $user->password);
+        $this->throwUser($user)
+             ->throwStatus($user->status)
+             ->throwPassword($password, $user->password);
 
-            $user->code = sha1($user->email).'|'.date('Y-m-d H:i:s');
-            $user->lastaccess = date('Y-m-d H:i:s');
-            $user->save();
+        $user->code = sha1($user->email).'|'.date('Y-m-d H:i:s');
+        $user->lastaccess = date('Y-m-d H:i:s');
+        $user->save();
         
-            $_SESSION['user'] = serialize($user);
+        $_SESSION['user'] = serialize($user);
 
-            echo json_encode(['script' => 'window.location.href="/dashboard";']);
-        }catch(\Exception $er){
-            echo json_encode(['error' =>['message' => $er->getMessage()]]);
-        }
+        echo json_encode(['script' => 'window.location.href="/dashboard";']);
     }
 
     public function viewLogin(): void
@@ -114,7 +109,7 @@ class User extends Controller
     public function recover($email): void
     {
         $user = $this->entity->find()->where([
-            ['email','=',$email]
+            ['email', '=', $email]
         ])->execute()->toEntity();
    
         $this->throwUser($user);
@@ -141,12 +136,13 @@ class User extends Controller
         
         $this->throwMail($mail);
 
+        $_SESSION['alert'] = [
+            'message' => 'Uma mensagem contendo instruções para recuperação de senha foi enviada para seu email',
+            'class' => 'success'
+        ];
+
         echo json_encode([
-            'success' => [
-                'message' => 'Uma mensagem contendo instruções para recuperação de senha foi enviada para seu email'
-            ],
-            'reset'=>true,
-            'script' => "setTimeout(function(){ window.location.href='/' },5000);"
+            'script' => "window.location.href='/';"
         ]);          
             
     }
@@ -182,18 +178,20 @@ class User extends Controller
 
         $this->throwMail($mail);
 
+        $_SESSION['alert'] = [
+            'message' => 'Senha redefinida com sucesso',
+            'class' => 'success'
+        ];
+
         echo json_encode([
-            'success' => [
-                'message' => 'Senha redefinida com sucesso'
-            ],
-            'reset'=>true,
-            'script' => "setTimeout(function(){ window.location.href='/' }, 2000);"
+            'script' => "window.location.href='/';"
         ]);          
             
     }
 
     public function register(): void
     {
+        $tmpPhoto = null;
         try{
             $this->entity->name = $_POST['new_name'];
             $this->entity->username = $_POST['new_username'];
@@ -218,85 +216,108 @@ class User extends Controller
 
             (new AuthorizationController())->update('Ajax', $this->entity->id, 'user|update');
 
+            $_SESSION['alert'] = [
+                'message' => 'Usuário registrado com sucesso',
+                'class' => 'success'
+            ];
+
             echo json_encode([
-                'success' => [
-                    'message' => 'Usuário registrado com sucesso!'
-                ],
-                'reset' => true,
-                'script' => "setTimeout(function(){ window.location.href='/usuario'; },2000);"
+                'script' => "window.location.href='/usuario';"
             ]);
 
         }catch(\Exception $er){
-            echo json_encode([
-                'error' =>
-                    [
-                        'message' => $er->getMessage()
-                    ]
-            ]);
+            Util::delete($tmpPhoto);
+            throw $er;
         }
     }
 
     public function update(): void
     {
+        $user = unserialize($_SESSION['user']);
+
+        $this->throwPassword($_POST['edit_oldpassword'], $user->password);
+
+        $user->email = $_POST['edit_email'];
+        $user->password = (strlen($_POST['edit_password']) > 0) ? password_hash($_POST['edit_password'], PASSWORD_DEFAULT) : $user->password;
+        $user->save();
+
+        $_SESSION['user'] = serialize($user);
+
+        $_SESSION['alert'] = [
+            'message' => 'Informações atualizadas com sucesso',
+            'class' => 'success'
+        ];
+
+        echo json_encode([
+            'script' => "window.location.href='/usuario/minha-conta';"
+        ]);
+    }
+
+    public function edition(): void
+    {
+        $oldPhoto = null;
+        $tmpPhoto = null;
+
         try{
-            $user = unserialize($_SESSION['user']);
+            $user = $this->entity->find(intval($_POST['edit_id']))->execute()->toEntity();
 
-            $this->throwPassword($_POST['edit_oldpassword'], $user->password);
+            $this->throwUser($user)
+                 ->throwAdmin();
 
+            $oldPhoto = $user->photo;
+    
+            $user->password = (strlen($_POST['edit_password'] > 0)) ? password_hash($_POST['edit_password'], PASSWORD_DEFAULT) : $user->password;
+            $user->name = $_POST['edit_name'];
+            $user->username = $_POST['edit_username'];
             $user->email = $_POST['edit_email'];
-            $user->password = (strlen($_POST['edit_password']) > 0) ? password_hash($_POST['edit_password'], PASSWORD_DEFAULT) : $user->password;
+            $user->birth = $_POST['edit_birth'];
+            $user->status = $_POST['edit_status'];
+    
+            if(strlen($_POST['edit_userphoto']) > 0){
+                $file = $this->replaceBase64($_POST['edit_userphoto']);
+                $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'user'.DIRECTORY_SEPARATOR.$_POST['edit_username'].'.'.$file['ext'];
+                if(file_put_contents($tmpPhoto, $file['data'])){
+                    $user->photo = $_POST['edit_username'].'.'.$file['ext'];
+                }
+            }
+    
             $user->save();
 
-            $_SESSION['user'] = serialize($user);
+            if($oldPhoto !== $tmpPhoto){
+                Util::delete($oldPhoto);
+            }
 
+            $_SESSION['alert'] = [
+                'message' => 'Usuário editado com sucesso',
+                'class' => 'success'
+            ];
+    
             echo json_encode([
-                'success' => [
-                    'message' => 'Informações atualizadas com sucesso!'
-                ],
-                'reset' => true,
-                'script' => "setTimeout(function(){ window.location.href='/usuario/minha-conta'; },2000);"
+                'script' => 'window.location.href="/usuario/listagem";'
             ]);
 
         }catch(\Exception $er){
-            echo json_encode([
-                'error' =>
-                    [
-                        'message' => $er->getMessage()
-                    ]
-            ]);
+            Util::delete($tmpPhoto);
+            throw $er;
         }
     }
 
-    public function edition()
+    public function remove(string $id): void
     {
-        $user = $this->entity->find($_POST['edit_id'])->execute()->toEntity();
+        $user = $this->entity->find(intval($id))->execute()->toEntity();
 
-        $this->throwUser($user)->throwAdmin();
+        $this->throwUser($user);
 
-        $user->password = (strlen($_POST['edit_password'] > 0)) ? password_hash($_POST['edit_password'], PASSWORD_DEFAULT) : $user->password;
-        $user->name = $_POST['edit_name'];
-        $user->username = $_POST['edit_username'];
-        $user->email = $_POST['edit_email'];
-        $user->birth = $_POST['edit_birth'];
-        $user->status = $_POST['edit_status'];
+        (new AuthorizationController())->removeByUser($user->id);
 
-        if(strlen($_POST['edit_userphoto']) > 0){
-            $file = $this->replaceBase64($_POST['edit_userphoto']);
-            $tmpPhoto = SYSTEM['basepath'].DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'user'.DIRECTORY_SEPARATOR.$_POST['edit_username'].'.'.$file['ext'];
-            if(file_put_contents($tmpPhoto, $file['data'])){
-                $user->photo = $_POST['edit_username'].'.'.$file['ext'];
-            }
-        }
+        $user->remove(true);
 
-        $user->save();
+        $_SESSION['alert'] = [
+            'message' => 'Usuário removido com sucesso',
+            'class' => 'success'
+        ];
 
-        echo json_encode([
-            'success' => [
-                'message' => 'Usuário editado com sucesso'
-            ],
-            'reset'=>true,
-            'script' => 'setTimeout(function(){ window.location.href="/usuario/listagem"; },2000);'
-        ]);
+        header('Location: /usuario/listagem');
     }
 
 }

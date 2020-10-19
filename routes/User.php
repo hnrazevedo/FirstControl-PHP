@@ -50,14 +50,20 @@ Router::get('/usuario/{id}/edicao','App\\Controller\\User@viewEdition')
       ->name('userViewEdition')
       ->where(['id' => '[0-9]{1,11}']);
 
-Router::ajax('/login','App\\Controller\\User@login')
+      
+Router::get('/usuario/{id}/remover','App\\Controller\\User@remove')
+      //->middleware(['Authenticate','Authorization'])
+      ->name('userRemove')
+      ->where(['id' => '[0-9]{1,11}']);
+
+Router::ajax('/login','App\\Controller\\User@executeData')
       ->middleware(['NoAuthenticate']);
 
-Router::ajax('/recover','App\\Controller\\User@recover')
+Router::ajax('/recover','App\\Controller\\User@executeData')
       ->middleware(['NoAuthenticate']);
 
 Router::get('/redefinir-senha/{code}','App\\Controller\\User@viewReset')
       ->middleware(['NoAuthenticate']);
 
-Router::ajax('/reset','App\\Controller\\User@reset')
+Router::ajax('/reset','App\\Controller\\User@executeData')
       ->middleware(['NoAuthenticate']);

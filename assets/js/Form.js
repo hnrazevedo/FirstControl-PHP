@@ -106,6 +106,7 @@ const Form = function(){
     
                 for (var i = 0; i < document.images.length; i++) {
                     if (!IsImageOk(document.images[i])) {
+                        document.images[i].setAttribute('data-src',document.images[i].getAttribute('src'));
                         document.images[i].setAttribute('src','/assets/img/icon.placeholder.svg');
                         document.images[i].classList.add('notfound');
                     }
