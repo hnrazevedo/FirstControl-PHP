@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\Visit as Model;
 use App\Model\Visitant as VisitantModel;
 use App\Model\Car as CarModel;
+use App\Model\Balance as BalanceModel;
 use App\Helpers\Mask;
 use App\Engine\Util;
 use App\Controller\Car as CarController;
@@ -65,11 +66,36 @@ class Visit extends Controller
         }
     }
 
+    public function finish(): void
+    {
+        $visit = $this->entity->find(intval($_POST['upt_id']))->execute()->toEntity();
+
+        if(null === $visit){
+            throw new \Exception('Visita não encontrada');
+        }
+
+        $balance = (new BalanceModel())->find(intval($visit->balance))->execute()->toEntity();
+
+        $balance->ending = $_POST['upt_weight'];
+        $balance->save();
+
+        $visit->status = 1;
+        $visit->finished = date('Y-m-d H:i:s');
+        $visit->save();
+
+        $_SESSION['alert'] = [
+            'message' => 'Visita finalizada com sucesso',
+            'class' => 'success'
+        ];
+
+        echo json_encode(['script' => 'window.location.href="/visita";']);
+    }
+
     public function jsonList(): void
     {
         $visits = $this->entity->find()->execute()->toEntity();
 
-        $visits = (is_array($visits)) ? $visits : [$visits];
+        $visits = $this->getArray($visits);
 
         if(is_null($visits[0])){
             return;

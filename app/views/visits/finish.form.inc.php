@@ -1,5 +1,5 @@
 
-<form class="pb-4 mt-4 m-auto" access="/controller/visit" class="ajax" id="visitFinish">  
+<form class="pb-4 mt-4 m-auto ajax" access="/controller/visit" id="visitFinish">  
     <input type="hidden" value="{{ $visitView.id }}" id="upt_id" name="upt_id">
     <div class="row" style="width:inherit">
         <div class="col-12">
@@ -173,7 +173,7 @@
             document.getElementById('difference').value = difference;
         });
 
-        document.getElementById('upt_weight').value = parseFloat(document.getElementById('weight').value) + parseFloat(document.getElementById('weight').value);
+        document.getElementById('upt_weight').value = parseFloat(document.getElementById('weight').value) + parseFloat(document.getElementById('weight').value) + parseFloat('00.55');
 
         let difference = parseFloat(document.getElementById('weight').value) - parseFloat(document.getElementById('upt_weight').value);
         document.getElementById('difference').value = difference;

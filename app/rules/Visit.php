@@ -10,9 +10,9 @@ Class Visit
     public function __construct()
     {
         Validator::add($this,function(Rules $rules){
-            $rules->setAction('statusVisit')
-                  ->addField('dataselect',['mincount'=>1,'required'=>true])
-                  ->addField('role',['minlength'=>1,'maxlength'=>20 ,'required'=>true]);
+            $rules->setAction('finish')
+                  ->addField('upt_id',['minlength'=>1,'maxlength'=>14,'regex'=>'/^[0-9]{1,11}$/','required'=>true])
+                  ->addField('upt_weight',['minlength'=>1,'maxlength'=>14,'regex'=>'/^[0-9]{1,11}\.[0-9]{2}$/','required'=>true]);
             
             $rules->setAction('register')
                   ->addField('new_reason',['minlength'=>1,'maxlength'=>100,'required'=>true])  
