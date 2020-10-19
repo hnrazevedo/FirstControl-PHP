@@ -88,7 +88,7 @@ class Visit extends Controller
             'class' => 'success'
         ];
 
-        echo json_encode(['script' => 'window.location.href="/visita";']);
+        echo json_encode(['script' => 'window.location.href="/visita/'.$_POST['upt_id'].'/detalhes";']);
     }
 
     public function jsonList(): void
@@ -104,8 +104,12 @@ class Visit extends Controller
         $return = [];
         foreach($visits as $visit => $result){
             $item = $this->mountItem($result);
-            $item[] = "<a href='{$item[0]}/detalhes' class='btn btn-primary list' data-toggle='tooltip' title='Detalhes'><i class='bx bx-show'></i></a>
-                       <a href='{$item[0]}/finalizar' class='btn btn-primary list' data-toggle='tooltip' title='Finalizar'><i class='bx bx-send'></i></a>";
+           
+            $item[] = (($item[5] !== 'Finalizada')) 
+            ? "<a href='{$item[0]}/detalhes' class='btn btn-primary list' data-toggle='tooltip' title='Detalhes'><i class='bx bx-show'></i></a>
+               <a href='{$item[0]}/finalizar' class='btn btn-primary list' data-toggle='tooltip' title='Finalizar'><i class='bx bx-send'></i></a>"
+            : "<a href='{$item[0]}/detalhes' class='btn btn-primary list' data-toggle='tooltip' title='Detalhes'><i class='bx bx-show'></i></a>";
+            
             $return[] = array_values($item);
         }
 

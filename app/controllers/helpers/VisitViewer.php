@@ -63,6 +63,14 @@ trait VisitViewer
 
     public function viewFinish($id): void
     {
+        $visit = $this->entity->find($id)->where([
+            ['status', '=', 0]
+        ])->execute()->toEntity();
+        
+        if(is_null($visit)){
+            throw new \Exception('Visita não encontrada ou finalizada', 404);
+        }
+
         $this->viewDetails($id, 'finish');
     }
 
@@ -71,7 +79,7 @@ trait VisitViewer
         $visit = $this->entity->find($id)->execute()->toEntity();
         
         if(is_null($visit)){
-            throw new \Exception('Visit not found.', 404);
+            throw new \Exception('Visita não encontrada', 404);
         }
 
         $car = (new CarModel())->find($visit->car)->execute()->toEntity();

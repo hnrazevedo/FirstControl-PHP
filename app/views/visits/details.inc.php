@@ -5,6 +5,21 @@
         <div class="col-12">
             <h4 class="text-center">Visita ID {{ $visitView.id }}</h4>
         </div>
+
+        <div class="row mt-4" style="width:inherit">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-0 col-md-3"></div>
+                    <div class="col-sm-12 col-md-9 row">
+                        <div class="col-sm-12 col-md-6 col-lg-3 ml-auto">
+                            <div class="buttons">
+                                <button class="submit btn btn-lg btn-primary btn-block">Imprimir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="col-12 mt-4">
             <div class="row">
