@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS visitant(
     name VARCHAR(50) NOT NULL,
     cpf BIGINT(11) NOT NULL UNIQUE,
     rg BIGINT(9) NOT NULL UNIQUE,
-    birth DATE NOT NULL,
+    transport VARCHAR(50) NOT NULL,
     lastvisit DATETIME NOT NULL,
     register DATETIME NOT NULL,
     company VARCHAR(50) NOT NULL,
@@ -68,6 +68,13 @@ CREATE TABLE IF NOT EXISTS car(
     PRIMARY KEY(id)
 );
 
+CREATE TABLE IF NOT EXISTS balance(
+    id BIGINT AUTO_INCREMENT NOT NULL,
+    input FLOAT(11, 2) NOT NULL,
+    ending FLOAT(11, 2) NOT NULL,
+    PRIMARY KEY(id)
+);
+
 CREATE TABLE IF NOT EXISTS visit(
     id BIGINT AUTO_INCREMENT NOT NULL,
     visitant BIGINT(11) NOT NULL,
@@ -78,12 +85,14 @@ CREATE TABLE IF NOT EXISTS visit(
     status INT(1) NOT NULL,
     car BIGINT(11) NOT NULL,
     user BIGINT(11) NOT NULL,
+    balance BIGINT(11) NOT NULL,
     PRIMARY KEY(id)
 );
 
 ALTER TABLE visit ADD FOREIGN KEY (visitant) REFERENCES visitant(id);
 ALTER TABLE visit ADD FOREIGN KEY (car) REFERENCES car(id);
 ALTER TABLE visit ADD FOREIGN KEY (user) REFERENCES user(id);
+ALTER TABLE visit ADD FOREIGN KEY (balance) REFERENCES balance(id);
 ALTER TABLE car ADD FOREIGN KEY (driver) REFERENCES visitant(id);
 ALTER TABLE authorization ADD FOREIGN KEY (user) REFERENCES user(id);
 ALTER TABLE authorization ADD FOREIGN KEY (permission) REFERENCES permission(id);
@@ -136,6 +145,8 @@ INSERT INTO permission VALUES(36, 'Formulário de atualização de visita', 1, '
 INSERT INTO permission VALUES(37, 'Visualização de página de listagem de visita', 0, 'visitViewList');
 INSERT INTO permission VALUES(38, 'Retorno de solicitação de listagem de visita', 0, 'visitResultList');
 INSERT INTO permission VALUES(39, 'Visualização de página de detalhes de visita', 0, 'visitViewDetails');
+INSERT INTO permission VALUES(40, 'Visualização de página de finialização de visita', 0, 'visitViewFinish');
+INSERT INTO permission VALUES(41, 'Formulário de finalização de visita', 1, 'visit|finish');
 
 INSERT INTO authorization VALUES(1, 1 , 1);
 INSERT INTO authorization VALUES(2, 1 , 2);
@@ -176,3 +187,5 @@ INSERT INTO authorization VALUES(36, 1 , 36);
 INSERT INTO authorization VALUES(37, 1 , 37);
 INSERT INTO authorization VALUES(38, 1 , 38);
 INSERT INTO authorization VALUES(39, 1 , 39);
+INSERT INTO authorization VALUES(40, 1 , 40);
+INSERT INTO authorization VALUES(41, 1 , 41);

@@ -41,6 +41,9 @@
 
             <input type="checkbox" class="btn-check" id="visitViewEdition" <?= (isset($permissions['visitViewEdition'])) ? 'checked' : '' ?>>
             <label class="btn btn-outline-primary" for="visitViewEdition">Visita</label>
+
+            <input type="checkbox" class="btn-check" id="visitViewFinish" <?= (isset($permissions['visitViewFinish'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visitViewFinish">Finalização de visita</label>
         </div>
     </div>
 
@@ -155,6 +158,9 @@
 
             <input type="checkbox" class="btn-check" id="visit|edition" <?= (isset($permissions['visit|edition'])) ? 'checked' : '' ?>>
             <label class="btn btn-outline-primary" for="visit|edition">Visita</label>
+
+            <input type="checkbox" class="btn-check" id="visit|finish" <?= (isset($permissions['visit|finish'])) ? 'checked' : '' ?>>
+            <label class="btn btn-outline-primary" for="visit|finish">Finalização de visita</label>
         </div>
     </div>
 

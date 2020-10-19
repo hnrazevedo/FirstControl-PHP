@@ -1,9 +1,46 @@
 
-<form class="pb-4 mt-4 m-auto">  
-    <input type="hidden" value="{{ $visitView.id }}" id="edit_id" name="edit_id">
+<form class="pb-4 mt-4 m-auto" access="/controller/visit" class="ajax" id="visitFinish">  
+    <input type="hidden" value="{{ $visitView.id }}" id="upt_id" name="upt_id">
     <div class="row" style="width:inherit">
         <div class="col-12">
             <h4 class="text-center">Visita ID {{ $visitView.id }}</h4>
+        </div>
+
+        <div class="row mt-4" style="width:inherit">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-0 col-md-3"></div>
+                    <div class="col-sm-12 col-md-9 row">
+                        <div class="col-sm-12 col-md-6 col-lg-3 ml-auto">
+                            <div class="buttons">
+                                <button class="submit btn btn-lg btn-primary btn-block">Finalizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4" style="width:inherit">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-0 col-md-3"></div>
+                    <div class="col-sm-12 col-md-9 row ">
+                        <div class="col-12">
+                            <h6>Pesagem</h6>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <input type="text" label="Peso inicial" value="{{ $balanceView.input }}" disabled="disabled" id="weight">
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <input type="text" label="Peso saída" value="{{ $balanceView.ending }}" class="disabled" name="upt_weight" id="upt_weight">
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <input type="text" label="Peso transportado" value="{{ $balanceView.difference }}" disabled="disabled" id="difference">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="col-12 mt-4">
@@ -113,37 +150,32 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-sm-0 col-md-3"></div>
-                <div class="col-sm-12 col-md-9 row ">
-                    <div class="col-12">
-                        <h6>Pesagem</h6>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-3">
-                        <input type="text" label="Peso inicial" value="{{ $balanceView.input }}" disabled="disabled">
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-3">
-                        <input type="text" label="Peso saída" value="{{ $balanceView.ending }}" disabled="disabled">
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-3">
-                        <input type="text" label="Peso transportado" value="{{ $balanceView.difference }}" disabled="disabled">
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-4" style="width:inherit">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-sm-0 col-md-3"></div>
                 <div class="col-sm-12 col-md-9 row">
-                <div class="col-12">
-                    <h6>Usuário</h6>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <input type="text" label="Nome" value="{{ $user.name }}" disabled="disabled">
-                </div>
+                    <div class="col-12">
+                        <h6>Usuário</h6>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        <input type="text" label="Nome" value="{{ $user.name }}" disabled="disabled">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <input type="hidden" name="REQUEST_METHOD" value="AJAX" fixed="fixed">
+    <input type="hidden" name="PROVIDER" value="visit" fixed="fixed">
+    <input type="hidden" name="ROLE" value="finish" fixed="fixed">
 </form>
+
+<script>
+    window.addEventListener('load',function(){
+        document.getElementById('upt_weight').addEventListener('input',function(){
+            let difference = parseFloat(document.getElementById('weight').value) - parseFloat(this.value);
+            document.getElementById('difference').value = difference;
+        });
+
+        document.getElementById('upt_weight').value = parseFloat(document.getElementById('weight').value) + parseFloat(document.getElementById('weight').value);
+
+        let difference = parseFloat(document.getElementById('weight').value) - parseFloat(document.getElementById('upt_weight').value);
+        document.getElementById('difference').value = difference;
+    });
+</script>

@@ -82,7 +82,8 @@ form select + label{
     padding-right: calc(var(--bs-gutter-x)/ 2);
 }
 form input[disabled] + label,
-form select[disabled] + label{
+form select[disabled] + label
+form .disabled + label{
     font-weight: bold;
 }
 form input.error + label{
@@ -156,7 +157,8 @@ form textarea:focus{
 
 form input[type="text"]:not([disabled]):hover,
 form input[type="password"]:not([disabled]):hover,
-form textarea:not([disabled]):hover{
+form textarea:not([disabled]):hover,
+form .disabled:hover{
     border: solid 1px rgba(0,0,0,.4);
     box-shadow: 0 0 5px rgba(0,0,0,.25);
 }
@@ -164,13 +166,15 @@ form textarea:not([disabled]):hover{
 form input[type="text"][disabled],
 form input[type="text"][disabled],
 form textarea[disabled],
-form select[disabled]:not(.unique){
-    background:white;
-    border:none;
-    padding-left:0;
-    padding-right: 1.2em;
-    font-weight: bold;
-    opacity:1
+form select[disabled]:not(.unique),
+form .disabled{
+    background:white !important;
+    border:none!important;
+    padding-left:0!important;
+    padding-right: 1.2em!important;
+    font-weight: bold!important;
+    opacity:1!important;
+    pointer-events: none!important;
 }
 form select.form-select.success:focus{
     border-color: darkgreen;

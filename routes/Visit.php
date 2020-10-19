@@ -14,7 +14,13 @@ Router::get('/visita/inscrever','App\\Controller\\Visit@viewRegister')
       ->name('visitViewRegister')
       ->middleware(['Authenticate','Authorization']);
 
-Router::get('/visita/{id}','App\\Controller\\Visit@viewDetails')
+Router::get('/visita/{id}/finalizar','App\\Controller\\Visit@viewFinish')
+      ->name('visitViewFinish')
+      ->middleware(['Authenticate','Authorization'])
+      ->where(['id' => '[0-9]{1,11}']);
+
+      
+Router::get('/visita/{id}/detalhes','App\\Controller\\Visit@viewDetails')
       ->name('visitViewDetails')
       ->middleware(['Authenticate','Authorization'])
       ->where(['id' => '[0-9]{1,11}']);

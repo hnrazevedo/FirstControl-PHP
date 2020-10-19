@@ -9,7 +9,7 @@ use HnrAzevedo\Datamanager\Model as Entity;
   * @property string $name 
   * @property string $cpf
   * @property string $rg
-  * @property string $birth
+  * @property string $transport
   * @property string $lastvisit
   * @property string $register
   * @property string $company

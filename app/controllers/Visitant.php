@@ -92,7 +92,7 @@ class Visitant extends Controller
         $visitant->email = $_POST['edit_email'];
         $visitant->cpf = str_replace(['.','-'], '', $_POST['edit_cpf']);
         $visitant->rg = str_replace(['.','-'], '', $_POST['edit_rg']);
-        $visitant->birth = $_POST['edit_birth'];
+        $visitant->transport = $_POST['edit_transport'];
         $visitant->phone = str_replace(['(',')',' ','-'],'',$_POST['edit_phone']);
         $visitant->company = $_POST['edit_company'];
 
@@ -148,7 +148,7 @@ class Visitant extends Controller
         $this->entity->cpf = str_replace(['.','-'],'',$data['new_cpf']);
         $this->entity->rg = str_replace(['.','-'],'',$data['new_rg']);
         $this->entity->email = $data['new_email'];
-        $this->entity->birth = $data['new_birth'];
+        $this->entity->transport = $data['new_transport'];
         $this->entity->phone = str_replace(['(',')',' ','-'],'',$data['new_phone']);
         $this->entity->company = $data['new_company'];
         $this->entity->register = date('Y-m-d H:i:s');

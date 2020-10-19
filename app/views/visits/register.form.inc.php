@@ -30,7 +30,7 @@
                     <input type="text" id="new_name" name="new_name" label="Nome completo" maxlength="50" class="visitant">
                 </div>
                 <div class="col-sm-6 col-md-4">
-                    <input type="text" id="new_birth" name="new_birth" label="Data de nascimento" data-mask="##/##/####" class="visitant">
+                    <input type="text" id="new_transport" name="new_transport" label="Transportadora" maxlength="50" class="visitant">
                 </div>
                 <div class="col-sm-6 col-md-4">
                     <input type="text" id="new_phone" name="new_phone" label="Telefone" data-mask="(##) #####-####" class="visitant">
@@ -41,8 +41,8 @@
             </div>
          </div>
     </div>
-    <br />
-    <div class="row">
+
+    <div class="row mt-4">
         <div class="col-sm-4 col-md-3 preview">
             <div class="col-12">
                 <div class="photo  text-center center">
@@ -77,8 +77,8 @@
             </div>
         </div>
     </div> 
-    <br/>
-    <div class="row">
+    
+    <div class="row mt-4">
         <div class="col-sm-4 col-md-3"></div>
         <div class="col-sm-8 col-md-9">
             <div class="row">
@@ -94,7 +94,22 @@
             </div>
         </div>
     </div>
-    <div class="row">
+
+    <div class="row mt-4">
+        <div class="col-sm-4 col-md-3"></div>
+        <div class="col-sm-8 col-md-9">
+            <div class="row">
+                <div class="col-12">
+                    <h6>Pesagem</h6>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <input type="text" id="new_weight" name="new_weight" label="Peso inicial" maxlength="11" class="disabled" value="00.00">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
         <div class="col-sm-4 col-md-3"></div>
         <div class="col-sm-8 col-md-9">
             <div class="row">
@@ -106,6 +121,7 @@
             </div>
         </div>
     </div>
+
     <input type="hidden" name="REQUEST_METHOD" value="AJAX" fixed="fixed">
     <input type="hidden" name="PROVIDER" value="visit" fixed="fixed">
     <input type="hidden" name="ROLE" value="register" fixed="fixed">
