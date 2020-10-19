@@ -12,6 +12,7 @@ use HnrAzevedo\Datamanager\Model as Entity;
   * @property string $reason
   * @property string $lastvisit
   * @property string $responsible
+  * @property int $balance
   * @property int $status
   * @property int $car
   * @property int $user

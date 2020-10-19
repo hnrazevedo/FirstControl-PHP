@@ -255,14 +255,12 @@ class User extends Controller
 
     public function edition(): void
     {
-        $oldPhoto = null;
         $tmpPhoto = null;
 
         try{
             $user = $this->entity->find(intval($_POST['edit_id']))->execute()->toEntity();
 
-            $this->throwUser($user)
-                 ->throwAdmin();
+            $this->throwUser($user)->throwAdmin();
 
             $oldPhoto = $user->photo;
     
@@ -292,10 +290,7 @@ class User extends Controller
                 'class' => 'success'
             ];
     
-            echo json_encode([
-                'script' => 'window.location.href="/usuario/listagem";'
-            ]);
-
+            echo json_encode(['script' => 'window.location.href="/usuario/listagem";']);
         }catch(\Exception $er){
             Util::delete($tmpPhoto);
             throw $er;
