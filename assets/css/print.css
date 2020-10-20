@@ -1,0 +1,20 @@
+
+ul{
+    padding:0;
+}
+hr{
+    border:none;
+    border-bottom: dashed 2px;
+    padding: .05rem 0;
+    height: 1px;
+    background: transparent;
+}
+body{
+    font-family:monospace;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    height: max-content;
+}
+p{
+    margin:0;
+}

@@ -13,7 +13,7 @@
                     <div class="col-sm-12 col-md-9 row">
                         <div class="col-sm-12 col-md-6 col-lg-3 ml-auto">
                             <div class="buttons">
-                                <button class="submit btn btn-lg btn-primary btn-block">Imprimir</button>
+                                <a onclick="window.open('{{ $system.uri }}/visita/{{ $visitView.id }}/imprimir', '_blank', '')" class="btn btn-lg btn-primary btn-block">Imprimir</button>
                             </div>
                         </div>
                     </div>
@@ -119,6 +119,9 @@
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-3">
                         <input type="text" label="Hora final" value="{{ $date.finished }}" disabled="disabled">
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        <textarea label="Observações" value="{{ $visitView.note }}" disabled="disabled">{{ $visitView.note }}</textarea>
                     </div>
                 </div>
             </div>

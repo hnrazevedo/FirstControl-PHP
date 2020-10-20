@@ -58,6 +58,7 @@ form input[type="hidden"] + label{
 form video + label,
 form img + label,
 form input + label,
+form textarea + label,
 form select + label{
     position: absolute;
     top:2.6em;
@@ -72,7 +73,9 @@ form video + label,
 form img + label,
 form input[type="file"] + label,
 form input:focus + label,
+form textarea:focus + label,
 form input:not([value=""]) + label,
+form textarea:not([value=""]) + label,
 form select + label{
     color:rgb(66,133,244);
     transform: translate(-1.65em,-2em);
@@ -82,7 +85,8 @@ form select + label{
     padding-right: calc(var(--bs-gutter-x)/ 2);
 }
 form input[disabled] + label,
-form select[disabled] + label
+form select[disabled] + label,
+form textarea[disabled] + label,
 form .disabled + label{
     font-weight: bold;
 }
@@ -175,6 +179,10 @@ form .disabled{
     font-weight: bold!important;
     opacity:1!important;
     pointer-events: none!important;
+    resize: none;
+}
+form textarea{
+    min-height: 38px;
 }
 form select.form-select.success:focus{
     border-color: darkgreen;

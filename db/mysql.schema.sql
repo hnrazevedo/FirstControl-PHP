@@ -86,6 +86,7 @@ CREATE TABLE IF NOT EXISTS visit(
     car BIGINT(11) NOT NULL,
     user BIGINT(11) NOT NULL,
     balance BIGINT(11) NOT NULL,
+    note VARCHAR(200),
     PRIMARY KEY(id)
 );
 
@@ -147,6 +148,7 @@ INSERT INTO permission VALUES(38, 'Retorno de solicitação de listagem de visit
 INSERT INTO permission VALUES(39, 'Visualização de página de detalhes de visita', 0, 'visitViewDetails');
 INSERT INTO permission VALUES(40, 'Visualização de página de finialização de visita', 0, 'visitViewFinish');
 INSERT INTO permission VALUES(41, 'Formulário de finalização de visita', 1, 'visit|finish');
+INSERT INTO permission VALUES(42, 'Impressão de visita', 0, 'visitViewPrint');
 
 INSERT INTO authorization VALUES(1, 1 , 1);
 INSERT INTO authorization VALUES(2, 1 , 2);
@@ -189,3 +191,4 @@ INSERT INTO authorization VALUES(38, 1 , 38);
 INSERT INTO authorization VALUES(39, 1 , 39);
 INSERT INTO authorization VALUES(40, 1 , 40);
 INSERT INTO authorization VALUES(41, 1 , 41);
+INSERT INTO authorization VALUES(42, 1 , 42);

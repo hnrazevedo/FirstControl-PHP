@@ -142,6 +142,9 @@
                     <div class="col-sm-12 col-md-6 col-lg-3">
                         <input type="text" label="Hora final" value="{{ $date.finished }}" disabled="disabled">
                     </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        <textarea label="Observações" value="{{ $visitView.note }}" disabled="disabled">{{ $visitView.note }}</textarea>
+                    </div>
                 </div>
             </div>
         </div>
@@ -173,9 +176,18 @@
             document.getElementById('difference').value = difference;
         });
 
-        document.getElementById('upt_weight').value = parseFloat(document.getElementById('weight').value) + parseFloat(document.getElementById('weight').value) + parseFloat('00.55');
 
-        let difference = parseFloat(document.getElementById('weight').value) - parseFloat(document.getElementById('upt_weight').value);
-        document.getElementById('difference').value = difference;
+        var writeSerial=function(str) {
+            chrome.serial.send(connectionId, convertStringToArrayBuffer(str), onSend);
+        };
+        // Convert string to ArrayBuffer
+        var convertStringToArrayBuffer=function(str) {
+            var buf=new ArrayBuffer(str.length);
+            var bufView=new Uint8Array(buf);
+            for (var i=0; i<str.length; i++) {
+                bufView[i]=str.charCodeAt(i);
+            }
+            return buf;
+        };
     });
 </script>

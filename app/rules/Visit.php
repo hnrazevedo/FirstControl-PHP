@@ -31,7 +31,8 @@ Class Visit
                   ->addField('new_model',['minlength'=>1,'maxlength'=>20,'required'=>true])
                   ->addField('new_color',['minlength'=>1,'maxlength'=>10,'required'=>true])   
                   ->addField('new_axes',['minlength'=>1,'maxlength'=>1,'regex'=>'/^[0-9]{1}$/','required'=>true])
-                  ->addField('new_weight',['minlength'=>1,'maxlength'=>14,'regex'=>'/^[0-9]{1,11}\.[0-9]{2}$/','required'=>true]);
+                  ->addField('new_weight',['minlength'=>1,'maxlength'=>14,'regex'=>'/^[0-9]{1,11}\.[0-9]{2}$/','required'=>true])
+                  ->addField('new_note',['minlength'=>1,'maxlength'=>200,'required'=>false]);
             
             return $rules;
         });

@@ -126,9 +126,8 @@ const Form = function(){
                 option.addEventListener('click',t.selectDataClick);
             });
     
-            document.querySelectorAll('input:not([type="checkbox"])','textarea').forEach((input, i) => {
+            document.querySelectorAll('input:not([type="checkbox"]), textarea').forEach((input, i) => {
                 input.addEventListener('blur',t.inputBlur);
-                input.addEventListener('keypress',t.inputKeyPress);
                 input.addEventListener('keypress',t.inputKeyUp);
                 input.addEventListener('keyup',t.inputKeyUp);
             });

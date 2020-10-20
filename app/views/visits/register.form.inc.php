@@ -91,6 +91,9 @@
                 <div class="col-sm-6 col-md-4">
                     <input type="text" id="new_responsible" name="new_responsible" label="Responsável" maxlength="50">
                 </div>
+                <div class="col-sm-6 col-md-4">
+                    <textarea name="new_note" id="new_note" maxlength="200" label="Observações" rows="1"></textarea>
+                </div>
             </div>
         </div>
     </div>

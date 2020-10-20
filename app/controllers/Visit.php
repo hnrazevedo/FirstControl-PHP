@@ -47,6 +47,7 @@ class Visit extends Controller
             $this->entity->finished = '0000-00-00 00:00:00';
             $this->entity->reason = $_POST['new_reason'];
             $this->entity->responsible = $_POST['new_responsible'];
+            $this->entity->note = $_POST['new_note'];
             $this->entity->status = 0;
             $this->entity->car = $car->id;
 

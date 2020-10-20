@@ -22,5 +22,6 @@ Class Visitant extends Entity
     public function __construct()
     {
         parent::create('visitant', 'id');
+        $this->maxlength(false);
     }
 }

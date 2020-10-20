@@ -14,7 +14,8 @@ trait VisitViewer
     protected Model $entity;
 
     use Viewer,
-        Mask;
+        Mask,
+        Printer;
 
     public function viewRegister(): void
     {
@@ -61,9 +62,9 @@ trait VisitViewer
         ]);
     }
 
-    public function viewFinish($id): void
+    public function viewFinish(string $id): void
     {
-        $visit = $this->entity->find($id)->where([
+        $visit = $this->entity->find(intval($id))->where([
             ['status', '=', 0]
         ])->execute()->toEntity();
         
@@ -71,7 +72,14 @@ trait VisitViewer
             throw new \Exception('Visita não encontrada ou finalizada', 404);
         }
 
-        $this->viewDetails($id, 'finish');
+        $this->viewDetails($id, ['title' => 'Finalização de visita', 'page' => 'finish.form']);
+    }
+
+    public function viewPrint(string $id): void
+    {
+        $this->print(array_merge($this->getDetails($id),[
+            'page' => '../visits/print'
+        ]));
     }
 
     private function throwVisit($visit): void
@@ -81,7 +89,35 @@ trait VisitViewer
         }
     }
 
-    public function viewDetails(string $id, ?string $page = null): void
+    public function viewDetails(string $id, ?array $data = null): void
+    {
+        $details = $this->getDetails($id);
+
+        $this->view([
+            'title' => (null !== $data) ? $data['title'] : 'Detalhes de visita',
+            'page' => (null !== $data) ? "/visits/{$data['page']}" : '/visits/details',
+            'visitView' => $details['visitView'],
+            'visitant' => $details['visitant'],
+            'car' => $details['car'],
+            'balanceView' => $details['balance'],
+            'status' => ( $details['visitView']->status == 0 ) ? 'Em andamento' : 'Finalizada',
+            'date' => [
+                'day' =>  $details['day'],
+                'started' => (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $details['visitView']->started) , 'H:i:s')),
+                'finished'=> (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $details['visitView']->finished) , 'H:i:s'))
+            ],
+            'user' => (new UserModel())->find($details['visitView']->user)->only('name')->execute()->toEntity(),
+            'breadcrumb' => [
+                ['text' => 'Painel principal', 'uri' => '/dashboard'],
+                ['text' => 'Visita', 'uri' => '/visita'],
+                ['text' => 'Listagem', 'uri' => '/visita/listagem'],
+                ['text' => 'Detalhes', 'active' => true],
+            ]
+        ]);
+        
+    }
+
+    private function getDetails(string $id): array
     {
         $visit = $this->entity->find(intval($id))->execute()->toEntity();
         
@@ -98,35 +134,21 @@ trait VisitViewer
         $balance = [
             'input' => number_format(floatval($balance->input), 2),
             'ending' => number_format(floatval($balance->ending), 2),
-            'difference' => number_format(floatval($balance->input - $balance->ending), 2)
+            'difference' => number_format(floatval($balance->input - $balance->ending), 2),
+            'action' => (number_format(floatval($balance->input - $balance->ending), 2) < 0) ? 'Retirada de material' : 'Entrada de material'
         ];
 
         if($day !== $dayFinal && $visit->status != 0){
             $day .= ' até '.$dayFinal;
         }
 
-        $this->view([
-            'title' => (null !== $page) ? 'Finalização de visita' : 'Detalhes de visita',
-            'page' => (null !== $page) ? '/visits/finish.form' : '/visits/details',
+        return [
             'visitView' => $visit,
-            'visitant' => $visitant,
             'car' => $car,
-            'balanceView' => $balance,
-            'status' => ( $visit->status == 0 ) ? 'Em andamento' : 'Finalizada',
-            'date' => [
-                'day' =>  $day,
-                'started' => (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $visit->started) , 'H:i:s')),
-                'finished'=> (@date_format( @date_create_from_format(DATAMANAGER_CONFIG['datetimeformat'] , $visit->finished) , 'H:i:s'))
-            ],
-            'user' => (new UserModel())->find($visit->user)->only('name')->execute()->toEntity(),
-            'breadcrumb' => [
-                ['text' => 'Painel principal', 'uri' => '/dashboard'],
-                ['text' => 'Visita', 'uri' => '/visita'],
-                ['text' => 'Listagem', 'uri' => '/visita/listagem'],
-                ['text' => 'Detalhes', 'active' => true],
-            ]
-        ]);
-        
+            'visitant' => $visitant,
+            'balance' => $balance,
+            'day' => $day
+        ];
     }
 
 }
