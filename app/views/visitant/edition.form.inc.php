@@ -44,7 +44,7 @@
             <input type="text" value="{{ $visitantView.rg }}" id="edit_rg" name="edit_rg" label="RG" data-mask="##.###.###-#">
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
-            <input type="text" value="{{ $visitantView.birth }}" id="edit_birth" name="edit_birth" label="Data de nascimento" data-mask="##/##/####">
+            <input type="text" value="{{ $visitantView.transport }}" id="edit_transport" name="edit_transport" label="Transportadora" maxlength="50">
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
             <input type="text" value="{{ $visitantView.phone }}" id="edit_phone" name="edit_phone" label="Contato" data-mask="(##) #####-####">

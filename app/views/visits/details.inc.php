@@ -121,7 +121,7 @@
                         <input type="text" label="Hora final" value="{{ $date.finished }}" disabled="disabled">
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-3">
-                        <textarea label="Observações" value="{{ $visitView.note }}" disabled="disabled">{{ $visitView.note }}</textarea>
+                        <textarea label="Observações" value="{{ $visitView.note }}" rows="1" disabled="disabled">{{ $visitView.note }}</textarea>
                     </div>
                 </div>
             </div>

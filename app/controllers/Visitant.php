@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Controller\Helper\VisitantChecker;
 use App\Controller\Helper\VisitantViewer;
 use App\Model\Visitant as Model;
+use App\Model\Car as CarModel;
 use App\Engine\Util;
 use App\Helpers\{Converter, Mask , Validate};
 
@@ -40,7 +41,8 @@ class Visitant extends Controller
                 }
             }
             $item = array_values($date);
-            $item[] = "<a href='{$item[0]}/edicao'>Editar</a>";
+            $item[] = "<a href='{$item[0]}' class='btn btn-primary list' data-toggle='tooltip' title='Detalhes'><i class='bx bx-show'></i></a>
+                       <a href='{$item[0]}/edicao' class='btn btn-primary list' data-toggle='tooltip' title='Editar'><i class='bx bxs-pencil'></i></a>";
             $return[] = $item;
         }
 
@@ -170,6 +172,10 @@ class Visitant extends Controller
         $visitant->rg = $this->replaceRG($visitant->rg);
         $visitant->phone = $this->replaceCellPhone($visitant->phone);
 
-        echo $visitant->toJson();
+        $car = (new CarModel())->find()->where([
+            ['driver', '=', $visitant->id]
+        ])->execute()->toEntity();
+
+        echo (null !== $car) ? json_encode([$car->toJson(),$visitant->toJson()]) : [$visitant->toJson()];
     }
 }

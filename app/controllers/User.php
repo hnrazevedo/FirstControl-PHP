@@ -87,7 +87,8 @@ class User extends Controller
         
         $_SESSION['user'] = serialize($user);
 
-        echo json_encode(['script' => 'window.location.href="/dashboard";']);
+        $link = ($user->id == 1) ? '/dashboard' : '/visita';
+        echo json_encode(['script' => 'window.location.href="'.$link.'";']);
     }
 
     public function viewLogin(): void

@@ -106,7 +106,7 @@
                     <h6>Pesagem</h6>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                    <input type="text" id="new_weight" name="new_weight" label="Peso inicial" maxlength="11" class="disabled" value="00.00">
+                    <input type="text" id="new_weight" name="new_weight" label="Peso inicial" maxlength="11" value="00.00">
                 </div>
             </div>
         </div>
@@ -145,21 +145,24 @@
             let visitant = await Submitter.setUrl('/visitant/json/'+evt.target.value).execute(true);
 
             if(visitant.error === undefined){
-                for(var field in visitant){
-                    input = form.querySelector('input#new_'+field+':not([type="file"])');
-                    if(input != undefined){
-                        input.value = visitant[field];
-                        input.setAttribute('value',visitant[field]);
-                    }  
-                    if(field == 'photo'){
-                        document.getElementById('visitantphoto').src = '{{ $system.uri }}/assets/img/visitant/'+visitant[field];
-                    }
-                };
-            }else{
-                form.querySelectorAll('input.visitant:not(#new_cpf)').forEach(input => {
-                    input.value = '';
-                    input.setAttribute('value','');
-                });
+                
+                for(var ob in visitant){
+                    visitant[ob] = JSON.parse(visitant[ob]);
+
+                    for(var field in visitant[ob]){
+                        input = form.querySelector('input#new_'+field+':not([type="file"])');
+                        if(input != undefined){
+                            input.value = visitant[ob][field];
+                            input.setAttribute('value',visitant[ob][field]);
+                            input.classList.add('disabled');
+                        }  
+                        if(field == 'photo'){
+                            objj = (ob == 1) ? 'visitant' : 'car';
+                            document.getElementById(objj+'photo').src = '{{ $system.uri }}/assets/img/'+objj+'/'+visitant[ob][field];
+                        }
+                    };
+                }
+                document.querySelector(':focus').blur();
             }
         });
 
@@ -167,6 +170,7 @@
             if(evt.target.value.length == 0){
                 return false;
             }
+            
             let car = await Submitter.setUrl('/car/json/'+evt.target.value).execute(true);
 
             if(car.error === undefined){
@@ -180,12 +184,8 @@
                         document.getElementById('carphoto').src = '{{ $system.uri }}/assets/img/car/'+car[field];
                     }
                 };
-            }else{
-                form.querySelectorAll('input.car:not(#new_board)').forEach(input => {
-                    input.value = '';
-                    input.setAttribute('value','');
-                });
             }
+
         });
     });    
 </script>
