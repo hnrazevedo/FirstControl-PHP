@@ -28,7 +28,9 @@ class User extends Controller
 
         $users = $this->getArray($users);
 
-        $this->throwUser($users[0]);
+        if(null === $users[0]){
+            return;
+        }
 
         $return = [];
         foreach($users as $user => $result){

@@ -127,16 +127,16 @@
         },
         {
             "name": "hnrazevedo/validator",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Validator.git",
-                "reference": "b2d9fe28d1130cb01cf420f759f6d9bb79d16d1c"
+                "reference": "42c6c4e8ab7dbc46a92144fdb9070c822f001f71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/b2d9fe28d1130cb01cf420f759f6d9bb79d16d1c",
-                "reference": "b2d9fe28d1130cb01cf420f759f6d9bb79d16d1c",
+                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/42c6c4e8ab7dbc46a92144fdb9070c822f001f71",
+                "reference": "42c6c4e8ab7dbc46a92144fdb9070c822f001f71",
                 "shasum": ""
             },
             "require": {
@@ -162,7 +162,7 @@
                 }
             ],
             "description": "Validator is a simple data validation component.",
-            "time": "2020-10-06T22:57:31+00:00"
+            "time": "2020-10-22T16:36:48+00:00"
         },
         {
             "name": "hnrazevedo/viewer",
