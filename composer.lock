@@ -12,22 +12,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Datamanager.git",
-                "reference": "1eace7d9e8d22f538f4e7bb839f799491a03c226"
+                "reference": "80b68795c5f9be3311d754fbb934ea8783b0de20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/1eace7d9e8d22f538f4e7bb839f799491a03c226",
-                "reference": "1eace7d9e8d22f538f4e7bb839f799491a03c226",
+                "url": "https://api.github.com/repos/hnrazevedo/Datamanager/zipball/80b68795c5f9be3311d754fbb934ea8783b0de20",
+                "reference": "80b68795c5f9be3311d754fbb934ea8783b0de20",
                 "shasum": ""
             },
             "require": {
                 "ext-pdo": "*",
                 "php": ">=7.4"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "HnrAzevedo\\Datamanager\\": "src/"
+                    "HnrAzevedo\\Datamanager\\": "src/",
+                    "HnrAzevedo\\Datamanager\\Attributes\\": "src/attributes/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -42,7 +44,11 @@
                 }
             ],
             "description": "Datamanager is a simple persistence abstraction component in the database.",
-            "time": "2020-10-20T19:34:17+00:00"
+            "support": {
+                "issues": "https://github.com/hnrazevedo/Datamanager/issues",
+                "source": "https://github.com/hnrazevedo/Datamanager/tree/master"
+            },
+            "time": "2021-01-11T02:30:03+00:00"
         },
         {
             "name": "hnrazevedo/http",
@@ -65,6 +71,7 @@
                 "psr/http-server-handler": "^1.0",
                 "psr/http-server-middleware": "^1.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -82,20 +89,24 @@
                     "role": "Developer"
                 }
             ],
+            "support": {
+                "issues": "https://github.com/hnrazevedo/Http/issues",
+                "source": "https://github.com/hnrazevedo/Http/tree/master"
+            },
             "time": "2020-10-03T14:50:17+00:00"
         },
         {
             "name": "hnrazevedo/router",
-            "version": "v2.3.2",
+            "version": "v2.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Router.git",
-                "reference": "f5e9710d7cf13d307427dbcb198da4de1ba0fd6d"
+                "reference": "f70663cb4820950e6f5358dcc2c5b7b80f550a35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/f5e9710d7cf13d307427dbcb198da4de1ba0fd6d",
-                "reference": "f5e9710d7cf13d307427dbcb198da4de1ba0fd6d",
+                "url": "https://api.github.com/repos/hnrazevedo/Router/zipball/f70663cb4820950e6f5358dcc2c5b7b80f550a35",
+                "reference": "f70663cb4820950e6f5358dcc2c5b7b80f550a35",
                 "shasum": ""
             },
             "require": {
@@ -123,20 +134,24 @@
                 }
             ],
             "description": "Router is a simple friendly URL abstractor.",
-            "time": "2020-10-08T17:08:04+00:00"
+            "support": {
+                "issues": "https://github.com/hnrazevedo/Router/issues",
+                "source": "https://github.com/hnrazevedo/Router/tree/v2.4.5"
+            },
+            "time": "2020-11-29T23:38:54+00:00"
         },
         {
             "name": "hnrazevedo/validator",
-            "version": "v2.0.4",
+            "version": "v2.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Validator.git",
-                "reference": "42c6c4e8ab7dbc46a92144fdb9070c822f001f71"
+                "reference": "2e6c5a90a6fc73126eef6d1f11caa8ce3ce03b96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/42c6c4e8ab7dbc46a92144fdb9070c822f001f71",
-                "reference": "42c6c4e8ab7dbc46a92144fdb9070c822f001f71",
+                "url": "https://api.github.com/repos/hnrazevedo/Validator/zipball/2e6c5a90a6fc73126eef6d1f11caa8ce3ce03b96",
+                "reference": "2e6c5a90a6fc73126eef6d1f11caa8ce3ce03b96",
                 "shasum": ""
             },
             "require": {
@@ -162,20 +177,24 @@
                 }
             ],
             "description": "Validator is a simple data validation component.",
-            "time": "2020-10-22T16:36:48+00:00"
+            "support": {
+                "issues": "https://github.com/hnrazevedo/Validator/issues",
+                "source": "https://github.com/hnrazevedo/Validator/tree/v2.1.4"
+            },
+            "time": "2020-11-10T17:43:54+00:00"
         },
         {
             "name": "hnrazevedo/viewer",
-            "version": "v2.0.3",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hnrazevedo/Viewer.git",
-                "reference": "317e1014a197cfd1f56ffad98f9b930287438915"
+                "reference": "658b827079c696049b222518be5cefd4ed2dd6ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/317e1014a197cfd1f56ffad98f9b930287438915",
-                "reference": "317e1014a197cfd1f56ffad98f9b930287438915",
+                "url": "https://api.github.com/repos/hnrazevedo/Viewer/zipball/658b827079c696049b222518be5cefd4ed2dd6ea",
+                "reference": "658b827079c696049b222518be5cefd4ed2dd6ea",
                 "shasum": ""
             },
             "require": {
@@ -201,7 +220,11 @@
                 }
             ],
             "description": "Tools for developing personal projects",
-            "time": "2020-10-08T17:27:52+00:00"
+            "support": {
+                "issues": "https://github.com/hnrazevedo/Viewer/issues",
+                "source": "https://github.com/hnrazevedo/Viewer/tree/v2.0.5"
+            },
+            "time": "2020-11-30T00:14:38+00:00"
         },
         {
             "name": "opis/closure",
@@ -209,12 +232,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "c547f8262a5fa9ff507bd06cc394067b83a75085"
+                "reference": "06b4961aabf900c72a20b7000bfa10fd7ae3035e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/c547f8262a5fa9ff507bd06cc394067b83a75085",
-                "reference": "c547f8262a5fa9ff507bd06cc394067b83a75085",
+                "url": "https://api.github.com/repos/opis/closure/zipball/06b4961aabf900c72a20b7000bfa10fd7ae3035e",
+                "reference": "06b4961aabf900c72a20b7000bfa10fd7ae3035e",
                 "shasum": ""
             },
             "require": {
@@ -224,6 +247,7 @@
                 "jeremeamia/superclosure": "^2.0",
                 "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -262,20 +286,24 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2020-10-11T21:42:15+00:00"
+            "support": {
+                "issues": "https://github.com/opis/closure/issues",
+                "source": "https://github.com/opis/closure/tree/master"
+            },
+            "time": "2020-12-05T19:20:15+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v6.1.8",
+            "version": "v6.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "917ab212fa00dc6eacbb26e8bc387ebe40993bc1"
+                "reference": "e38888a75c070304ca5514197d4847a59a5c853f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/917ab212fa00dc6eacbb26e8bc387ebe40993bc1",
-                "reference": "917ab212fa00dc6eacbb26e8bc387ebe40993bc1",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/e38888a75c070304ca5514197d4847a59a5c853f",
+                "reference": "e38888a75c070304ca5514197d4847a59a5c853f",
                 "shasum": ""
             },
             "require": {
@@ -285,9 +313,12 @@
                 "php": ">=5.5.0"
             },
             "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "doctrine/annotations": "^1.2",
-                "friendsofphp/php-cs-fixer": "^2.2",
-                "phpunit/phpunit": "^4.8 || ^5.7"
+                "phpcompatibility/php-compatibility": "^9.3.5",
+                "roave/security-advisories": "dev-latest",
+                "squizlabs/php_codesniffer": "^3.5.6",
+                "yoast/phpunit-polyfills": "^0.2.0"
             },
             "suggest": {
                 "ext-mbstring": "Needed to send email in multibyte encoding charset",
@@ -325,13 +356,17 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "support": {
+                "issues": "https://github.com/PHPMailer/PHPMailer/issues",
+                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.2.0"
+            },
             "funding": [
                 {
-                    "url": "https://github.com/synchro",
+                    "url": "https://github.com/Synchro",
                     "type": "github"
                 }
             ],
-            "time": "2020-10-09T14:55:58+00:00"
+            "time": "2020-11-25T15:24:57+00:00"
         },
         {
             "name": "psr/http-factory",
@@ -351,6 +386,7 @@
                 "php": ">=7.0.0",
                 "psr/http-message": "^1.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -383,6 +419,9 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-factory/tree/master"
+            },
             "time": "2020-09-17T16:52:55+00:00"
         },
         {
@@ -402,6 +441,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -433,6 +473,9 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-message/tree/master"
+            },
             "time": "2019-08-29T13:16:46+00:00"
         },
         {
@@ -453,6 +496,7 @@
                 "php": ">=7.0",
                 "psr/http-message": "^1.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -486,6 +530,9 @@
                 "response",
                 "server"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-server-handler/tree/master"
+            },
             "time": "2020-09-17T16:52:43+00:00"
         },
         {
@@ -507,6 +554,7 @@
                 "psr/http-message": "^1.0",
                 "psr/http-server-handler": "^1.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -539,6 +587,10 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "issues": "https://github.com/php-fig/http-server-middleware/issues",
+                "source": "https://github.com/php-fig/http-server-middleware/tree/master"
+            },
             "time": "2020-09-17T16:41:19+00:00"
         },
         {
@@ -558,6 +610,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -586,6 +639,9 @@
                 "psr",
                 "psr-3"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/log/tree/master"
+            },
             "time": "2020-09-18T06:44:51+00:00"
         }
     ],
@@ -603,5 +659,5 @@
         "php": ">=7.4"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

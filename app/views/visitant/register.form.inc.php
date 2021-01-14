@@ -42,8 +42,8 @@
         </div>
     </div>
     <input type="hidden" name="REQUEST_METHOD" value="AJAX" fixed="fixed">
-    <input type="hidden" name="PROVIDER" value="visitant" fixed="fixed">
-    <input type="hidden" name="ROLE" value="register" fixed="fixed">
+    <input type="hidden" name="_PROVIDER" value="visitant" fixed="fixed">
+    <input type="hidden" name="_ROLE" value="register" fixed="fixed">
 </form>
 
 <?= $this->import('global/cam') ?>

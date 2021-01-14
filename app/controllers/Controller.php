@@ -31,7 +31,7 @@ class Controller
             return;
         }
 
-        $method = $_POST['ROLE'];
+        $method = $_POST['_ROLE'];
 
         $this->checkMethod($method);
 

@@ -70,8 +70,8 @@ function requestValidateAll(){
             var data = new FormData();
             data.processData = false;
             data.append('REQUEST_METHOD','AJAX');
-            data.append('PROVIDER', (null !== frm.querySelector('[name="PROVIDER"]')) ? frm.querySelector('[name="PROVIDER"]').value : null);
-            data.append('ROLE', (null !== frm.querySelector('[name="ROLE"]')) ? frm.querySelector('[name="ROLE"]').value : null);
+            data.append('_PROVIDER', (null !== frm.querySelector('[name="_PROVIDER"]')) ? frm.querySelector('[name="_PROVIDER"]').value : null);
+            data.append('_ROLE', (null !== frm.querySelector('[name="_ROLE"]')) ? frm.querySelector('[name="_ROLE"]').value : null);
             data.append('ID', frm.getAttribute('id'));
     
             if(self.fetch) {

@@ -50,7 +50,7 @@
         </div>
     </div>  
     <input type="hidden" name="REQUEST_METHOD" value="AJAX" fixed="fixed">
-    <input type="hidden" name="PROVIDER" value="car" fixed="fixed">
-    <input type="hidden" name="ROLE" value="edition" fixed="fixed">
+    <input type="hidden" name="_PROVIDER" value="car" fixed="fixed">
+    <input type="hidden" name="_ROLE" value="edition" fixed="fixed">
 </form>
 <?= $this->import('global/cam') ?>
