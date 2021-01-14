@@ -12,7 +12,7 @@ Class Visit
         Validator::add($this,function(Rules $rules){
             $rules->action('finish')
                   ->field('upt_id',['minlength'=>1,'maxlength'=>14,'regex'=>'/^[0-9]{1,11}$/','required'=>true])
-                  ->field('upt_weight',['minlength'=>1,'maxlength'=>14,'regex'=>'/^[0-9]{1,11}\.[0-9]{2}$/','required'=>true]);
+                  ->field('upt_weight',['minlength'=>1,'maxlength'=>14,'regex'=>'/^[\d,.?!]{1,11}$/','required'=>true]);
             
             $rules->action('register')
                   ->field('new_reason',['minlength'=>1,'maxlength'=>100,'required'=>true])  

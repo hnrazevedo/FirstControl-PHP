@@ -97,7 +97,7 @@ class App
     private function authorizationInCache(): App
     {
         if($this->cached()){
-            return $this;
+        //    return $this;
         }
 
         $_SESSION['cache']['authorizations'] = [

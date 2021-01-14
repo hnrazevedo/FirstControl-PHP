@@ -33,7 +33,7 @@
                             <input type="text" label="Peso inicial" value="{{ $balanceView.input }}" disabled="disabled" id="weight">
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-3">
-                            <input type="text" label="Peso saída" value="{{ $balanceView.ending }}" class="disabled" name="upt_weight" id="upt_weight">
+                            <input type="text" label="Peso saída" value="{{ $balanceView.ending }}" name="upt_weight" id="upt_weight">
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-3">
                             <input type="text" label="Peso transportado" value="{{ $balanceView.difference }}" disabled="disabled" id="difference">

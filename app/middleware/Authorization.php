@@ -14,7 +14,7 @@ class Authorization implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if(isset($_POST['PROVIDER'])){
+        if(isset($_POST['_PROVIDER'])){
             $this->checkForm($request);
             return $handler->handle($request->withAttribute('authorization', true));
         }
@@ -26,12 +26,12 @@ class Authorization implements MiddlewareInterface
 
     private function checkRoute(ServerRequestInterface $request): void
     {
-        if(isset($_SESSION['cache']['authorizations'])){
+        /*if(isset($_SESSION['cache']['authorizations'])){
             if(!in_array(str_replace('\'', '', Router::currentName()), $_SESSION['cache']['authorizations']['routes'])){
                 throw new \RuntimeException('Você não tem permissão para tal ação ['.Router::currentName().'][CACHE]', 401);
             }
             return;
-        }
+        }*/
 
         $user = $request->getAttribute('user');
      
@@ -57,14 +57,14 @@ class Authorization implements MiddlewareInterface
 
     private function checkForm(ServerRequestInterface $request)
     {
-        $form = (isset($_POST['ROLE'])) ? $_POST['PROVIDER'].'|'.$_POST['ROLE'] : $_POST['PROVIDER'].'|';
+        $form = (isset($_POST['_ROLE'])) ? $_POST['_PROVIDER'].'|'.$_POST['_ROLE'] : $_POST['_PROVIDER'].'|';
 
-        if(isset($_SESSION['cache']['authorizations'])){
+        /*if(isset($_SESSION['cache']['authorizations'])){
             if(!in_array($form, $_SESSION['cache']['authorizations']['forms'])){
                 throw new \RuntimeException('Você não tem permissão para tal ação ('.$form.')[CACHE]', 401);
             }
             return;
-        }
+        }*/
 
         $user = $request->getAttribute('user');
      
